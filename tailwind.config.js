@@ -5,11 +5,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    colors: {
-      primaryPetemoon: "#EA6352",
-      primaryMobileBG: "#FFFFFF",
-      
+    extend: {
+      colors: {
+        primary: "#EA6352",
+        primaryMobileBg: "#FFFFFF",
+      },
     },
   },
   plugins: [require("daisyui")],
