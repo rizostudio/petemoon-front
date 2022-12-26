@@ -48,7 +48,7 @@ export default function Home() {
             height={37}
             priority
           />
-          <div className={styles.thirteen}>
+          <div className={"bg-red-500"}>
             <Image
               src="/thirteen.svg"
               alt="13"
@@ -56,6 +56,7 @@ export default function Home() {
               height={31}
               priority
             />
+            <button className="btn btn-outline btn-info">Info</button>
           </div>
         </div>
 
