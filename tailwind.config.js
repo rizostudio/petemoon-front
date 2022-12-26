@@ -6,6 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    colors: {
+      primaryPetemoon: "#EA6352",
+      primaryMobileBG: "#FFFFFF",
+      
+    },
   },
   plugins: [require("daisyui")],
 };
