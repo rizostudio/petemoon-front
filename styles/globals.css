@@ -1,3 +1,9 @@
+/* tailwind config */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* tailwind config */
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
