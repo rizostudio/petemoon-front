@@ -56,6 +56,7 @@ export default function Home() {
               height={31}
               priority
             />
+            <button className="btn btn-outline btn-info">Info</button>
           </div>
         </div>
 
