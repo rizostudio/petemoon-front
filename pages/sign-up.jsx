@@ -1,8 +1,9 @@
 import Image from "next/image";
 import backgroundLines from "../assets/common/signUpLoginLines.png";
-import signupLogo from "../assets/common/petemoonLogo.png";
 import { useFormik } from "formik";
 import FloatLabelInput from "../components/common/input";
+import leftArrow from "../assets/common/leftArrow.png";
+import PetemoonLogo from "../components/common/logo";
 export default function signUp() {
   const formik = useFormik({
     initialValues: {
@@ -16,15 +17,16 @@ export default function signUp() {
     },
   });
   return (
-    <div className="flex flex-col h-screen w-full bg-primaryMobileBg p-5 relative">
+    <div className="flex flex-col h-screen w-full bg-primaryMobileBg px-8 py-12 relative">
       <Image src={backgroundLines} className="absolute bottom-0 left-0" />
-      <div id="image" className="hidden"></div>
-      <div className="flex flex-col h-full items-center pt-20 space-y-8 z-10">
+      <div className="flex flex-col h-full justify-around items-center space-y-8 z-10">
+        <div className="flex w-full justify-start">
+          <button className="btn btn-square border-0 rounded-2xl bg-[#ECA299] active:bg-[#ECA299] focus:bg-[#ECA299]">
+            <img src={leftArrow.src} className="w-[15%]" />
+          </button>
+        </div>
         <div className="flex flex-col space-y-4">
-          <div id="logo" className="flex flex-col items-center text-primary">
-            <Image src={signupLogo} width={61} height={61} />
-            <p className="font-bold text-xl">petemoon</p>
-          </div>
+          <PetemoonLogo size="sm" />
           <div id="header" className="font-black text-[#333333] text-xl">
             کاربر عزیز خوش آمدید
           </div>
@@ -38,7 +40,7 @@ export default function signUp() {
               onChange={formik.handleChange}
               value={formik.values.firstname}
               required={true}
-              py={3.5}
+              py={"py-3.5"}
             />
             <FloatLabelInput
               type={"text"}
@@ -47,7 +49,7 @@ export default function signUp() {
               onChange={formik.handleChange}
               value={formik.values.lastname}
               required={true}
-              py={3.5}
+              py={"py-3.5"}
             />
             <FloatLabelInput
               type={"email"}
@@ -56,7 +58,7 @@ export default function signUp() {
               onChange={formik.handleChange}
               value={formik.values.email}
               required={false}
-              py={3.5}
+              py={"py-3.5"}
             />
             <FloatLabelInput
               type={"text"}
@@ -65,10 +67,13 @@ export default function signUp() {
               onChange={formik.handleChange}
               value={formik.values.refCode}
               required={false}
-              py={3.5}
+              py={"py-3.5"}
             />
-            <button type="submit" className="btn bg-primary active:bg-primary focus:bg-primary w-full mt-6 rounded-lg">
-              click
+            <button
+              type="submit"
+              className="btn border-0 bg-primary active:bg-primary focus:bg-primary w-full mt-6 rounded-lg text-base font-normal"
+            >
+              ثبت نام
             </button>
           </div>
         </form>
