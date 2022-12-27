@@ -1,7 +1,7 @@
 import petemoonLogo from "../../../assets/common/petemoonLogo.png";
 export default function PetemoonLogo({ size = "responsive" }) {
   return (
-    <div id="logo" className="flex flex-col items-center text-primary">
+    <div className="flex flex-col items-center text-primary">
       <div className="avatar">
         <div
           className={
