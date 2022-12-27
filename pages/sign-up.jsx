@@ -39,7 +39,7 @@ export default function signUp() {
       <div className="flex flex-col lg:w-[42%] lg:bg-white h-full justify-between items-center space-y-20 lg:space-y-8 z-10 px-8 lg:px-14 py-12">
         <div className="w-full h-[40%] flex flex-col justify-between items-center">
           <div className="flex w-full justify-start lg:hidden">
-            <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-[#ECA299] active:bg-[#ECA299] focus:bg-[#ECA299]">
+            <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-primary-light active:bg-primary-light focus:bg-primary-light">
               <img src={leftArrow.src} className="w-[15%]" />
             </button>
           </div>

@@ -7,8 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#EA6352",
-        primaryMobileBg: "#FFFFFF",
+        primary: {
+          light: "#ECA299",
+          DEFAULT: "#EA6352",
+        },
+      },
+      screens: {
+        xs: "360px",
       },
     },
   },
