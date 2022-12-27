@@ -25,7 +25,7 @@ export default function signUp() {
         </div>
       </div>
       <div className="hidden lg:flex justify-center items-center w-[58%]">
-        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-full">
+        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
           <div className="w-full">
             <img src={backgroundLines.src} />
           </div>
