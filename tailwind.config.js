@@ -21,20 +21,33 @@ module.exports = {
     },
     colors: {
       //main color
-      'primary':'#EA6352',
-      'secondary':'#DEDFE1',
-      'thirdly':'#9B9BA1',
+      'first':'#EA6352',
+      'second':'#DEDFE1',
+      'third':'#9B9BA1',
+      'fourth': '#F5F5F5',
       'white':'#FFFFFF',
       'black':'#191C27',
       'info':'#4DA4F4',
       'warning':'#EEC800',
       'verify':'#2DB95D',
       'error':'#CE0000',
+      'gray':'#9B9BA1',
+      'silver':'#E2E2E2'
     },
-    fontFamily: {
-      primary: ['Merriweather', 'serif'],
+    // fontFamily: {
+    //   'primary' :["Yekan", "cursive"],
+    // },
+    extend: {
+      boxShadow: {
+        'first': '0 20px 50px -10px rgba(58, 71, 80, 0.15)',
+      },
+      content: {
+        'arrowLeft': "url('/asset/icons/alarm.svg')",
+      },
+      backgroundImage: {
+        'dashbackground': "url('../asset/icons/dash-bg-mobile.svg')",
+      }
     },
-    extend: {},
   },
   plugins: [require("daisyui")],
 };
