@@ -38,7 +38,7 @@ const DashboardLayout = ({children}) => {
     return (
         <div className='flex flex-row-reverse justify-between '>
             {/* Drawer */}
-            <div id="Drawer" className='flex h-full w-full sm:w-1/5 sm:overflow-hidden flex-col justify-between bg-dashbackground sm:bg-none bg-fourth sm:bg-[#313131] bg-no-repeat bg-cover bg-bottom'>
+            <div id="Drawer" className='hidden h-full w-full sm:w-1/5 sm:overflow-hidden flex-col justify-between bg-dashbackground sm:bg-none bg-fourth sm:bg-[#313131] bg-no-repeat bg-cover bg-bottom'>
                 <div className='hidden sm:flex justify-between m-10'>
                     <Image src={Petemoon_Logo} alt="PetemoonLogo" className="mr-3"/>
                     <Image src={Userpanel_Logo} alt="UserPanelLogo"/>
@@ -71,7 +71,7 @@ const DashboardLayout = ({children}) => {
                     خروج از حساب
                 </button>
             </div>
-            <div id="Inbox" className='hidden sm:flex flex-col justify-between w-full'>
+            <div id="Inbox" className='flex flex-col justify-between w-full sm:w-4/5'>
                 <div className='w-full  bg-white hidden sm:flex flex-row-reverse justify-between items-center px-10 py-5'>
                         <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" className='bg-[#eee] p-5 rounded-full absolute top-5 right-40'/>
                         <div className='flex flex-col items-end'>
@@ -87,7 +87,6 @@ const DashboardLayout = ({children}) => {
                                 <Image src={Notification_Icon} alt="NotificationIcon" className="mr-3"/>
                                 <Image src={Notification_Icon} alt="NotificationIcon"/>
                             </div>
-
                         </div>
                 </div>
                 <div className='bg-fourth h-full w-full'>
