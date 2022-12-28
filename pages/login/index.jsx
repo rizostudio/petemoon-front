@@ -72,10 +72,10 @@ export default function Login() {
                 h={"h-12"}
                 dir={"ltr"}
               />
-              <Link href={"/login/validation"}>
+              <Link href={"/login/validation"} passHref legacyBehavior>
                 <button
                   type="submit"
-                  className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-inherit hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
+                  className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
                   disabled={formik.values.phoneNumber === ""}
                 >
                   ارسال کد
