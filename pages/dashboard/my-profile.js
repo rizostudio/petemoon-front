@@ -12,25 +12,15 @@ const profile = () => {
     const [inputError, setInputError] = useState(false)
     return (
             <DashboardLayout>
-                <div className='w-full h-full flex flex-col justify-between items-center'>
-                    <div className='w-full flex sm:hidden flex-col justify-between items-center mb-10 mt-2'>
-                        <div className='w-full flex flex-row-reverse justify-between items-center p-10'>
-                            <p className=' after:w-2 after:h-5 after:bg-first after:text-first after:content-["<"] after:ml-1 after:rounded-[2px]' >حساب کاربری</p>
-                            <div className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
-                                <Link href='/dashboard'>
-                                    <Image src={ArrowLeft_Icon} alt="ArrowIcon" className='w-full'/>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className='px-10 sm:order-2 flex flex-row-reverse justify-start items-center self-end'>
-                            <Image src={Profile_Alt_Pic} alt="Profile-Pic-Alt" height={75} width={75}/>
-                            <div className='mr-5'>
-                                <p className='text-black text-right font-black sm:text-white'>علی حسینی نسب</p>
-                                <p className='text-gray text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
-                            </div>
+                <div className='w-full h-full flex flex-col justify-between items-stretch'>
+                    <div className='w-full sm:hidden mb-10 mt-2 sm:order-2 flex flex-row-reverse justify-start items-center self-end'>
+                        <Image src={Profile_Alt_Pic} alt="Profile-Pic-Alt" height={75} width={75}/>
+                        <div className='mr-5'>
+                            <p className='text-black text-right font-black sm:text-white'>علی حسینی نسب</p>
+                            <p className='text-gray text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
                         </div>
                     </div>
-                    <div className='w-full flex flex-col sm:flex-row-reverse justify-between items-center sm:my-8 p-10 sm:p-0'>
+                    <div className='w-full flex flex-col sm:flex-row-reverse justify-between items-center sm:my-8 sm:p-0'>
                         <div className='w-full h-full sm:w-2/3 sm:p-5 sm:ml-6 sm:px-15 sm:py-10 sm:bg-white rounded-[25px] sm:shadow-shadowA'>
                             <form className='w-full flex flex-col sm:flex-row flex-wrap items:center justify-evenly'>                                    
                                 <div className='sm:flex justify-between items-center w-full'>
