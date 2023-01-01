@@ -30,7 +30,7 @@ const DashboardLayout = ({children}) => {
                         {id:"wallet", name:"کیف پول", icon:Wallet_Icon},
                         {id:"orders", name:"سفارش ها", icon:Orders_Icon},
                         {id:"bookmarks", name:"علاقه مندی ها", icon:Favorite_Icon},
-                        {id:"my-message", name:"پیام های من", icon:Message_Icon},
+                        {id:"my-messages", name:"پیام های من", icon:Message_Icon},
                         {id:"support", name:"پشتیبانی", icon:Help_Icon},
                     ]
     const pageName = menuArr.find(item => router.asPath.includes(item.id))

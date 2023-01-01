@@ -16,11 +16,9 @@ const Bookmarks = () => {
                             {key:3, name:"اسباب بازی سگ" , picture:'', price: 76000, discount:0},   
                         ])
     const TrashHandler = (index) => {
-        console.log('f')
         const newArr = [...bookmarkArr];
         newArr.splice(1,index);
         setBookmarkArr(newArr)
-        console.log(bookmarkArr)
     }
     return (
         <DashboardLayout>
