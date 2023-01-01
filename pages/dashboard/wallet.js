@@ -41,12 +41,12 @@ const wallet = () => {
                                     value={increaseAmount} 
                                     onChange={event => setIncreaseAmount(event.target.value)}    
                                     placeholder="100000"
-                                    className='w-full p-3 mb-2 lg:mb-3 bg-white text-base text-center text-gray font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px] focus:border-error focus:text-black after:content-["fu"] after:text-lg after:text-error'
+                                    className='w-full p-3 mb-2 lg:mb-3 bg-white text-base text-center text-gray-400 font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px] focus:border-error focus:text-black after:content-["fu"] after:text-lg after:text-error'
                                 />
                                 <div className='w-full flex mb-3'>
-                                    <button onClick={() => setIncreaseAmount(500000)} className="w-full p-3 bg-white text-sm text-center text-gray font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px]"><bdi>{500000} تومان</bdi></button>
-                                    <button onClick={() => setIncreaseAmount(200000)} className="w-full p-3 mx-1 lg:mx-2 bg-white text-sm text-center text-gray font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px]"><bdi>{200000} تومان</bdi></button>
-                                    <button onClick={() => setIncreaseAmount(100000)} className="w-full p-3 bg-white text-sm text-center text-gray font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px] "><bdi>{100000} تومان</bdi></button>
+                                    <button onClick={() => setIncreaseAmount(500000)} className="w-full p-3 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px]"><bdi>{500000} تومان</bdi></button>
+                                    <button onClick={() => setIncreaseAmount(200000)} className="w-full p-3 mx-1 lg:mx-2 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px]"><bdi>{200000} تومان</bdi></button>
+                                    <button onClick={() => setIncreaseAmount(100000)} className="w-full p-3 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-third rounded-[12px] lg:rounded-[5px] "><bdi>{100000} تومان</bdi></button>
                                 </div>
                             </div>
                             <div className='flex flex-row-reverse items-center justify-between w-full lg:w-1/3 lg:self-left'>

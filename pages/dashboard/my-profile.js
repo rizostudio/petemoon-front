@@ -17,7 +17,7 @@ const profile = () => {
                         <Image src={Profile_Alt_Pic} alt="Profile-Pic-Alt" height={75} width={75}/>
                         <div className='mr-5'>
                             <p className='text-black text-right font-black lg:text-white'>علی حسینی نسب</p>
-                            <p className='text-gray text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
+                            <p className='text-gray-400 text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
                         </div>
                     </div>
                     <div className='w-full flex flex-col lg:flex-row-reverse justify-between items-center lg:my-8 lg:p-0'>
@@ -26,24 +26,24 @@ const profile = () => {
                                 <div className='lg:flex justify-between items-center w-full'>
                                     <div className='text-right lg:w-1/2 my-2 lg:m-1'>
                                         <label className='text-sm text-black font-bold leading-8  after:w-2 after:h-4 after:bg-first after:text-first after:content-["<"] after:ml-2 after:rounded-[2px]'>نام</label>
-                                        <input type='text' placeholder="نام" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
+                                        <input type='text' placeholder="نام" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray-400 lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
                                         {inputError ? <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p> : null }
                                     </div>
                                     <div className='text-right lg:w-1/2 my-2 lg:m-1'>
                                         <label className='text-sm text-black font-bold leading-8  after:w-2 after:h-4 after:bg-first after:text-first after:content-["<"] after:ml-2 after:rounded-[2px]'>نام خانوادگی</label>
-                                        <input type='text' placeholder="نام خانوادگی" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
+                                        <input type='text' placeholder="نام خانوادگی" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray-400 lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
                                         {inputError ? <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p> : null }
                                     </div>
                                 </div>
                                 <div className='lg:flex justify-between items-center w-full'>
                                     <div className='text-right lg:w-1/2 my-2 lg:m-1'>
                                         <label className='text-sm text-black font-bold leading-8  after:w-2 after:h-4 after:bg-first after:text-first after:content-["<"] after:ml-2 after:rounded-[2px]'>ایمیل</label>
-                                        <input type='email' placeholder="ایمیل" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
+                                        <input type='email' placeholder="ایمیل" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray-400 lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
                                         {inputError ? <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p> : null }
                                     </div>
                                     <div className='text-right lg:w-1/2 my-2 lg:m-1'>
                                         <label className='text-sm text-black font-bold leading-8  after:w-2 after:h-4 after:bg-first after:text-first after:content-["<"] after:ml-2 after:rounded-[2px]'>شماره تماس</label>
-                                        <input type='phone' placeholder="شماره تماس" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
+                                        <input type='phone' placeholder="شماره تماس" className='w-full px-5 py-3 lg:py-1 bg-transparent lg:bg-[#eee] text-right border-[1px] solid border-gray-400 lg:border-[rgba(58, 71, 80, 0.5)] rounded-[12px] lg:rounded-[5px] focus:bg-white focus:border-error'/>
                                         {inputError ? <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p> : null }
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@ const profile = () => {
                            <Image src={Cake_Icon} alt="CakeIcon" className='w-20 lg:w-36'/>
                            <div className='flex flex-col justify-between items:end lg:items-center text-right lg:text-center'>
                             <p className='text-2xl lg:text-xl text-black font-bold leading-6 mb-3 lg:mb-1'>متولد</p>
-                            <p className='text-xl lg:text-lg text-gray font-medium tracking-widest leading-6'><bdi>۱ مرداد ۱۳۸۰</bdi></p>
+                            <p className='text-xl lg:text-lg text-gray-400 font-medium tracking-widest leading-6'><bdi>۱ مرداد ۱۳۸۰</bdi></p>
                            </div>
                         </div>
                         <button className='lg:hidden w-full mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[12px]'>ذخیره</button>

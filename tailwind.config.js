@@ -22,12 +22,11 @@ module.exports = {
           'warning':'#EEC800',
           'verify':'#2DB95D',
           'error':'#CE0000',
-          'gray':'#9B9BA1',
           'silver':'#E2E2E2'
         },
         boxShadow: {
           'shadowA': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-          
+          'shadowB': '0 20px 50px -10px rgba(58, 71, 80, 0.15)',
         },
         content: {
           'arrowLeft': "url('/asset/icons/alarm.svg')",

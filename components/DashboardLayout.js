@@ -90,7 +90,7 @@ const DashboardLayout = ({children}) => {
                         {!minly ?   
                             <div>
                                 <p className='text-black text-right font-black lg:text-white'>علی حسینی نسب</p>
-                                <p className='text-gray text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
+                                <p className='text-gray-400 text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
                             </div>
                         : null }
                     </div>
@@ -139,11 +139,9 @@ const DashboardLayout = ({children}) => {
                 <div className='bg-fourth w-full h-full p-10 lg:px-20 lg:py-12'>
                     <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
                         <p className=' after:w-2 after:h-5 after:bg-first after:text-first after:content-["<"] after:ml-1 after:rounded-[2px]'>{pageName && pageName.name}</p>
-                        <div className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
-                            <Link href='/dashboard'>
-                                <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
-                            </Link>
-                        </div>
+                        <Link href='/dashboard' className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
+                            <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
+                        </Link>
                     </div>
                     {children}
                 </div>
