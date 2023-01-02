@@ -57,7 +57,7 @@ const DashboardLayout = ({children}) => {
     //     setMinly(false)
     // }
     return (
-        <div className='flex flex-row-reverse justify-between '>
+        <div className='w-full h-full flex flex-row-reverse justify-between '>
             {/* <style jsx>{`
             .DrawerHidden {
                 display : none;
@@ -118,7 +118,7 @@ const DashboardLayout = ({children}) => {
                    {!minly ? "خروج از حساب" : null }
                 </button>
             </div>
-            <div id="Inbox" className='flex flex-col justify-between w-full '>
+            <div id="Inbox" className='flex flex-col justify-between w-full h-full'>
                 <div className='w-full bg-white hidden lg:flex flex-row-reverse justify-between items-center px-10 py-5 relative'>
                         <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" onClick={() => setMinly(!minly)} className='bg-[#eee] w-10 h-10 p-3 rounded-full absolute top-[25%] right-[-2%]'/>
                         <div className='flex flex-col items-end'>
@@ -136,9 +136,9 @@ const DashboardLayout = ({children}) => {
                             </div>
                         </div>
                 </div>
-                <div className='bg-fourth w-full h-full p-10 lg:px-20 lg:py-12'>
+                <div className='bg-fourth w-full h-full p-10 lg:px-20 lg:py-12 overflow-y-scroll'>
                     <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
-                        <p className=' after:w-2 after:h-5 after:bg-first after:text-first after:content-["<"] after:ml-1 after:rounded-[2px]'>{pageName && pageName.name}</p>
+                        <p className='text-lg text-black font-black leading-7 align-middle after:inline-block after:w-2 after:h-5 after:bg-first after:ml-1 after:rounded-[2px]'>{pageName && pageName.name}</p>
                         <Link href='/dashboard' className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
                             <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
                         </Link>

@@ -22,7 +22,7 @@ const Bookmarks = () => {
     }
     return (
         <DashboardLayout>
-            <div className='w-full h-screen lg:h-auto flex flex-col lg:flex-row-reverse lg:flex-wrap justify-between lg:justify-center items-stretch'>
+            <div className='w-full h-full lg:h-auto flex flex-col lg:flex-row-reverse lg:flex-wrap justify-between lg:justify-center items-stretch'>
                 {bookmarkArr? bookmarkArr.map((item,index) => 
                     <div key={item.key} className='flex flex-col w-full lg:max-w-[35%] my-2 lg:mx-2 lg:my-3 p-5 lg:p-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-second lg:border-gray-400 lg:shadow-shadowB'>
                         <div className='h-[100px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid border-first'></div>

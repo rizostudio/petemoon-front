@@ -58,7 +58,7 @@ const profile = () => {
                         </div>
                         <button className='lg:hidden w-full mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[12px]'>ذخیره</button>
                     </div>
-                    <div className='hidden lg:block w-full m-auto bg-white rounded-[25px] shadow-shadowA'>
+                    <div className='hidden lg:block w-full mt-5 bg-white rounded-[25px] shadow-shadowA'>
                         <div className='flex justify-between items-center px-10 py-8'>
                             <p className=' text-xs text-first font-medium leading-6 before:content-["<"] before:mr-4 before:text-base'>مشاهده همه</p>
                             <p className='text-base text-black font-bold leading-8  after:w-2 after:h-4 after:bg-first after:text-first after:content-["<"] after:ml-2 after:rounded-[2px]'>سفارش های من</p>
