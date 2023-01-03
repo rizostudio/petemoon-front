@@ -137,12 +137,14 @@ const DashboardLayout = ({children}) => {
                         </div>
                 </div>
                 <div className='bg-fourth w-full h-full p-10 lg:px-20 lg:py-12 overflow-y-scroll'>
-                    <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
-                        <p className='text-lg text-black font-black leading-7 align-middle after:inline-block after:w-2 after:h-5 after:bg-first after:ml-1 after:rounded-[2px]'>{pageName && pageName.name}</p>
-                        <Link href='/dashboard' className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
-                            <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
-                        </Link>
-                    </div>
+                    {pageName && 
+                        <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
+                            <p className='text-lg text-black font-black leading-7 align-middle after:inline-block after:w-2 after:h-5 after:bg-first after:ml-1 after:rounded-[2px]'>{pageName.name}</p>
+                            <Link href='/dashboard' className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
+                                <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
+                            </Link>
+                        </div>
+                    }
                     {children}
                 </div>
             </div>

@@ -26,7 +26,7 @@ const wallet = () => {
             <div>
                 <input type="checkbox" id="add-wallet-modal" className="modal-toggle" />
                 <label htmlFor="add-wallet-modal" className="modal cursor-pointer">
-                    <label className="modal-box w-full absolute lg:relative inset-x-0 bottom-0 px-10 py-4 lg:p-8 mx-auto bg-white rounded-[20px]">
+                    <label className="modal-box w-full absolute lg:relative inset-x-0 bottom-0 px-10 py-4 lg:p-8 mx-auto bg-white rounded-none rounded-t-[15px] lg:rounded-[20px]">
                         <div className='w-full flex flex-row-reverse justify-between items-center'>
                             <p className='text-base lg:text-base text-black font-medium lg:font-black leading-7 after:hidden lg:after:inline-block after:w-2 after:h-4 after:bg-first after:text-first after:content-[""] after:ml-2 after:align-middle after:rounded-[2px]'>افزایش موجودی</p>
                             <label htmlFor="add-wallet-modal">
