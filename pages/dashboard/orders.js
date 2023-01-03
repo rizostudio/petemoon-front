@@ -54,7 +54,7 @@ const Orders = () => {
                         <p className='text-base text-right text-black font-semibold leading-8 opacity-90 self-end mb-2 lg:mb-5'><bdi>آدرس پستی : 
                                     <span className='text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4'>{item.Address}</span>
                         </bdi></p>
-                        <div className="flex flex-row items-center self-end">
+                        <div className="flex flex-row justify-end items-center flex-wrap self-end">
                             {item.products.map(item => 
                             <div className='w-[50px] lg:w-[100px] h-[50px] lg:h-[100px] m-1 lg:m-2 bg-gray-600 rounded-[10px] lg:rounded-[10px]'></div>
                             )}

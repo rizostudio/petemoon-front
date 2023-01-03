@@ -44,36 +44,22 @@ const Support = () => {
                             <div className='h-full w-1/3 flex flex-col lg:flex-row-reverse justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-second rounded-[15px]'>
                                 <Image src={WhatsApp_Icon} alt="WhatsAppIcon" className='w-[75px] lg:w-[100px]'/>
                                 <div className='text-center lg:text-right mt-6 lg:mt-0 lg:mr-4 '>
-                                    <p className='text-base lg:text-lg text-black font-medium lg:font-black leading-6 opacity-90'>واتساپ</p>
-                                    <span className='text-sm lg:text-base text-first font-medium leading-6'>پیام در واتس اپ</span>
+                                    <p className='text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90'>واتساپ</p>
+                                    <span className='text-xs lg:text-sm text-first font-medium leading-6'>پیام در واتس اپ</span>
                                 </div>
                             </div>
-                            {/* <div className='h-full w-1/3 flex flex-col lg:flex-row-reverse justify-between lg:justify-start items-center bg-white mx-2 lg:mx-0 p-5 border-[1px] solid lg:border-none border-second rounded-[15px]'>
-                                <Image src={Email_Icon} alt="WhatsAppIcon" className='w-[100px]'/>
-                                <div className='text-center lg:text-right mt-6 lg:mt-0 lg:mr-4 '>
-                                    <p className='text-base lg:text-lg text-black font-medium lg:font-black leading-6 opacity-90'>واتساپ</p>
-                                    <span className='text-sm lg:text-base text-first font-medium leading-6'>پیام در واتس اپ</span>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/3 flex flex-col lg:flex-row-reverse justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-second rounded-[15px]'>
-                                <Image src={Instagram_Icon} alt="WhatsAppIcon" className='w-[100px]'/>
-                                <div className='text-center lg:text-right mt-6 lg:mt-0 lg:mr-4 '>
-                                    <p className='text-base lg:text-lg text-black font-medium lg:font-black leading-6 opacity-90'>واتساپ</p>
-                                    <span className='text-sm lg:text-base text-first font-medium leading-6'>پیام در واتس اپ</span>
-                                </div>
-                            </div> */}
                             <div className='h-full w-1/3 flex flex-col lg:flex-row-reverse justify-between mx-2 lg:mx-0 lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-second rounded-[15px]'>
                                 <Image src={Email_Icon} alt="WhatsAppIcon" className='w-[75px] lg:w-[100px]'/>
                                 <div className='text-center lg:text-right mt-5 lg:mt-0 lg:mr-4'>
-                                    <p className='text-base lg:text-lg text-black font-medium lg:font-black leading-6 opacity-90 break-normal'>ایمیل مجموعه</p>
-                                    <span className='text-sm lg:text-base text-black font-medium leading-6 break-normal'>petemoon@gmail</span>
+                                    <p className='text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90 break-normal'>ایمیل مجموعه</p>
+                                    <span className='text-xs lg:text-sm text-black font-medium leading-6 break-all'>petemoon@gmail</span>
                                 </div>
                             </div>
                             <div className='h-full w-1/3 flex flex-col lg:flex-row-reverse justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-second rounded-[15px]'>
                                 <Image src={Instagram_Icon} alt="WhatsAppIcon" className='w-[75px] lg:w-[100px]'/>
                                 <div className='text-center lg:text-right mt-6 lg:mt-0 lg:mr-4'>
-                                    <p className='text-base lg:text-lg text-black font-medium lg:font-black leading-6 opacity-90'>اینستاگرام</p>
-                                    <span className='text-sm lg:text-base text-black font-medium leading-6'>petemoo_com</span>
+                                    <p className='text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90'>اینستاگرام</p>
+                                    <span className='text-xs lg:text-sm text-black font-medium leading-6 break-all'>petemoo_com</span>
                                 </div>
                             </div>
 
@@ -87,7 +73,7 @@ const Support = () => {
                             </div>
                             <Image src={Phone_Icon} alt="PhoneIcon"/>
                         </div>
-                        <div className='flex flex-row-reverse justify-between items-center mt-2'>
+                        <div className='flex flex-row-reverse justify-between xs:flex-wrap items-center mt-2'>
                             <p className='text-sm text-black font-medium leading-4 before:w-[2px] before:h-4 before:bg-gray-200 before:inline-block before:rounded-sm before:mx-5 before:align-middle'>02186655877-90</p>
                             <p className='text-sm text-black font-medium leading-4 before:w-[2px] before:h-4 before:bg-gray-200 before:inline-block before:rounded-sm before:mx-5 before:align-middle'>02186655877-91</p>
                             <p className='text-sm text-black font-medium leading-4'>02186655877-92</p>
