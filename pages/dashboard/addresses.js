@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import DashboardLayout from '../../components/DashboardLayout';
 import MapPreserve_Pic from '../../asset/icons/mapPicPreserve.svg';
 import Map_Pic from '../../asset/icons/mapPic.svg';
@@ -32,9 +33,9 @@ const Addresses = () => {
                         <div className='flex flex-row-reverse items-center justify-end lg:justify-between'>
                         <p className='hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 after:hidden lg:after:inline-block after:w-2 after:h-4 after:bg-first after:ml-2 after:align-middle after:rounded-[2px]'><bdi>{item.title}</bdi></p>
                             <div className='flex flex-row-reverse items-center'>
-                                <div className="hidden lg:block p-2 border-[1px] solid border-[#4DA4F4] rounded-[12px]">
+                                <Link href={'/dashboard/address-edit'} className="hidden lg:block p-2 border-[1px] solid border-[#4DA4F4] rounded-[12px]">
                                     <Image src={Edit2_Icon} alt="EditIcon" width={15} height={15}/>
-                                </div>
+                                </Link>
                                 <label htmlFor='Trash-modal'
                                     className="hidden lg:block p-2 border-[1px] solid border-error rounded-[12px] cursor-pointer mr-2 "
                                 >
@@ -99,8 +100,13 @@ const Addresses = () => {
                                     <label htmlFor='More-modal'
                                         className="w-full flex flex-row-reverse items-center px-9 py-3"
                                     >
-                                        <Image src={Edit2_Icon} alt="EditIcon" width={15} height={15}/>
-                                        <p className='text-base text-black font-medium leading-8 mr-2'>ویرایش آدرس</p>
+                                        <Link
+                                         href="/dashboard/address-edit"
+                                            className='flex flex-row-reverse'
+                                         >
+                                            <Image src={Edit2_Icon} alt="EditIcon" width={15} height={15}/>
+                                            <p className='text-base text-black font-medium leading-8 mr-2'>ویرایش آدرس</p>
+                                        </Link>
                                     </label>
                                 </div>
                             </label>
