@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import clsx from 'clsx'
 import Profile_Icon from '../asset/icons/user-edit.svg';
 import Address_Icon from '../asset/icons/location.svg';
 import MyPet_Icon from '../asset/icons/pet.svg';
@@ -21,12 +22,12 @@ import Userpanel_Logo from '../asset/icons/user-panel.svg';
 import Document from 'next/document';
 const DashboardLayout = ({children}) => {
     const router = useRouter()
-    const [openly,setOpenly] = useState(true);
+    const [openly,setOpenly] = useState(false);
     const [minly, setMinly] = useState(false);
     const [notificationBar, setNotificationBar] = useState(true);
     const menuArr = [   {id:"my-profile", name:"حساب کاربری", icon:Profile_Icon},
                         {id:"addresses", name:"آدرس ها", icon:Address_Icon},
-                        {id:"my-pet", name:"پت من", icon:MyPet_Icon},
+                        {id:"my-pets", name:"پت من", icon:MyPet_Icon},
                         {id:"wallet", name:"کیف پول", icon:Wallet_Icon},
                         {id:"orders", name:"سفارش ها", icon:Orders_Icon},
                         {id:"bookmarks", name:"علاقه مندی ها", icon:Favorite_Icon},
@@ -95,9 +96,12 @@ const DashboardLayout = ({children}) => {
                         : null }
                     </div>
                 </div>
-                <ul className='h-full w-full'>
+                <ul className={clsx('w-full h-full ',{
+                    'bg-red-500' : openly == false
+                })}>
                     {menuArr.map(item => 
-                        <li key={item.id} onClick={() =>setOpenly(!openly)} className="border-b-[1px] border-silver solid lg:border-[#e2e2e2] lg:my-0 lg:mx-9 py-4 px-5 lg:px-0">
+                        <li key={item.id} onClick={() =>setOpenly(true)} className="border-b-[1px] border-silver solid lg:border-[#e2e2e2] lg:my-0 lg:mx-9 py-4 px-5 lg:px-0">
+                            {console.log(openly)}
                             <Link href={`/dashboard/${item.id}`} className='flex flex-row-reverse justify-between items-center w-full'>
                                 <div className='flex flex-row-reverse items-center'>
                                     <Image src={item.icon} alt={item.name} width='20' height='20' className='lg:invert'/>
