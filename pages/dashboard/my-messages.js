@@ -17,7 +17,7 @@ const MyMessage = () => {
     }
     return (
         <DashboardLayout>
-            <div className='w-full h-screen lg:h-auto flex flex-col items-stretch'>
+            <div className='flex flex-col items-stretch'>
                 {messagesArr ?
                     messagesArr.map((item, index) => 
                         item.subject ? 

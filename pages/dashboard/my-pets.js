@@ -35,7 +35,7 @@ const MyPet = () => {
 
     return (
         <DashboardLayout>
-             <div className='w-full h-full flex flex-col justify-between items-stretch'>
+             <div className='flex flex-col justify-between items-stretch'>
                 {PetsArr ? PetsArr.map((item,index) => 
                     <div key={v4()} className='flex flex-col bg-[#E7E7E8] rounded-[20px] lg:rounded-[25px] w-full my-2 lg:my-6'>
                         <div className="tabs self-center flex flex-row-reverse justify-center lg:justify-start w-full lg:self-end my-3 lg:px-8 lg:my-8 border-b-[1px] solid border-white">

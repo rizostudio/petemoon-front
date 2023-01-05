@@ -25,7 +25,7 @@ const Addresses = () => {
     }
     return (
         <DashboardLayout>
-            <div className='w-full h-full flex flex-col justify-between items-stretch'>
+            <div className='flex flex-col justify-between items-stretch'>
                 {AddressesArr ? AddressesArr.map((item,index) => 
                     <div key={item.key} 
                         className='flex flex-col justify-between items-stretch my-2 lg:my-3 px-5 lg:px-12 py-2 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-second lg:border-none lg:shadow-shadowB'

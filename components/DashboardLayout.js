@@ -35,95 +35,87 @@ const DashboardLayout = ({children}) => {
                         {id:"support", name:"پشتیبانی", icon:Help_Icon},
                     ]
     const pageName = menuArr.find(item => router.asPath.includes(item.id))
-    // if(typeof window !== "undefined") {
-    //     let Drawer = document.getElementById('Drawer').style.display;
-    //     let Inbox = document.getElementById('Inbox').style.display;
-    //     openly && (Drawer.toggle('DrawerHidden') & Inbox.toggle('InboxShow'))
-    //     console.log(Inbox)
-    //     if (openly) {
-    //         Drawer = 'block';
-    //         Inbox = 'none';
-    //     } else {
-    //         Drawer = 'none';
-    //         Inbox = 'flex';
-    //     }
-    //     console.log(openly)
-    //     // : (Drawer = 'none'; & Inbox = 'flex';)
-    //     document.getElementById('Drawer').style.display = "none"
-    //     if(window.screen.width > 680) {
-    //         setMinly(false)
-    //     }
-    // }
-    // if(typeof window !== 'undefined') {
-    //     setMinly(false)
-    // }
     return (
         <div className='w-full h-full flex flex-row-reverse justify-between '>
-            {/* <style jsx>{`
-            .DrawerHidden {
-                display : none;
-            }
-            .InboxShow {
-                display : flex;
-            }
-            @media (min-width:680px) {
-                .DrawerHidden , .InboxShow {
-                    display:flex;
-                }
-            }
-            `
-            }
-
-            </style> */}
             {/* Drawer */}
-            <div id="Drawer" className='hidden lg:flex h-full w-full lg:w-auto lg:overflow-hidden flex-col justify-between bg-dashbackground lg:bg-none bg-fourth lg:bg-[#313131] bg-no-repeat bg-cover bg-bottom'>
-                <div className='hidden lg:flex justify-between m-10'>
-                    {!minly ? <Image src={Petemoon_Logo} alt="PetemoonLogo" className="mr-3"/> : null }
+            <div id="Drawer" className={clsx('lg:flex h-full w-full lg:w-auto lg:overflow-hidden flex-col justify-between bg-fourth lg:bg-[#313131] bg-no-repeat bg-cover bg-bottom',{
+                'flex' : openly == false,
+                'hidden' : openly == true
+            })}>
+                <div className='hidden lg:flex justify-between m-10 h-full'>
+                    <Image src={Petemoon_Logo} alt="PetemoonLogo" className={clsx("mr-2",{
+                        'block' : minly == false,
+                        'hidden' : minly == true
+                    })}/>
                     <Image src={Userpanel_Logo} alt="UserPanelLogo"/>
                 </div>
-                <div className='hidden lg:flex flex-row-reverse border-b-[1px] solid border-[#e2e2e2] m-9 py-3'>
-                    <Image src={Search_Icon} alt="SearchIcon"/>
-                    {!minly ? <input type="text" placeholder="جستجو" className='text-right text-second font-bold p-2 w-full border-none bg-transparent focus:border-none'/> : null }
-                </div>
-                <div className='p-10 lg:order-2 flex flex-row-reverse justify-start items-center border-b-[1px] border-silver solid lg:border-none'>
+                <div className='p-10 h-full flex lg:hidden flex-row-reverse justify-start items-center border-b-[1px] border-silver solid'>
                     <Image src={Profile_Alt_Pic} alt="Profile-Pic-Alt" height={50} width={50}/>
                     <div className='mr-5'>
-                        {!minly ?   
-                            <div>
-                                <p className='text-black text-right font-black lg:text-white'>علی حسینی نسب</p>
-                                <p className='text-gray-400 text-right'>۰۹۳۰۱۲۳۴۵۶۷</p>
-                            </div>
-                        : null }
+                        <div className={clsx({
+                            'block' : minly == false,
+                            'lg:hidden' : minly == true
+                        })}>
+                            <p className='text-base text-black text-right font-black'>علی حسینی نسب</p>
+                            <p className='text-base text-gray-400 text-right font-medium'>۰۹۳۰۱۲۳۴۵۶۷</p>
+                        </div>
                     </div>
                 </div>
-                <ul className={clsx('w-full h-full ',{
-                    'bg-red-500' : openly == false
-                })}>
+                <ul className='w-full h-full'>
                     {menuArr.map(item => 
-                        <li key={item.id} onClick={() =>setOpenly(true)} className="border-b-[1px] border-silver solid lg:border-[#e2e2e2] lg:my-0 lg:mx-9 py-4 px-5 lg:px-0">
-                            {console.log(openly)}
-                            <Link href={`/dashboard/${item.id}`} className='flex flex-row-reverse justify-between items-center w-full'>
+                        <li key={item.id} onClick={() =>setOpenly(true)} className={clsx("border-b-[1px] border-silver solid lg:border-[#eeeeee26] lg:my-0 lg:mx-9 py-4 px-5 lg:px-0",{
+                            ""  : minly == false , 
+                            "lg:border-none" : minly == true
+                        })}>
+                            <Link href={`/dashboard/${item.id}`} className={clsx('flex justify-between items-center w-full',{
+                                "flex-row-reverse" :  minly == false ,
+                               "flex-row-reverse lg:flex-col" : minly == true 
+                            })}>
                                 <div className='flex flex-row-reverse items-center'>
                                     <Image src={item.icon} alt={item.name} width='20' height='20' className='lg:invert'/>
-                                    {!minly ? <h3 className='text-black text-right text-xs font-bold w-full mr-3 lg:text-second'>{item.name}</h3> : null } 
+                                    <h3 className={clsx('text-base text-black lg:text-second font-bold w-full mr-3',{
+                                        'block' : minly == false , 
+                                        'lg:hidden' : minly == true
+                                    })}>{item.name}</h3>
                                 </div>
-                                {!minly ? 
-                                            ( notificationBar ? 
-                                                <p className='hidden lg:block text-white text-center text-xs bg-first px-[5px] py-[3px] rounded-[5px]'>۱۰</p>
-                                            : null )
-                                : null }
+                                {notificationBar && <p className={clsx('hidden text-white text-center text-xs bg-first px-[5px] py-[3px] rounded-[5px]',{
+                                    'lg:block' : minly == false , 
+                                    'lg:hidden' : minly == true
+                                })}>۱۰</p>}
                                 <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" className="lg:hidden"/>
                             </Link>
                         </li>
                     )}
                 </ul>
-                <button className="relative bg-first lg:bg-[#3A4750] lg:text-xs text-white text-center lg:text-right w-4/5 py-4 lg:p-3 m-auto mb-5 rounded-[12px] border-none lg:order-3">
-                    <Image src={Logout_Btn} alt="LogOutBtn" width="20" height="20" className=''/>
-                   {!minly ? "خروج از حساب" : null }
-                </button>
+                <div className='w-full flex flex-col justify-center items-stretch'>
+                    <div className='p-10 h-full hidden lg:flex flex-row-reverse justify-start items-center border-b-[1px] border-[#eeeeee26] solid lg:border-none'>
+                        <div className='mr-5 lg:mr-0'>
+                            <div className={clsx({
+                                'block' : minly == false,
+                                'lg:hidden' : minly == true
+                            })}>
+                                <p className='text-base text-white text-right font-black'>علی حسینی نسب</p>
+                                <p className='text-base text-gray-400 text-right font-medium'>۰۹۳۰۱۲۳۴۵۶۷</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={clsx("flex justify-center lg:justify-between items-center self-center bg-first w-3/4 h-full lg:mx-auto lg:mt-1 mb-5 rounded-[12px]",{
+                        ' lg:bg-[#3A4750] p-4 lg:py-2 mx-10 '   : minly == false,
+                        'lg:bg-transparent flex-col lg:p-0 lg:mx-0' : minly == true
+                    })}>
+                        <Image src={Logout_Btn} alt="LogOutBtn" width="20" height="20"/>
+                        <p className={clsx('text-base text-white font-medium leading-7 ml-3',{
+                            'block' : minly == false,
+                            'lg:hidden' : minly == true
+                        })}>خروج از حساب</p>
+                    </div>
+                </div>
             </div>
-            <div id="Inbox" className='flex flex-col justify-between w-full h-full'>
-                <div className='w-full bg-white hidden lg:flex flex-row-reverse justify-between items-center px-10 py-5 relative'>
+            <div id="Inbox" className={clsx('lg:flex flex-col justify-between w-full h-full bg-fourth',{
+               'hidden' : openly == false ,
+               'flex' : openly == true 
+            })}>
+                <div className='w-full h-full bg-white hidden lg:flex flex-row-reverse justify-between items-center px-10 py-5 relative'>
                         <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" onClick={() => setMinly(!minly)} className='bg-[#eee] w-10 h-10 p-3 rounded-full absolute top-[25%] right-[-2%]'/>
                         <div className='flex flex-col items-end'>
                             <p className="text-black font-black text-2xl">خوش آمدی، علی عزیز</p>
@@ -140,11 +132,11 @@ const DashboardLayout = ({children}) => {
                             </div>
                         </div>
                 </div>
-                <div className='bg-fourth w-full h-full p-10 lg:px-20 lg:py-12 overflow-y-scroll'>
+                <div className='bg-fourth w-full h-full p-10 pb-10 lg:px-20 lg:py-12 overflow-y-scroll'>
                     {pageName && 
                         <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
                             <p className='text-lg text-black font-black leading-7 align-middle after:inline-block after:w-2 after:h-5 after:bg-first after:ml-1 after:rounded-[2px]'>{pageName.name}</p>
-                            <Link href='/dashboard' className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
+                            <Link href='/dashboard' onClick={() => setOpenly(false)} className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
                                 <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
                             </Link>
                         </div>

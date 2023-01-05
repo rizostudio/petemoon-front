@@ -19,7 +19,7 @@ const Orders = () => {
     ]
     return (
         <DashboardLayout>
-        <div className='w-full h-full flex flex-col items-stretch'>
+        <div className='flex flex-col items-stretch'>
             { OrdersArr ?
                 OrdersArr.map((item, index) => 
                     item.orderCode ? 

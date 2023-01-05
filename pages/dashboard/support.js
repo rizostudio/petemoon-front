@@ -20,7 +20,7 @@ const Support = () => {
     const [inputError, setInputError] = useState(false)
     return (
             <DashboardLayout>
-                <div className='w-full h-full flex flex-col items-stretch'>
+                <div className='flex flex-col items-stretch'>
                     <div className='w-full h-full lg:h-[250px] flex flex-col lg:flex-row-reverse justify-between items-center lg:my-8'>
                         <div className='w-full h-full lg:w-3/4 flex flex-col items-stretch justify-between  p-4 lg:px-20 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] lg:shadow-shadowA border-[1px] border-second solid lg:border-none'>
                             <p className='hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 after:hidden lg:after:inline-block after:w-2 after:h-4 after:bg-first after:ml-2 after:align-middle after:rounded-[2px]'><bdi>سلام از پتمون&#128400;&#128400;</bdi></p>

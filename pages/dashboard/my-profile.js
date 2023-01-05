@@ -12,7 +12,7 @@ const profile = () => {
     const [inputError, setInputError] = useState(false)
     return (
             <DashboardLayout>
-                <div className='w-full h-full flex flex-col justify-between items-stretch'>
+                <div className='flex flex-col justify-between items-stretch'>
                     <div className='w-full lg:hidden mb-10 mt-2 lg:order-2 flex flex-row-reverse justify-start items-center self-end'>
                         <Image src={Profile_Alt_Pic} alt="Profile-Pic-Alt" height={75} width={75}/>
                         <div className='mr-5'>
