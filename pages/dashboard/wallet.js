@@ -10,7 +10,7 @@ const wallet = () => {
     console.log(increaseAmount)
     return (
         <DashboardLayout>
-            <div className='h-screen lg:h-auto flex flex-col lg:flex-row-reverse justify-between items-stretch'>
+            <div className='h-screen lg:h-full flex flex-col lg:flex-row-reverse justify-between items-stretch'>
                 <div className='flex flex-col lg:w-2/3'>
                     <div className='h-[200px] lg:h-full w-full flex flex-col justify-between items-center p-5 rounded-[15px] lg:rounded-[25px] text-white bg-gradient-to-r from-[#FA5456] to-[#FFA000]'>
                         <p className='self-end text-base font-black leading-12'>کیف پول<sup className='text-xs font-normal leading-6'>پتمون</sup></p>
