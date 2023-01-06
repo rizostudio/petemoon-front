@@ -1,16 +1,15 @@
 import backgroundLines from "@/assets/common/signUpLoginLines.png";
 import { useFormik } from "formik";
-import FloatLabelInput from "@/components/common/input";
 import leftArrow from "@/assets/common/leftArrow.png";
 import bigPetsImage from "@/assets/signup/signupImage.png";
 import smallPetsImage from "@/assets/login/loginImage.png";
 import PetemoonLogo from "@/components/common/logo";
-import Link from "next/link";
+import OtpInput from "@/components/common/otpInput";
 
 export default function Login() {
   const formik = useFormik({
     initialValues: {
-      confirmationCode: "",
+      confirmationCode: new Array(4).fill(""),
     },
     onSubmit: (value) => {
       console.log(value);
@@ -62,28 +61,26 @@ export default function Login() {
             onSubmit={formik.handleSubmit}
             className="w-full h-[50%] lg:h-[50%]"
           >
-            <div className="flex flex-col h-full items-center justify-end lg:justify-center space-y-5">
-              <div className={`relative w-full h-12`} dir={"ltr"}>
-                <input
-                  type={"text"}
-                  id={"confirmationCode"}
-                  className={`block text-center text-sm md:text-xl bg-white px-3 h-full w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`}
-                  placeholder="- - - -"
-                  onChange={formik.handleChange}
-                  value={
-                    formik.values.confirmationCode === ""
-                      ? " "
-                      : formik.values.confirmationCode
+            <div className="flex flex-col h-full items-center justify-end lg:justify-around space-y-5">
+              <div className="flex flex-col w-full items-center space-y-6">
+                <OtpInput
+                  label={"کد ۴ رقمی خود را وارد کنید"}
+                  value={formik.values.confirmationCode}
+                  setValue={(newValue) =>
+                    formik.setFieldValue("confirmationCode", newValue)
                   }
-                  name={"confirmationCode"}
                 />
-                <label
-                  htmlFor={"confirmationCode"}
-                  className="absolute scale-75 peer-focus:scale-[85%] peer-placeholder-shown:scale-100   text-sm md:text-lg peer-focus:text-sm peer-focus:md:text-lg peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-lg text-[#9B9BA1] duration-300 transform -translate-y-4 top-2 z-10 bg-white peer-focus:bg-white px-1 peer-placeholder-shown:px-1 peer-focus:pr-2 peer-focus:text-primary peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:-translate-y-4 right-4 peer-focus:right-4 peer-placeholder-shown:right-4 text-right origin-top-right"
-                >
-                  {"کد ۴ رقمی را وارد نمایید"}
-                </label>
+                <div className="flex flex-col justify-center items-center space-y-2">
+                  <p className="text-[#DEDFE1] text-xs">۰۰:۰۰</p>
+                  <p
+                    className="text-primary text-sm lg:text-xl"
+                    onClick={() => console.log("again!")}
+                  >
+                    ارسال مجدد کد
+                  </p>
+                </div>
               </div>
+
               <button
                 type="submit"
                 className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
@@ -91,15 +88,6 @@ export default function Login() {
               >
                 تایید
               </button>
-              <div className="flex flex-col justify-center items-center space-y-2">
-                <p className="text-[#DEDFE1] text-xs">۰۰:۰۰</p>
-                <p
-                  className="text-primary text-sm lg:text-xl"
-                  onClick={() => console.log("again!")}
-                >
-                  ارسال مجدد کد
-                </p>
-              </div>
             </div>
           </form>
         </div>
