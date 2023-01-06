@@ -2,7 +2,7 @@ import { errorResponse, successResponse } from "@/dto";
 import { apiPostVerifyOTPBody, domainTokenData } from "@/dto/login/validation";
 import api from "@/services";
 
-const VERIFY_OTP_API = "accounts/otp/verify";
+const VERIFY_OTP_API = "accounts/otp/verify/";
 export const postVerifyOTP = async (confirmationCode) => {
   try {
     const response = await api.post(
