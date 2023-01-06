@@ -61,8 +61,8 @@ export default function Login() {
             onSubmit={formik.handleSubmit}
             className="w-full h-[50%] lg:h-[50%]"
           >
-            <div className="flex flex-col h-full items-center justify-end lg:justify-around space-y-5">
-              <div className="flex flex-col w-full items-center space-y-6">
+            <div className="flex flex-col h-full items-center justify-around py-2 lg:justify-around space-y-3">
+              <div className="flex flex-col w-full items-center space-y-4 lg:space-y-6">
                 <OtpInput
                   label={"کد ۴ رقمی خود را وارد کنید"}
                   value={formik.values.confirmationCode}
