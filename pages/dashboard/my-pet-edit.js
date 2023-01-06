@@ -9,7 +9,7 @@ import ArrowLeftWhite_Icon from '../../asset/icons/Arrow-left-white.svg';
 import PetPic from '../../asset/icons/PetPic.svg';
 import PetPicPreserve from '../../asset/icons/PetPicPreserve.svg';
 import Upload_Icon from '../../asset/icons/uploadIcon.svg';
-const AddressEdit = () => {
+const MyPetEdit = () => {
     const [inputError, setInputError] = useState(false)
     const formik = useFormik({
         initialValues: {
@@ -261,4 +261,4 @@ const AddressEdit = () => {
     );
 };
 
-export default AddressEdit;
+export default MyPetEdit;

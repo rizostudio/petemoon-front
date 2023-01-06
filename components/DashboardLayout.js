@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import clsx from 'clsx'
+import Home_Icon from '../asset/icons/home.svg';
 import Profile_Icon from '../asset/icons/user-edit.svg';
 import Address_Icon from '../asset/icons/location.svg';
 import MyPet_Icon from '../asset/icons/pet.svg';
@@ -25,7 +26,7 @@ const DashboardLayout = ({children}) => {
     const router = useRouter()
     const [openly,setOpenly] = useState(false)
     const [minly, setMinly] = useState(false);
-    const menuArr = [   {id:"", name:"داشبورد", icon:Profile_Icon},
+    const menuArr = [   {id:"home", name:"داشبورد", icon:Home_Icon},
                         {id:"my-profile", name:"حساب کاربری", icon:Profile_Icon,notification:0},
                         {id:"addresses", name:"آدرس ها", icon:Address_Icon},
                         {id:"my-pets", name:"پت من", icon:MyPet_Icon},
@@ -74,10 +75,12 @@ const DashboardLayout = ({children}) => {
                                "flex-row-reverse lg:flex-col" : minly == true 
                             })}>
                                 <div className='flex flex-row-reverse items-stretch relative'>
-                                    <Image src={item.icon} alt={item.name} width='20' height='20' className='lg:invert'/>
+                                    <Image src={item.icon} alt={item.name} width='20' height='20' className={clsx('lg:invert',{
+
+                                    })}/>
                                     <h3 className={clsx('text-base text-black lg:text-second font-bold w-full mr-3',{
                                         'block' : minly == false , 
-                                        'lg:hidden' : minly == true
+                                        'lg:hidden' : minly == true                                       
                                     })}>{item.name}</h3>
                                 </div>
                                 {item.notification > 0 && <p className={clsx('absolute left-20 lg:relative lg:left-0 text-white text-center text-xs bg-first px-[5px] py-[3px] rounded-[5px]',{
@@ -139,7 +142,7 @@ const DashboardLayout = ({children}) => {
                     {pageName && 
                         <div className='w-full flex lg:hidden flex-row-reverse justify-between items-center mb-10'>
                             <p className='text-lg text-black font-black leading-7 align-middle after:inline-block after:w-2 after:h-5 after:bg-first after:ml-1 after:rounded-[2px]'>{pageName.name}</p>
-                            <Link href='/dashboard' onClick={() => setOpenly(false)} className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
+                            <Link href='/dashboard/home' onClick={() => setOpenly(false)} className='bg-first opacity-[0.8] p-4 rounded-[15px]'>
                                 <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className='w-full'/>
                             </Link>
                         </div>
