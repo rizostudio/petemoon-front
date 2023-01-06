@@ -5,15 +5,26 @@ import leftArrow from "@/assets/common/leftArrow.png";
 import bigPetsImage from "@/assets/signup/signupImage.png";
 import smallPetsImage from "@/assets/login/loginImage.png";
 import PetemoonLogo from "@/components/common/logo";
-import Link from "next/link";
+import { postSendOTP } from "@/services/login";
+import { OtpId } from "@/localStorage";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       phoneNumber: "",
     },
-    onSubmit: (value) => {
+    onSubmit: async (value) => {
       console.log(value);
+      const response = await postSendOTP(value.phoneNumber);
+      if (response.success) {
+        console.log("otp code: ", response.data.otp_code);
+        OtpId.set(response.data.otp_id);
+        router.push("/login/validation");
+      } else {
+        console.log("Error: ", response.errors);
+      }
     },
   });
   return (
@@ -72,15 +83,13 @@ export default function Login() {
                 h={"h-12"}
                 dir={"ltr"}
               />
-              <Link href={"/login/validation"} passHref legacyBehavior>
-                <button
-                  type="submit"
-                  className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
-                  disabled={formik.values.phoneNumber === ""}
-                >
-                  ارسال کد
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
+                disabled={formik.values.phoneNumber === ""}
+              >
+                ارسال کد
+              </button>
             </div>
           </form>
         </div>

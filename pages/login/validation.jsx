@@ -5,16 +5,21 @@ import bigPetsImage from "@/assets/signup/signupImage.png";
 import smallPetsImage from "@/assets/login/loginImage.png";
 import PetemoonLogo from "@/components/common/logo";
 import OtpInput from "@/components/common/otpInput";
+import { postVerifyOTP } from "@/services/login/validation";
+import { useRouter } from "next/router";
 
 const OTP_COUNT = 4;
 
-export default function Login() {
+export default function LoginValidation() {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       confirmationCode: new Array(OTP_COUNT).fill(""),
     },
-    onSubmit: (value) => {
-      console.log(value);
+    onSubmit: async (values) => {
+      const response = await postVerifyOTP(values.confirmationCode);
+      if (response.success) router.push("/");
+      else console.log("Error: ", response.errors);
     },
   });
   return (
