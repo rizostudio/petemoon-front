@@ -6,10 +6,12 @@ import smallPetsImage from "@/assets/login/loginImage.png";
 import PetemoonLogo from "@/components/common/logo";
 import OtpInput from "@/components/common/otpInput";
 
+const OTP_COUNT = 4;
+
 export default function Login() {
   const formik = useFormik({
     initialValues: {
-      confirmationCode: new Array(4).fill(""),
+      confirmationCode: new Array(OTP_COUNT).fill(""),
     },
     onSubmit: (value) => {
       console.log(value);
@@ -69,6 +71,7 @@ export default function Login() {
                   setValue={(newValue) =>
                     formik.setFieldValue("confirmationCode", newValue)
                   }
+                  size={OTP_COUNT}
                 />
                 <div className="flex flex-col justify-center items-center space-y-2">
                   <p className="text-[#DEDFE1] text-xs">۰۰:۰۰</p>
@@ -84,7 +87,9 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
-                disabled={formik.values.phoneNumber === ""}
+                disabled={
+                  formik.values.confirmationCode.join("").length < OTP_COUNT
+                }
               >
                 تایید
               </button>
