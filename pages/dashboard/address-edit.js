@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { useFormik } from "formik";
 import FloatLabelInput from "../../components/common/input";
 import DashboardLayout from '../../components/DashboardLayout';
-import ArrowLeftWhite_Icon from '../../asset/icons/Arrow-left-white.svg';
-import MapPreserve_Pic from '../../asset/icons/mapPicPreserve.svg';
-import Map_Pic from "../../asset/icons/mapPic.svg";
+import ArrowLeftWhite_Icon from '../../assets/common/leftArrowWhite.svg';
+import MapPreserve_Pic from '../../assets/dashboard/mapPicPreserve.svg';
+import Map_Pic from "../../assets/dashboard/mapPic.svg";
 const AddressEdit = () => {
     const [inputError, setInputError] = useState(false)
     const formik = useFormik({

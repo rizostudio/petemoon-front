@@ -1,13 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import DashboardLayout from '../../components/DashboardLayout';
-import BagDelivered_Icon from '../../asset/icons/bag-tick.svg';
-import BagCurrent_Icon from '../../asset/icons/bag-happy.svg';
-import BagCrossed_Icon from '../../asset/icons/bag-cross.svg';
-import PetPic from '../../asset/icons/PetPic.svg';
-import BagTick_Icon from '../../asset/icons/bag-tick2.svg';
-import CartTotal_Icon from '../../asset/icons/card-receive2.svg';
-import Uprise_Icon from '../../asset/icons/uprise.svg';
+import BagDelivered_Icon from '../../assets/dashboard/bag-tick.svg';
+import BagCurrent_Icon from '../../assets/dashboard/bag-happy.svg';
+import BagCrossed_Icon from '../../assets/dashboard/bag-cross.svg';
+import PetPic from '../../assets/dashboard/PetPic.svg';
+import BagTick_Icon from '../../assets/dashboard/bag-tick2.svg';
+import CartTotal_Icon from '../../assets/dashboard/card-receive2.svg';
+import Uprise_Icon from '../../assets/common/uprise.svg';
 const index = () => {
     return (
         <DashboardLayout>

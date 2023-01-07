@@ -2,9 +2,9 @@ import React,{useState} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import DashboardLayout from '../../components/DashboardLayout';
-import ProductPic from '../../asset/icons/Capture 1.svg';
-import Trash_Icon from '../../asset/icons/trash.svg';
-import ShopCart_Icon from '../../asset/icons/shopping-cart.svg';
+import ProductPic from '../../assets/dashboard/Capture 1.svg';
+import Trash_Icon from '../../assets/common/trash.svg';
+import ShopCart_Icon from '../../assets/dashboard/shopping-cart.svg';
 
 const Bookmarks = () => {
     const [bookmarkArr,setBookmarkArr] = useState([  

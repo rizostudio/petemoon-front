@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import DashboardLayout from '../../components/DashboardLayout';
-import MapPreserve_Pic from '../../asset/icons/mapPicPreserve.svg';
-import Map_Pic from '../../asset/icons/mapPic.svg';
-import TrashRed_Icon from '../../asset/icons/TrashIconRed.svg';
-import Edit2_Icon from '../../asset/icons/EditIcon2.svg';
-import More_Icon from '../../asset/icons/more.svg';
-import LocationAdd_Icon from '../../asset/icons/location-add.svg';
-import LocationAdd_White_Icon from '../../asset/icons/location-add-white.svg';
-import CloseButton_Icon from '../../asset/icons/close-button.svg'
+import MapPreserve_Pic from '../../assets/dashboard/mapPicPreserve.svg';
+import Map_Pic from '../../assets/dashboard/mapPic.svg';
+import TrashRed_Icon from '../../assets/common/TrashIconRed.svg';
+import Edit2_Icon from '../../assets/common/EditIcon2.svg';
+import More_Icon from '../../assets/common/more.svg';
+import LocationAdd_Icon from '../../assets/dashboard/location-add.svg';
+import LocationAdd_White_Icon from '../../assets/dashboard/location-add-white.svg';
+import CloseButton_Icon from '../../assets/common/close-button.svg'
 const Addresses = () => {
     const [AddressesArr,setAddressesArr] = useState([
         {key:0, title:"آدرس اول", province:"تهران", city:"شهرستان آبعلی", zipCode:123456789, receiver:"جنتی دوست", mapLocation:Map_Pic, location:"تهران، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲"},

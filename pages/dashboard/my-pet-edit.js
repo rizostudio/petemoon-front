@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import { useFormik } from "formik";
 import FloatLabelInput from "../../components/common/input";
 import DashboardLayout from '../../components/DashboardLayout';
-import ArrowLeftWhite_Icon from '../../asset/icons/Arrow-left-white.svg';
-import PetPic from '../../asset/icons/PetPic.svg';
-import PetPicPreserve from '../../asset/icons/PetPicPreserve.svg';
-import Upload_Icon from '../../asset/icons/uploadIcon.svg';
+import ArrowLeftWhite_Icon from '../../assets/common/leftArrowWhite.svg';
+import PetPic from '../../assets/dashboard/PetPic.svg';
+import PetPicPreserve from '../../assets/dashboard/PetPicPreserve.svg';
+import Upload_Icon from '../../assets/common/uploadIcon.svg';
 const MyPetEdit = () => {
     const [inputError, setInputError] = useState(false)
     const formik = useFormik({

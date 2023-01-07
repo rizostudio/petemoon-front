@@ -3,15 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx'
 import DashboardLayout from '../../components/DashboardLayout';
-import PetPic from '../../asset/icons/PetPic.svg';
-import PetPicPreserve from '../../asset/icons/PetPicPreserve.svg';
-import PetAdd_Icon from '../../asset/icons/AddPet.svg';
-import PetAdd_IconWhite from '../../asset/icons/PetAddWhite.svg';
-import upload_Icon from '../../asset/icons/uploadIcon.svg';
-import TrashRed_Icon from '../../asset/icons/TrashIconRed.svg';
-import Edit2_Icon from '../../asset/icons/EditIcon2.svg';
-import More_Icon from '../../asset/icons/more.svg';
-import CloseButton_Icon from '../../asset/icons/close-button.svg';
+import PetPic from '../../assets/dashboard/PetPic.svg';
+import PetPicPreserve from '../../assets/dashboard/PetPicPreserve.svg';
+import PetAdd_Icon from '../../assets/dashboard/AddPet.svg';
+import PetAdd_IconWhite from '../../assets/dashboard/PetAddWhite.svg';
+import upload_Icon from '../../assets/common/uploadIcon.svg';
+import TrashRed_Icon from '../../assets/common/TrashIconRed.svg';
+import Edit2_Icon from '../../assets/common/EditIcon2.svg';
+import More_Icon from '../../assets/common/more.svg';
+import CloseButton_Icon from '../../assets/common/close-button.svg';
 import {v4} from 'uuid';
 const MyPet = () => {
     const [PetsArr,setPetsArr] = useState([

@@ -3,24 +3,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import clsx from 'clsx'
-import Home_Icon from '../asset/icons/home.svg';
-import Profile_Icon from '../asset/icons/user-edit.svg';
-import Address_Icon from '../asset/icons/location.svg';
-import MyPet_Icon from '../asset/icons/pet.svg';
-import Wallet_Icon from '../asset/icons/empty-wallet.svg';
-import Orders_Icon from '../asset/icons/shopping-bag.svg';
-import Favorite_Icon from '../asset/icons/like.svg';
-import Message_Icon from '../asset/icons/sms.svg';
-import Help_Icon from '../asset/icons/alarm.svg';
-import Search_Icon from '../asset/icons/search-icon.svg'
-import ArrowLeft_Icon from '../asset/icons/arrow-left.svg';
-import ArrowLeftWhite_Icon from '../asset/icons/Arrow-left-white.svg'
-import Notification_Icon from '../asset/icons/notification-icon.svg'
-import Profile_Alt_Pic from '../asset/icons/profile-pic-alt.svg';
-import Logout_Btn from '../asset/icons/logout-btn.svg';
-import Petemoon_Logo from '../asset/icons/Petemoon.svg';
-import Userpanel_Logo from '../asset/icons/user-panel.svg';
-import ShpBag_Icon from '../asset/icons/bagHeader.svg';
+import Home_Icon from '../assets/dashboard/home.svg';
+import Profile_Icon from '../assets/common/user-edit.svg';
+import Address_Icon from '../assets/dashboard/location.svg';
+import MyPet_Icon from '../assets/dashboard/pet.svg';
+import Wallet_Icon from '../assets/dashboard/empty-wallet.svg';
+import Orders_Icon from '../assets/dashboard/shopping-bag.svg';
+import Favorite_Icon from '../assets/common/like.svg';
+import Message_Icon from '../assets/common/sms.svg';
+import Help_Icon from '../assets/common/alarm.svg';
+import Search_Icon from '../assets/common/search-icon.svg'
+import ArrowLeft_Icon from '../assets/common/arrow-left.svg';
+import ArrowLeftWhite_Icon from '../assets/common/leftArrowWhite.svg'
+import Notification_Icon from '../assets/common/notification-icon.svg'
+import Profile_Alt_Pic from '../assets/dashboard/profile-pic-alt.svg';
+import Logout_Btn from '../assets/dashboard/logout-btn.svg';
+import Petemoon_Logo from '../assets/dashboard/Petemoon.svg';
+import Userpanel_Logo from '../assets/dashboard/user-panel.svg';
+import ShopBag_Icon from '../assets/dashboard/bagHeader.svg';
 import { v4 } from 'uuid';
 const DashboardLayout = ({children}) => {
     const router = useRouter()
@@ -121,9 +121,10 @@ const DashboardLayout = ({children}) => {
                'flex' : openly == true 
             })}>
                 <div className='w-full h-full bg-white hidden lg:flex flex-row-reverse justify-between items-center px-12 py-5 relative'>
-                        <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" onClick={() => setMinly(!minly)} className={clsx('bg-[#eee] w-10 h-10 p-3 rounded-full absolute top-[25%] right-[-2%] rotate-180',{
+                        <Image src={ArrowLeft_Icon} alt="ArrowLeftIcon" className={clsx('bg-[#eee] p-3 rounded-full w-10 h-10 absolute top-[25%] right-[-2%] rotate-180',{
                             'rotate-0' :  minly == true
-                        })}/>
+                        })} onClick={() => setMinly(!minly)} />
+
                         <div className='flex flex-col items-end'>
                             <p className="text-2xl text-black font-black leading-10">خوش آمدی، علی عزیز</p>
                             <p className='text-base text-black font-light opacity-[0.9] leading-7'>۰۹۳۰۱۲۳۴۵۶۷</p>
@@ -134,7 +135,7 @@ const DashboardLayout = ({children}) => {
                                 <input type="text" placeholder="جستجو" className='text-base text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none'/>
                             </div>
                             <div className='p-3 border-[1px] solid border-third rounded-[15px] mr-8'>
-                                <Image src={ShpBag_Icon} alt="ShopBagPic"/>
+                                <Image src={ShopBag_Icon} alt="ShopBagPic"/>
                             </div>
                         </div>
                 </div>

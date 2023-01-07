@@ -2,19 +2,10 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import DashboardLayout from '../../components/DashboardLayout';
-import Profile_Alt_Pic from '../../asset/icons/profile-pic-alt.svg';
-import ArrowLeft_Icon from '../../asset/icons/Arrow-left-white.svg';
-import Cake_Icon from '../../asset/icons/cake.svg';
-import BagDelivered_Icon from '../../asset/icons/bag-tick.svg';
-import BagCurrent_Icon from '../../asset/icons/bag-happy.svg';
-import BagCrossed_Icon from '../../asset/icons/bag-cross.svg';
-
-
-
-import WhatsApp_Icon from '../../asset/icons/whatsapp.svg';
-import Instagram_Icon from '../../asset/icons/instagram.svg';
-import Email_Icon from '../../asset/icons/sms-notification.svg';
-import Phone_Icon from '../../asset/icons/call.svg';
+import WhatsApp_Icon from '../../assets/common/whatsapp.svg';
+import Instagram_Icon from '../../assets/common/instagram.svg';
+import Email_Icon from '../../assets/common/sms-notification.svg';
+import Phone_Icon from '../../assets/common/call.svg';
 const Support = () => {
 
     const [inputError, setInputError] = useState(false)

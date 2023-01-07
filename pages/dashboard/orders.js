@@ -1,7 +1,4 @@
 import React,{useState} from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import Trash_Icon from '../../asset/icons/trash.svg';
 import DashboardLayout from '../../components/DashboardLayout';
 const Orders = () => {
     const OrdersArr = [{date:"۱۸ آبان ۱۴۰۰", status:"delivered" ,statusTitle:"تحویل شده", 
