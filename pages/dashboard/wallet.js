@@ -1,10 +1,9 @@
 import React,{useState} from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import DashboardLayout from '../../components/DashboardLayout';
-import ArrowLeft_Icon from '../../asset/icons/Arrow-left-white.svg';
-import WalletAdd_Icon from '../../asset/icons/wallet-add.svg';
-import CloseButton_Icon from '../../asset/icons/close-button.svg';
+import WalletAdd_Icon from '../../assets/dashboard/wallet-add.svg';
+import CloseButton_Icon from '../../assets/common/close-button.svg';
+
 const wallet = () => {
     const [increaseAmount, setIncreaseAmount] = useState()
     console.log(increaseAmount)

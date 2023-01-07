@@ -5,10 +5,10 @@
 /* tailwind config */
 @font-face {
   font-family: "YekanBakh";
-  src: url('../asset/fonts/YekanBakh/YekanBakh.ttf') format('truetype');
-  /* src: url('../asset/fonts/YekanBakh/Yekan.eot'); IE9 Compat Modes */
-  /* src: url('../asset/fonts/YekanBakh/Yekan.woff') format('woff'), Pretty Modern Browsers */
-       /* url('../asset/fonts/YekanBakh/Yekan.ttf')  format('truetype'), Safari, Android, iOS */
+  src: url('../assets/fonts/YekanBakh/YekanBakh.ttf') format('truetype');
+  /* src: url('../assets/fonts/YekanBakh/Yekan.eot'); IE9 Compat Modes */
+  /* src: url('../assets/fonts/YekanBakh/Yekan.woff') format('woff'), Pretty Modern Browsers */
+       /* url('../assets/fonts/YekanBakh/Yekan.ttf')  format('truetype'), Safari, Android, iOS */
 }
 :root {
   --max-width: 1100px;

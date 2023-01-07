@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Trash_Icon from '../../asset/icons/trash.svg';
+import Trash_Icon from '../../assets/common/trash.svg';
 import DashboardLayout from '../../components/DashboardLayout';
 const MyMessage = () => {
     const [messagesArr,setMessagesArr] = useState([   {key:0, from:"پیام از پتمون", date:"۱۸ آبان ۱۴۰۰", subject:"نظراتت برای بهبود سرویس دهی پتمون با ارزشه", text:"لطفا نظرت رو با ما به اشتراک بذار...",CTA:'ثبت نظر'},

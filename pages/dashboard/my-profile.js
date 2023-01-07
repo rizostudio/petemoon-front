@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import DashboardLayout from '../../components/DashboardLayout';
 import FloatLabelInput from '../../components/common/input';
-import Profile_Alt_Pic from '../../asset/icons/profile-pic-alt.svg';
-import Cake_Icon from '../../asset/icons/cake.svg';
-import PenEdit_Icon from '../../asset/icons/PenEditIcon.svg';
+import Profile_Alt_Pic from '../../assets/dashboard/profile-pic-alt.svg';
+import Cake_Icon from '../../assets/dashboard/cake.svg';
+import PenEdit_Icon from '../../assets/common/PenEditIcon.svg';
 const profile = () => {
     const [inputError, setInputError] = useState(false)
     const formik = useFormik({
