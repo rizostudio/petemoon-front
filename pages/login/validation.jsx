@@ -7,19 +7,28 @@ import PetemoonLogo from "@/components/common/logo";
 import OtpInput from "@/components/common/otpInput";
 import { postVerifyOTP } from "@/services/login/validation";
 import { useRouter } from "next/router";
+import { OtpId } from "@/localStorage";
+import { useState } from "react";
 
 const OTP_COUNT = 4;
 
 export default function LoginValidation() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toggleSubmitState = () => setIsSubmitting((currState) => !currState);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
       confirmationCode: new Array(OTP_COUNT).fill(""),
     },
     onSubmit: async (values) => {
+      toggleSubmitState();
       const response = await postVerifyOTP(values.confirmationCode);
-      if (response.success) router.push("/");
-      else console.log("Error: ", response.errors);
+      toggleSubmitState();
+      if (response.success) {
+        console.log(response.data);
+        OtpId.remove();
+        router.push("/sign-up");
+      } else console.log("Error: ", response.errors);
     },
   });
   return (
@@ -91,7 +100,9 @@ export default function LoginValidation() {
 
               <button
                 type="submit"
-                className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
+                className={`btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal ${
+                  isSubmitting && "loading"
+                }`}
                 disabled={
                   formik.values.confirmationCode.join("").length < OTP_COUNT
                 }

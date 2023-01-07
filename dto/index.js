@@ -1,9 +1,10 @@
-export const successResponse = (data) => ({
+export const successResponse = (data = {}) => ({
   success: true,
   data,
 });
 
-export const errorResponse = (errors) => ({
+const DEFAULT_ERROR = "Unknown Error!";
+export const errorResponse = (errors = [DEFAULT_ERROR]) => ({
   success: false,
   errors,
 });

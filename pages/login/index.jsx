@@ -8,8 +8,11 @@ import PetemoonLogo from "@/components/common/logo";
 import { postSendOTP } from "@/services/login";
 import { OtpId } from "@/localStorage";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Login() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toggleSubmitState = () => setIsSubmitting((currState) => !currState);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -17,7 +20,9 @@ export default function Login() {
     },
     onSubmit: async (value) => {
       console.log(value);
+      toggleSubmitState();
       const response = await postSendOTP(value.phoneNumber);
+      toggleSubmitState();
       if (response.success) {
         console.log("otp code: ", response.data.otp_code);
         OtpId.set(response.data.otp_id);
@@ -85,7 +90,9 @@ export default function Login() {
               />
               <button
                 type="submit"
-                className="btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal"
+                className={`btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-primary-dark active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal ${
+                  isSubmitting && "loading"
+                }`}
                 disabled={formik.values.phoneNumber === ""}
               >
                 ارسال کد

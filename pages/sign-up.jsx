@@ -4,8 +4,14 @@ import FloatLabelInput from "@/components/common/input";
 import leftArrow from "@/assets/common/leftArrow.png";
 import bigPetsImage from "@/assets/signup/signupImage.png";
 import PetemoonLogo from "@/components/common/logo";
+import { useState } from "react";
+import { PatchRegister } from "@/services/signup";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toggleSubmitState = () => setIsSubmitting((currState) => !currState);
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -13,8 +19,12 @@ export default function Signup() {
       email: "",
       refCode: "",
     },
-    onSubmit: (value) => {
-      console.log(value);
+    onSubmit: async (values) => {
+      toggleSubmitState();
+      const response = await PatchRegister(values);
+      toggleSubmitState();
+      if (response.success) router.push("/");
+      else console.log("Errors: ", response.errors);
     },
   });
   return (
@@ -53,7 +63,10 @@ export default function Signup() {
             </div>
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit} className="w-full h-[60%] lg:h-[50%]">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="w-full h-[60%] lg:h-[50%]"
+        >
           <div className="flex flex-col h-full items-center justify-between">
             <FloatLabelInput
               type={"text"}
@@ -93,7 +106,9 @@ export default function Signup() {
             />
             <button
               type="submit"
-              className="btn md:h-[12%] lg:h-[15%] border-0 bg-primary hover:bg-primary-dark active:bg-primary focus:bg-primary w-full mt-4 lg:mt-0 rounded-lg text-base md:text-xl font-normal"
+              className={`btn md:h-[12%] lg:h-[15%] border-0 bg-primary hover:bg-primary-dark active:bg-primary focus:bg-primary w-full mt-4 lg:mt-0 rounded-lg text-base md:text-xl font-normal ${
+                isSubmitting && "loading"
+              }`}
             >
               ثبت نام
             </button>
