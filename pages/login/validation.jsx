@@ -7,7 +7,7 @@ import PetemoonLogo from "@/components/common/logo";
 import OtpInput from "@/components/common/otpInput";
 import { postVerifyOTP } from "@/services/login/validation";
 import { useRouter } from "next/router";
-import { OtpId } from "@/localStorage";
+import { OtpId, refreshToken } from "@/localStorage";
 import { useState } from "react";
 
 const OTP_COUNT = 4;
@@ -25,8 +25,8 @@ export default function LoginValidation() {
       const response = await postVerifyOTP(values.confirmationCode);
       toggleSubmitState();
       if (response.success) {
-        console.log(response.data);
         OtpId.remove();
+        refreshToken.set(response.data.token);
         router.push("/sign-up");
       } else console.log("Error: ", response.errors);
     },

@@ -4,4 +4,7 @@ const initLocalStorageApi = (key) => ({
   remove: () => localStorage.removeItem(key),
 });
 
-export const OtpId = initLocalStorageApi("petemoon-otp-id");
+const LS_PREFIX = "petemoon-";
+const withPrefix = (key) => `${LS_PREFIX}${key}`;
+export const OtpId = initLocalStorageApi(withPrefix("otp-id"));
+export const refreshToken = initLocalStorageApi(withPrefix("refresh-token"));
