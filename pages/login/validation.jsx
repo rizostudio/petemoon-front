@@ -88,7 +88,7 @@ export default function LoginValidation() {
                   size={OTP_COUNT}
                 />
                 <div className="flex flex-col justify-center items-center space-y-2">
-                  <p className="text-[#DEDFE1] text-xs">۰۰:۰۰</p>
+                  <p className="text-secondary text-xs">۰۰:۰۰</p>
                   <p
                     className="text-primary text-sm lg:text-xl"
                     onClick={() => console.log("again!")}
