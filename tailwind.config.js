@@ -12,9 +12,9 @@ module.exports = {
         },
         colors: {
           //main color
-          'first':'#EA6352',
-          'second':'#DEDFE1',
-          'third':'#9B9BA1',
+          'primary':'#EA6352',
+          'secondary':'#DEDFE1',
+          'thirdly':'#9B9BA1',
           'fourth': '#F5F5F5',
           'white':'#FFFFFF',
           'black':'#191C27',
