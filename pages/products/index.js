@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import {v4} from 'uuid'
+
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
 import StarGold_Icon from '../../assets/common/startGold.svg';
-import ShopBagRedMobile_Icon from '../../assets/common/shopping-cartRedIcon2.svg';
 import leftArrow_Icon from '../../assets/common/leftArrowWhite.svg';
-import Bookmark_Icon from '../../assets/common/BookmarkBlackIcon.svg';
 import BookmarkRed_Icon from '../../assets/common/BookmarkRedIcon.svg';
-import Notification_Icon from '../../assets/common/notificationIcon.svg';
-import Share_Icon from '../../assets/common/shareIcon.svg';
-import Info_Icon from '../../assets/common/info-circle.svg';
-import Properties_Icon from '../../assets/product/PropertiesIcon.svg';
-import StoreAlt_Logo from '../../assets/product/StoreLogoAlt.svg';
-import Availability_Icon from '../../assets/product/availability.svg';
-import Originality_Icon from '../../assets/product/originality.svg';
-import Guarantee_Icon from '../../assets/product/GuaranteeIcon.svg';
-import Support24_Icon from '../../assets/product/24-support.svg';
-import FreeSend_Icon from '../../assets/product/FreeSendIcon.svg';
-import ProfileAlt_Pic from '../../assets/product/profilePicAlt.svg';
 import ShoppingCartRed_Icon from '../../assets/common/shopping-cartRedIcon.svg';
-import CloseButton_Icon from '../../assets/common/close-button.svg';
+import StoreAlt_Logo from '../../assets/product/StoreLogoAlt.svg';
+import ProfileAlt_Pic from '../../assets/product/profilePicAlt.svg';
 import Filter_Icon from '../../assets/common/filterIcon.svg';
 import DownArrow_Icon from '../../assets/common/downArrow.svg';
 import Sort_Icon from '../../assets/common/sortIcon.svg';
+import ProductPic from '../../assets/product/ProductPic4.svg';
+import SearchRed_Icon from '../../assets/common/SearchRedIcon.svg';
 
 const Products = () => {
+
     //fake data
     const data = {name:"غذای خشک سگ های خانگی",group:"دسته خوراکی / سگ",commentsNumber:250, stars:3, price:123000, discount:20, amount:10,
         property:{for:"سگ خانگی", kind:"خوراکی حیوانی", MadeIn:"تایوان", dimension:"۲۰۰۰*۱۰۰۰", weight:2000, OtherDescription:"فرمولی که سلبن برای سگ های بالغ نژاد کوچک ارائه کرده برای حیوانی فعال و بالغ مناسب است . در این فرمول علاوه بر ویتامین ها و مواد معدنی لازم از گلوکزامین و ال کارنتین استفاده شده که بهترین انتخاب برای سگ بالغ شما می باشد و وضعیت بدنی و وزنی حیوان را در جایگاهی سالم با تغذیه مناسب نگه می دارد."}, 
@@ -46,6 +38,12 @@ const Products = () => {
                         ]
                 
         }
+
+    // the array of sort options
+    const [sortArr, setSortArr] = useState([{title:"پرفروش ترین"},{title:"محبوب ترین"},{title:"جدید ترین"},{title:"ارزان ترین"},{title:"گران ترین"}])
+    // for change the color of choosen option in sorting
+    const [sortValue, setSortValue] = useState("پرفروش ترین")
+
     // for showing stars
     const starsBoxHandler = (stars) => {
         const starsBox = [] ; 
@@ -57,37 +55,59 @@ const Products = () => {
         }
         return starsBox;
     }
-    const [fBoxOpen, setFBoxOpen] = useState(false)
+
+    //Dynamic
+    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  //for open & close filterBox in desktop
+    const [MainPageOpen, setMainPageOpen] = useState(true) //for open & close Main Page in mobile
+    const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
+    const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
    
     return (
-        <div className='bg-[#e5e5e5] p-10'>
-            <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
-                <div className='flex'>
+        <div className='bg-[#f8f8f8] lg:p-10 w-full h-full'>
+            {/* Main Page */}
+            <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
+               'block' : MainPageOpen == true,
+               'hidden' : MainPageOpen == false
+            })}>
+                {/* Heading for mobile */}
+                <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
+                    <div className='w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]'>
+                        <input type="text" placeholder='جستجوی محصول' className=' bg-transparent placeholder:text-primary'/>
+                        <Image src={SearchRed_Icon} alt="SearchIcon"/>
+                    </div>
+                    <div className='h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px]'>
+                        <Image 
+                            src={leftArrow_Icon}
+                            alt="LeftArrowIcon"
+                        />
+                    </div>
+                </div>
+                {/*Arrangment Box*/}
+                <div className='flex mt-5'>
+                    {/* FilterBox */}
                     <div 
-                        className={clsx('w-[300px] mx-4 bg-white rounded-t-[25px] relative',{
-                           'rounded-b-[25px]' : fBoxOpen == false ,
-                           '' : fBoxOpen == true
+                        className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
+                           'rounded-b-[25px]' : FilterBoxOpen == false ,
                         })}
                     >
-                        <div className='flex justify-between items-center px-6 py-2'>
-                            <div className="flex items-center">
+                        <div className='flex justify-between items-center lg:px-6 py-2'>
+                            <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
                                 <Image src={Filter_Icon} alt="FilterIcon"/>
-                                <p className='text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
+                                <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
                             </div>
                             <Image 
                                 src={DownArrow_Icon} 
                                 alt="DownArrowIcon"
-                                onClick={()=>setFBoxOpen(!fBoxOpen)}
-                                className={clsx(``,{
-                                    'rotate-0' : fBoxOpen == false,
-                                    'rotate-180' : fBoxOpen == true
+                                onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
+                                className={clsx(`hidden lg:block cursor-pointer`,{
+                                    'rotate-0' : FilterBoxOpen == false,
+                                    'rotate-180' : FilterBoxOpen == true
                                 })}
                             />
                         </div>
                         <div 
-                            className={clsx('w-full px-6 py-2 bg-white absolute z-10 rounded-b-[25px]',{
-                                'hidden' : fBoxOpen == false,
-                                'block' : fBoxOpen == true
+                            className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
+                                'lg:block' : FilterBoxOpen == true
                             })}
                         >
                             <div className='flex flex-col items-stretch'>
@@ -97,7 +117,7 @@ const Products = () => {
                                         <input 
                                             id="store1"
                                             type="checkbox"
-                                            className='accent-primary border-primary border-[1px]'
+                                            className='accent-primary border-primary border-[1px] p-1'
                                             />
                                         <label
                                             htmlFor='store1'
@@ -133,7 +153,12 @@ const Products = () => {
                                     <span></span>
                                     <span>2500</span>
                                 </div>
-                                <input type="range" min="0" max="100" className="appearance-none h-[10px] rounded-[20px] bg-secondary accent-primary" />
+                                <style jsx>
+                                    {`
+                                    
+                                    `}
+                                </style>
+                                <input className="" type="range" min="1" max="100" step="1"/>
                                 <p className="text-base text-black font-medium leading-7 mt-6">نوع پت</p>
                                 <div>
                                     <div className='flex items-center'>
@@ -168,42 +193,63 @@ const Products = () => {
                                     </div>
                                 </div>
                                 <p  
-                                    onClick={() => setFBoxOpen(!fBoxOpen)}
-                                    className='self-end text-base text-gray-400 font-medium leading-7 mt-5'
+                                    onClick={() => setFilterBoxOpen(false)}
+                                    className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
                                 >حذف فیلترها</p>
                             </div>
                         </div>
                     
                     </div>
+                    {/* Sort Box */}
                     <div className='flex items-center'>
-                        <Image 
-                            src={Sort_Icon} 
-                            alt="SortIcon"
-                        />
-                        <p className='text-xl text-black font-medium leading-8 mx-2'>مرتب سازی:</p>
-                        <ul className='flex items-center'>
-                            <li 
-                                className='text-xl text-primary font-medium leading-8 mx-2'
-                            >{`پرفروش ترین`}</li> 
-                            <li 
-                                className='text-xl text-gray-400 font-medium leading-8 mx-2'
-                            >{`محبوب ترین`}</li> 
-                            <li 
-                                className='text-xl text-gray-400 font-medium leading-8 mx-2'
-                            >{`جدید ترین`}</li>  
+                        <div
+                            onClick={() => {setSortPageOpen(true); setMainPageOpen(false)}} 
+                            className='flex items-center'
+                        >
+                            <Image 
+                                src={Sort_Icon} 
+                                alt="SortIcon"
+                                className='cursor-pointer lg:cursor-auto'
+                            />
+                            <p 
+                                className='hidden lg:block text-xl text-black font-medium leading-8 mx-2'
+                            ><bdi>مرتب سازی:</bdi></p>
+                            <p 
+                                className='lg:hidden text-xl text-black font-medium leading-8 mx-2 cursor-pointer'
+                            >{sortValue}</p>
+                        </div>
+                        <ul className='hidden lg:flex items-center'>
+                            {sortArr.map(item => 
+                                <li  
+                                    onClick={() => setSortValue(item.title)}
+                                    className={clsx('text-xl font-medium leading-8 mx-2 cursor-pointer',{
+                                        'text-primary' : item.title == sortValue ,
+                                        'text-gray-400 opacity-80' : item.title !== sortValue
+                                    })}
+                                >{item.title}</li> 
+                            )}
+                            
                         </ul>
                     </div>
                 </div>
-                <div className='flex flex-wrap justify-center items-center lg:grid-cols-4'>
+                {/* ProductsBox */}
+                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5'>
                     {data.similarProduct && data.similarProduct.map(item => 
-                        <div className='m-5'>
-                            <div className='flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] h-[250px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB'>
-                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
-                                    <div className='hidden lg:block absolute z-index-2 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
+                        <div className='lg:m-5 w-full lg:w-[285px] my-1'>
+                            <div className='flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none'>
+                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
+                                    <div className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
                                         <Image 
                                             src={BookmarkRed_Icon} 
                                             alt="BookmarkIcon" 
                                             className='w-3 h-3 lg:w-5 lg:h-5'
+                                        />
+                                    </div>
+                                    <div className='w-full h-full overflow-hidden m-0 p-0'>
+                                        <Image 
+                                            src={ProductPic} 
+                                            alt="ProductPic" 
+                                            className='object-cover'
                                         />
                                     </div>
                                 </div>
@@ -229,17 +275,20 @@ const Products = () => {
                                             <div className='flex flex-row items-center'>{starsBoxHandler(item.stars)}</div>
                                             <p className='text-xl text-gray-400 font-medium leading-6 mr-2 align-middle'>{`(${item.stars})`}</p>
                                         </div>
-                                        <div className='flex lg:flex-col justify-between lg:items-stretch'>
-                                            <div className='flex flex-col'>
-                                                <p className='lg:hidden text-xs text-gray-400 font-medium leading-5'><bdi>{item.group}</bdi></p>
-                                                <p className='text-sm text-primary font-normal leading-5 opacity-90 mt-2'>{item.store}</p>    
+                                        <div className='w-full flex lg:flex-col justify-between items-stretch'>
+                                            <div className='flex flex-col justify-between'>
+                                                <div className='flex flex-col'>
+                                                    <p className='lg:hidden text-xs text-gray-400 font-medium lg:leading-5'><bdi>{item.group}</bdi></p>
+                                                    <p className='text-sm text-primary font-normal leading-5 opacity-90 mt-1'>{item.store}</p> 
+                                                </div>
+                                                <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'><bdi>{item.discount}</bdi></p>   
                                             </div>
                                             <div className='self-end lg:self-stretch'>
                                                 {item.amount ? 
                                                     <div className='flex flex-col lg:flex-row justify-between lg:items-center mt-2'>
                                                         <div className='flex flex-col lg:flex-col-reverse'>
-                                                            {item.discount && <p className='text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0'>{item.price}</p>}
-                                                            <p className='text-base lg:text-lg text-primary font-medium leading-8 mb-0'><bdi>{item.price * (1 - item.discount/100)} تومان</bdi></p>
+                                                            {item.discount && <p className='text-sm text-gray-400 line-through font-light opacity-95 mt-0'>{item.price}</p>}
+                                                            <p className='text-base lg:text-lg text-black lg:text-primary font-medium mt-0'><bdi>{item.price * (1 - item.discount/100)} تومان</bdi></p>
                                                         </div> 
                                                         <div className='flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]'>
                                                             <Image 
@@ -258,6 +307,154 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>          
+                    )}
+                </div>
+            </div>
+            {/* Filter Page */}
+            <div className={clsx('lg:hidden h-full w-full',{
+               'block' : FilterPageOpen == true,
+               'hidden' : FilterPageOpen == false
+            })}>
+                <div className='h-[40px] w-full flex lg:hidden justify-between items-center p-10'>
+                    <div className="flex items-center">
+                        <Image src={Filter_Icon} alt="FilterIcon"/>
+                        <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
+                    </div>
+                    <div 
+                        onClick={() => {setFilterPageOpen(false); setMainPageOpen(true)} } 
+                        className='px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer'
+                    >
+                        <Image
+                            src={leftArrow_Icon}
+                            alt="LeftArrowIcon"
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div className='flex flex-col items-stretch mt-5'>
+                        <div className='px-10 py-4 border-b-[1px] border-solid border-secondary'>
+                            <p className="text-base text-black font-medium leading-7 ">برند</p>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"
+                                    className='accent-primary border-primary border-[1px] p-1'
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                        </div>
+                        <div className='px-10 py-4 border-b-[1px] border-solid border-secondary mt-2'>
+                            <label className="text-base text-black font-medium leading-7">بازه قیمتی</label>
+                            <div className="w-full flex justify-between text-xs px-2">
+                                <span>0</span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span>2500</span>
+                            </div>
+                            <input className="w-full" type="range" min="1" max="100" step="1"/>
+                        </div>
+                        <div className='px-10 py-4 flex flex-col border-b-[1px] border-solid border-secondary pb-10'>
+                            <p className="text-base text-black font-medium leading-7 mt-2">نوع پت</p>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                            <div className='flex items-center'>
+                                <input 
+                                    id="store1"
+                                    type="checkbox"                                        
+                                />
+                                <label
+                                    htmlFor='store1'
+                                    className='mr-2'
+                                >{`پت بازار`}</label>
+                            </div>
+                        </div>
+                        <div className='w-full flex justify-between items-center px-10 py-5'>
+                            <button 
+                                className='w-2/3 text-base text-center text-black font-medium leading-7 p-3 bg-[#CFEBD8] border-[1px] border-solid border-verify rounded-[12px]'
+                            >اعمال</button>
+                            <p  
+                                className='w-1/3 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer'
+                                >حذف فیلترها</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Sort Page */}
+            <div 
+                className={clsx('lg:hidden w-full h-full',{
+                    'block' : SortPageOpen == true,
+                    'hidden' : SortPageOpen == false
+                })}
+            >
+                <div className='h-[40px] w-full p-10 flex lg:hidden justify-between items-center'>
+                    <div className='flex items-center'>
+                        <Image 
+                            src={Sort_Icon} 
+                            alt="SortIcon"
+                        />
+                        <p className='text-xl text-black font-medium leading-8 mx-2'>مرتب سازی</p>
+                    </div>
+                    <div 
+                        onClick={() => {setSortPageOpen(false); setMainPageOpen(true) }} 
+                        className='h-full px-4 py-5 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer flex justify-center items-center'
+                    >
+                        <Image
+                            src={leftArrow_Icon}
+                            alt="LeftArrowIcon"
+                        />
+                    </div>
+                </div>
+                <div className='flex flex-col'>
+                    {sortArr.map(item => 
+                        <p  
+                            onClick={() => setSortValue(item.title)}
+                            className={clsx('text-base font-medium leading-6 opacity-90 cursor-pointer px-10 py-4 border-b-[1px] border-solid border-secondary',{
+                                'text-primary' : item.title == sortValue ,
+                                'text-black opacity-80' : item.title !== sortValue
+                                    })}
+                        >{item.title}</p> 
                     )}
                 </div>
             </div>
