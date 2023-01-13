@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import {v4} from 'uuid';
+import Link from 'next/link';
 
 //components
 import Pagination from '@/components/common/Pagination';
@@ -61,10 +62,10 @@ const SingleProduct = () => {
     const starsBoxHandler = (stars) => {
         const starsBox = [] ; 
         for(let i=0; i < stars; i++) {
-            starsBox.push(<Image src={StarGold_Icon}/>)
+            starsBox.push(<Image src={StarGold_Icon} alt="GoldenStarIcon"/>)
         }
         for(let i=0; i < (5 - stars) ; i++) {
-            starsBox.push(<Image src={StarEmpty_Icon}/>)
+            starsBox.push(<Image src={StarEmpty_Icon} alt="EmptyStarIcon"/>)
         }
         return starsBox;
     }
@@ -284,11 +285,17 @@ const SingleProduct = () => {
                     <div className='flex flex-col items-stretch px-0 py-5 lg:py-10 border-solid border-b-[2px] border-secondary'>
                         <div className='flex justify-between items-center align-middle px-10 lg:px-0'>
                             <h5 className='text-2xl text-black font-black lg:font-bold leading-7 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>محصولات مشابه</h5>
-                            <p className='text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'><bdi>مشاهده همه</bdi></p>
+                            <Link
+                                href='/products'  
+                                className='text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
+                            ><bdi>مشاهده همه</bdi></Link>
                         </div>
                         <div className='flex justify-center items-center lg:flex-wrap overflow-x-scroll lg:overflow-hidden scrolling-touch scroll-smooth scroll-mx-10 touch-pan-x lg:touch-none scrolling-touch'>
                             {data.similarProduct && data.similarProduct.slice((currentPage - 1) * CardsPerPage, (currentPage - 1) * CardsPerPage + CardsPerPage).map(item => 
-                                <div className='m-3'>
+                                <div 
+                                    key={v4()}
+                                    className='m-3'
+                                >
                                     <div className='flex flex-col items-stretch w-[150px] lg:w-[285px] h-[250px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB'>
                                         <div className='relative block h-[100px] lg:h-[200px] bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
                                             <div className='absolute z-index-2 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
@@ -522,7 +529,7 @@ const SingleProduct = () => {
                         </div>
                         <div 
                             onClick={() => {setCommentPageOpen(false); setMainPageOpen(true)} } 
-                            className='px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px]'
+                            className='px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer'
                         >
                             <Image
                                 
@@ -567,14 +574,13 @@ const SingleProduct = () => {
                             </div>
                         </div>
                         <div className='self-end flex flex-row items-center justify-between w-full mt-12'>
-                            <label                                             
-                                htmlFor="comment-send-modal" 
+                            <button                                             
+                                onClick={() => {setCommentPageOpen(false); setMainPageOpen(true)} } 
                                 className='w-2/5 text-sm text-error text-center font-semibold py-2 rounded-[5px] bg-white border-[2px] solid border-error'
-                            >انصراف</label>
-                            <label 
-                                htmlFor='comment-send-modal'
+                            >انصراف</button>
+                            <button
                                 className='w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2'
-                            >ثبت دیدگاه</label>
+                            >ثبت دیدگاه</button>
                         </div>
                     </form>
                 </div>

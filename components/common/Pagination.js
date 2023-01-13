@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { v4 } from "uuid";
 //media 
 import LeftArrow_Icon from '../../assets/common/leftArrowWhite.svg'
 
@@ -31,6 +32,7 @@ export default function Pagination({
             </div>
             {pageNumbers.map((number) => (
               <div
+                key={v4()}
                 onClick={() => {
                   paginate(number);
                 }}

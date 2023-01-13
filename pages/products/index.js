@@ -1,7 +1,9 @@
 import React, { use, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import {v4} from 'uuid'
+import {v4} from 'uuid';
 
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
@@ -18,6 +20,7 @@ import ProductPic from '../../assets/product/ProductPic4.svg';
 import SearchRed_Icon from '../../assets/common/SearchRedIcon.svg';
 
 const Products = () => {
+    const router = useRouter()
 
     //fake data
     const data = {name:"غذای خشک سگ های خانگی",group:"دسته خوراکی / سگ",commentsNumber:250, stars:3, price:123000, discount:20, amount:10,
@@ -38,6 +41,8 @@ const Products = () => {
                         ]
                 
         }
+    const brand = [{name:"پت بازار", id:"petBazzar"}, {name:"پت شاپ۱", id:'petShop1'}, {name:"پت ایران",id:'petIran'}, {name:"تهران پت", id:'tehranPet'}, {name:"کافه پت",id:'petCafe'}]
+    const petKind = ["سگ خانگی","سگ شکارچی","سگ وحشی","سگ گله","سگ نگهبان"]
 
     // the array of sort options
     const [sortArr, setSortArr] = useState([{title:"پرفروش ترین"},{title:"محبوب ترین"},{title:"جدید ترین"},{title:"ارزان ترین"},{title:"گران ترین"}])
@@ -48,10 +53,10 @@ const Products = () => {
     const starsBoxHandler = (stars) => {
         const starsBox = [] ; 
         for(let i=0; i < stars; i++) {
-            starsBox.push(<Image src={StarGold_Icon}/>)
+            starsBox.push(<Image src={StarGold_Icon} alt="GoldenStarIcon"/>)
         }
         for(let i=0; i < (5 - stars) ; i++) {
-            starsBox.push(<Image src={StarEmpty_Icon}/>)
+            starsBox.push(<Image src={StarEmpty_Icon} alt="EmptyStarIcon"/>)
         }
         return starsBox;
     }
@@ -72,10 +77,13 @@ const Products = () => {
                 {/* Heading for mobile */}
                 <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
                     <div className='w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]'>
-                        <input type="text" placeholder='جستجوی محصول' className=' bg-transparent placeholder:text-primary'/>
+                        <input type="text" placeholder='جستجوی محصول' className='w-full border-none focus:border-none bg-transparent placeholder:text-primary'/>
                         <Image src={SearchRed_Icon} alt="SearchIcon"/>
                     </div>
-                    <div className='h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px]'>
+                    <div 
+                        onClick={() => router.push('/products/1')}
+                        className='h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer'
+                    >
                         <Image 
                             src={leftArrow_Icon}
                             alt="LeftArrowIcon"
@@ -113,37 +121,21 @@ const Products = () => {
                             <div className='flex flex-col items-stretch'>
                                 <p className="text-base text-black font-medium leading-7 ">برند</p>
                                 <div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            className='accent-primary border-primary border-[1px] p-1'
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
+                                    {brand.map((item,index) => 
+                                        <div
+                                            key={v4()} 
+                                            className='flex items-center'>
+                                            <input 
+                                                id={`brand${index}`}
+                                                type="checkbox"
+                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                                />
+                                            <label
+                                                htmlFor={`brand${index}`}
+                                                className='mr-2 '
+                                                ><bdi>{item.name}</bdi></label>
+                                        </div>
+                                    )}
                                 </div>
                                 <label className="text-base text-black font-medium leading-7 mt-6">بازه قیمتی</label>
                                 <div className="w-full flex justify-between text-xs px-2">
@@ -161,36 +153,22 @@ const Products = () => {
                                 <input className="" type="range" min="1" max="100" step="1"/>
                                 <p className="text-base text-black font-medium leading-7 mt-6">نوع پت</p>
                                 <div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
-                                    <div className='flex items-center'>
-                                        <input 
-                                            id="store1"
-                                            type="checkbox"
-                                            />
-                                        <label
-                                            htmlFor='store1'
-                                            className='mr-2'
-                                            >{`پت بازار`}</label>
-                                    </div>
+                                    {petKind.map((item, index) => 
+                                        <div
+                                            key={v4()} 
+                                            className='flex items-center'
+                                        >
+                                            <input 
+                                                id={`kind${index}`}
+                                                type="checkbox"
+                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                                />
+                                            <label
+                                                htmlFor={`kind${index}`}
+                                                className='mr-2'
+                                                >{item}</label>
+                                        </div>
+                                    )}
                                 </div>
                                 <p  
                                     onClick={() => setFilterBoxOpen(false)}
@@ -221,6 +199,7 @@ const Products = () => {
                         <ul className='hidden lg:flex items-center'>
                             {sortArr.map(item => 
                                 <li  
+                                    key={v4()}
                                     onClick={() => setSortValue(item.title)}
                                     className={clsx('text-xl font-medium leading-8 mx-2 cursor-pointer',{
                                         'text-primary' : item.title == sortValue ,
@@ -234,8 +213,11 @@ const Products = () => {
                 </div>
                 {/* ProductsBox */}
                 <div className='flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5'>
-                    {data.similarProduct && data.similarProduct.map(item => 
-                        <div className='lg:m-5 w-full lg:w-[285px] my-1'>
+                    {data.similarProduct && data.similarProduct.map((item, index) => 
+                        <div 
+                            key={v4()}
+                            className='lg:m-5 w-full lg:w-[285px] my-1'
+                        >
                             <div className='flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none'>
                                 <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
                                     <div className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
@@ -290,13 +272,15 @@ const Products = () => {
                                                             {item.discount && <p className='text-sm text-gray-400 line-through font-light opacity-95 mt-0'>{item.price}</p>}
                                                             <p className='text-base lg:text-lg text-black lg:text-primary font-medium mt-0'><bdi>{item.price * (1 - item.discount/100)} تومان</bdi></p>
                                                         </div> 
-                                                        <div className='flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]'>
+                                                        <Link 
+                                                            href={`/products/${index}`}
+                                                            className='flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]'>
                                                             <Image 
                                                                 src={ShoppingCartRed_Icon} 
                                                                 alt="ShoppingCartRedIcon"
                                                             />
                                                             <p className='text-base text-primary font-medium leading-7 mr-1 lg:mr-0 lg:ml-2'>خرید</p>
-                                                        </div>
+                                                        </Link>
                                                     </div>
                                                 : 
                                                     <div className='text-base text-gray-400 text-center font-medium p-2 mt-3 w-full bg-secondary rounded-[10px]'>ناموجود</div>
@@ -334,36 +318,22 @@ const Products = () => {
                     <div className='flex flex-col items-stretch mt-5'>
                         <div className='px-10 py-4 border-b-[1px] border-solid border-secondary'>
                             <p className="text-base text-black font-medium leading-7 ">برند</p>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"
-                                    className='accent-primary border-primary border-[1px] p-1'
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
-                            </div>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
-                            </div>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
+                            <div>
+                                {brand.map((item, index) => 
+                                    <div 
+                                        key={v4()}
+                                        className='flex items-center'>
+                                        <input 
+                                            id={`brand${index}`}
+                                            type="checkbox"
+                                            className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                        />
+                                        <label
+                                            htmlFor={`brand${index}`}
+                                            className='mr-2'
+                                        >{item.name}</label>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='px-10 py-4 border-b-[1px] border-solid border-secondary mt-2'>
@@ -375,39 +345,27 @@ const Products = () => {
                                 <span></span>
                                 <span>2500</span>
                             </div>
-                            <input className="w-full" type="range" min="1" max="100" step="1"/>
+                            <input className="w-full border-[3px] border-red-500" type="range" min="1" max="100" step="1"/>
                         </div>
                         <div className='px-10 py-4 flex flex-col border-b-[1px] border-solid border-secondary pb-10'>
                             <p className="text-base text-black font-medium leading-7 mt-2">نوع پت</p>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
-                            </div>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
-                            </div>
-                            <div className='flex items-center'>
-                                <input 
-                                    id="store1"
-                                    type="checkbox"                                        
-                                />
-                                <label
-                                    htmlFor='store1'
-                                    className='mr-2'
-                                >{`پت بازار`}</label>
+                            <div>
+                                {petKind.map((item, index) => 
+                                    <div 
+                                        key={v4()}
+                                        className='flex items-center'
+                                    >
+                                        <input 
+                                            id={`kind${index}`}
+                                            type="checkbox"
+                                            className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                        />
+                                        <label
+                                            htmlFor={`kind${index}`}
+                                            className='mr-2'
+                                        >{item}</label>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='w-full flex justify-between items-center px-10 py-5'>
@@ -449,7 +407,8 @@ const Products = () => {
                 <div className='flex flex-col'>
                     {sortArr.map(item => 
                         <p  
-                            onClick={() => setSortValue(item.title)}
+                            key={v4()}
+                            onClick={() => {setSortValue(item.title);setSortPageOpen(false);setMainPageOpen(true)}}
                             className={clsx('text-base font-medium leading-6 opacity-90 cursor-pointer px-10 py-4 border-b-[1px] border-solid border-secondary',{
                                 'text-primary' : item.title == sortValue ,
                                 'text-black opacity-80' : item.title !== sortValue
