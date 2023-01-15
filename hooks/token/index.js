@@ -20,8 +20,15 @@ export default function useToken() {
     router.push("/login");
   }, [refreshToken]);
 
+  const withRefresh = useCallback(async (fn) => {
+    const response = await fn();
+    if(response.success) return response;
+    await refresh();
+    return await fn();
+  }, [refreshToken])
+
   return {
     set,
-    refresh,
+    withRefresh,
   };
 }

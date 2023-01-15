@@ -10,9 +10,11 @@ import Profile_Alt_Pic from "../../assets/dashboard/profile-pic-alt.svg";
 import Cake_Icon from "../../assets/dashboard/cake.svg";
 import PenEdit_Icon from "../../assets/common/PenEditIcon.svg";
 import { getUserInfo } from "@/services/dashboard/myProfile";
+import useToken from "@/hooks/token";
 
 const profile = () => {
   // const [inputError, setInputError] = useState(false)
+  const token = useToken();
   const [userInfoMode, setUserInfoMode] = useState("view");
   const formik = useFormik({
     initialValues: {
