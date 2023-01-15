@@ -11,29 +11,37 @@ import Cake_Icon from "../../assets/dashboard/cake.svg";
 import PenEdit_Icon from "../../assets/common/PenEditIcon.svg";
 import { getUserInfo } from "@/services/dashboard/myProfile";
 import useToken from "@/hooks/token";
+import { useQuery } from "react-query";
+import { refreshToken } from "@/localStorage";
 
 const profile = () => {
   // const [inputError, setInputError] = useState(false)
   const token = useToken();
+  useEffect(() => token.set(refreshToken.get()));
   const [userInfoMode, setUserInfoMode] = useState("view");
+  const [initialValues, setInitialValues] = useState({
+    firstname: "",
+    lastname: "",
+    phoneNumber: "",
+    email: "",
+  });
   const formik = useFormik({
-    initialValues: {
-      firstname: "",
-      lastname: "",
-      phoneNumber: "",
-      email: "",
-    },
+    initialValues,
+    enableReinitialize: true,
     onSubmit: (value) => {
       console.log(value);
     },
   });
 
+  const userInfo = useQuery({
+    queryKey: "user-info",
+    queryFn: async () => await token.withRefresh(getUserInfo),
+  });
+
   useEffect(() => {
-    const fn = async () => {
-        await getUserInfo();
-    }
-    fn();
-  }, [])
+    console.log(userInfo.data);
+    if (userInfo.data) setInitialValues(userInfo.data.data);
+  }, [userInfo.data]);
 
   return (
     <DashboardLayout>
