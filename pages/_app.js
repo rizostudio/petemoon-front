@@ -1,11 +1,16 @@
 import { Provider } from "react-redux";
 import "../styles/globals.css";
 import { store } from "@/redux/store";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Provider>
   );
 }
