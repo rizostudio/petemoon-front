@@ -13,6 +13,7 @@ import { getUserInfo } from "@/services/dashboard/myProfile";
 import useToken from "@/hooks/token";
 import { useQuery } from "react-query";
 import { refreshToken } from "@/localStorage";
+import * as Yup from "yup";
 
 const profile = () => {
   // const [inputError, setInputError] = useState(false)
@@ -31,6 +32,7 @@ const profile = () => {
     onSubmit: (value) => {
       console.log(value);
     },
+    validationSchema: UserInfoSchema,
   });
 
   const userInfo = useQuery({
@@ -82,7 +84,11 @@ const profile = () => {
                     dir={"rtl"}
                     disabled={userInfoMode === "view"}
                   />
-                  {/* {inputError && <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p>}                  */}
+                  {formik.errors.firstname && (
+                    <p className="text-[12px] text-error font-semibold leading-5 mt-1">
+                      <bdi>{formik.errors.firstname}</bdi>
+                    </p>
+                  )}
                 </div>
                 <div className="text-right lg:w-1/2 my-2 lg:m-1 lg:mr-4">
                   <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
@@ -99,7 +105,11 @@ const profile = () => {
                     dir={"rtl"}
                     disabled={userInfoMode === "view"}
                   />
-                  {/* {inputError ? <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p> : null }                  */}
+                  {formik.errors.lastname ? (
+                    <p className="text-[12px] text-error font-semibold leading-5 mt-1">
+                      <bdi>{formik.errors.lastname}</bdi>
+                    </p>
+                  ) : null}
                 </div>
               </div>
               <div className="lg:flex flex-row-reverse justify-between items-center w-full lg:my-5">
@@ -118,7 +128,11 @@ const profile = () => {
                     dir={"rtl"}
                     disabled={true}
                   />
-                  {/* {inputError && <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p>}                  */}
+                  {formik.errors.phoneNumber && (
+                    <p className="text-[12px] text-error font-semibold leading-5 mt-1">
+                      <bdi>{formik.errors.phoneNumber}</bdi>
+                    </p>
+                  )}
                 </div>
                 <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
                   <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
@@ -135,7 +149,11 @@ const profile = () => {
                     dir={"rtl"}
                     disabled={userInfoMode === "view"}
                   />
-                  {/* {inputError && <p className='text-[12px] text-error font-semibold leading-5 mt-1'><bdi>فرمت صحیح نمی باشد!</bdi></p>}                  */}
+                  {formik.errors.email && (
+                    <p className="text-[12px] text-error font-semibold leading-5 mt-1">
+                      <bdi>{formik.errors.email}</bdi>
+                    </p>
+                  )}
                 </div>
               </div>
               <div className={"flex flex-row-reverse"}>
@@ -183,3 +201,15 @@ const profile = () => {
 };
 
 export default profile;
+
+const UserInfoSchema = Yup.object().shape({
+  firstname: Yup.string().required("فیلد الزامی است"),
+  lastname: Yup.string().required("فیلد الزامی است"),
+  phoneNumber: Yup.string()
+    .min(11, "شماره موبایل ۱۱ رقمی است")
+    .max(11, "شماره موبایل ۱۱ رقمی است")
+    .required("فیلد الزامی است"),
+  email: Yup.string()
+    .email("فرمت ایمیل را رعایت کنید")
+    .required("فیلد الزامی است"),
+});
