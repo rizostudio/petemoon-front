@@ -27,24 +27,13 @@ export default function LoginValidation() {
       if (response.success) {
         OtpId.remove();
         refreshToken.set(response.data.token);
-        router.push("/sign-up");
+        if (response.data.isRegistered) router.push("/");
+        else router.push("/sign-up");
       } else console.log("Error: ", response.errors);
     },
   });
   return (
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white lg:bg-[#F1F1F1]">
-      <div className="hidden lg:flex justify-center items-center w-[58%]">
-        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
-          <div className="w-full opacity-50">
-            <img src={backgroundLines.src} />
-          </div>
-        </div>
-        <div className="flex justify-center z-10">
-          <div className="w-[90%]">
-            <img src={bigPetsImage.src} />
-          </div>
-        </div>
-      </div>
       <div className="flex relative justify-center items-center lg:hidden w-full p-10 h-[55%] z-10 bg-gradient-to-br from-primary via-primary to-[#acd4f7]">
         <div className="absolute left-10 top-10 lg:hidden">
           <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-primary-light active:bg-primary-light focus:bg-primary-light">
@@ -111,6 +100,18 @@ export default function LoginValidation() {
               </button>
             </div>
           </form>
+        </div>
+      </div>
+      <div className="hidden lg:flex justify-center items-center w-[58%]">
+        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
+          <div className="w-full opacity-50">
+            <img src={backgroundLines.src} />
+          </div>
+        </div>
+        <div className="flex justify-center z-10">
+          <div className="w-[90%]">
+            <img src={bigPetsImage.src} />
+          </div>
         </div>
       </div>
     </div>
