@@ -1,19 +1,23 @@
-import { refreshToken } from "@/localStorage";
-import { selectRefreshToken, setRefreshToken } from "@/redux/base";
+import { refreshTokenLS } from "@/localStorage";
 import { PostRefreshToken } from "@/services/shared";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useState, useEffect } from "react";
 
-export default function useToken(initialValue) {
-  //const dispatch = useDispatch();
-  const [refreshToken, setRefreshToken] = useState(initialValue);
-  //useSelector(selectRefreshToken);
+export default function useToken() {
+  const [refreshToken, setRefreshToken] = useState();
+  const [isReady, setIsReady] = useState(false);
+  useEffect(() => {
+    console.log("refreshToken setup: ", refreshTokenLS.get());
+    setRefreshToken(refreshTokenLS.get());
+    setIsReady(true);
+  }, []);
+
   const router = useRouter();
 
   const set = useCallback((newRefreshToken) => {
-    //dispatch(setRefreshToken(newRefreshToken));
+    setIsReady(false);
     setRefreshToken(newRefreshToken);
+    setIsReady(true);
   }, []);
 
   const refresh = useCallback(async () => {
@@ -25,6 +29,7 @@ export default function useToken(initialValue) {
 
   const withRefresh = useCallback(
     async (fn) => {
+      console.log("withRefresh: ", refreshToken);
       const response = await fn();
       if (response.success) return response;
       await refresh();
@@ -37,5 +42,6 @@ export default function useToken(initialValue) {
   return {
     set,
     withRefresh,
+    isReady,
   };
 }

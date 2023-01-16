@@ -7,4 +7,4 @@ const initLocalStorageApi = (key) => ({
 const LS_PREFIX = "petemoon-";
 const withPrefix = (key) => `${LS_PREFIX}${key}`;
 export const OtpId = initLocalStorageApi(withPrefix("otp-id"));
-export const refreshToken = initLocalStorageApi(withPrefix("refresh-token"));
+export const refreshTokenLS = initLocalStorageApi(withPrefix("refresh-token"));

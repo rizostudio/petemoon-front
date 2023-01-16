@@ -6,3 +6,12 @@ export const domainUserInfo = (data) => {
     email: data.email,
   };
 };
+
+export const apiPatchUserInfoBody = (userInfo) => {
+  return {
+    first_name: userInfo.firstname,
+    last_name: userInfo.lastname,
+    phone_number: userInfo.phoneNumber,
+    email: userInfo.email,
+  };
+};

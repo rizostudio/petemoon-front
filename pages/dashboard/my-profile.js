@@ -9,16 +9,14 @@ import FloatLabelInput from "../../components/common/input";
 import Profile_Alt_Pic from "../../assets/dashboard/profile-pic-alt.svg";
 import Cake_Icon from "../../assets/dashboard/cake.svg";
 import PenEdit_Icon from "../../assets/common/PenEditIcon.svg";
-import { getUserInfo } from "@/services/dashboard/myProfile";
+import { getUserInfo, patchUserInfo } from "@/services/dashboard/myProfile";
 import useToken from "@/hooks/token";
 import { useQuery } from "react-query";
-import { refreshToken } from "@/localStorage";
 import * as Yup from "yup";
 
 const profile = () => {
   // const [inputError, setInputError] = useState(false)
   const token = useToken();
-  useEffect(() => token.set(refreshToken.get()));
   const [userInfoMode, setUserInfoMode] = useState("view");
   const [initialValues, setInitialValues] = useState({
     firstname: "",
@@ -29,19 +27,22 @@ const profile = () => {
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
-    onSubmit: (value) => {
-      console.log(value);
+    onSubmit: async (values) => {
+      console.log(values);
+      const response = await patchUserInfo(values);
+      if(response.success) setUserInfoMode("view");
     },
     validationSchema: UserInfoSchema,
   });
 
   const userInfo = useQuery({
-    queryKey: "user-info",
-    queryFn: async () => await token.withRefresh(getUserInfo),
+    queryKey: ["user-info", token.isReady],
+    queryFn: async () => {
+      if (token.isReady) return await token.withRefresh(getUserInfo);
+    },
   });
 
   useEffect(() => {
-    console.log(userInfo.data);
     if (userInfo.data) setInitialValues(userInfo.data.data);
   }, [userInfo.data]);
 
