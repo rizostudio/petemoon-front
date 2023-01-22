@@ -12,75 +12,69 @@ import More_Icon from "../../assets/common/more.svg";
 import LocationAdd_Icon from "../../assets/dashboard/location-add.svg";
 import LocationAdd_White_Icon from "../../assets/dashboard/location-add-white.svg";
 import CloseButton_Icon from "../../assets/common/close-button.svg";
-import { getAddresses } from "@/services/dashboard/address";
+import { getAddresses, deleteAddress } from "@/services/dashboard/address";
+import { useQuery, useQueryClient } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectAddresses,
+  setAddresses,
+  setCreateAddressMode,
+  setEditAddressMode,
+} from "@/redux/dashboard";
+import { useRouter } from "next/router";
 
 const Addresses = () => {
-  // fake data
-  const [AddressesArr, setAddressesArr] = useState([
-    {
-      key: 0,
-      title: "آدرس اول",
-      province: "تهران",
-      city: "شهرستان آبعلی",
-      zipCode: 123456789,
-      receiver: "جنتی دوست",
-      mapLocation: Map_Pic,
-      location:
-        "تهران، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
-    },
-    {
-      key: 1,
-      title: "آدرس خانه",
-      province: "سیستان و بلوچستان",
-      city: "زاهدان",
-      zipCode: 123456789,
-      receiver: "محمد علی باقری کنی همدانی",
-      mapLocation: "",
-      location:
-        "هزاهدان، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
-    },
-    {
-      key: 2,
-      title: "آدرس محل کار",
-      province: "فارس",
-      city: "شیراز",
-      zipCode: 123456789,
-      receiver: "حسین الهی نژاد جنت امامی",
-      mapLocation: Map_Pic,
-      location:
-        "هشیراز، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
-    },
-  ]);
-  // for remove data from list
-  const TrashHandler = (index) => {
-    const newArr = [...AddressesArr];
-    newArr.splice(1, index);
-    setAddressesArr(newArr);
-    console.log(AddressesArr);
-  };
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const addresses = useSelector(selectAddresses);
+  const apiAddressesData = useQuery({
+    queryKey: "addresses",
+    queryFn: getAddresses,
+  });
 
   useEffect(() => {
-    const response = getAddresses();
-    console.log("res: ", response);
-  }, []);
+    if (apiAddressesData.data)
+      dispatch(setAddresses(apiAddressesData.data.data));
+  }, [apiAddressesData.data]);
+
+  const handleCreateAddress = (e) => {
+    e.preventDefault();
+    dispatch(setCreateAddressMode());
+    router.push("/dashboard/address-edit");
+  };
+
+  const handleEditAddress = (id) => (e) => {
+    e.preventDefault();
+    dispatch(setEditAddressMode(id));
+    router.push("/dashboard/address-edit");
+  };
+
+  const handleDeleteAddress = (id) => async () => {
+    const response = await deleteAddress(id);
+    if (response.success) {
+      // snack
+      queryClient.invalidateQueries({ queryKey: ["addresses"] });
+    }
+  };
 
   return (
     <DashboardLayout>
       <div className="flex flex-col justify-between items-stretch">
-        {AddressesArr &&
-          AddressesArr.map((item, index) => (
+        {addresses &&
+          addresses.map((item, index) => (
             <div
-              key={item.key}
+              key={index}
               className="flex flex-col justify-between items-stretch my-2 lg:my-3 px-5 lg:px-12 py-2 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none lg:shadow-shadowB"
             >
               <div className="flex flex-row items-center justify-end lg:justify-between">
                 <p className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-                  <bdi>{item.title}</bdi>
+                  <bdi>{"آدرس مگه تایتل داره؟"}</bdi>
                 </p>
                 <div className="flex flex-row items-center">
-                  <Link
-                    href={"/dashboard/address-edit"}
-                    className="hidden lg:block p-2 border-[1px] solid border-[#4DA4F4] rounded-[12px]"
+                  <div
+                    onClick={handleEditAddress(index)}
+                    className="hidden cursor-pointer lg:block p-2 border-[1px] solid border-[#4DA4F4] rounded-[12px]"
                   >
                     <Image
                       src={Edit2_Icon}
@@ -88,7 +82,7 @@ const Addresses = () => {
                       width={15}
                       height={15}
                     />
-                  </Link>
+                  </div>
                   <label
                     htmlFor="Trash-modal"
                     className="hidden lg:block p-2 border-[1px] solid border-error rounded-[12px] cursor-pointer mr-2 "
@@ -129,7 +123,7 @@ const Addresses = () => {
                     <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 my-2">
                       <p className="text-sm lg:text-base text-black">کد پستی</p>
                       <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-                        <bdi>{item.zipCode}</bdi>
+                        <bdi>{item.postalCode}</bdi>
                       </p>
                     </div>
                   </div>
@@ -147,13 +141,13 @@ const Addresses = () => {
                         تحویل گیرنده
                       </p>
                       <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-                        <bdi>{item.receiver}</bdi>
+                        <bdi>{item.transferee}</bdi>
                       </p>
                     </div>
                   </div>
                 </div>
                 <div>
-                  {item.mapLocation ? <div></div> : <div></div>}
+                  {item.lat ? <div></div> : <div></div>}
                   <div className="w-[100px] h-[100px] relative border-[1px] solid border-secondary rounded-[10px]">
                     <Image
                       src={
@@ -173,7 +167,7 @@ const Addresses = () => {
               <div className="flex flex-row items-center text-right font-semibold lg:font-bold opacity-90 leading-8 my-2">
                 <p className="text-sm lg:text-base text-black">آدرس پستی</p>
                 <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-                  <bdi>{item.location}</bdi>
+                  <bdi>{item.postalAddress}</bdi>
                 </p>
               </div>
               {/* Modals */}
@@ -205,9 +199,9 @@ const Addresses = () => {
                         htmlFor="More-modal"
                         className="w-full flex flex-row items-center px-9 py-3"
                       >
-                        <Link
-                          href="/dashboard/address-edit"
-                          className="flex flex-row"
+                        <div
+                          onClick={handleEditAddress(index)}
+                          className="flex flex-row cursor-pointer"
                         >
                           <Image
                             src={Edit2_Icon}
@@ -218,7 +212,7 @@ const Addresses = () => {
                           <p className="text-base text-black font-medium leading-8 mr-2">
                             ویرایش آدرس
                           </p>
-                        </Link>
+                        </div>
                       </label>
                     </div>
                   </label>
@@ -246,7 +240,7 @@ const Addresses = () => {
                       <div className="flex flex-row items-center justify-between w-full lg:w-1/2">
                         <label
                           htmlFor="Trash-modal"
-                          onClick={() => TrashHandler(index)}
+                          onClick={handleDeleteAddress(item.id)}
                           className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 lg:px-8 rounded-[5px] bg-error ml-2 border-[2px] solid border-error"
                         >
                           حذف آدرس
@@ -271,11 +265,13 @@ const Addresses = () => {
             alt="LocationAddIcon"
             className="mr-2 lg:mr-0 lg:hidden"
           />
-          <Image
-            src={LocationAdd_Icon}
-            alt="LocationAddIcon"
-            className="hidden lg:block"
-          />
+          <div className="w-fit cursor-pointer" onClick={handleCreateAddress}>
+            <Image
+              src={LocationAdd_Icon}
+              alt="LocationAddIcon"
+              className="hidden lg:block"
+            />
+          </div>
           <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
             ثبت آدرس جدید
           </p>
@@ -284,5 +280,41 @@ const Addresses = () => {
     </DashboardLayout>
   );
 };
+
+const mockAddresses = [
+  {
+    key: 0,
+    title: "آدرس اول",
+    province: "تهران",
+    city: "شهرستان آبعلی",
+    zipCode: 123456789,
+    receiver: "جنتی دوست",
+    mapLocation: Map_Pic,
+    location:
+      "تهران، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
+  },
+  {
+    key: 1,
+    title: "آدرس خانه",
+    province: "سیستان و بلوچستان",
+    city: "زاهدان",
+    zipCode: 123456789,
+    receiver: "محمد علی باقری کنی همدانی",
+    mapLocation: "",
+    location:
+      "هزاهدان، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
+  },
+  {
+    key: 2,
+    title: "آدرس محل کار",
+    province: "فارس",
+    city: "شیراز",
+    zipCode: 123456789,
+    receiver: "حسین الهی نژاد جنت امامی",
+    mapLocation: Map_Pic,
+    location:
+      "هشیراز، خیابان دماوند، سه راه تهران پارس، شهرک امید، بلوک۳۷غربی زنگ ۳۸ واحد ۱۲",
+  },
+];
 
 export default Addresses;
