@@ -1,10 +1,9 @@
-import React, { use, useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import {v4} from 'uuid';
-
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
 import StarGold_Icon from '../../assets/common/startGold.svg';
@@ -68,7 +67,7 @@ const Products = () => {
     const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
    
     return (
-        <div className='bg-[#f8f8f8] lg:p-10 w-full h-full'>
+        <div className='bg-[#f8f8f8] lg:p-10 w-full h-screen overflow-y-scroll'>
             {/* Main Page */}
             <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
                'block' : MainPageOpen == true,
@@ -295,7 +294,7 @@ const Products = () => {
                 </div>
             </div>
             {/* Filter Page */}
-            <div className={clsx('lg:hidden h-full w-full',{
+            <div className={clsx('lg:hidden w-full h-full',{
                'block' : FilterPageOpen == true,
                'hidden' : FilterPageOpen == false
             })}>
