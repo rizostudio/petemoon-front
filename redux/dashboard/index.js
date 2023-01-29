@@ -11,6 +11,14 @@ const defaultAddress = {
   id: -1,
 };
 
+const defaultPetGeneralData = {
+  name: "",
+  petType: "",
+  breed: "",
+  sex: "",
+  birthData: "",
+};
+
 const initialState = {
   address: {
     data: [],
@@ -19,13 +27,20 @@ const initialState = {
       data: defaultAddress,
     },
   },
+  pet: {
+    data: [],
+    onChange: {
+      mode: "none",
+      data: defaultPetGeneralData,
+    },
+  },
 };
 
-initialState.address.onChange;
 export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
   reducers: {
+    // Address
     setAddresses: (state, action) => {
       state.address.data = action.payload;
     },
@@ -51,6 +66,8 @@ export const dashboardSlice = createSlice({
         data: defaultAddress,
       };
     },
+    // Pet
+    
   },
 });
 
