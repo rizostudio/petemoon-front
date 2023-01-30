@@ -14,4 +14,5 @@ export default {
   get: api.get,
   post: api.post,
   patch: api.patch,
+  delete: api.delete,
 };
