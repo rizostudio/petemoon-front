@@ -4,6 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import {v4} from 'uuid';
+
+//component
+import MainLayout from '../../components/common/MainLayout'
+
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
 import StarGold_Icon from '../../assets/common/startGold.svg';
@@ -67,7 +71,8 @@ const Products = () => {
     const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
    
     return (
-        <div className='bg-[#f8f8f8] lg:p-10 w-full h-screen overflow-y-scroll'>
+        <MainLayout>
+        <div className='flex flex-col bg-[#f8f8f8] lg:p-10 w-full h-full'>
             {/* Main Page */}
             <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
                'block' : MainPageOpen == true,
@@ -417,6 +422,7 @@ const Products = () => {
                 </div>
             </div>
         </div>
+        </MainLayout>
     )
 }
 

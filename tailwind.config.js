@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -27,6 +28,7 @@ module.exports = {
         boxShadow: {
           'shadowA': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
           'shadowB': '0 20px 50px -10px rgba(58, 71, 80, 0.15)',
+          'shadowC': '0px 20px 50px rgba(234, 99, 82, 0.2)',
         },
         content: {
         },
@@ -35,7 +37,27 @@ module.exports = {
         }
     },
   },
-  plugins: [require("daisyui"), require("@tailwindcss/forms")], 
+  plugins: [require("daisyui"), require("@tailwindcss/forms"),
+  plugin(({ addBase, theme }) => {
+    addBase({
+        '.scrollbar': {
+            overflowY: 'auto',
+            scrollbarColor: `transparent`,
+            scrollbarWidth: '0',
+        },
+        '.scrollbar::-webkit-scrollbar': {
+            height: '0px',
+            width: '0px',
+        },
+        '.scrollbar::-webkit-scrollbar-thumb': {
+            backgroundColor: theme('colors.blue.600'),
+        },
+        '.scrollbar::-webkit-scrollbar-track-piece': {
+            backgroundColor: theme('colors.blue.200'),
+        },
+    });
+}),
+], 
   daisyui: {
     themes: [
       {
