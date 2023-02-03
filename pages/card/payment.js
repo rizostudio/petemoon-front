@@ -241,7 +241,7 @@ const Payment = () => {
                                     <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'><bdi>{(125000).toLocaleString()}</bdi></p>
                                 </div>
                                 <button
-                                    onClick={() => router.push('/card/payment-confirmation')} 
+                                    onClick={() => router.push('/card/confirm')} 
                                     className='text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1'
                                 >پرداخت</button>
                             </div>
@@ -256,7 +256,7 @@ const Payment = () => {
                     </div>
                     <div className='flex lg:hidden justify-between items-center w-full px-10 py-5 border-t-[2px] border-secondary'>
                         <button 
-                            onClick={() => router.push('/card/payment-confirmation')}
+                            onClick={() => router.push('/card/confirm')}
                             className='text-base text-center text-white font-medium leading-7 bg-primary p-3 w-1/2 rounded-[12px]'
                             >پرداخت</button>
                         <div className='flex flex-col'>

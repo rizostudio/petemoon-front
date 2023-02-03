@@ -2,6 +2,8 @@
 
 //component
 import MainLayout from '@/components/common/MainLayout'
+import MobileHeader from '@/components/homePage/MobileHeader';
+import Slider from '@/components/homePage/Slider';
 import Brands from '@/components/homePage/Brands';
 import OfferProdcuts from '@/components/homePage/OfferProducts';
 import Category from '@/components/homePage/Category';
@@ -9,14 +11,15 @@ import OffPriceProducts from '@/components/homePage/OffPriceProducts';
 import BestVets from '@/components/homePage/BestVets';
 import BestSellers from '@/components/homePage/BestSellers';
 import Benefits from '@/components/homePage/Benefits';
-import Slider from '@/components/homePage/Slider';
+import BottomNavigation from '@/components/common/BottomNavigation';
 
 
 
 export default function Home() {
   return (
     <MainLayout>
-      <div className='bg-[#F8F8F8]'>
+      <div className='bg-[#F8F8F8] relative pb-[100px]'>
+        <MobileHeader/>
         <Slider/>
         <Brands/>
         <OfferProdcuts/>
@@ -26,6 +29,7 @@ export default function Home() {
         <BestSellers/>
         <Benefits/>
       </div>
+      <BottomNavigation/>
     </MainLayout>
   )
 }

@@ -20,7 +20,6 @@ const BestVets = () => {
       {name:"دکتر مریم خانی", pic:vetPic2 ,skill:"فوق تخصص دامپزشکی و جراحی حیوانات خانگی", score:3},
       {name:"دکتر امیرعلی محمدی", pic:vetPic3 ,skill:"فوق تخصص دامپزشکی و جراحی حیوانات خانگی", score:2},
   ]
-  console.log(data)
   
   // for showing score
   const scoresBoxHandler = (score) => {

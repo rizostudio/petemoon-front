@@ -91,7 +91,7 @@ const SingleProduct = () => {
 
     return (
         <MainLayout>
-            <div className='w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-12 lg:py-5'>
+            <div className='w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-[120px] lg:py-5'>
                 {/* Main Page  */}
                 <div className={clsx('lg:flex flex-col justify-between items-stretch',{
                     'flex' : mainPageOpen == true , 
@@ -119,18 +119,24 @@ const SingleProduct = () => {
                             {!data.amount && <p className='text-base text-gray-400 font-medium leading-6 underline mr-4'>ناموجود</p>}
                         </div> 
                         <div className='flex flex-row justify-between items-center'>
-                            <div className='p-2 border-[1px] border-primary solid rounded-[15px]'>
+                            <Link 
+                                href='/card'
+                                className='p-2 border-[1px] border-primary solid rounded-[15px]'
+                            >
                                 <Image 
                                     src={ShopBagRedMobile_Icon}
                                     alt="RedShopBagIcon"
                                 />
-                            </div>
-                            <div className='p-3 px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]'>
+                            </Link>
+                            <Link
+                                href='/products' 
+                                className='p-3 px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]'
+                            >
                                 <Image 
                                     src={leftArrow_Icon}
                                     alt="LeftArrowIcon"
                                 />
-                            </div>
+                            </Link>
                         </div>
                     </div>
                     {/* Summary box */}
@@ -162,7 +168,10 @@ const SingleProduct = () => {
                                         <div className='flex flex-row items-center'>{starsBoxHandler(data.stars)}</div>
                                         <p className='text-xl text-gray-400 font-medium leading-6 mr-2 align-middle'>{`(${data.stars})`}</p>
                                     </div>
-                                    <p className='text-base lg:text-lg text-info font-normal leading-6 lg:mt-2'><bdi>{`${data.commentsNumber} دیدگاه`}</bdi></p>
+                                    <Link
+                                        href='#cutomersComent' 
+                                        className='text-base lg:text-lg text-info font-normal leading-6 lg:mt-2'
+                                    ><bdi>{`${data.commentsNumber} دیدگاه`}</bdi></Link>
                                 </div>
                             </div>
                             <div className='flex flex-col justify-between mt-5'>
@@ -202,7 +211,10 @@ const SingleProduct = () => {
                                         </div>
                                         <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 mr-5 mt-1 before:content-["."] before:text-4xl before:ml-2'><bdi>پت شاپ</bdi></p>
                                     </div>
-                                    <p className='text-sm lg:text-base text-info font-normal leading-6'><bdi>{`${data.seller.length} فروشنده دیگر`}</bdi></p>
+                                    <Link 
+                                        href='#otherSellers' 
+                                        className='text-sm lg:text-base text-info font-normal leading-6'
+                                    ><bdi>{`${data.seller.length} فروشنده دیگر`}</bdi></Link>
                                 </div>
                                 {/* Summary availability && Add to card */}
                                 <div className={clsx('order-1 w-full mb-3 lg:mb-0',{"lg:mt-9":!data.amount , "lg:mt-2":data.amount})}>
@@ -264,7 +276,7 @@ const SingleProduct = () => {
                         </div>
                     </div>
                     {/* Sellers */}
-                    <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
+                    <div id='otherSellers' className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
                         <h5 className='text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>فروشندگان دیگر</h5>
                         <div className='grid lg:grid-cols-2 gap-6'>
                             { data.seller && data.seller.map(item =>
@@ -293,7 +305,9 @@ const SingleProduct = () => {
                                 className='text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
                             ><bdi>مشاهده همه</bdi></Link>
                         </div>
-                        <CarouselProduct data={data.similarProduct}/>
+                        <div className='mr-10 lg:m-0 px-0 lg:px-[120px] py-2 lg:py-6'>
+                            <CarouselProduct data={data.similarProduct}/>
+                        </div>
                     </div>
                     {/* Description */}
                     <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
@@ -331,7 +345,7 @@ const SingleProduct = () => {
                         </div>
                     </div>
                     {/* Coustomers comment   */}
-                    <div className='px-10 py-5 lg:px-0 lg:py-10 flex flex-col items-stretch lg:border-none border-b-[2px] border-secondary'>
+                    <div id="cutomersComent" className='px-10 py-5 lg:px-0 lg:py-10 flex flex-col items-stretch lg:border-none border-b-[2px] border-secondary'>
                         <h5 className='text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>نظرات</h5>
                         {data.comments.map(item => 
                             <div 
@@ -347,9 +361,9 @@ const SingleProduct = () => {
                                             <p className='text-lg text-gray-400 font-medium leading-5 mr-1 lg:mr-2'>{`(${item.stars})`}</p>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className='flex flex-col lg:flex-row'>
                                         <p className='text-base text-gray-400 font-medium leading-5'><bdi>{item.date}</bdi></p>
-                                        <p className='text-base text-gray-400 font-medium leading-5 mr-2 lg:mr-5'><bdi>{item.author}</bdi></p>
+                                        <p className='text-base text-gray-400 font-medium leading-5 lg:mr-5'><bdi>{item.author}</bdi></p>
                                     </div>
                                 </div>
                                 <p className='text-base lg:text-lg text-black font-medium leading-8 mt-2 lg:mt-5 lg:mr-8'><bdi>{item.text}</bdi></p>
@@ -357,7 +371,7 @@ const SingleProduct = () => {
                         )}
                         <button
                             onClick={() => {setCommentPageOpen(true);setMainPageOpen(false)}}
-                            className='lg:hidden text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]'
+                            className='lg:hidden text-base text-center text-primary font-bold leading-6 self-end w-1/3 py-2 border-solid border-[1px] border-primary rounded-[12px] '
                         >ثبت دیدگاه</button>
                         <label 
                             htmlFor='comment-send-modal' 
@@ -457,7 +471,7 @@ const SingleProduct = () => {
                     </div>
                 </div>
                 {/* Comment Page */}
-                <div className={clsx('lg:hidden flex-col items-stretch p-10 w-full h-full',{
+                <div className={clsx('lg:hidden flex-col items-stretch p-10 w-full h-screen',{
                     'flex' : commentPageOpen == true,
                     'hidden' : commentPageOpen == false
                 })}>
@@ -511,7 +525,7 @@ const SingleProduct = () => {
                                 />
                             </div>
                         </div>
-                        <div className='self-end flex flex-row items-center justify-between w-full mt-12'>
+                        <div className='flex flex-row items-center justify-between w-full mt-12'>
                             <button                                             
                                 onClick={() => {setCommentPageOpen(false); setMainPageOpen(true)} } 
                                 className='w-2/5 text-sm text-error text-center font-semibold py-2 rounded-[5px] bg-white border-[2px] solid border-error'

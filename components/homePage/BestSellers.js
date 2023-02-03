@@ -84,7 +84,7 @@ const BestSellers = () => {
                     <button className='text-sm text-center text-primary font-medium w-[120px] lg:w-[140px] px-2 py-2 mt-10 bg-white rounded-[40px] after:content-[">"] after:text-xl after:align-middle after:mr-3'><bdi>مشاهده فروشگاه</bdi></button>
                   </div>
                   <div className='flex flex-col justify-center items-stretch bg-white my-5 p-3 rounded-r-3xl'>
-                    <Image src={item.pic}/>
+                    <Image src={item.pic} alt="Store Logo"/>
                     <h5 className='text-base text-center text-black font-bold leading-5'><bdi>{item.name}</bdi></h5>
                     <p className='text-xs text-center text-gray-400 font-medium leading-4'><bdi>فروشنده برتر</bdi></p>
                   </div>
@@ -116,7 +116,7 @@ const BestSellers = () => {
                       <button className='text-sm text-center text-primary font-medium w-[120px] lg:w-[140px] px-2 py-2 mt-10 bg-white rounded-[40px] after:content-[">"] after:text-xl after:align-middle after:mr-3'><bdi>مشاهده فروشگاه</bdi></button>
                     </div>
                     <div className='flex flex-col justify-center items-stretch bg-white my-5 p-3 rounded-r-3xl'>
-                      <Image src={item.pic}/>
+                      <Image src={item.pic} alt="Store Logo"/>
                       <h5 className='text-base text-center text-black font-bold leading-5'><bdi>{item.name}</bdi></h5>
                       <p className='text-xs text-center text-gray-400 font-medium leading-4'><bdi>فروشنده برتر</bdi></p>
                     </div>

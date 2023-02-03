@@ -1,6 +1,7 @@
 import React, {useState } from 'react';
 import Image from 'next/image';
 import {v4} from 'uuid';
+import Link from 'next/link';
 
 //components
 import Pagination from '@/components/common/Pagination';
@@ -44,7 +45,7 @@ const CarouselProduct = ({data}) => {
             {/* mobile */}
             <div className="lg:hidden block">
                 <div className='flex flex-row-reverse justify-center items-center scrollbar overflow-x-scroll scrolling-touch scroll-smooth scroll-mx-10 touch-pan-x scrolling-touch'>
-                {data && data.map(item => 
+                {data && data.map((item,index) => 
                                 <div 
                                     key={v4()}
                                     className='m-2'
@@ -80,12 +81,15 @@ const CarouselProduct = ({data}) => {
                                                         <p className='text-base text-primary font-medium leading-8 mb-0'><bdi>{item.price * (1 - item.discount/100)} تومان</bdi></p>
                                                         {item.discount && <p className='text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0'>{item.price}</p>}
                                                     </div> 
-                                                    <div className='flex items-center p-2 bg-[#EA635233] rounded-[10px]'>
+                                                    <Link 
+                                                        href={`/products/${index}`}
+                                                        className='flex items-center p-2 bg-[#EA635233] rounded-[10px]'
+                                                    >
                                                         <Image 
                                                             src={ShoppingCartRed_Icon} 
                                                             alt="ShoppingCartRedIcon"
                                                         />
-                                                    </div>
+                                                    </Link>
                                                 </div>
                                             : 
                                                 <div className='text-base text-gray-400 text-center font-medium p-2 mt-3 w-full bg-secondary rounded-[10px]'>ناموجود</div>
@@ -99,7 +103,7 @@ const CarouselProduct = ({data}) => {
             {/* desktop */}
             <div className='hidden lg:flex flex-col items-stretch'>
                 <div className='flex justify-center items-center flex-wrap xl:flex-nowrap'>
-                    {data && data.slice((currentPage - 1) * CardsPerPage, (currentPage - 1) * CardsPerPage + CardsPerPage).map(item =>
+                    {data && data.slice((currentPage - 1) * CardsPerPage, (currentPage - 1) * CardsPerPage + CardsPerPage).map((item,index) =>
                         <div 
                             key={v4()}
                             className='m-3'
@@ -131,13 +135,16 @@ const CarouselProduct = ({data}) => {
                                                <p className='text-lg text-primary font-medium leading-8 mb-0'><bdi>{item.price * (1 - item.discount/100)} تومان</bdi></p>
                                                 {item.discount && <p className='text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0'>{item.price}</p>}
                                             </div> 
-                                            <div className='flex items-center p-2 bg-[#EA635233] rounded-[10px]'>
+                                            <Link 
+                                                href={`/products/${index}`}
+                                                className='flex items-center p-2 bg-[#EA635233] rounded-[10px]'
+                                            >
                                                 <p className='block text-base text-primary font-medium leading-7 ml-2'>خرید</p>
                                                 <Image 
                                                     src={ShoppingCartRed_Icon} 
                                                     alt="ShoppingCartRedIcon"
                                                 />
-                                            </div>
+                                            </Link>
                                         </div>
                                     : 
                                         <div className='text-base text-gray-400 text-center font-medium p-2 mt-3 w-full bg-secondary rounded-[10px]'>ناموجود</div>
