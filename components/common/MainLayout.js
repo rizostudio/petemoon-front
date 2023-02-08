@@ -36,7 +36,7 @@ const MainLayout = ({children}) => {
                     <Link href='/products' className='text-base text-black font-medium leading-8 mx-2 xl:mx-4'>
                         محصولات
                     </Link>
-                    <Link href='/' className='text-base text-black font-medium leading-8 mx-2 xl:mx-4'>
+                    <Link href='/vet' className='text-base text-black font-medium leading-8 mx-2 xl:mx-4'>
                         کلینک ها
                     </Link>
                     <Link href='/' className='text-base text-black font-medium leading-8 mx-2 xl:mx-4'>

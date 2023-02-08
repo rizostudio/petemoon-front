@@ -10,7 +10,7 @@ import DashboardLayout from '../../components/DashboardLayout';
 import PetPic from '../../assets/dashboard/PetPic.svg';
 import PetPicPreserve from '../../assets/dashboard/PetPicPreserve.svg';
 import Upload_Icon from '../../assets/common/uploadIcon.svg';
-
+import ArrowLeftWhite_Icon from '../../assets/common/leftArrowWhite.svg';
 const MyPetEdit = () => {
     const [inputError, setInputError] = useState(false)
     const formik = useFormik({
