@@ -19,7 +19,6 @@ import Info_Icon from '../../assets/common/info-circle.svg';
 import Properties_Icon from '../../assets/product/PropertiesIcon.svg';
 import ProfileAlt_Pic from '../../assets/common/profileIcon4.svg'
 import CloseButton_Icon from '../../assets/common/close-button.svg';
-import dynamic from 'next/dynamic';
 
 const SingleProduct = () => {
     //fake data
@@ -42,7 +41,8 @@ const SingleProduct = () => {
         {day:"جمعه", date:11, time:""},
     ]
     const [dateSelected, setDateSelected] = useState({})
-    console.log(typeof dateSelected.date === 'undefined')
+    const [dateSelectedValue,setDateSelectedValue] = useState(false)
+    console.log(dateSelectedValue)
 
     console.log(dateSelected)
     // for showing data
@@ -152,7 +152,11 @@ const SingleProduct = () => {
                                 </div>
                                 {reserveDateData && reserveDateData.map((item, index) => 
                                     <div 
-                                        onClick={() => setDateSelected({day:item.day, date:item.date})}
+                                            onClick={() => {
+                                                setDateSelected({day:item.day, date:item.date})
+                                                setDateSelectedValue(true)
+                                            }
+                                        }
                                         className={clsx('flex flex-col items-stretch text-center mx-2 lg:mx-7', {
                                             "text-white bg-primary px-1.5 py-2.5 lg:px-2.5 lg:py-5 rounded-[22px] rounded-[40px]" : item.date == dateSelected.date,
                                             "text-primary" : item.date !== dateSelected.date
@@ -165,17 +169,19 @@ const SingleProduct = () => {
                                 )} 
                             </div>
                             <div className={clsx('flex justify-between mt-2 lg:mt-8',{
-                                    'grayscale' : typeof dateSelected.date == 'undefined'
+                                    'grayscale' : dateSelectedValue == false
                                 })}
                             >
                                 <div className='flex justify-between items-center w-full lg:w-3/5 px-7 py-8  bg-white lg:bg-[#ea63521a] rounded-[15px] lg:rounded-[20px]'>
                                     <p className='text-base lg:text-2xl text-black font-black leading-6 lg:leading-10 ml-10'><bdi>ساعت مشاوره : </bdi></p>
                                     <select
-                                        disabled={typeof dateSelected.date == 'undefined' ? true : false} 
+                                        disabled={dateSelectedValue ? false : true} 
                                         className='text-base lg:text-xl text-white font-medium leading-8 w-full px-5 py-3 bg-primary border-none rounded-[12px] lg:rounded-[15px] focus:outline-none focus:border-none focus:ring-0 peer'
                                     >
-                                        <option>7 - 7:30</option>
-                                        <option><bdi>6 - 6:30</bdi></option>
+                                        <option value="time1">6 - 6:30</option>
+                                        <option value="time2">7 - 7:30</option>
+                                        <option value="time3">8 - 8:30</option>
+                                        <option value="time4">9 - 9:30</option>
                                     </select>
                                 </div>
                                 <div className="hidden lg:flex justify-between items-center w-2/5 px-7 py-8 mr-8 bg-[#ea63521a] rounded-[15px]">
@@ -184,7 +190,7 @@ const SingleProduct = () => {
                                         <p className='text-2xl text-primary font-semibold leading-10 mt-1 after:content-["تومان"] after:text-base after:font-normal after:leading-5 after:mr-1'><bdi>{(63000).toLocaleString()}</bdi></p>
                                     </div>
                                     <label
-                                        htmlFor = {typeof dateSelected.date == 'undefined' ? "" : "reserve-modal"}                                         
+                                        htmlFor = {dateSelectedValue ? "reserve-modal" : ""}                                         
                                         className='text-base text-center text-white font-bold leading-7 tracking-widest w-full px-10 py-3 mr-7 bg-primary rounded-[15px]'
                                     ><bdi>رزرو</bdi></label>
                                 </div>
@@ -295,10 +301,10 @@ const SingleProduct = () => {
                     </div>
                     {/* Reserve Box for mobile  */}
                     <div className={clsx('flex justify-between items-center lg:hidden px-10 py-5',{
-                        'grayscale' : typeof dateSelected.date == 'undefined'
+                        'grayscale' : dateSelectedValue == false
                     })}>
                         <label
-                            htmlFor = {typeof dateSelected.date == 'undefined' ? "" : "reserve-modal"} 
+                            htmlFor = {dateSelectedValue ? "reserve-modal" : "" } 
                             className='text-base text-center text-white font-medium w-1/2 px-3 py-6 bg-primary rounded-[12px]'
                         >رزرو</label>
                         <div className='flex flex-col'>

@@ -31,11 +31,11 @@ const MyPet = () => {
         console.log(PetsArr)
     }
     //for choose data to show
-    const TabHandler = (index,tabKind) => {
-        const newData = [...PetsArr];
-        newData[index].tab = (tabKind == "general") ? "general" : "medical";
-        setPetsArr(newData)
-    }
+    // const TabHandler = (index,tabKind) => {
+    //     const newData = [...PetsArr];
+    //     newData[index].tab = (tabKind == "general") ? "general" : "medical";
+    //     setPetsArr(newData)
+    // }
 
     return (
         <DashboardLayout>
@@ -43,25 +43,13 @@ const MyPet = () => {
                 {PetsArr && PetsArr.map((item,index) => 
                     <div 
                         key={v4()} 
-                        className='flex flex-col bg-[#E7E7E8] rounded-[20px] lg:rounded-[25px] w-full my-2 lg:my-6'
+                        className='flex flex-col bg-[#E7E7E8] lg:bg-transparent rounded-[20px] lg:rounded-[25px] overflow-hidden w-full my-4 lg:my-6 shadow-shadowB'
                     >
-                        {/* toggle between general and medical detail */}
-                        <div className="tabs self-center flex flex-row justify-center lg:justify-start w-full lg:self-end my-3 lg:px-8 lg:my-8 border-b-[1px] solid border-white">
-                            <a className={clsx("tab tab-bordered border-white w-1/2 lg:w-auto text-xl font-black leading-10",{
-                                'tab-active' : item.tab == "general"
-                            })} onClick={() => TabHandler(index,"general")}>عمومی</a> 
-                            <a className={clsx("tab tab-bordered border-white w-1/2 lg:w-auto text-xl font-black leading-10",{
-                                'tab-active' : item.tab == "medical"
-                            })} onClick={() => TabHandler(index,"medical")}>پزشکی</a>
-                         </div>
-
-                        <div className='bg-white px-4 py-5 lg:p-10 mx-3 my-4 lg:mx-10 lg:my-8 rounded-[15px] lg:rounded-[25px] shadow-shadowB'>
-                            <div
-                                className='flex flex-col justify-between items-stretch'
-                            >   
+                        <div className='flex flex-row-reverse justify-between items-start bg-white px-4 py-5 lg:px-10 lg:py-8 mx-3 my-4 lg:m-0 rounded-[15px] lg:rounded-none'>
+                            {/*  */}
+                            <div className='flex flex-col items-end'>    
                                 {/* heading box */}
-                                <div className='flex flex-row items-center justify-end lg:justify-between'>
-                                    <p className='hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]'><bdi>{item.general.name}</bdi></p>
+                                <div>
                                     <div className='flex flex-row items-center'>
                                         <Link 
                                             href={'/dashboard/my-pet-edit'} 
@@ -94,77 +82,73 @@ const MyPet = () => {
                                         </label>
                                     </div>
                                 </div>
+                                {/* pet's picture */}
+                                <div className='w-[100px] h-[100px] relative overflow-hidden rounded-[10px] lg:mt-5'>
+                                    <Image 
+                                        src={item.general.pic? item.general.pic : PetPicPreserve} 
+                                        alt="PetPic" 
+                                        className='w-full h-full object-cover'
+                                    />
+                                </div>
+                            </div>
+                            {/* Details */}
+                            <div className='flex flex-col justify-between items-stretch'>
                                 {/* general detail */}
-                                <div className='flex flex-row justify-between items-stretch mt-2 lg:mt-8'>
-                                    <div className={clsx('flex-col lg:flex-row justify-between items-stretch',{
-                                        'hidden' : item.tab !== 'general',
-                                        'flex': item.tab == 'general' })}
-                                    >
-                                        <div className='lg:hidden flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2'>
-                                                <p className='lg:hidden text-base text-black'>نام</p>
-                                                <p className='lg:hidden text-sm text-gray-400 mr-3 font-medium'><bdi>{item.general.name}</bdi></p>
+                                <p className='hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 mb-8 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]'><bdi>عمومی</bdi></p>
+                                <div className='flex flex-col lg:flex-row justify-between items-stretch'>
+                                    <div className='lg:hidden flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2'>
+                                        <p className='lg:hidden text-base text-black'>نام</p>
+                                        <p className='lg:hidden text-sm text-gray-400 mr-3 font-medium'><bdi>{item.general.name}</bdi></p>
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2'>
+                                            <p className='text-base text-black'>نوع</p>
+                                            <p className='text-sm text-gray-400 mr-3 font-medium'><bdi>{item.general.kind}</bdi></p>
                                         </div>
-                                        <div className='flex flex-col'>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2'>
-                                                <p className='text-base text-black'>نوع</p>
-                                                <p className='text-sm text-gray-400 mr-3 font-medium'><bdi>{item.general.kind}</bdi></p>
-                                            </div>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4'>
-                                                <p className='text-sm lg:text-base text-black'>جنسیت</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.sex}</bdi></p>
-                                            </div>
-                                        </div>
-                                        <div className='flex flex-col lg:mr-10'>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-2'>
-                                                <p className='text-sm lg:text-base text-black'>نژاد</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.race}</bdi></p>
-                                            </div>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-4'>
-                                                <p className='text-sm lg:text-base text-black'>تاریخ تولد</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.birth}</bdi></p>
-                                            </div>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4'>
+                                            <p className='text-sm lg:text-base text-black'>جنسیت</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.sex}</bdi></p>
                                         </div>
                                     </div>
-                                    {/* medical detail */}
-                                    <div className={clsx('flex-col lg:flex-row justify-between items-stretch',{
-                                        'hidden' : item.tab !== 'medical',
-                                        'flex': item.tab == 'medical'
-                                    })}>
-                                        <div className='flex flex-col'>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2'>
-                                                <p className='text-base text-black'>وزن</p>
-                                                <p className='text-sm text-gray-400 mr-3 font-medium'><bdi>{item.medical.weight}</bdi></p>
-                                            </div>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4'>
-                                                <p className='text-sm lg:text-base text-black'>بیماری زمینه ای</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.underlyingDisease}</bdi></p>
-                                            </div>
+                                    <div className='flex flex-col lg:mr-10'>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-2'>
+                                            <p className='text-sm lg:text-base text-black'>نژاد</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.race}</bdi></p>
                                         </div>
-                                        <div className='flex flex-col lg:mr-10'>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-2'>
-                                                <p className='text-sm lg:text-base text-black'>تاریخ آخرین واکسن</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.latestVaccinateDate}</bdi></p>
-                                            </div>
-                                            <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-4'>
-                                                <p className='text-sm lg:text-base text-black'>تاریخ آخرین واکسن ضد انگل</p>
-                                                <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.latestAntiParasiteVaccinateDate}</bdi></p>
-                                            </div>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-4'>
+                                            <p className='text-sm lg:text-base text-black'>تاریخ تولد</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.general.birth}</bdi></p>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                {/* medical detail */}
+                                <p className='hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 my-8 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]'><bdi>پزشکی</bdi></p>
+                                <div className='flex flex-col lg:flex-row justify-between items-stretch'>
+                                    <div className='flex flex-col'>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2'>
+                                            <p className='text-base text-black'>وزن</p>
+                                            <p className='text-sm text-gray-400 mr-3 font-medium'><bdi>{item.medical.weight}</bdi></p>
+                                        </div>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4'>
+                                            <p className='text-sm lg:text-base text-black'>بیماری زمینه ای</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.underlyingDisease}</bdi></p>
                                         </div>
                                     </div>
-                                    {/* pet's picture */}
-                                    <div className='self-end'>
-                                        <div className='w-[100px] h-[100px] relative overflow-hidden rounded-[10px]'>
-                                            <Image 
-                                                src={item.general.pic? item.general.pic : PetPicPreserve} 
-                                                alt="PetPic" 
-                                                className='w-full h-full object-cover'
-                                            />
+                                    <div className='flex flex-col lg:mr-10'>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-2'>
+                                            <p className='text-sm lg:text-base text-black'>تاریخ آخرین واکسن</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.latestVaccinateDate}</bdi></p>
+                                        </div>
+                                        <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-4'>
+                                            <p className='text-sm lg:text-base text-black'>تاریخ آخرین واکسن ضد انگل</p>
+                                            <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.medical.latestAntiParasiteVaccinateDate}</bdi></p>
                                         </div>
                                     </div>
                                 </div>
-                                
-                            {/* Modals */}
-                            <div>
+                            </div>
+                        </div>
+                        {/* Modals */}
+                        <div>
                                 {/* for more-modal  */}
                                 <input 
                                     type="checkbox" 
@@ -245,8 +229,6 @@ const MyPet = () => {
                                         </div>
                                     </label>
                                 </label>
-                            </div>
-                            </div>    
                         </div>
                     </div>
                 )}

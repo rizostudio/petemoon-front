@@ -39,7 +39,7 @@ const OffPriceProdcuts = () => {
         }
 
     // counter time
-    const countDownDate = new Date("Feb 5, 2023 22:34:43").getTime();
+    const countDownDate = new Date("Feb 15, 2023 22:34:43").getTime();
     const [time,setTime] = useState("")
     console.log(countDownDate)
     const timer = setInterval(() => {

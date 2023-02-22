@@ -20,6 +20,87 @@ import SearchRed_Icon from '../../assets/common/SearchRedIcon.svg';
 import DoctorPic from '../../assets/vet/DoctorPic.svg';
 import call_Icon from '../../assets/vet/call-calling.svg';
 
+
+//for open & close filterBox in desktop
+//it's defined out of main component, for prevent re-render other components
+const FilterBoxDialog = ({specialty, scoreKind, setFilterPageOpen, setMainPageOpen}) => {
+    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  
+    return (
+        <div 
+            className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
+            'rounded-b-[25px]' : FilterBoxOpen == false ,
+            })}
+        >
+            <div className='flex justify-between items-center lg:px-6 py-2'>
+                <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
+                    <Image src={Filter_Icon} alt="FilterIcon"/>
+                    <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
+                </div>
+                <Image 
+                    src={DownArrow_Icon} 
+                    alt="DownArrowIcon"
+                    onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
+                    className={clsx(`hidden lg:block cursor-pointer`,{
+                        'rotate-0' : FilterBoxOpen == false,
+                        'rotate-180' : FilterBoxOpen == true
+                    })}
+                />
+            </div>
+            <div 
+                className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
+                    'lg:block' : FilterBoxOpen == true
+                })}
+            >
+                <div className='flex flex-col items-stretch'>
+                    <p className="text-base text-black font-medium leading-7 ">تخصص</p>
+                    <div>
+                        {specialty.map((item,index) => 
+                            <div
+                                key={v4()} 
+                                className='flex items-center'>
+                                <input 
+                                    id={`specialty${index}`}
+                                    type="checkbox"
+                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                    />
+                                <label
+                                    htmlFor={`specialty${index}`}
+                                    className='mr-2 '
+                                    ><bdi>{item.name}</bdi></label>
+                            </div>
+                        )}
+                    </div>
+                    <p className="text-base text-black font-medium leading-7 mt-6">امتیاز</p>
+                    <div>
+                        {scoreKind.map((item, index) => 
+                            <div
+                                key={v4()} 
+                                className='flex items-center'
+                            >
+                                <input 
+                                    id={`kind${index}`}
+                                    type="checkbox"
+                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                    />
+                                <label
+                                    htmlFor={`kind${index}`}
+                                    className='mr-2'
+                                    >{item}</label>
+                            </div>
+                        )}
+                    </div>
+                    <p  
+                        onClick={() => setFilterBoxOpen(false)}
+                        className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
+                    >حذف فیلترها</p>
+                </div>
+            </div>
+        
+        </div>
+    )
+}
+
+
 const Vet = () => {
     const router = useRouter()
 
@@ -57,7 +138,6 @@ const Vet = () => {
     }
 
     //Dynamic
-    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  //for open & close filterBox in desktop
     const [MainPageOpen, setMainPageOpen] = useState(true) //for open & close Main Page in mobile
     const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
     const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
@@ -89,77 +169,12 @@ const Vet = () => {
                 {/*Arrangment Box*/}
                 <div className='flex mt-5'>
                     {/* FilterBox */}
-                    <div 
-                        className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
-                           'rounded-b-[25px]' : FilterBoxOpen == false ,
-                        })}
-                    >
-                        <div className='flex justify-between items-center lg:px-6 py-2'>
-                            <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
-                                <Image src={Filter_Icon} alt="FilterIcon"/>
-                                <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
-                            </div>
-                            <Image 
-                                src={DownArrow_Icon} 
-                                alt="DownArrowIcon"
-                                onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
-                                className={clsx(`hidden lg:block cursor-pointer`,{
-                                    'rotate-0' : FilterBoxOpen == false,
-                                    'rotate-180' : FilterBoxOpen == true
-                                })}
-                            />
-                        </div>
-                        <div 
-                            className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
-                                'lg:block' : FilterBoxOpen == true
-                            })}
-                        >
-                            <div className='flex flex-col items-stretch'>
-                                <p className="text-base text-black font-medium leading-7 ">تخصص</p>
-                                <div>
-                                    {specialty.map((item,index) => 
-                                        <div
-                                            key={v4()} 
-                                            className='flex items-center'>
-                                            <input 
-                                                id={`specialty${index}`}
-                                                type="checkbox"
-                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                                />
-                                            <label
-                                                htmlFor={`specialty${index}`}
-                                                className='mr-2 '
-                                                ><bdi>{item.name}</bdi></label>
-                                        </div>
-                                    )}
-                                </div>
-                                <p className="text-base text-black font-medium leading-7 mt-6">امتیاز</p>
-                                <div>
-                                    {scoreKind.map((item, index) => 
-                                        <div
-                                            key={v4()} 
-                                            className='flex items-center'
-                                        >
-                                            <input 
-                                                id={`score${index}`}
-                                                type="checkbox"
-                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                                />
-                                            <label
-                                                htmlFor={`score${index}`}
-                                                className='mr-2'
-                                                >{item}</label>
-                                        </div>
-                                    )}
-                                </div>
-                                <p  
-                                    onClick={() => setFilterBoxOpen(false)}
-                                    className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
-                                >حذف فیلترها</p>
-                            </div>
-                        </div>
-                    
-                    </div>
+                    <FilterBoxDialog 
+                        specialty={specialty} 
+                        scoreKind={scoreKind} 
+                        setFilterPageOpen={setFilterPageOpen}
+                        setMainPageOpen={setMainPageOpen}
+                    />
                     {/* Sort Box */}
                     <div className='flex items-center'>
                         <div

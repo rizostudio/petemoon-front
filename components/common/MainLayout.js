@@ -57,20 +57,28 @@ const MainLayout = ({children}) => {
                         />
                     </div>
                     <div className='flex items-center h-full lg:mr-[15px] xl:mr-[60px]'>
-                        <div className='h-full p-3 border-[1px] border-primary rounded-[15px]'>
+                        <Link 
+                            href='/card'
+                            className='h-full p-3 border-[1px] border-primary rounded-[15px]'
+                        >
                             <Image 
                                 src={card_Icon} 
                                 alt="Card Icon"
                                 className='w-7'
                             />
-                        </div>
-                        <div className='h-full px-[6px] py-2 mx-4 border-[1px] border-primary rounded-[15px]'>
+                        </Link>
+                        <Link 
+                            href='/seller'
+                            className='h-full px-[6px] py-2 mx-4 border-[1px] border-primary rounded-[15px]'
+                        >
                             <p className='text-base text-gray-400 font-normal leading-8'>فروشندگان</p>
-                        </div>
-                        <Image 
-                            src={user_Icon}
-                            alt="User Icon"
-                        />
+                        </Link>
+                        <Link href='/login'>
+                            <Image 
+                                src={user_Icon}
+                                alt="User Icon"
+                                />
+                        </Link>
                     </div>
                 </div>
             </header>
@@ -134,10 +142,10 @@ const MainLayout = ({children}) => {
                         <Link href='/' className="text-base text-black font-medium leading-6 my-1">
                             شگفت انگیز ها
                         </Link>
-                        <Link href='/' className="text-base text-black font-medium leading-6 my-1">
+                        <Link href='/vet' className="text-base text-black font-medium leading-6 my-1">
                         دامپزشکان
                         </Link>
-                        <Link href='/' className="text-base text-black font-medium leading-6 my-1">
+                        <Link href='/products' className="text-base text-black font-medium leading-6 my-1">
                             محصولات جدید
                         </Link>
                     </div>

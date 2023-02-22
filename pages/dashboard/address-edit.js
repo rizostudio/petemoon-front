@@ -23,6 +23,7 @@ const AddressEdit = () => {
     return (
         <DashboardLayout>
             <div className='flex flex-col lg:bg-white lg:rounded-[25px] lg:px-12 lg:py-6'>
+                {/* Heading for mobile */}
                 <div className='w-full flex lg:hidden flex-row justify-between items-center mb-10'>
                     <p className='text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]'>جزئیات آدرس</p>
                     <Link 
