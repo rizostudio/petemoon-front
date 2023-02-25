@@ -105,10 +105,16 @@ const FilterBoxDialog = ({brand, petKind, setFilterPageOpen, setMainPageOpen}) =
                             </div>
                         )}
                     </div>
+                    <div className='flex justify-between items-center'>
                     <p  
                         onClick={() => setFilterBoxOpen(false)}
                         className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
                     >حذف فیلترها</p>
+                    <p  
+                        onClick={() => setFilterBoxOpen(false)}
+                        className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
+                    >اعمال فیلترها</p>
+                    </div>
                 </div>
             </div>
         
