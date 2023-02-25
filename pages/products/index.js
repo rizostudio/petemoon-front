@@ -1,9 +1,12 @@
-import React, { use, useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import {v4} from 'uuid';
+
+//component
+import MainLayout from '../../components/common/MainLayout'
 
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
@@ -18,6 +21,100 @@ import DownArrow_Icon from '../../assets/common/downArrow.svg';
 import Sort_Icon from '../../assets/common/sortIcon.svg';
 import ProductPic from '../../assets/product/ProductPic4.svg';
 import SearchRed_Icon from '../../assets/common/SearchRedIcon.svg';
+
+
+//for open & close filterBox in desktop
+//it's defined out of main component, for prevent re-render other components
+const FilterBoxDialog = ({brand, petKind, setFilterPageOpen, setMainPageOpen}) => {
+    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  
+    return (
+        <div 
+            className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
+            'rounded-b-[25px]' : FilterBoxOpen == false ,
+            })}
+        >
+            <div className='flex justify-between items-center lg:px-6 py-2'>
+                <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
+                    <Image src={Filter_Icon} alt="FilterIcon"/>
+                    <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
+                </div>
+                <Image 
+                    src={DownArrow_Icon} 
+                    alt="DownArrowIcon"
+                    onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
+                    className={clsx(`hidden lg:block cursor-pointer`,{
+                        'rotate-0' : FilterBoxOpen == false,
+                        'rotate-180' : FilterBoxOpen == true
+                    })}
+                />
+            </div>
+            <div 
+                className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
+                    'lg:block' : FilterBoxOpen == true
+                })}
+            >
+                <div className='flex flex-col items-stretch'>
+                    <p className="text-base text-black font-medium leading-7 ">برند</p>
+                    <div>
+                        {brand.map((item,index) => 
+                            <div
+                                key={v4()} 
+                                className='flex items-center'>
+                                <input 
+                                    id={`brand${index}`}
+                                    type="checkbox"
+                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                    />
+                                <label
+                                    htmlFor={`brand${index}`}
+                                    className='mr-2 '
+                                    ><bdi>{item.name}</bdi></label>
+                            </div>
+                        )}
+                    </div>
+                    <label className="text-base text-black font-medium leading-7 mt-6">بازه قیمتی</label>
+                    <div className="w-full flex justify-between text-xs px-2">
+                        <span>0</span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span>2500</span>
+                    </div>
+                    <style jsx>
+                        {`
+                        
+                        `}
+                    </style>
+                    <input className="" type="range" min="1" max="100" step="1"/>
+                    <p className="text-base text-black font-medium leading-7 mt-6">نوع پت</p>
+                    <div>
+                        {petKind.map((item, index) => 
+                            <div
+                                key={v4()} 
+                                className='flex items-center'
+                            >
+                                <input 
+                                    id={`kind${index}`}
+                                    type="checkbox"
+                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
+                                    />
+                                <label
+                                    htmlFor={`kind${index}`}
+                                    className='mr-2'
+                                    >{item}</label>
+                            </div>
+                        )}
+                    </div>
+                    <p  
+                        onClick={() => setFilterBoxOpen(false)}
+                        className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
+                    >حذف فیلترها</p>
+                </div>
+            </div>
+        
+        </div>
+    )
+}
 
 const Products = () => {
     const router = useRouter()
@@ -62,13 +159,13 @@ const Products = () => {
     }
 
     //Dynamic
-    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  //for open & close filterBox in desktop
     const [MainPageOpen, setMainPageOpen] = useState(true) //for open & close Main Page in mobile
     const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
     const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
    
     return (
-        <div className='bg-[#f8f8f8] lg:p-10 w-full h-full'>
+        <MainLayout>
+        <div className='flex flex-col bg-[#f8f8f8] lg:px-[120px] lg:py-10 w-full h-full'>
             {/* Main Page */}
             <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
                'block' : MainPageOpen == true,
@@ -77,107 +174,28 @@ const Products = () => {
                 {/* Heading for mobile */}
                 <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
                     <div className='w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]'>
-                        <input type="text" placeholder='جستجوی محصول' className='w-full border-none focus:border-none bg-transparent placeholder:text-primary'/>
+                        <input type="text" placeholder='جستجوی محصول' className='w-full text-white border-none bg-transparent placeholder:text-primary focus:border-none focus:outline-none focus:ring-0 peer'/>
                         <Image src={SearchRed_Icon} alt="SearchIcon"/>
                     </div>
-                    <div 
-                        onClick={() => router.push('/products/1')}
+                    <Link 
+                        href='/'
                         className='h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer'
                     >
                         <Image 
                             src={leftArrow_Icon}
                             alt="LeftArrowIcon"
                         />
-                    </div>
+                    </Link>
                 </div>
                 {/*Arrangment Box*/}
                 <div className='flex mt-5'>
                     {/* FilterBox */}
-                    <div 
-                        className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
-                           'rounded-b-[25px]' : FilterBoxOpen == false ,
-                        })}
-                    >
-                        <div className='flex justify-between items-center lg:px-6 py-2'>
-                            <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
-                                <Image src={Filter_Icon} alt="FilterIcon"/>
-                                <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
-                            </div>
-                            <Image 
-                                src={DownArrow_Icon} 
-                                alt="DownArrowIcon"
-                                onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
-                                className={clsx(`hidden lg:block cursor-pointer`,{
-                                    'rotate-0' : FilterBoxOpen == false,
-                                    'rotate-180' : FilterBoxOpen == true
-                                })}
-                            />
-                        </div>
-                        <div 
-                            className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
-                                'lg:block' : FilterBoxOpen == true
-                            })}
-                        >
-                            <div className='flex flex-col items-stretch'>
-                                <p className="text-base text-black font-medium leading-7 ">برند</p>
-                                <div>
-                                    {brand.map((item,index) => 
-                                        <div
-                                            key={v4()} 
-                                            className='flex items-center'>
-                                            <input 
-                                                id={`brand${index}`}
-                                                type="checkbox"
-                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                                />
-                                            <label
-                                                htmlFor={`brand${index}`}
-                                                className='mr-2 '
-                                                ><bdi>{item.name}</bdi></label>
-                                        </div>
-                                    )}
-                                </div>
-                                <label className="text-base text-black font-medium leading-7 mt-6">بازه قیمتی</label>
-                                <div className="w-full flex justify-between text-xs px-2">
-                                    <span>0</span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span>2500</span>
-                                </div>
-                                <style jsx>
-                                    {`
-                                    
-                                    `}
-                                </style>
-                                <input className="" type="range" min="1" max="100" step="1"/>
-                                <p className="text-base text-black font-medium leading-7 mt-6">نوع پت</p>
-                                <div>
-                                    {petKind.map((item, index) => 
-                                        <div
-                                            key={v4()} 
-                                            className='flex items-center'
-                                        >
-                                            <input 
-                                                id={`kind${index}`}
-                                                type="checkbox"
-                                                className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                                />
-                                            <label
-                                                htmlFor={`kind${index}`}
-                                                className='mr-2'
-                                                >{item}</label>
-                                        </div>
-                                    )}
-                                </div>
-                                <p  
-                                    onClick={() => setFilterBoxOpen(false)}
-                                    className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
-                                >حذف فیلترها</p>
-                            </div>
-                        </div>
-                    
-                    </div>
+                    <FilterBoxDialog 
+                        brand={brand} 
+                        petKind={petKind} 
+                        setFilterPageOpen={setFilterPageOpen}
+                        setMainPageOpen={setMainPageOpen}
+                    />
                     {/* Sort Box */}
                     <div className='flex items-center'>
                         <div
@@ -212,22 +230,24 @@ const Products = () => {
                     </div>
                 </div>
                 {/* ProductsBox */}
-                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5'>
+                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-between items-center mt-5'>
                     {data.similarProduct && data.similarProduct.map((item, index) => 
                         <div 
                             key={v4()}
                             className='lg:m-5 w-full lg:w-[285px] my-1'
                         >
                             <div className='flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none'>
-                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
-                                    <div className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
+                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary overflow-hidden rounded-[15px] lg:rounded-[20px]'>
+                                    <div
+                                        className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'
+                                    >
                                         <Image 
                                             src={BookmarkRed_Icon} 
                                             alt="BookmarkIcon" 
                                             className='w-3 h-3 lg:w-5 lg:h-5'
                                         />
                                     </div>
-                                    <div className='w-full h-full overflow-hidden m-0 p-0'>
+                                    <div className='w-full h-full'>
                                         <Image 
                                             src={ProductPic} 
                                             alt="ProductPic" 
@@ -295,7 +315,7 @@ const Products = () => {
                 </div>
             </div>
             {/* Filter Page */}
-            <div className={clsx('lg:hidden h-full w-full',{
+            <div className={clsx('lg:hidden w-full h-screen',{
                'block' : FilterPageOpen == true,
                'hidden' : FilterPageOpen == false
             })}>
@@ -315,7 +335,7 @@ const Products = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='flex flex-col items-stretch mt-5'>
+                    <div className='flex flex-col justify-between items-stretch mt-5'>
                         <div className='px-10 py-4 border-b-[1px] border-solid border-secondary'>
                             <p className="text-base text-black font-medium leading-7 ">برند</p>
                             <div>
@@ -381,7 +401,7 @@ const Products = () => {
             </div>
             {/* Sort Page */}
             <div 
-                className={clsx('lg:hidden w-full h-full',{
+                className={clsx('lg:hidden w-full h-screen',{
                     'block' : SortPageOpen == true,
                     'hidden' : SortPageOpen == false
                 })}
@@ -418,6 +438,7 @@ const Products = () => {
                 </div>
             </div>
         </div>
+        </MainLayout>
     )
 }
 
