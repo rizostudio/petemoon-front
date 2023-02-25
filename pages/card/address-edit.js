@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useFormik } from "formik";
 //components
 import FloatLabelInput from "../../components/common/input";
-import DashboardLayout from '../../components/DashboardLayout';
+import MainLayout from '@/components/common/MainLayout';
 //media 
 import ArrowLeftWhite_Icon from '../../assets/common/leftArrowWhite.svg';
 import MapPreserve_Pic from '../../assets/dashboard/mapPicPreserve.svg';
@@ -21,8 +21,8 @@ const AddressEdit = () => {
         },
       });
     return (
-        <div>
-            <div className='flex flex-col bg-[#F8F8F8] lg:bg-white p-10 lg:px-12 lg:py-6'>
+        <MainLayout>
+            <div className='flex flex-col bg-[#F8F8F8] lg:bg-transparent p-10 lg:px-12 lg:py-15'>
                 <div className='w-full flex lg:hidden flex-row justify-between items-center mb-10'>
                     <p className='text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]'>جزئیات آدرس</p>
                     <Link 
@@ -159,7 +159,7 @@ const AddressEdit = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </MainLayout>
     );
 };
 

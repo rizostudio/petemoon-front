@@ -4,6 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import {v4} from 'uuid';
+
+//component
+import MainLayout from '../../components/common/MainLayout'
+
 // media 
 import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
 import StarGold_Icon from '../../assets/common/startGold.svg';
@@ -67,7 +71,8 @@ const Products = () => {
     const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
    
     return (
-        <div className='bg-[#f8f8f8] lg:p-10 w-full h-screen overflow-y-scroll'>
+        <MainLayout>
+        <div className='flex flex-col bg-[#f8f8f8] lg:px-[120px] lg:py-10 w-full h-full'>
             {/* Main Page */}
             <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
                'block' : MainPageOpen == true,
@@ -76,18 +81,18 @@ const Products = () => {
                 {/* Heading for mobile */}
                 <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
                     <div className='w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]'>
-                        <input type="text" placeholder='جستجوی محصول' className='w-full border-none focus:border-none bg-transparent placeholder:text-primary'/>
+                        <input type="text" placeholder='جستجوی محصول' className='w-full text-white border-none bg-transparent placeholder:text-primary focus:border-none focus:outline-none focus:ring-0 peer'/>
                         <Image src={SearchRed_Icon} alt="SearchIcon"/>
                     </div>
-                    <div 
-                        onClick={() => router.push('/products/1')}
+                    <Link 
+                        href='/'
                         className='h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer'
                     >
                         <Image 
                             src={leftArrow_Icon}
                             alt="LeftArrowIcon"
                         />
-                    </div>
+                    </Link>
                 </div>
                 {/*Arrangment Box*/}
                 <div className='flex mt-5'>
@@ -211,22 +216,24 @@ const Products = () => {
                     </div>
                 </div>
                 {/* ProductsBox */}
-                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5'>
+                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-between items-center mt-5'>
                     {data.similarProduct && data.similarProduct.map((item, index) => 
                         <div 
                             key={v4()}
                             className='lg:m-5 w-full lg:w-[285px] my-1'
                         >
                             <div className='flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none'>
-                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]'>
-                                    <div className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'>
+                                <div className='relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary overflow-hidden rounded-[15px] lg:rounded-[20px]'>
+                                    <div
+                                        className='hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full'
+                                    >
                                         <Image 
                                             src={BookmarkRed_Icon} 
                                             alt="BookmarkIcon" 
                                             className='w-3 h-3 lg:w-5 lg:h-5'
                                         />
                                     </div>
-                                    <div className='w-full h-full overflow-hidden m-0 p-0'>
+                                    <div className='w-full h-full'>
                                         <Image 
                                             src={ProductPic} 
                                             alt="ProductPic" 
@@ -294,7 +301,7 @@ const Products = () => {
                 </div>
             </div>
             {/* Filter Page */}
-            <div className={clsx('lg:hidden w-full h-full',{
+            <div className={clsx('lg:hidden w-full h-screen',{
                'block' : FilterPageOpen == true,
                'hidden' : FilterPageOpen == false
             })}>
@@ -314,7 +321,7 @@ const Products = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='flex flex-col items-stretch mt-5'>
+                    <div className='flex flex-col justify-between items-stretch mt-5'>
                         <div className='px-10 py-4 border-b-[1px] border-solid border-secondary'>
                             <p className="text-base text-black font-medium leading-7 ">برند</p>
                             <div>
@@ -380,7 +387,7 @@ const Products = () => {
             </div>
             {/* Sort Page */}
             <div 
-                className={clsx('lg:hidden w-full h-full',{
+                className={clsx('lg:hidden w-full h-screen',{
                     'block' : SortPageOpen == true,
                     'hidden' : SortPageOpen == false
                 })}
@@ -417,6 +424,7 @@ const Products = () => {
                 </div>
             </div>
         </div>
+        </MainLayout>
     )
 }
 
