@@ -10,6 +10,7 @@ import Home_Icon from '../assets/dashboard/home.svg';
 import Profile_Icon from '../assets/common/user-edit.svg';
 import Address_Icon from '../assets/dashboard/location.svg';
 import MyPet_Icon from '../assets/dashboard/pet.svg';
+import Vet_Icon from '../assets/dashboard/vet.svg';
 import Wallet_Icon from '../assets/dashboard/empty-wallet.svg';
 import Orders_Icon from '../assets/dashboard/shopping-bag.svg';
 import Favorite_Icon from '../assets/common/like.svg';
@@ -24,26 +25,36 @@ import Petemoon_Logo from '../assets/dashboard/Petemoon.svg';
 import Userpanel_Logo from '../assets/dashboard/user-panel.svg';
 import ShopBag_Icon from '../assets/dashboard/bagHeader.svg';
 
+
+
 const DashboardLayout = ({children}) => {
+    const [openly,setOpenly] = useState(true); //for open and close dashboard in mobile
     const router = useRouter()
-    const [openly,setOpenly] = useState(false); //for open and close dashboard in mobile
     const [Minify, setMinify] = useState(false); // for minify dashboard
+    const openHandler = () => {
+        setOpenly(true)
+    }
+    console.log(router)
     //dashboard menu
-    const menuArr = [   {id:"home", name:"داشبورد", icon:Home_Icon},
+    const menuArr = [   {id:"", name:"داشبورد", icon:Home_Icon},
                         {id:"my-profile", name:"حساب کاربری", icon:Profile_Icon,notification:0},
                         {id:"addresses", name:"آدرس ها", icon:Address_Icon},
                         {id:"my-pets", name:"پت من", icon:MyPet_Icon},
+                        {id:"vet", name:"دامپزشک من", icon:Vet_Icon},
                         {id:"wallet", name:"کیف پول", icon:Wallet_Icon},
                         {id:"orders", name:"سفارش ها", icon:Orders_Icon, notification:5},
                         {id:"bookmarks", name:"علاقه مندی ها", icon:Favorite_Icon},
                         {id:"my-messages", name:"پیام های من", icon:Message_Icon, notification:10},
                         {id:"support", name:"پشتیبانی", icon:Help_Icon},
                     ]
-    const pageName = menuArr.find(item => router.asPath.includes(item.id)) // for showing the title of page in mobile
+    const pageName = menuArr.find(item => 
+        // router.asPath.includes(item.id
+        `/dashboard/${item.id}` == router.asPath || `/dashboard` == router.asPath
+    ) // for showing the title of page in mobile
     return (
-        <div className='w-full h-full flex flex-row justify-between items-stretch'>
+        <div className='w-full h-screen flex flex-row justify-between items-stretch'>
             {/* Drawer */}
-            <div id="Drawer" className={clsx('lg:flex h-full w-full lg:w-auto lg:overflow-x-hidden flex-col justify-between items-stretch bg-fourth lg:bg-[#313131]',{
+            <div id="Drawer" className={clsx('lg:flex h-full w-full lg:w-auto lg:overflow-x-hidden overflow-y-scroll scrollbar flex-col justify-between items-stretch bg-fourth lg:bg-[#313131]',{
                 'flex' : openly == false,
                 'hidden' : openly == true
             })}>
@@ -86,11 +97,11 @@ const DashboardLayout = ({children}) => {
                         >
                             <Link 
                                 href={`/dashboard/${item.id}`} 
-                                onClick={() => setOpenly(true)}
+                                onClick={openHandler}
                                 className={clsx('flex justify-between items-center w-full',{
                                     "flex-row" :  Minify == false ,
-                                    "flex-row lg:flex-col" : Minify == true 
-                                })}
+                                                            "flex-row lg:flex-col" : Minify == true 
+                                                        })}
                             >
                                 <div className='flex flex-row items-stretch relative'>
                                     <Image 
@@ -110,7 +121,7 @@ const DashboardLayout = ({children}) => {
                                 </div>
                                 {/* showing notification numbers for each section */}
                                 {item.notification > 0 && 
-                                    <p className={clsx('absolute left-20 lg:relative lg:left-0 text-white text-center text-xs bg-primary px-[5px] py-[3px] rounded-[5px]',{
+                                    <p className={clsx('hidden absolute left-20 lg:relative lg:left-0 text-white text-center text-xs bg-primary px-[5px] py-[3px] rounded-[5px]',{
                                         'lg:block' : Minify == false , 
                                         'lg:hidden' : Minify == true
                                         })}
@@ -120,7 +131,7 @@ const DashboardLayout = ({children}) => {
                                     src={ArrowLeft_Icon} 
                                     alt="ArrowLeftIcon" 
                                     className="lg:hidden"
-                                />
+                                    />
                             </Link>
                         </li>
                     )}
@@ -128,9 +139,9 @@ const DashboardLayout = ({children}) => {
                 <div className='w-full h-full flex flex-col justify-center items-stretch lg:mt-[50px]'>
                     {/* user information */}
                     <div className='p-10 lg:py-4 h-full hidden lg:flex flex-row justify-start items-center border-b-[1px] border-[#eeeeee26] solid lg:border-none'>
-                        <div className='mr-5 lg:mr-0 flex flex-col'>
+                        <div className='mr-5 lg:mr-0'>
                             <div className={clsx({
-                                'block' : Minify == false,
+                                'flex flex-col' : Minify == false,
                                 'lg:hidden' : Minify == true
                             })}>
                                 <p className='text-base text-white text-right font-black'>علی حسینی نسب</p>
@@ -167,7 +178,7 @@ const DashboardLayout = ({children}) => {
                 'flex' : openly == true 
                 })}
             >
-                <div className='w-full h-full bg-white hidden lg:flex flex-row justify-between items-center px-12 py-5 relative'>
+                <div className='w-full h-[140px] bg-white hidden lg:flex flex-row justify-between items-center px-12 py-5 relative'>
                         {/* for minify dashboard in desktop */}
                         <Image 
                             src={ArrowLeft_Icon} 
@@ -203,13 +214,13 @@ const DashboardLayout = ({children}) => {
                             </div>
                         </div>
                 </div>
-                <div className=' w-full h-full p-10 pb-10 lg:px-20 lg:py-12'>
+                <div className=' w-full h-full p-10 pb-10 lg:px-20 lg:py-12 overflow-y-scroll'>
                     {/* for showing page title and return to home */}
                     {pageName && 
                         <div className='w-full flex lg:hidden flex-row justify-between items-center mb-10'>
-                            <p className='text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]'>{pageName.name}</p>
-                            <Link 
-                                href='/dashboard/home' 
+                            <p className='text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-1 before:rounded-[2px]'>{pageName.name}</p>
+                            <button
+                                // href='/dashboard/' 
                                 onClick={() => setOpenly(false)} 
                                 className='bg-primary opacity-[0.8] p-4 rounded-[15px]'
                             >
@@ -218,7 +229,7 @@ const DashboardLayout = ({children}) => {
                                     alt="ArrowIcon" 
                                     className='w-full'
                                 />
-                            </Link>
+                            </button>
                         </div>
                     }
 

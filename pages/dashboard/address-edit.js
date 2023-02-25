@@ -19,112 +19,34 @@ import {
 import * as Yup from "yup";
 
 const AddressEdit = () => {
-  const router = useRouter();
-  const address = useSelector(selectOnChangeAddress);
-
-  const handleEditSubmit = async (values) => {
-    const response = await patchEditAddress(address.data.id, values);
-    if (response.success) {
-      // snackbar
-      router.push("/dashboard/addresses");
-    }
-  };
-  const handleCreateSubmit = async (values) => {
-    const response = await postAddNewAddress(values);
-    if (response.success) {
-      // snackbar here
-      router.push("/dashboard/addresses");
-    }
-  };
-  const formik = useFormik({
-    initialValues: address.data,
-    enableReinitialize: true,
-    onSubmit: async (values) => {
-      console.log(values);
-
-      address.mode === "create"
-        ? await handleCreateSubmit(values)
-        : address.mode === "edit"
-        ? await handleEditSubmit(values)
-        : null;
-    },
-    validationSchema: AddressSchema,
-  });
-  return (
-    <DashboardLayout>
-      <div className="flex flex-col lg:bg-white lg:rounded-[25px] lg:px-12 lg:py-6">
-        <div className="w-full flex lg:hidden flex-row justify-between items-center mb-10">
-          <p className="text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-            جزئیات آدرس
-          </p>
-          <Link
-            href="/dashboard/addresses"
-            className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
-          >
-            <Image
-              src={ArrowLeftWhite_Icon}
-              alt="ArrowIcon"
-              className="w-full"
-            />
-          </Link>
-        </div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="flex flex-col lg:flex-row justify-start lg:justify-between"
-        >
-          <div className="flex flex-col items-stretch w-full lg:w-2/3">
-            <div className="lg:flex flex-row justify-between items-center w-full">
-              <div className="text-right lg:w-1/2 my-4 lg:m-1">
-                <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-                  استان
-                </label>
-                <FloatLabelInput
-                  type={"text"}
-                  placeholder={"استان"}
-                  name="province"
-                  onChange={formik.handleChange}
-                  value={formik.values.province}
-                  list="provinces"
-                  h={"h-12"}
-                  py={"3"}
-                  dir={"rtl"}
-                />
-                <datalist
-                  id="provinces"
-                  className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
-                >
-                  <option>تهران</option>
-                  <option>فارس</option>
-                  <option>سیستان و بلوچستان</option>
-                  <option>کهکلویه و بویراحمد</option>
-                  <option>قم</option>
-                  <option>مازندران</option>
-                  <option>گلستان</option>
-                </datalist>
-                {formik.errors.province && (
-                  <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                    <bdi>{formik.errors.province}</bdi>
-                  </p>
-                )}
-              </div>
-              <div className="text-right lg:w-1/2 my-2 lg:m-1 lg:mr-4">
-                <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-                  شهر
-                </label>
-                <FloatLabelInput
-                  type={"text"}
-                  placeholder={"شهر"}
-                  name="city"
-                  onChange={formik.handleChange}
-                  value={formik.values.city}
-                  list="cities"
-                  h={"h-12"}
-                  py={"3"}
-                  dir={"rtl"}
-                />
-                <datalist
-                  id="cities"
-                  className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
+    const [inputError, setInputError] = useState(false)
+    const formik = useFormik({
+        initialValues: {
+          phoneNumber: "",
+        },
+        onSubmit: (value) => {
+          console.log(value);
+        },
+      });
+    return (
+        <DashboardLayout>
+            <div className='flex flex-col lg:bg-white lg:rounded-[25px] lg:px-12 lg:py-6'>
+                {/* Heading for mobile */}
+                <div className='w-full flex lg:hidden flex-row justify-between items-center mb-10'>
+                    <p className='text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]'>جزئیات آدرس</p>
+                    <Link 
+                        href='/dashboard/addresses' 
+                        className='bg-primary opacity-[0.8] p-4 rounded-[15px]'
+                    >
+                        <Image 
+                            src={ArrowLeftWhite_Icon} 
+                            alt="ArrowIcon" 
+                            className='w-full'
+                        />
+                    </Link>
+                </div>
+                <form onSubmit={formik.handleSubmit}
+                    className='flex flex-col lg:flex-row justify-start lg:justify-between'
                 >
                   <option>تهران</option>
                   <option>شیراز</option>

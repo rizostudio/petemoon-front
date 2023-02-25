@@ -1,7 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
 //component
 import DashboardLayout from '../../components/DashboardLayout';
+
 //media
 import BagDelivered_Icon from '../../assets/dashboard/bag-tick.svg';
 import BagCurrent_Icon from '../../assets/dashboard/bag-happy.svg';
@@ -11,10 +14,12 @@ import BagTick_Icon from '../../assets/dashboard/bag-tick2.svg';
 import CartTotal_Icon from '../../assets/dashboard/card-receive2.svg';
 import Uprise_Icon from '../../assets/common/uprise.svg';
 
-const index = () => {
+
+
+const DashboardHome = () => {
     return (
         <DashboardLayout>
-            <div className='flex flex-col items-stretch'>           
+            <div className='flex flex-col items-stretch relative'>
                 <div className='flex flex-col lg:flex-row justify-between lg:justify-center items-stretch lg:items-center w-full h-full lg:h-[250px]'>
                     {/* pet information */}
                     <div className='w-full lg:w-3/4 h-full bg-white px-4 py-5 lg:p-10 rounded-[15px] lg:rounded-[25px] shadow-shadowB'>
@@ -119,38 +124,38 @@ const index = () => {
                         <p className=' text-xs text-primary font-medium leading-6 after:content-[">"] after:mr-4 after:text-base'>مشاهده همه</p>
                     </div>
                     <div className='flex flex-col lg:flex-row items-center justify-between w-full px-20 py-12'>
-                        <div className='px-1 py-0 flex items-center'>
+                        <div className='px-1 py-0 flex flex-col lg:flex-row items-center'>
                             <Image 
                                 src={BagCurrent_Icon} 
                                 alt="CurrentBag-pic" 
                                 width={100} 
                                 height={100}
                             />
-                            <div className='p-1 text-right flex flex-col'>
+                            <div className='p-1 text-right flex flex-col items-center lg:items-start'>
                                 <p className='text-sm text-black font-black leading-8 mb-1'>سفارش های جاری</p>
                                 <span className='text-xs text-black font-medium leading-6'><bdi>۲ سفارش</bdi></span>
                             </div>                                
                         </div>
-                        <div className='px-1 py-0 flex items-center border-r-[2px] border-secondary lg:solid border-none'>
+                        <div className='px-1 py-0 flex flex-col lg:flex-row items-center border-r-[2px] border-secondary lg:solid border-none'>
                             <Image 
                                 src={BagDelivered_Icon} 
                                 alt="DeliveredBag-pic" 
                                 width={100} 
                                 height={100}
                             />
-                            <div className='p-1 text-right flex flex-col'>
+                            <div className='p-1 text-right flex flex-col items-center lg:items-start'>
                                 <p className='text-sm text-black font-black leading-8 mb-1'>تحویل شده</p>
                                 <span className='text-xs text-black font-medium leading-6'><bdi>۲ سفارش</bdi></span>
                             </div>
                         </div>
-                        <div className='px-1 py-0 flex items-center border-r-[2px] border-secondary lg:solid border-none'>
+                        <div className='px-1 py-0 flex flex-col lg:flex-row items-center border-r-[2px] border-secondary lg:solid border-none'>
                             <Image 
                                 src={BagCrossed_Icon} 
                                 alt="CrossedBag-pic" 
                                 width={100} 
                                 height={100}
                             />
-                            <div className='p-1 text-right flex flex-col'>
+                            <div className='p-1 text-right flex flex-col items-center lg:items-start'>
                                 <p className='text-sm text-black font-black leading-8 mb-1'>مرجوع شده</p>
                                 <span className='text-xs text-black font-medium leading-6'><bdi>۲ سفارش</bdi></span>
                             </div>
@@ -162,4 +167,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default DashboardHome;
