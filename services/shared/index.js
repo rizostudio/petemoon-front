@@ -1,14 +1,14 @@
 import { errorResponse, successResponse } from "@/dto";
 import { apiPostRefreshTokenBody } from "@/dto/shared";
-import { refreshToken } from "@/localStorage";
 import api, { allowCookie } from "@/services";
 
 const REFRESH_TOKEN_API = "accounts/refresh/";
-export const PostRefreshToken = async () => {
+export const PostRefreshToken = async (refreshToken) => {
   try {
+    console.log("refreshTokenToSend: ", refreshToken);
     const response = await api.post(
       REFRESH_TOKEN_API,
-      apiPostRefreshTokenBody(refreshToken.get()),
+      apiPostRefreshTokenBody(refreshToken),
       allowCookie()
     );
     return successResponse();

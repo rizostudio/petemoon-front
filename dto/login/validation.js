@@ -9,6 +9,7 @@ export const apiPostVerifyOTPBody = (confirmationCode) => {
 
 export const domainTokenData = (apiTokenData) => {
   return {
-    token: apiTokenData.refresh_token,
+    isRegistered: apiTokenData.is_registered,
+    refreshToken: apiTokenData.refresh_token,
   };
 };

@@ -12,10 +12,14 @@ import PetPicPreserve from '../../assets/dashboard/PetPicPreserve.svg';
 import Upload_Icon from '../../assets/common/uploadIcon.svg';
 
 const MyPetEdit = () => {
-    const [inputError, setInputError] = useState(false)
-    const formik = useFormik({
+    const [inputError, setInputError] = useState(false);
+    const formikGeneral = useFormik({
         initialValues: {
-          phoneNumber: "",
+            name: "",
+            petType: "", 
+            sex: "",
+            birthDate: "",
+            breed: "",
         },
         onSubmit: (value) => {
           console.log(value);
@@ -33,11 +37,11 @@ const MyPetEdit = () => {
                         href='/dashboard/my-pets' 
                         className='bg-primary opacity-[0.8] p-4 rounded-[15px]'
                     >
-                        <Image 
+                        {/* <Image 
                             src={ArrowLeftWhite_Icon} 
                             alt="ArrowIcon" 
                             className='w-full'
-                        />
+                        /> */}
                     </Link>
                 </div>
                 
@@ -59,7 +63,7 @@ const MyPetEdit = () => {
                     </div>
                     <div className='lg:bg-white px-4 pt-10 pb-5 lg:p-10 lg:mx-10 lg:my-8 lg:rounded-[25px]'>
                         {/* general details */}
-                        <form onSubmit={formik.handleSubmit}
+                        <form onSubmit={formikGeneral.handleSubmit}
                             className={clsx('flex flex-col lg:flex-row justify-start lg:justify-between',{
                                 'hidden' : tab !== 'general',
                                 'flex': tab == 'general'
@@ -72,9 +76,9 @@ const MyPetEdit = () => {
                                         <FloatLabelInput
                                             type={"text"}
                                             placeholder={"نام"}
-                                            name="PetName"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            name="name"
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.name}
                                             h={"h-12"}
                                             py={"3"}
                                             dir={"rtl"}
@@ -88,9 +92,9 @@ const MyPetEdit = () => {
                                         <FloatLabelInput
                                             type={"text"}
                                             placeholder={"نوع"}
-                                            name="kind"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            name="petType"
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.petType}
                                             list={"kinds"}
                                             h={"h-12"}
                                             py={"3"}
@@ -113,9 +117,9 @@ const MyPetEdit = () => {
                                         <FloatLabelInput
                                             type={""}
                                             placeholder={"نژاد"}
-                                            name="race"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            name="breed"
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.breed}
                                             list="races"
                                             h={"h-12"}
                                             py={"3"}
@@ -135,8 +139,8 @@ const MyPetEdit = () => {
                                             type={"text"}
                                             placeholder={"جنسیت"}
                                             name="sex"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.sex}
                                             list="sexes"
                                             h={"h-12"}
                                             py={"3"}
@@ -154,9 +158,9 @@ const MyPetEdit = () => {
                                     <FloatLabelInput
                                         type={"date"}
                                         placeholder={"تاریخ تولد"}
-                                        name="birth"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.primaryname}
+                                        name="birthDate"
+                                        onChange={formikGeneral.handleChange}
+                                        value={formikGeneral.values.birthDate}
                                         h={"h-12"}
                                         py={"3"}
                                         dir={"ltr"}
@@ -193,7 +197,7 @@ const MyPetEdit = () => {
                             </div>
                         </form>
                         {/* medical details */}
-                        <form onSubmit={formik.handleSubmit}
+                        <form onSubmit={formikGeneral.handleSubmit}
                             className={clsx('flex flex-col lg:flex-row justify-start lg:justify-between',{
                                 'hidden' : tab !== 'medical',
                                 'flex': tab == 'medical'
@@ -207,8 +211,8 @@ const MyPetEdit = () => {
                                             type={"number"}
                                             placeholder={"وزن"}
                                             name="PetName"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.primaryname}
                                             h={"h-12"}
                                             py={"3"}
                                             dir={"rtl"}
@@ -223,8 +227,8 @@ const MyPetEdit = () => {
                                             type={"text"}
                                             placeholder={"بیماری زمینه ای"}
                                             name="Disease"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.primaryname}
                                             list={"Diseases"}
                                             h={"h-12"}
                                             py={"3"}
@@ -246,8 +250,8 @@ const MyPetEdit = () => {
                                             type={"date"}
                                             placeholder={"تاریخ آخرین واکسن"}
                                             name="latestVaccinateDate"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.primaryname}
                                             h={"h-12"}
                                             py={"3"}
                                             dir={"rtl"}
@@ -260,8 +264,8 @@ const MyPetEdit = () => {
                                             type={"date"}
                                             placeholder={"تاریخ آخرین واکسن ضد انگل"}
                                             name="latestAntiParasiteVaccinateDate"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.primaryname}
+                                            onChange={formikGeneral.handleChange}
+                                            value={formikGeneral.values.primaryname}
                                             list="sexes"
                                             h={"h-12"}
                                             py={"3"}

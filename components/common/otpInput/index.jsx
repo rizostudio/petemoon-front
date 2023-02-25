@@ -11,7 +11,7 @@ export default function OtpInput({ label, value, setValue, size = 4 }) {
     };
   };
   return (
-    <div className="flex flex-row h-[3.25rem] justify-center items-center bg-white px-10 py-1 md:px-20 rounded-xl relative w-full border-0">
+    <div dir="ltr" className="flex flex-row h-[3.25rem] justify-center items-center bg-white px-10 py-1 md:px-20 rounded-xl relative w-full border-0">
       {arr.map((_, index) => (
         <input
           id="otp"

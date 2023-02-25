@@ -34,21 +34,9 @@ export default function Signup() {
           <img src={backgroundLines.src} />
         </div>
       </div>
-      <div className="hidden lg:flex justify-center items-center w-[58%]">
-        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
-          <div className="w-full opacity-50">
-            <img src={backgroundLines.src} />
-          </div>
-        </div>
-        <div className="flex justify-center z-10">
-          <div className="w-[90%]">
-            <img src={bigPetsImage.src} />
-          </div>
-        </div>
-      </div>
       <div className="flex flex-col lg:w-[42%] lg:bg-white h-full justify-between items-center space-y-20 lg:space-y-8 z-10 px-8 lg:px-14 lg:py-16 py-12">
         <div className="w-full h-[40%] lg:h-[50%] flex flex-col justify-between lg:justify-center items-center">
-          <div className="flex w-full justify-start lg:hidden">
+          <div className="flex flex-row-reverse w-full justify-start lg:hidden">
             <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-primary-light active:bg-primary-light focus:bg-primary-light">
               <img src={leftArrow.src} className="w-[15%]" />
             </button>
@@ -114,6 +102,18 @@ export default function Signup() {
             </button>
           </div>
         </form>
+      </div>
+      <div className="hidden lg:flex justify-center items-center w-[58%]">
+        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
+          <div className="w-full opacity-50">
+            <img src={backgroundLines.src} />
+          </div>
+        </div>
+        <div className="flex justify-center z-10">
+          <div className="w-[90%]">
+            <img src={bigPetsImage.src} />
+          </div>
+        </div>
       </div>
     </div>
   );
