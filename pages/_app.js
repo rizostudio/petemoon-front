@@ -1,22 +1,62 @@
-import { Provider } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/globals.css";
-import { store } from "@/redux/store";
-import { QueryClient, QueryClientProvider } from "react-query";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
-export default function App({ Component, pageProps }) {
+import AuthProvider from "@/store/AuthCtx/AuthProvider";
+import { useRouter } from "next/router";
+import Loading from "@/components/partials/loading";
+import AuthContext from "@/store/AuthCtx/AuthContext";
+import { BasketContextProvider } from "@/store/BasketCtx/BasketContext";
+import { HistoryProvider } from "@/store/HistoryCtx/History";
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    const { isLoggedIn } = authCtx;
+    console.log(isLoggedIn);
+    // if (!isLoggedIn) {
+    //   router.push("/auth/login");
+    // }
+    const handleStart = (url) => {
+      if (
+        url === router.pathname ||
+        router.pathname.startsWith("/product-category/") ||
+        router.pathname.startsWith("/dashboard")
+      ) {
+        setLoading(false);
+      } else {
+        setLoading(true);
+      }
+    };
+    const handleComplete = (url) => {
+      if (
+        url === router.pathname ||
+        router.pathname.startsWith("/product-category/") ||
+        router.pathname.startsWith("/dashboard/")
+      ) {
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    };
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+  }, [router]);
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
-    </Provider>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <AuthProvider>
+          <BasketContextProvider>
+            <HistoryProvider>
+              <Component {...pageProps} />
+            </HistoryProvider>
+          </BasketContextProvider>
+        </AuthProvider>
+      )}
+    </>
   );
 }
+
+export default MyApp;

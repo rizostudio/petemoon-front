@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { v4 } from 'uuid';
 
 //component
-import DashboardLayout from '@/components/DashboardLayout';
-
+// import DashboardLayout from '@/components/DashboardLayout';
+import DashboardLayout from '@/layout/dashboard/DashboardLayout';
 
 //media
 
