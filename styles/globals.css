@@ -209,3 +209,21 @@ li[data-testid="day-37"] {
   font-family: "YekanBakh" !important;
   font-size: 15px !important;
 }
+.fgOoQc {
+  background-color: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.jTgJRx {
+  width: 100% !important;
+  /* background-color: red !important; */
+  border: 1px solid #9b9ba1;
+  height: 100% !important;
+}
+.bycqjs {
+  z-index: 1000 !important;
+}
+.jTgJRx {
+  font-size: 20px !important;
+  justify-content: start !important;
+}

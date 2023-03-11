@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^6.0.1",
+    "@mantine/hooks": "^6.0.1",
     "@next/font": "13.0.7",
     "@reduxjs/toolkit": "^1.9.1",
+    "@skhazaei/persian-date-picker": "^0.0.18",
     "@tailwindcss/forms": "^0.5.3",
     "axios": "^1.2.2",
     "clsx": "^1.2.1",

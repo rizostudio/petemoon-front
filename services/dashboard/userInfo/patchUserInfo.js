@@ -6,7 +6,7 @@ export const editUserData = async (userInfo) => {
     first_name: userInfo.first_name,
     last_name: userInfo.last_name,
     email: userInfo.email,
-    birth_date: userInfo.birth_date.replaceAll("/", "-"),
+    birth_date: userInfo.birth_date,
   };
   try {
     const response = await httpRequest.patch(

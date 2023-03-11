@@ -2,16 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { useRouter } from "next/router";
+
+//formik
+import { useFormik } from "formik";
 //moment
 import moment from "jalali-moment";
-//formik
-import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
 //component
 import FloatLabelInput from "@/components/partials/input";
-// import { DatePicker } from "jalali-react-datepicker";
-import { DateValue, DateInput } from "mantine-datepicker-jalali";
-import "dayjs/locale/fa";
+
 //media
 import Profile_Alt_Pic from "../../../assets/dashboard/profile-pic-alt.svg";
 import Cake_Icon from "../../../assets/dashboard/cake.svg";
@@ -20,7 +19,7 @@ import { getuserInfo } from "@/services/dashboard/userInfo/getUserInfo";
 import { editUserData } from "@/services/dashboard/userInfo/patchUserInfo";
 export default function UserInfo() {
   const [userData, setUserData] = useState({});
-  const [editable, setEditble] = useState(false);
+  // const [editable, setEditble] = useState(false);
   const dataFetchedRef = useRef(false);
   const router = useRouter();
   useEffect(() => {
@@ -41,26 +40,24 @@ export default function UserInfo() {
     last_name: Yup.string().required("فیلد الزامی است"),
     email: Yup.string().required("فیلد الزامی است"),
     phone_number: Yup.string().required("فیلد الزامی است"),
+    birth_date: Yup.string().required("فیلد الزامی است"),
+  });
+
+  const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
+    enableReinitialize: true,
+    initialValues: userData,
+    onSubmit: (value) => {
+      handleCreateSubmit(value);
+      console.log(value);
+    },
+    validationSchema: UserInfoSchema,
   });
   const birthDate = (e) => {
+    console.log(e);
     const datePickerOutput = moment(e.toString()).format("YYYY-MM-DD");
     setFieldValue("birth_date", datePickerOutput);
   };
-  const { handleChange, values, errors, setFieldValue, handleSubmit } =
-    useFormik({
-      enableReinitialize: true,
-      initialValues: userData,
-      onSubmit: async (values) => {
-        handleCreateSubmit(values);
-      },
-      validationSchema: UserInfoSchema,
-    });
   const handleCreateSubmit = async (values) => {
-    console.log(
-      parseInt(values.birth_date.split("-")[0]) - 1,
-      parseInt(values.birth_date.split("-")[1]) - 1,
-      parseInt(values.birth_date.split("-")[2]) - 1
-    );
     const response = await editUserData(values);
     console.log(response);
   };
@@ -100,13 +97,13 @@ export default function UserInfo() {
                   h={"h-12"}
                   py={"3"}
                   dir={"rtl"}
-                  disabled={!editable}
+                  // disabled={!editable}
                 />
-                {errors.first_name && (
+                {/* {errors.first_name ? (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.first_name}</bdi>
                   </p>
-                )}
+                ) : null} */}
               </div>
               <div className="text-right lg:w-1/2 my-2 lg:m-1 lg:mr-4">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
@@ -121,13 +118,13 @@ export default function UserInfo() {
                   h={"h-12"}
                   py={"3"}
                   dir={"rtl"}
-                  disabled={!editable}
+                  // disabled={!editable}
                 />
-                {errors.last_name ? (
+                {/* {errors.last_name ? (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.last_name}</bdi>
                   </p>
-                ) : null}
+                ) : null} */}
               </div>
             </div>
             <div className="lg:flex flex-row-reverse justify-between items-center w-full lg:mt-5">
@@ -146,11 +143,11 @@ export default function UserInfo() {
                   dir={"rtl"}
                   disabled={true}
                 />
-                {errors.phone_number && (
+                {/* {errors.phone_number && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.phone_number}</bdi>
                   </p>
-                )}
+                )} */}
               </div>
               <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
@@ -165,13 +162,13 @@ export default function UserInfo() {
                   h={"h-12"}
                   py={"3"}
                   dir={"rtl"}
-                  disabled={!editable}
+                  // disabled={!editable}
                 />
-                {errors.email && (
+                {/* {errors.email && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.email}</bdi>
                   </p>
-                )}
+                )} */}
               </div>
             </div>
             <div className="lg:flex flex-row-reverse justify-end items-center  w-full lg:my-5">
@@ -182,26 +179,19 @@ export default function UserInfo() {
                 <FloatLabelInput
                   type={"date"}
                   placeholder={"تاریخ تولد"}
+                  name="birth_date"
                   onChange={birthDate}
-                  value={
-                    values.birth_date
-                      ? new Date(
-                          parseInt(values.birth_date.split("-")[0]),
-                          parseInt(values.birth_date.split("-")[1]),
-                          parseInt(values.birth_date.split("-")[2])
-                        )
-                      : null
-                  }
+                  value={values.birth_date}
                   h={"h-12"}
                   py={"3"}
                   dir={"rtl"}
-                  disabled={!editable}
+                  // disabled={!editable}
                 />
-                {errors.email && (
+                {/* {errors.email && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.email}</bdi>
                   </p>
-                )}
+                )} */}
               </div>
             </div>
             <div
@@ -211,22 +201,22 @@ export default function UserInfo() {
             >
               <div
                 className={clsx("cursor-pointer w-fit", {
-                  hidden: !editable,
+                  // hidden: !editable,
                 })}
               >
                 <button type="submit">
                   <Image src={PenEdit_Icon} alt="PenEditIcon" />
                 </button>
               </div>
-              <div
+              {/* <div
                 className={clsx("cursor-pointer w-fit", {
                   hidden: editable,
                 })}
               >
-                <button onClick={(e) => setEditble((prev) => !prev)}>
+                <div onClick={(e) => setEditble((prev) => !prev)}>
                   <Image src={PenEdit_Icon} alt="PenEditIcon" />
-                </button>
-              </div>
+                </div>
+              </div> */}
             </div>
           </div>
 

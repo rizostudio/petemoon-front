@@ -1,7 +1,8 @@
 import clsx from "clsx";
 // import { DatePicker } from "jalali-react-datepicker";
-import { DateValue, DateInput } from "mantine-datepicker-jalali";
-import "dayjs/locale/fa";
+// import { DateValue, DateInput } from "mantine-datepicker-jalali";
+import PersianDatePicker from "@skhazaei/persian-date-picker";
+// import "dayjs/locale/fa";
 import moment from "jalali-moment";
 export default function FloatLabelInput({
   name,
@@ -15,23 +16,30 @@ export default function FloatLabelInput({
   dir = "rtl",
   disabled,
   list,
+  defaultValue,
 }) {
-  // console.log(value);
+  if (type === "date") {
+    console.log(value);
+  }
 
   return (
     <div className={`relative w-full ${h}`} dir={dir}>
       {type === "date" ? (
-        <DateInput
+        <PersianDatePicker
           // label="تاریخ"
+          isGregorian={false}
+          input={true}
           placeholder="تاریخ را وارد کنید"
-          style={{ direction: "rtl" }}
-          // defaultValue={new Date()}
-          value={value}
-          onChange={onChange}
+          // style={{ direction: "rtl" }}
+          // defaultValue={defaultValue}
+          selectedDay={value}
+          onSelectDay={onChange}
+          // onChange={onChange}
+          selectedBackgroundColor={"#FF0000"}
           disabled={disabled}
-          locale="fa"
-          firstDayOfWeek={6}
-          weekendDays={[5]}
+          // locale="fa"
+          // firstDayOfWeek={6}
+          // weekendDays={[5]}
           className={clsx(
             `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
             {

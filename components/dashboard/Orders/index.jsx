@@ -7,15 +7,14 @@ export default function Orders() {
   useEffect(() => {
     const getData = async () => {
       const response = await getLisOrders();
+      console.log(response);
       setOrderList(response.data);
     };
     getData();
   }, []);
   return (
     <div className="flex flex-col items-stretch">
-      {orderList.map((item) => (
-        <OrderItem item={item} />
-      ))}
+      {orderList && orderList.map((item) => <OrderItem item={item} />)}
     </div>
   );
 }

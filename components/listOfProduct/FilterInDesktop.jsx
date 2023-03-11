@@ -13,8 +13,10 @@ export default function FilterInDesktop({
   setFilterPageOpen,
   setMainPageOpen,
   brand,
-  petKind,
+  petCategory,
   FilterBoxOpen,
+  maxPrice,
+  minPrice,
 }) {
   const router = useRouter();
   const filterProducts = (event, title, slug) => {
@@ -83,9 +85,9 @@ export default function FilterInDesktop({
               <div key={v4()} className="flex items-center">
                 <input
                   id={`brand${index}`}
-                  checked={router.query?.brand_slug?.includes(item.id)}
+                  checked={router.query?.brand_slug?.includes(item.slug)}
                   onChange={(e) => {
-                    filterProducts(e, "brand_slug", item.id);
+                    filterProducts(e, "brand_slug", item.slug);
                   }}
                   type="checkbox"
                   className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
@@ -100,29 +102,29 @@ export default function FilterInDesktop({
             بازه قیمتی
           </label>
           <div className="w-full flex justify-between text-xs px-2">
-            <span>0</span>
+            <span>{0}</span>
             <span></span>
             <span></span>
             <span></span>
-            <span>2500</span>
+            <span>{maxPrice}</span>
           </div>
           <input
-            onMouseUp={(e) => {
+            onChange={(e) => {
               console.log(e.target.value);
               filterPriceProduct(e, "max_price", e.target.value);
             }}
             className=""
             type="range"
-            min="0"
-            max="25000000"
-            defaultValue={router.query?.max_price}
-            step="1"
+            min={0}
+            max={maxPrice}
+            value={router.query?.max_price ? router.query?.max_price : 0}
+            // step="1"
           />
           <p className="text-base text-black font-medium leading-7 mt-6">
             نوع پت
           </p>
           <div>
-            {petKind.map((item, index) => (
+            {petCategory.map((item, index) => (
               <div key={v4()} className="flex items-center">
                 <input
                   id={`kind${index}`}

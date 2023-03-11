@@ -206,7 +206,7 @@ export default function CreatePet() {
                     values.birth_date
                       ? new Date(
                           parseInt(values.birth_date.split("-")[0]),
-                          parseInt(values.birth_date.split("-")[1]) - 1,
+                          parseInt(values.birth_date.split("-")[1]),
                           parseInt(values.birth_date.split("-")[2])
                         )
                       : null
@@ -283,8 +283,7 @@ export default function CreatePet() {
                       values.last_vaccine_date
                         ? new Date(
                             parseInt(values.last_vaccine_date.split("-")[0]),
-                            parseInt(values.last_vaccine_date.split("-")[1]) -
-                              1,
+                            parseInt(values.last_vaccine_date.split("-")[1]),
                             parseInt(values.last_vaccine_date.split("-")[2])
                           )
                         : null
@@ -320,7 +319,7 @@ export default function CreatePet() {
                               values.last_anti_parasitic_vaccine_date.split(
                                 "-"
                               )[1]
-                            ) - 1,
+                            ),
                             parseInt(
                               values.last_anti_parasitic_vaccine_date.split(
                                 "-"

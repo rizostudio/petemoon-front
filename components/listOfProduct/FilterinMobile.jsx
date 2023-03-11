@@ -12,8 +12,10 @@ export default function FilterinMobile({
   setFilterPageOpen,
   setMainPageOpen,
   brand,
-  petKind,
+  petCategory,
   FilterPageOpen,
+  maxPrice,
+  minPrice,
 }) {
   const router = useRouter();
   const filterProducts = (event, title, slug) => {
@@ -68,9 +70,9 @@ export default function FilterinMobile({
                   <input
                     id={`brand${index}`}
                     type="checkbox"
-                    checked={router.query?.brand_slug?.includes(item.id)}
+                    checked={router.query?.brand_slug?.includes(item.slug)}
                     onChange={(e) => {
-                      filterProducts(e, "brand_slug", item.id);
+                      filterProducts(e, "brand_slug", item.slug);
                     }}
                     className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                   />
@@ -86,11 +88,11 @@ export default function FilterinMobile({
               بازه قیمتی
             </label>
             <div className="w-full flex justify-between text-xs px-2">
-              <span>0</span>
+              <span>{minPrice}</span>
               <span></span>
               <span></span>
               <span></span>
-              <span>2500</span>
+              <span>{maxPrice}</span>
             </div>
             <input
               className="w-full border-[3px] border-red-500"
@@ -101,7 +103,9 @@ export default function FilterinMobile({
               type="range"
               min="0"
               max="25000000"
-              defaultValue={router.query?.max_price}
+              defaultValue={
+                router.query?.max_price ? router.query?.max_price : 0
+              }
               step="1"
             />
           </div>
@@ -110,7 +114,7 @@ export default function FilterinMobile({
               نوع پت
             </p>
             <div>
-              {petKind.map((item, index) => (
+              {petCategory.map((item, index) => (
                 <div key={v4()} className="flex items-center">
                   <input
                     id={`kind${index}`}

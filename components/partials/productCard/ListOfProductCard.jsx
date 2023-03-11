@@ -86,10 +86,14 @@ export default function ProductCart({ item, index }) {
               />
             </div>
             <div className="w-full h-full overflow-hidden m-0 p-0">
-              <Image
-                width={244}
-                height={223}
-                src={"/assets/product/ProductPic4.svg"}
+              <img
+                // width={244}
+                // height={223}
+                src={
+                  item.picture
+                    ? `petemoon.com${item.picture}`
+                    : "/assets/product/ProductPic4.svg"
+                }
                 alt="ProductPic"
                 className="object-cover"
               />
@@ -97,11 +101,11 @@ export default function ProductCart({ item, index }) {
           </div>
           <div className="w-full lg:mt-4 mr-3 lg:mr-0">
             <p className="hidden lg:block text-base text-gray-400 font-medium leading-5">
-              <bdi>{item.group}</bdi>
+              <bdi>{item.category?.name}</bdi>
             </p>
             <div className="hidden lg:flex justify-between items-center content-start">
               <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-                {item.title}
+                {item.name}
               </h2>
               {item.discount && (
                 <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
@@ -121,15 +125,19 @@ export default function ProductCart({ item, index }) {
                   alt="GoldenStarIcon"
                   className="w-2"
                 />
-                <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${item.stars})`}</p>
+                <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+                  item.rating ? item.rating : 5
+                })`}</p>
               </div>
             </div>
             <div className="flex flex-row lg:flex-col justify-between">
               <div className="hidden lg:flex flex-row items-center">
                 <div className="flex flex-row items-center">
-                  {starsBoxHandler(item.stars)}
+                  {starsBoxHandler(item.rating ? item.rating : 5)}
                 </div>
-                <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${item.stars})`}</p>
+                <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${
+                  item.rating ? item.rating : 5
+                })`}</p>
               </div>
               <div className="w-full flex lg:flex-col justify-between items-stretch">
                 <div className="flex flex-col justify-between">
@@ -138,7 +146,7 @@ export default function ProductCart({ item, index }) {
                       <bdi>{item.group}</bdi>
                     </p>
                     <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
-                      {item.store}
+                      {item.best_seller?.name}
                     </p>
                   </div>
                   <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
@@ -146,17 +154,17 @@ export default function ProductCart({ item, index }) {
                   </p>
                 </div>
                 <div className="self-end lg:self-stretch">
-                  {item.amount ? (
+                  {item.inventory ? (
                     <div className="flex flex-col lg:flex-row justify-between lg:items-center mt-2">
                       <div className="flex flex-col lg:flex-col-reverse">
                         {item.discount && (
                           <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
-                            {item.price}
+                            {item.max_price}
                           </p>
                         )}
                         <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
                           <bdi>
-                            {item.price * (1 - item.discount / 100)} تومان
+                            {item.min_price * (1 - item.max_price / 100)} تومان
                           </bdi>
                         </p>
                       </div>
