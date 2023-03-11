@@ -30,11 +30,14 @@ function ProducsBox({ data }) {
     getData();
   }, [page]);
   useEffect(() => {
-    const observerRef = new IntersectionObserver(([enttry]) => {
-      if (enttry.isIntersecting) {
-        setPage((prev) => prev + 1);
-      }
-    });
+    const observerRef = new IntersectionObserver(
+      ([enttry]) => {
+        if (enttry.isIntersecting) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 0.6 }
+    );
     if (lastEllement) {
       observerRef.observe(lastEllement);
     }

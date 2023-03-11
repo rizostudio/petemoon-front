@@ -12,7 +12,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>مخصوص:</bdi>
           </p>
           <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-            <bdi>{data.property.for}</bdi>
+            <bdi>{data.property}</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center align-middle my-1 mr-5">
@@ -20,7 +20,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>نوع:</bdi>
           </p>
           <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-            <bdi>{data.property.kind}</bdi>
+            <bdi>{data.property}</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center align-middle my-1 mr-5">
@@ -28,7 +28,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>کشور سازنده:</bdi>
           </p>
           <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-            <bdi>{data.property.MadeIn}</bdi>
+            <bdi>{data.property}</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center align-middle my-1 mr-5">
@@ -36,7 +36,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>ابعاد:</bdi>
           </p>
           <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-            <bdi>{data.property.dimension} cm</bdi>
+            <bdi>{data.property} cm</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center align-middle my-1 mr-5">
@@ -44,7 +44,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>وزن:</bdi>
           </p>
           <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-            <bdi>{data.property.weight} گرم</bdi>
+            <bdi>{data.property} گرم</bdi>
           </p>
         </div>
         <div className="col-span-2 flex flex-row items-end my-1 mr-5">
@@ -52,7 +52,7 @@ export default function ProductFeatureForDesktop({ data }) {
             <bdi>سایر توضیحات:</bdi>
           </p>
           <p className="text-lg text-black font-medium leading-7 opacity-90 mr-4 lg:mr-2">
-            <bdi>{data.property.OtherDescription}</bdi>
+            <bdi>{data.property}</bdi>
           </p>
         </div>
       </div>

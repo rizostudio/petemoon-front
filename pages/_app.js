@@ -17,11 +17,13 @@ function MyApp({ Component, pageProps }) {
     //   router.push("/auth/login");
     // }
     const handleStart = (url) => {
+      console.log(url);
       if (
         url === router.pathname ||
-        router.pathname.startsWith("/product-category/") ||
-        router.pathname.startsWith("/dashboard")
+        url.startsWith("/product-category/") ||
+        url.startsWith("/dashboard")
       ) {
+        console.log(router);
         setLoading(false);
       } else {
         setLoading(true);
@@ -41,6 +43,11 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
   }, [router]);
   return (
     <>

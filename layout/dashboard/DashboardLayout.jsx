@@ -65,6 +65,9 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!user) {
+      router.push("/auth/login");
+    }
     const handleStart = (url) => {
       setLoading(true);
     };
@@ -74,9 +77,11 @@ export default function DashboardLayout({ children }) {
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
-    if (!user) {
-      router.push("/auth/login");
-    }
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
   }, [router]);
   useEffect(() => {
     setuser(authCtx.userData);
@@ -285,9 +290,11 @@ export default function DashboardLayout({ children }) {
                   className="text-base text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
                 />
               </div>
-              <div className="p-3 border-[1px] solid border-thirdly rounded-[15px] mr-8">
-                <Image src={ShopBag_Icon} alt="ShopBagPic" />
-              </div>
+              <Link href={"/cart"}>
+                <div className="p-3 border-[1px] solid border-thirdly rounded-[15px] mr-8">
+                  <Image src={ShopBag_Icon} alt="ShopBagPic" />
+                </div>
+              </Link>
             </div>
           </div>
           <div className=" w-full h-full p-10 pb-10 lg:px-20 lg:py-12 overflow-y-scroll">

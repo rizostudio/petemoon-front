@@ -77,11 +77,11 @@ export default function BasketItem({ item, index }) {
         </div>
         <div className="w-full lg:mt-4 mr-3 lg:mr-10">
           <p className="hidden lg:block text-sm text-gray-400 font-normal leading-5">
-            <bdi>{item.group}</bdi>
+            <bdi>{item.category.name}</bdi>
           </p>
           <div className="hidden lg:flex items-center content-start my-2">
             <h2 className="text-2xl text-black font-bold leading-8">
-              {item.title}
+              {item.name}
             </h2>
             {item.discount && (
               <p className="text-base text-white font-medium py-[1px] px-2 mr-2 bg-primary border-solid border-[0.5px] border-primary rounded-[10px]">
@@ -91,7 +91,7 @@ export default function BasketItem({ item, index }) {
           </div>
           <div className="flex lg:hidden justify-between items-center">
             <h2 className="text-base text-black font-medium leading-8">
-              {item.title}
+              {item.name}
             </h2>
             <div className="flex flex-row items-center mr-1">
               <Image src={StarGold_Icon} alt="GoldenStarIcon" className="w-2" />
@@ -109,10 +109,10 @@ export default function BasketItem({ item, index }) {
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col">
                   <p className="lg:hidden text-xs text-gray-400 font-medium lg:leading-5">
-                    <bdi>{item.group}</bdi>
+                    <bdi>{item.category.name}</bdi>
                   </p>
                   <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
-                    {item.store}
+                    {item.seller.name}
                   </p>
                 </div>
                 <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
@@ -128,10 +128,11 @@ export default function BasketItem({ item, index }) {
                   )}
                   <p className='text-base lg:text-lg text-black lg:text-primary font-medium mt-0 after:content-["تومان"] after:text-xs after:font-normal after:leading-6 after:mr-1'>
                     <bdi>
-                      {(
+                      {item.price}
+                      {/* {(
                         item.price *
                         (1 - item.discount / 100)
-                      ).toLocaleString()}
+                      ).toLocaleString()} */}
                     </bdi>
                   </p>
                 </div>

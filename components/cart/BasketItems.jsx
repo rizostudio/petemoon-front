@@ -19,7 +19,7 @@ export default function BasketItems({ data }) {
     <div className="flex flex-col justify-center items-center px-10 lg:px-0 lg:relative mb-5 lg:mb-0">
       {state.basket &&
         state.basket.map((item, index) => (
-          <BasketItem key={v4()} item={item} index={index} />
+          <BasketItem key={item.id} item={item} index={index} />
         ))}
       {/* Continue Box */}
       <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px] absolute bottom-10 left-0">

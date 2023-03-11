@@ -72,7 +72,7 @@ export default function ProductCart({ item, index }) {
     }
   };
   return (
-    <>
+    <Link href={`/products/${item.slug}`}>
       <div key={v4()} className="lg:m-5 w-full lg:w-[285px] my-1">
         <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
           <div className="relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
@@ -197,6 +197,6 @@ export default function ProductCart({ item, index }) {
           </div>
         </div>
       </div>
-    </>
+    </Link>
   );
 }

@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 //service
 import { getListProducts } from "@/services/product/getListOfProducts";
-import * as queryString from "@/services/queryString";
 //component
 import ProductList from "@/components/listOfProduct";
 import MainLayout from "@/layout/main";
 import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
-import Loading from "@/components/partials/loading";
 import ToatContainer from "@/components/partials/toast/ToatContainer";
 const Products = ({ query, productsList }) => {
   return (

@@ -15,8 +15,8 @@ export default function HeadingForMobile({ data }) {
             className={clsx(
               "text-base text-black font-black leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
               {
-                "before:bg-primary": data.amount,
-                "before:bg-gray-400": !data.amount,
+                "before:bg-primary": data.best_pricing.inventory,
+                "before:bg-gray-400": !data.best_pricing.inventory,
               }
             )}
           >
@@ -24,10 +24,12 @@ export default function HeadingForMobile({ data }) {
           </h2>
           <div className="flex flex-row items-center mr-1">
             <Image src={StarGold_Icon} alt="GoldenStarIcon" />
-            <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${data.stars})`}</p>
+            <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+              data.rating ? data.rating : 5
+            })`}</p>
           </div>
         </div>
-        {!data.amount && (
+        {!data.best_pricing.inventory && (
           <p className="text-base text-gray-400 font-medium leading-6 underline mr-4">
             ناموجود
           </p>

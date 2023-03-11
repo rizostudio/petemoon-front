@@ -3,16 +3,83 @@ import Image from "next/image";
 import clsx from "clsx";
 // media
 import Availability_Icon from "../../assets/product/availability.svg";
-
+//context
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
+//toast
+import { toast } from "react-toastify";
 export default function SummeryAvailebility({ data }) {
+  const { state, dispatch } = BasketContext();
+  const handleAddToBasket = () => {
+    if (state?.basket?.length === 0) {
+      dispatch({
+        type: "ADD_TOBASKET",
+        payload: {
+          id: data.productpricing[0].id,
+          category: data.category,
+          stars: data.ratind,
+          pet_type: data.pet_type.pet_type,
+          seller: data.best_pricing.petshop.name,
+          price: data.price,
+          discount: data.price_after_sale,
+          image: data.picture,
+        },
+      });
+      toast.success("محصول به سبد خرید اضافه شد", {
+        toastId: data.productpricing[0].id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      const check = state?.basket?.find(
+        (basketItem) => basketItem.id === data.productpricing[0].id
+      );
+      if (!check) {
+        dispatch({
+          type: "ADD_TOBASKET",
+          payload: {
+            item: { ...item },
+          },
+        });
+        toast.success("محصول به سبد خرید اضافه شد", {
+          toastId: data.productpricing[0].id,
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.info("این محصول از قبل در سبد خرید موجود است", {
+          toastId: data.productpricing[0].id,
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
+  };
   return (
     <div
       className={clsx("order-1 w-full mb-3 lg:mb-0", {
-        "lg:mt-9": !data.amount,
-        "lg:mt-2": data.amount,
+        "lg:mt-9": !data.best_pricing.inventory,
+        "lg:mt-2": data.best_pricing.inventory,
       })}
     >
-      {data.amount ? (
+      {data.best_pricing.inventory ? (
         <div className="flex flex-row justify-between items-center w-full">
           <div className="text-right">
             <div className="flex flex-row items-center">
@@ -34,7 +101,10 @@ export default function SummeryAvailebility({ data }) {
                 <bdi>{`${data.price} تومان`}</bdi>
               </p>
             </div>
-            <button className="text-base text-white font-bold leading-7 bg-primary py-3 px-5 w-full rounded-[15px]">
+            <button
+              onClick={handleAddToBasket}
+              className="text-base text-white font-bold leading-7 bg-primary py-3 px-5 w-full rounded-[15px]"
+            >
               افزودن به سبد خرید
             </button>
           </div>

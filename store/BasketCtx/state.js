@@ -12,7 +12,20 @@ export const reducer = (state, action) => {
     case "ADD_TOBASKET":
       newState = {
         ...state,
-        basket: [...state.basket, { ...action.payload.item, count: "1" }],
+        basket: [
+          ...state.basket,
+          {
+            id: action.payload.id,
+            category: action.payload.category,
+            stars: action.payload.stars ? action.payload.stars : 5,
+            pet_type: action.payload.pet_type,
+            seller: action.payload.seller,
+            price: action.payload.price,
+            discount: action.payload.discount,
+            image: action.payload.image,
+            count: "1",
+          },
+        ],
       };
       break;
     case "INCRIMENT_ITEM_COUNT":
