@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       if (
         url === router.pathname ||
         router.pathname.startsWith("/product-category/") ||
-        router.pathname.startsWith("/dashboard/")
+        router.pathname.startsWith("/dashboard")
       ) {
         setLoading(false);
       } else {

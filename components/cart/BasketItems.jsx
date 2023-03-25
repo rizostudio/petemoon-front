@@ -6,15 +6,26 @@ import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import BasketItem from "./BasketItem";
 //context
 import AuthContext from "@/store/AuthCtx/AuthContext";
+//services
+import { postBasketToServer } from "@/services/basket/postBasketToServer";
 export default function BasketItems({ data }) {
   const router = useRouter();
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
-  const handleSaveBasket = () => {
-    if (!authCtx.isLoggedIn) {
-      router.push("/auth/login");
+  const handleSaveBasket = async () => {
+    const payload = {};
+    state.basket.map((item) => {
+      if (!payload[item.id]) payload[item.id] = parseInt(item.count);
+    });
+    const response = await postBasketToServer(payload);
+    if (response.success) {
+      console.log(response);
+      router.push("/payment/set-address");
     }
   };
+  const totalBasket = state.basket.reduce((total, item) => {
+    return total + parseInt(item.count) * parseInt(item.price);
+  }, 0);
   return (
     <div className="flex flex-col justify-center items-center px-10 lg:px-0 lg:relative mb-5 lg:mb-0">
       {state.basket &&
@@ -28,7 +39,15 @@ export default function BasketItems({ data }) {
             مجموع سبد خرید:
           </p>
           <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{(125000).toLocaleString()}</bdi>
+            <bdi>
+              {/* {state.basket
+                .map((item) => {
+                  const total = 0;
+                  total += parseInt(item.count) * item.price;
+                })
+                .toLocaleString()} */}
+              {totalBasket}
+            </bdi>
           </p>
         </div>
         <button

@@ -52,7 +52,7 @@ httpRequest.interceptors.response.use(
       refreshTokenLS.remove();
       userDataStorage.remove();
       isLogin.remove();
-      window.location.href("http://localhoset3000/auth/login");
+      window.location.href("http://localhost:3000/auth/login");
       return Promise.reject(error);
     }
     if (error.response.status == 401 && !originalReq._retry) {

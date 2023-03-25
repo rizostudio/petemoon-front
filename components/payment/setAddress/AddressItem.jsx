@@ -2,13 +2,24 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function AddressItem({ item, index }) {
+export default function AddressItem({
+  item,
+  index,
+  selectAddress,
+  setSelectedAddress,
+}) {
   return (
     <div className="flex flex-col justify-between items-stretch my-2 lg:my-3 px-5 lg:px-12 py-4 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none">
       <div className="flex flex-row items-center justify-between">
         <div className="flex items-center">
           <input
             id={`address${index}`}
+            checked={item.id === selectAddress ? true : false}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setSelectedAddress(item.id);
+              }
+            }}
             type="checkbox"
             className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
           />
@@ -21,7 +32,7 @@ export default function AddressItem({ item, index }) {
         </div>
         <div className="flex flex-row items-center">
           <Link
-            href={"/card/address-edit"}
+            href={`/dashboard/addresses/edit/${item.id}`}
             className="hidden lg:block p-2 border-[1px] solid border-[#4DA4F4] rounded-[12px]"
           >
             <Image
@@ -60,7 +71,7 @@ export default function AddressItem({ item, index }) {
             <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 my-2">
               <p className="text-sm lg:text-base text-black">کد پستی</p>
               <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-                <bdi>{item.zipCode}</bdi>
+                <bdi>{item.postal_code}</bdi>
               </p>
             </div>
           </div>
@@ -106,7 +117,7 @@ export default function AddressItem({ item, index }) {
       <div className="flex flex-row items-center text-right font-semibold lg:font-bold opacity-90 leading-8 my-2">
         <p className="text-sm lg:text-base text-black">آدرس پستی</p>
         <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-          <bdi>{item.location}</bdi>
+          <bdi>{item.postal_address}</bdi>
         </p>
       </div>
       {/* Modals */}
@@ -130,7 +141,10 @@ export default function AddressItem({ item, index }) {
                 htmlFor="More-modal"
                 className="w-full flex flex-row items-center px-9 py-3"
               >
-                <Link href="/card/address-edit" className="flex flex-row">
+                <Link
+                  href={`/dashboard/addresses/edit/${item.id}`}
+                  className="flex flex-row"
+                >
                   <Image
                     src={"/assets/common/EditIcon2.svg"}
                     alt="EditIcon"
