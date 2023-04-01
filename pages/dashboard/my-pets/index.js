@@ -74,7 +74,7 @@ export default function index() {
   };
   useEffect(() => {
     httpRequest
-      .get("dashboard/pet")
+      .get("dashboard/pet/")
       .then((response) => {
         console.log(response);
       })

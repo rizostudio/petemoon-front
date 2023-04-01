@@ -10,6 +10,7 @@ import PetPicPreserve from "../../../assets/dashboard/PetPicPreserve.svg";
 import Upload_Icon from "../../../assets/common/uploadIcon.svg";
 //components
 import FloatLabelInput from "@/components/partials/input";
+import { createPet } from "@/services/dashboard/pets/create";
 
 export default function CreatePet() {
   const petImageRef = useRef(null);
@@ -26,12 +27,18 @@ export default function CreatePet() {
       last_vaccine_date: "",
       underlying_disease: "",
       last_anti_parasitic_vaccine_date: "",
-      petImage: "",
+      photo: "",
     },
     onSubmit: (value) => {
-      console.log(value);
+      handleCreateSubmit(value);
     },
   });
+  const handleCreateSubmit = async () => {
+    const response = await createPet(values);
+    if (response.success) {
+      console.log(response);
+    }
+  };
   const birthDate = (e) => {
     const datePickerOutput = moment(e.toString()).format("YYYY-MM-DD");
     setFieldValue("birth_date", datePickerOutput);
@@ -48,7 +55,7 @@ export default function CreatePet() {
     if (petImageRef.current) {
       const file = petImageRef.current.files;
       ShowPetImagePreview(file[0]);
-      setFieldValue("petImage", file[0]);
+      setFieldValue("photo", file[0]);
     }
   };
   const ShowPetImagePreview = (file) => {
