@@ -46,7 +46,7 @@ httpRequest.interceptors.response.use(
     console.log("first error");
     const originalReq = error.config;
     console.log(originalReq);
-    if (error.response.status === 400) {
+    if (error.response.status === 401) {
       refreshTokenLS.remove();
       userDataStorage.remove();
       isLogin.remove();

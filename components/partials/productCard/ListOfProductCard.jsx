@@ -4,13 +4,9 @@ import Link from "next/link";
 import { v4 } from "uuid";
 //context
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
-// media
-import StarGold_Icon from "../../../assets/common/startGold.svg";
-import BookmarkRed_Icon from "../../../assets/common/BookmarkRedIcon.svg";
-import ShoppingCartRed_Icon from "../../../assets/common/shopping-cartRedIcon.svg";
-import ProductPic from "../../../assets/product/ProductPic4.svg";
 //services
 import { starsBoxHandler } from "@/services/product/starsOfProduct";
+import { createBookmark } from "@/services/product/addTobookmark";
 //toast
 import { toast } from "react-toastify";
 export default function ProductCart({ item, index }) {
@@ -71,20 +67,49 @@ export default function ProductCart({ item, index }) {
       }
     }
   };
+  const handleAddToBookmark = async () => {
+    const response = await createBookmark(item.id);
+    if (response.success) {
+      toast.success("محصول به علاقه مندی ها اضافه شد", {
+        toastId: item.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.info("این محصول از قبل در علاقه مندی ها موجود است", {
+        toastId: item.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
   return (
-    <Link href={`/products/${item.slug}`}>
-      <div key={v4()} className="lg:m-5 w-full lg:w-[285px] my-1">
-        <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
-          <div className="relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
-            <div className="hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full">
-              <Image
-                width={100}
-                height={100}
-                src={"/assets/common/BookmarkRedIcon.svg"}
-                alt="BookmarkIcon"
-                className="w-3 h-3 lg:w-5 lg:h-5"
-              />
-            </div>
+    <div key={v4()} className="lg:m-5 w-full lg:w-[285px] my-1">
+      <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
+        <div className="relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
+          <div className="hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full">
+            <Image
+              onClick={handleAddToBookmark}
+              width={100}
+              height={100}
+              src={"/assets/common/BookmarkRedIcon.svg"}
+              alt="BookmarkIcon"
+              className="w-3 h-3 lg:w-5 lg:h-5"
+            />
+          </div>
+          <Link href={`/products/${item.slug}`}>
             <div className="w-full h-full overflow-hidden m-0 p-0">
               <img
                 // width={244}
@@ -98,7 +123,10 @@ export default function ProductCart({ item, index }) {
                 className="object-cover"
               />
             </div>
-          </div>
+          </Link>
+        </div>
+        <Link href={`/products/${item.slug}`}>
+          {" "}
           <div className="w-full lg:mt-4 mr-3 lg:mr-0">
             <p className="hidden lg:block text-base text-gray-400 font-medium leading-5">
               <bdi>{item.category?.name}</bdi>
@@ -195,8 +223,8 @@ export default function ProductCart({ item, index }) {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
