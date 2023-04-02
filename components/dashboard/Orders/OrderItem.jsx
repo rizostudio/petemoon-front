@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+const status = {
+  SENDING: "در حال ارسال",
+  CANCELED: "مرجوع شده",
+};
 export default function OrderItem({ item }) {
+  const [orderPrice, setOrderPrice] = useState(0);
+
+  useEffect(() => {
+    item.products.map((item) => {
+      setOrderPrice((prev) => prev + item.price);
+    });
+  }, []);
   return (
-    <div
-      key={item.orderCode}
-      className="flex flex-col w-full my-1 lg:my-4 px-4 py-2 lg:px-10 lg:py-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none lg:shadow-shadowB"
-    >
+    <div className="flex flex-col w-full my-1 lg:my-4 px-4 py-2 lg:px-10 lg:py-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none lg:shadow-shadowB">
       <div className="flex flex-row justify-between lg:justify-between items-center">
         <p className="text-sm lg:text-lg text-black font-black lg:font-bold leading-7 lg:leading-8 before:align-middle before:inline-block before:w-2 before:h-2 lg:before:h-4 before:bg-primary before:ml-1 lg:before:ml-2 before:rounded-full lg:before:rounded-[2px]">
-          <bdi>{item.statusTitle}</bdi>
+          <bdi>{status[item.status]}</bdi>
         </p>
         <p className="text-sm lg:text-lg text-gray-400 font-medium leading-4">
           <bdi>{item.date}</bdi>
@@ -20,7 +28,7 @@ export default function OrderItem({ item }) {
             <bdi>
               کد سفارش
               <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
-                {item.orderCode}
+                {item.order_id}
               </span>
             </bdi>
           </p>
@@ -28,7 +36,7 @@ export default function OrderItem({ item }) {
             <bdi>
               مبلغ
               <span className='text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4 after:content-["تومان"] after:mr-1 after:text-sm'>
-                {item.price.toLocaleString()}
+                {orderPrice.toLocaleString()}
               </span>
             </bdi>
           </p>
@@ -38,7 +46,7 @@ export default function OrderItem({ item }) {
             <bdi>
               تحویل گیرنده
               <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
-                {item.receiver}
+                {item.address.receiver}
               </span>
             </bdi>
           </p>
@@ -46,7 +54,7 @@ export default function OrderItem({ item }) {
             <bdi>
               تخفیف
               <span className='text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4 after:content-["تومان"] after:mr-1 after:text-sm'>
-                {item.discount.toLocaleString()}
+                {0}
               </span>
             </bdi>
           </p>
@@ -56,7 +64,7 @@ export default function OrderItem({ item }) {
         <bdi>
           آدرس پستی :
           <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
-            {item.Address}
+            {item.address.postal_address}
           </span>
         </bdi>
       </p>

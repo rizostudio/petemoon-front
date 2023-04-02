@@ -14,7 +14,8 @@ export default function Orders() {
   }, []);
   return (
     <div className="flex flex-col items-stretch">
-      {orderList && orderList.map((item) => <OrderItem item={item} />)}
+      {orderList &&
+        orderList.map((item) => <OrderItem key={item.order_id} item={item} />)}
     </div>
   );
 }
