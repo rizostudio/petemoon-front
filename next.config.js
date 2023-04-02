@@ -5,14 +5,16 @@ const nextConfig = {
   //   unoptimized: false,
   // },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "petemoon.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    domains: ["api.petemoon.com"],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     domains: ["api.petemoon.com"],
+    //     // hostname: "petemoon.com",
+    //     port: "",
+    //     pathname: "/**",
+    //   },
+    // ],
   },
 };
 

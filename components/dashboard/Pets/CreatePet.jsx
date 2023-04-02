@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 //formik
@@ -11,11 +11,26 @@ import Upload_Icon from "../../../assets/common/uploadIcon.svg";
 //components
 import FloatLabelInput from "@/components/partials/input";
 import { createPet } from "@/services/dashboard/pets/create";
+//http
+import { getPetType } from "@/services/dashboard/pets/getPetType";
+import { getPetCategory } from "@/services/dashboard/pets/getPetCategory";
 
 export default function CreatePet() {
   const petImageRef = useRef(null);
+  const dataFetchedRef = useRef(false);
   const [petImage, setpetImage] = useState(PetPicPreserve);
   const [inputError, setInputError] = useState(false);
+  const [petType, setPetTyps] = useState([]);
+  const [petCategory, setOPetCategory] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getPetType();
+      setPetTyps(response.data);
+    };
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    getData();
+  }, []);
   const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
       name: "",
@@ -30,6 +45,7 @@ export default function CreatePet() {
       photo: "",
     },
     onSubmit: (value) => {
+      console.log(value);
       handleCreateSubmit(value);
     },
   });
@@ -68,6 +84,34 @@ export default function CreatePet() {
       };
       fileReader.readAsDataURL(file);
     }
+  };
+  const handleChangeType = (e) => {
+    petType.map((item) => {
+      if (item.pet_type === e.target.value) {
+        setFieldValue("pet_type", item.specific_type);
+        const getCategory = async () => {
+          const response = await getPetCategory(item.specific_type);
+          if (response) {
+            setOPetCategory(response.data);
+          }
+        };
+        getCategory();
+      }
+    });
+  };
+  const handleChangeCategory = (e) => {
+    petType.map((item) => {
+      if (item.pet_type === e.target.value) {
+        setFieldValue("pet_category", item.specific_type);
+        // const getCategory = async () => {
+        //   const response = await getPetCategory(item.specific_type);
+        //   if (response) {
+        //     console.log(response);
+        //   }
+        // };
+        // getCategory();
+      }
+    });
   };
   return (
     <div className="flex flex-col w-full">
@@ -118,8 +162,8 @@ export default function CreatePet() {
                   <FloatLabelInput
                     type={"text"}
                     placeholder={"نوع"}
-                    name="pet_category"
-                    onChange={handleChange}
+                    name="pet_type"
+                    onChange={handleChangeType}
                     value={values.pet_category}
                     list={"kinds"}
                     h={"h-12"}
@@ -127,10 +171,8 @@ export default function CreatePet() {
                     dir={"rtl"}
                   />
                   <datalist id="kinds">
-                    <option>سگ خانگی</option>
-                    <option>سگ نگهبان</option>
-                    <option>سگ شکاری</option>
-                    <option>سگ امدادگر</option>
+                    {petType &&
+                      petType.map((item) => <option>{item.pet_type}</option>)}
                   </datalist>
                   {inputError ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
@@ -147,9 +189,9 @@ export default function CreatePet() {
                   <FloatLabelInput
                     type={"select"}
                     placeholder={"نژاد"}
-                    name="pet_type"
-                    onChange={handleChange}
-                    value={values.pet_type}
+                    name="pet_category"
+                    onChange={handleChangeCategory}
+                    value={values.pet_category}
                     list="races"
                     h={"h-12"}
                     py={"3"}
@@ -159,14 +201,12 @@ export default function CreatePet() {
                     className="max-h-12 overflow-scroll w-10"
                     id="races"
                   >
-                    <option>بولداگ</option>
-                    <option>پودل</option>
-                    <option>پامر</option>
-                    <option>ژپرتون</option>
-                    <option>بولداگ</option>
-                    <option>پودل</option>
-                    <option>پامر</option>
-                    <option>ژپرتون</option>
+                    {petCategory &&
+                      petCategory.map((item) => (
+                        <option key={item.id} id={item.id}>
+                          {item.pet_category}
+                        </option>
+                      ))}
                   </datalist>
                   {inputError && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">

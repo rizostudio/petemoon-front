@@ -45,14 +45,12 @@ httpRequest.interceptors.response.use(
   async function (error) {
     console.log("first error");
     const originalReq = error.config;
-    if (
-      error.response.status === 401 &&
-      originalReq.url === "https://api.petemoon.com/accounts/refresh/"
-    ) {
+    console.log(originalReq);
+    if (error.response.status === 400) {
       refreshTokenLS.remove();
       userDataStorage.remove();
       isLogin.remove();
-      window.location.href("http://localhost:3000/auth/login");
+      window.location.href = "http://localhost:3000/auth/login";
       return Promise.reject(error);
     }
     if (error.response.status == 401 && !originalReq._retry) {
@@ -70,6 +68,10 @@ httpRequest.interceptors.response.use(
           return httpRequest(originalReq);
         })
         .catch((error) => {
+          refreshTokenLS.remove();
+          userDataStorage.remove();
+          isLogin.remove();
+          window.location.href = "http://localhost:3000/auth/login";
           console.log("first");
         });
     }

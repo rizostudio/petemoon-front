@@ -85,8 +85,14 @@ export default function PetCard({ item }) {
             <div className="self-end">
               <div className="w-[100px] h-[100px] relative overflow-hidden rounded-[10px]">
                 <Image
-                  src={item.pic ? item.pic : PetPicPreserve}
+                  src={
+                    item.photo
+                      ? `https://api.petemoon.com${item.photo}`
+                      : PetPicPreserve
+                  }
                   alt="PetPic"
+                  width={100}
+                  height={100}
                   className="w-full h-full object-cover"
                 />
               </div>

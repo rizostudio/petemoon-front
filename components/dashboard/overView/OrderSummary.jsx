@@ -29,7 +29,7 @@ export default function OrderSummary({ orders }) {
               سفارش های جاری
             </p>
             <span className="text-xs text-black font-medium leading-6">
-              <bdi>{orders.ongoing} سفارش</bdi>
+              <bdi>{orders?.ongoing} سفارش</bdi>
             </span>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function OrderSummary({ orders }) {
               تحویل شده
             </p>
             <span className="text-xs text-black font-medium leading-6">
-              <bdi>{orders.delivered} سفارش</bdi>
+              <bdi>{orders?.delivered} سفارش</bdi>
             </span>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function OrderSummary({ orders }) {
               مرجوع شده
             </p>
             <span className="text-xs text-black font-medium leading-6">
-              <bdi>{orders.canceled} سفارش</bdi>
+              <bdi>{orders?.canceled} سفارش</bdi>
             </span>
           </div>
         </div>
