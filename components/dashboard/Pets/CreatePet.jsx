@@ -21,7 +21,9 @@ export default function CreatePet() {
   const [petImage, setpetImage] = useState(PetPicPreserve);
   const [inputError, setInputError] = useState(false);
   const [petType, setPetTyps] = useState([]);
+  const [selectType, setSelectType] = useState("");
   const [petCategory, setOPetCategory] = useState([]);
+  const [selectCategory, setSelectCategory] = useState("");
   useEffect(() => {
     const getData = async () => {
       const response = await getPetType();
@@ -89,6 +91,7 @@ export default function CreatePet() {
     petType.map((item) => {
       if (item.pet_type === e.target.value) {
         setFieldValue("pet_type", item.specific_type);
+        setSelectType(e.target.value);
         const getCategory = async () => {
           const response = await getPetCategory(item.specific_type);
           if (response) {
@@ -100,16 +103,10 @@ export default function CreatePet() {
     });
   };
   const handleChangeCategory = (e) => {
-    petType.map((item) => {
-      if (item.pet_type === e.target.value) {
-        setFieldValue("pet_category", item.specific_type);
-        // const getCategory = async () => {
-        //   const response = await getPetCategory(item.specific_type);
-        //   if (response) {
-        //     console.log(response);
-        //   }
-        // };
-        // getCategory();
+    setSelectCategory(e.target.value);
+    petCategory.map((item) => {
+      if (item.pet_category === e.target.value) {
+        setFieldValue("pet_category", item.id);
       }
     });
   };
@@ -164,12 +161,13 @@ export default function CreatePet() {
                     placeholder={"نوع"}
                     name="pet_type"
                     onChange={handleChangeType}
-                    value={values.pet_category}
+                    value={selectType}
                     list={"kinds"}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
                   />
+
                   <datalist id="kinds">
                     {petType &&
                       petType.map((item) => <option>{item.pet_type}</option>)}
@@ -191,23 +189,26 @@ export default function CreatePet() {
                     placeholder={"نژاد"}
                     name="pet_category"
                     onChange={handleChangeCategory}
-                    value={values.pet_category}
+                    value={selectCategory}
                     list="races"
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
                   />
-                  <datalist
-                    className="max-h-12 overflow-scroll w-10"
-                    id="races"
-                  >
-                    {petCategory &&
-                      petCategory.map((item) => (
-                        <option key={item.id} id={item.id}>
-                          {item.pet_category}
-                        </option>
-                      ))}
-                  </datalist>
+                  {selectType && (
+                    <datalist
+                      className="max-h-12 overflow-scroll w-10"
+                      id="races"
+                    >
+                      {petCategory &&
+                        petCategory.map((item) => (
+                          <option key={item.id} id={item.id}>
+                            {item.pet_category}
+                          </option>
+                        ))}
+                    </datalist>
+                  )}
+
                   {inputError && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>فرمت صحیح نمی باشد!</bdi>
