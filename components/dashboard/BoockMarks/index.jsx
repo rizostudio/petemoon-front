@@ -4,6 +4,7 @@ import BookMarkItem from "./BookMarkItem";
 
 export default function Boockmarks() {
   const [bookMarkList, setBookMarkList] = useState([]);
+  const [deleteHandler, setDeletHandler] = useState(false);
   useEffect(() => {
     const getData = async () => {
       const response = await getListBookMarks();
@@ -11,11 +12,15 @@ export default function Boockmarks() {
       console.log(response);
     };
     getData();
-  }, []);
+  }, [deleteHandler]);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4">
       {bookMarkList.map((item) => (
-        <BookMarkItem key={item.id} item={item} />
+        <BookMarkItem
+          setDeletHandler={setDeletHandler}
+          key={item.id}
+          item={item}
+        />
       ))}
     </div>
   );

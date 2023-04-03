@@ -7,7 +7,9 @@ import { BasketContext } from "@/store/BasketCtx/BasketContext";
 //media
 import Trash_Icon from "../../../assets/common/trash.svg";
 import ShopCart_Icon from "../../../assets/dashboard/shopping-cart.svg";
-export default function BookMarkItem({ item }) {
+//services
+import { deleteBookMark } from "@/services/dashboard/bookmarks/delete";
+export default function BookMarkItem({ item, setDeletHandler }) {
   const { state, dispatch } = BasketContext();
   const handleAddToCart = () => {
     if (state?.basket?.length === 0) {
@@ -79,6 +81,35 @@ export default function BookMarkItem({ item }) {
       }
     }
   };
+  const handleDeleteItem = async () => {
+    const response = await deleteBookMark(item.id);
+    if (response.success) {
+      setDeletHandler((prev) => !prev);
+      toast.success("محصول از علاقه مندی ها حذف شد", {
+        toastId: item.product?.best_pricing?.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.info(" مشکلی در فرایند حذف رخ داد", {
+        toastId: item.product?.best_pricing?.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
   return (
     <div className="flex flex-col lg:grid-cols-3 my-2 lg:mx-2 lg:my-3 p-5 lg:p-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-gray-400 lg:shadow-shadowB">
       <div className="h-[100px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid border-primary"></div>
@@ -128,7 +159,10 @@ export default function BookMarkItem({ item }) {
             )}
           </div>
           <div className="w-full flex flex-row justify-between lg:justify-end items-center">
-            <div className="flex flex-row cursor-pointer lg:p-2 border-none lg:border-solid border-[1px] border-gray-400 rounded-[12px]">
+            <div
+              onClick={handleDeleteItem}
+              className="flex flex-row cursor-pointer lg:p-2 border-none lg:border-solid border-[1px] border-gray-400 rounded-[12px]"
+            >
               <Image src={Trash_Icon} alt="TrashICon" />
               <p className="lg:hidden text-xs text-gray-400 font-medium align-bottom mr-1">
                 حذف از لیست
