@@ -8,11 +8,18 @@ import { deleteAddress } from "@/services/dashboard/address/delete";
 import Modal from "@/components/partials/modal/Modal";
 //toast
 import { toast } from "react-toastify";
-export default function DeleteModal({ showeModal, setShowModal, id }) {
+export default function DeleteModal({
+  showeModal,
+  setShowModal,
+  id,
+  setDeleteHandler,
+}) {
   const handleDeleteItem = async () => {
     const response = await deleteAddress(id);
     console.log(response.data);
     if (response.success) {
+      console.log("hhh");
+      setDeleteHandler((prev) => !prev);
       setShowModal(false);
       toast.success("آدرس با موفقیت حذف شد", {
         position: "top-center",

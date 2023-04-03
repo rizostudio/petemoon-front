@@ -9,7 +9,7 @@ import More_Icon from "../../../assets/common/more.svg";
 import MapPreserve_Pic from "../../../assets/dashboard/mapPicPreserve.svg";
 import Link from "next/link";
 
-export default function AddressItem({ data }) {
+export default function AddressItem({ data, setDeleteHandler }) {
   const [showeModal, setShowModal] = useState(false);
   return (
     <div className="flex flex-col justify-between items-stretch my-2 lg:my-3 px-5 lg:px-12 py-2 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none lg:shadow-shadowB">
@@ -98,6 +98,7 @@ export default function AddressItem({ data }) {
       </div>
       {/* Modals */}
       <DeleteModal
+        setDeleteHandler={setDeleteHandler}
         showeModal={showeModal}
         setShowModal={setShowModal}
         id={data.id}
