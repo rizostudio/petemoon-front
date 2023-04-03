@@ -8,6 +8,7 @@ export default function Boockmarks() {
     const getData = async () => {
       const response = await getListBookMarks();
       setBookMarkList(response.data);
+      console.log(response);
     };
     getData();
   }, []);
