@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 //formik
@@ -10,10 +10,21 @@ import PetPicPreserve from "../../../assets/dashboard/PetPicPreserve.svg";
 import Upload_Icon from "../../../assets/common/uploadIcon.svg";
 //components
 import FloatLabelInput from "@/components/partials/input";
-export default function EditePet() {
+//services
+import { getSinglePet } from "@/services/dashboard/pets/getSingle";
+export default function EditePet({ id }) {
   const petImageRef = useRef(null);
   const [petImage, setpetImage] = useState(PetPicPreserve);
   const [inputError, setInputError] = useState(false);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getSinglePet(id);
+      if (response.success) {
+        console.log(response);
+      }
+    };
+    getData();
+  }, []);
   const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
       name: "",

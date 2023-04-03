@@ -10,21 +10,26 @@ import { getListPet } from "@/services/dashboard/pets/getList";
 import PetCard from "./PetCard";
 
 export default function Index() {
-  const dataFetchedRef = useRef(false);
   const [data, setData] = useState([]);
+  const [deleteHandler, setDeleteHandler] = useState(false);
   useEffect(() => {
     const getData = async () => {
       const response = await getListPet();
       setData(response.data);
       console.log(response.data);
     };
-    if (dataFetchedRef.current) return;
-    dataFetchedRef.current = true;
     getData();
   }, []);
   return (
     <div className="flex flex-col justify-between items-stretch">
-      {data && data.map((item) => <PetCard key={item.id} item={item} />)}
+      {data &&
+        data.map((item) => (
+          <PetCard
+            key={item.id}
+            setDeleteHandler={setDeleteHandler}
+            item={item}
+          />
+        ))}
       {/* for Adding new pet */}
       <Link
         href="/dashboard/my-pets/createNewPet"
