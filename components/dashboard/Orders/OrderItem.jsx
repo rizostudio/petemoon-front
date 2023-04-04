@@ -46,7 +46,9 @@ export default function OrderItem({ item }) {
             <bdi>
               تحویل گیرنده
               <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
-                {item.address.receiver}
+                {item.address
+                  ? item.address?.receiver
+                  : "آدرس انتخابی حذف شده است "}
               </span>
             </bdi>
           </p>
@@ -64,7 +66,9 @@ export default function OrderItem({ item }) {
         <bdi>
           آدرس پستی :
           <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
-            {item.address.postal_address}
+            {item.address
+              ? item.address?.postal_address
+              : "آدرس انتخابی حذف شده است "}
           </span>
         </bdi>
       </p>
