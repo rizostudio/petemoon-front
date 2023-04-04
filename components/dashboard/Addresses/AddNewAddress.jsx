@@ -22,9 +22,11 @@ export default function AddNewAddress() {
           />
         </Link>
       </div>
-      <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
-        ثبت آدرس جدید
-      </p>
+      <Link href={"/dashboard/addresses/create"}>
+        <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
+          ثبت آدرس جدید
+        </p>
+      </Link>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { deleteAddress } from "@/services/dashboard/address/delete";
 import Modal from "@/components/partials/modal/Modal";
 //toast
 import { toast } from "react-toastify";
+import Link from "next/link";
 export default function DeleteModal({
   showeModal,
   setShowModal,
@@ -61,15 +62,19 @@ export default function DeleteModal({
               // htmlFor="More-modal"
               className="w-full flex flex-row items-center px-9 py-3"
             >
-              <div
-                // onClick={handleEditAddress(index)}
-                className="flex flex-row cursor-pointer"
-              >
-                <Image src={Edit2_Icon} alt="EditIcon" width={15} height={15} />
-                <p className="text-base text-black font-medium leading-8 mr-2">
-                  ویرایش آدرس
-                </p>
-              </div>
+              <Link href={`/dashboard/addresses/edit/${id}`}>
+                <div className="flex flex-row cursor-pointer">
+                  <Image
+                    src={Edit2_Icon}
+                    alt="EditIcon"
+                    width={15}
+                    height={15}
+                  />
+                  <p className="text-base text-black font-medium leading-8 mr-2">
+                    ویرایش آدرس
+                  </p>
+                </div>
+              </Link>
             </label>
           </div>
         </label>
