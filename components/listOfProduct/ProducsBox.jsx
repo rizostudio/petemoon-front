@@ -51,7 +51,11 @@ function ProducsBox({ data }) {
     <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5">
       {products &&
         products.map((item, index) => (
-          <div key={item.slug} ref={setLastEllement}>
+          <div
+            className="w-full lg:w-auto"
+            key={item.slug}
+            ref={setLastEllement}
+          >
             <ListOfProductCard item={item} index={index} />
           </div>
         ))}

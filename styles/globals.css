@@ -227,3 +227,25 @@ li[data-testid="day-37"] {
   font-size: 20px !important;
   justify-content: start !important;
 }
+select {
+  -moz-appearance: none !important; /* Firefox */
+  -webkit-appearance: none !important; /* Safari and Chrome */
+  appearance: none !important;
+  background-image: none;
+  height: 200px;
+  overflow: scroll;
+}
+option {
+  background-color: #f2f2f3;
+  padding: 10px;
+  color: #9b9ba1 !important;
+}
+option:hover {
+  background: transparent !important;
+  color: #000;
+}
+select option:checked,
+select option:hover {
+  box-shadow: 0 0 10px 100px #000 inset !important;
+  color: #000 !important;
+}

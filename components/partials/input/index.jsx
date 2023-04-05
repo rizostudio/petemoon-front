@@ -17,6 +17,7 @@ export default function FloatLabelInput({
   disabled,
   list,
   defaultValue,
+  children,
 }) {
   if (type === "date") {
     console.log(value);
@@ -30,16 +31,10 @@ export default function FloatLabelInput({
           isGregorian={false}
           input={true}
           placeholder="تاریخ را وارد کنید"
-          // style={{ direction: "rtl" }}
-          // defaultValue={defaultValue}
           selectedDay={value}
           onSelectDay={onChange}
-          // onChange={onChange}
           selectedBackgroundColor={"#FF0000"}
           disabled={disabled}
-          // locale="fa"
-          // firstDayOfWeek={6}
-          // weekendDays={[5]}
           className={clsx(
             `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
             {
@@ -48,20 +43,27 @@ export default function FloatLabelInput({
             }
           )}
         />
+      ) : type === "select" ? (
+        <select
+          type={type}
+          id={name}
+          className={clsx(
+            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
+            {
+              "bg-white": !disabled,
+              "bg-secondary": disabled,
+            }
+          )}
+          placeholder=" "
+          onChange={onChange}
+          value={value}
+          name={name}
+          disabled={disabled}
+          list={list}
+        >
+          {children}
+        </select>
       ) : (
-        // <DatePicker
-        //   timePicker={false}
-        //   onClickSubmitButton={onChange}
-        //   value={value ? value : new Date()}
-        //   // name={name}
-        //   className={clsx(
-        //     `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
-        //     {
-        //       "bg-white": !disabled,
-        //       "bg-secondary": disabled,
-        //     }
-        //   )}
-        // />
         <input
           type={type}
           id={name}

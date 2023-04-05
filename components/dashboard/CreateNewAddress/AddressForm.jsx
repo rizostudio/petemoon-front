@@ -7,11 +7,12 @@ import MapPreserve_Pic from "../../../assets/dashboard/mapPicPreserve.svg";
 //formik
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
-
 //component
 import FloatLabelInput from "@/components/partials/input";
 //services
 import { createAddress } from "@/services/dashboard/address/create";
+//data
+import data from "../../../staticJsonData/provinces.json";
 export default function AddressForm() {
   const router = useRouter();
   const AddressSchema = Yup.object().shape({
@@ -59,7 +60,7 @@ export default function AddressForm() {
               استان
             </label>
             <FloatLabelInput
-              type={"text"}
+              type={"select"}
               placeholder={"استان"}
               name="province"
               onChange={formik.handleChange}
@@ -68,11 +69,11 @@ export default function AddressForm() {
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
-            />
-            <datalist
+            >
+              {/* <select
               id="provinces"
               className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
-            >
+            > */}
               <option>تهران</option>
               <option>فارس</option>
               <option>سیستان و بلوچستان</option>
@@ -80,7 +81,8 @@ export default function AddressForm() {
               <option>قم</option>
               <option>مازندران</option>
               <option>گلستان</option>
-            </datalist>
+            </FloatLabelInput>
+            {/* </select> */}
             {formik.errors.province && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                 <bdi>{formik.errors.province}</bdi>
@@ -92,7 +94,7 @@ export default function AddressForm() {
               شهر
             </label>
             <FloatLabelInput
-              type={"text"}
+              type={"select"}
               placeholder={"شهر"}
               name="city"
               onChange={formik.handleChange}
@@ -101,17 +103,19 @@ export default function AddressForm() {
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
-            />
-            <datalist
-              id="cities"
-              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
             >
               <option>تهران</option>
               <option>شیراز</option>
               <option>اهواز</option>
               <option>سمنان</option>
               <option>قم</option>
-            </datalist>
+            </FloatLabelInput>
+            {/* <datalist
+              id="cities"
+              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
+            >
+             
+            </datalist> */}
             {formik.errors.city && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                 <bdi>{formik.errors.city}</bdi>
