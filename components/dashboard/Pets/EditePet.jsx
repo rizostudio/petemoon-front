@@ -12,36 +12,74 @@ import Upload_Icon from "../../../assets/common/uploadIcon.svg";
 import FloatLabelInput from "@/components/partials/input";
 //services
 import { getSinglePet } from "@/services/dashboard/pets/getSingle";
+import { getPetType } from "@/services/dashboard/pets/getPetType";
+import { getPetCategory } from "@/services/dashboard/pets/getPetCategory";
+import { editPet } from "@/services/dashboard/pets/edit";
 export default function EditePet({ id }) {
   const petImageRef = useRef(null);
+  const dataFetchedRef = useRef(false);
   const [petImage, setpetImage] = useState(PetPicPreserve);
   const [inputError, setInputError] = useState(false);
+  const [initialData, setInitialData] = useState({});
+  const [petType, setPetTyps] = useState([]);
+  const [selectType, setSelectType] = useState("");
+  const [petCategory, setOPetCategory] = useState([]);
+  const [selectCategory, setSelectCategory] = useState("");
   useEffect(() => {
     const getData = async () => {
       const response = await getSinglePet(id);
       if (response.success) {
-        console.log(response);
+        setInitialData(response.data);
+        setSelectCategory(response.data.pet_category);
+        setSelectType(response.data.pet_type);
+        response.data.photo && setpetImage(response.data.photo);
       }
     };
     getData();
+  }, [id]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getPetType();
+      if (response.success) {
+        setPetTyps(response.data);
+        petType.map((item) => {
+          if (item.pet_type === initialData.pet_type) {
+            setFieldValue("pet_type", item.id);
+          }
+        });
+      }
+    };
+
+    // if (dataFetchedRef.current) return;
+    // dataFetchedRef.current = true;
+    getData();
   }, []);
+
   const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      name: "",
-      pet_type: "",
-      pet_category: "",
-      sex: "",
-      birth_date: "",
-      weight: 0,
-      last_vaccine_date: "",
-      underlying_disease: "",
-      last_anti_parasitic_vaccine_date: "",
-      petImage: "",
+      name: initialData.name,
+      pet_type: selectType,
+      pet_category: selectCategory,
+      sex: initialData.sex,
+      birth_date: initialData.birth_date,
+      weight: initialData.weight,
+      last_vaccine_date: initialData.last_vaccine_date,
+      underlying_disease: initialData.underlying_disease,
+      last_anti_parasitic_vaccine_date:
+        initialData.last_anti_parasitic_vaccine_date,
+      photo: "",
     },
     onSubmit: (value) => {
-      console.log(value);
+      handleEditSubmit(value);
     },
   });
+  const handleEditSubmit = async () => {
+    const response = await editPet(values, id);
+    if (response.success) {
+      console.log(response);
+    }
+  };
   const birthDate = (e) => {
     const datePickerOutput = moment(e.toString()).format("YYYY-MM-DD");
     setFieldValue("birth_date", datePickerOutput);
@@ -58,7 +96,7 @@ export default function EditePet({ id }) {
     if (petImageRef.current) {
       const file = petImageRef.current.files;
       ShowPetImagePreview(file[0]);
-      setFieldValue("petImage", file[0]);
+      setFieldValue("photo", file[0]);
     }
   };
   const ShowPetImagePreview = (file) => {
@@ -72,6 +110,42 @@ export default function EditePet({ id }) {
       fileReader.readAsDataURL(file);
     }
   };
+  const handleChangeType = (e) => {
+    petType.map((item) => {
+      if (item.pet_type === e.target.value) {
+        setFieldValue("pet_type", item.id);
+        setSelectType(e.target.value);
+        const getCategory = async () => {
+          const response = await getPetCategory(item.specific_type);
+          if (response) {
+            setOPetCategory(response.data);
+          }
+        };
+        getCategory();
+      }
+    });
+  };
+  const handleChangeCategory = (e) => {
+    setSelectCategory(e.target.value);
+    petCategory.map((item) => {
+      if (item.pet_category === e.target.value) {
+        setFieldValue("pet_category", item.id);
+      }
+    });
+  };
+  useEffect(() => {
+    petType.map((item) => {
+      if (item.pet_type === values.pet_type) {
+        const getCategory = async () => {
+          const response = await getPetCategory(item.specific_type);
+          if (response) {
+            setOPetCategory(response.data);
+          }
+        };
+        getCategory();
+      }
+    });
+  }, [values.pet_type]);
   return (
     <div className="flex flex-col w-full">
       {/* for show heading in this page */}
@@ -119,22 +193,20 @@ export default function EditePet({ id }) {
                     نوع
                   </label>
                   <FloatLabelInput
-                    type={"text"}
+                    type={"select"}
                     placeholder={"نوع"}
-                    name="pet_category"
-                    onChange={handleChange}
-                    value={values.pet_category}
-                    list={"kinds"}
+                    name="pet_type"
+                    onChange={handleChangeType}
+                    value={selectType}
+                    // list={"kinds"}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-                  <datalist id="kinds">
-                    <option>سگ خانگی</option>
-                    <option>سگ نگهبان</option>
-                    <option>سگ شکاری</option>
-                    <option>سگ امدادگر</option>
-                  </datalist>
+                  >
+                    {petType &&
+                      petType.map((item) => <option>{item.pet_type}</option>)}
+                  </FloatLabelInput>
+
                   {inputError ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>فرمت صحیح نمی باشد!</bdi>
@@ -150,27 +222,25 @@ export default function EditePet({ id }) {
                   <FloatLabelInput
                     type={"select"}
                     placeholder={"نژاد"}
-                    name="pet_type"
-                    onChange={handleChange}
-                    value={values.pet_type}
-                    list="races"
+                    name="pet_category"
+                    onChange={handleChangeCategory}
+                    value={selectCategory}
+                    // list="races"
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-                  <datalist
-                    className="max-h-12 overflow-scroll w-10"
-                    id="races"
                   >
-                    <option>بولداگ</option>
-                    <option>پودل</option>
-                    <option>پامر</option>
-                    <option>ژپرتون</option>
-                    <option>بولداگ</option>
-                    <option>پودل</option>
-                    <option>پامر</option>
-                    <option>ژپرتون</option>
-                  </datalist>
+                    <option
+                      selected="true"
+                      style={{ display: "none" }}
+                    ></option>
+                    {petCategory.map((item) => (
+                      <option key={item.id} id={item.id}>
+                        {item.pet_category}
+                      </option>
+                    ))}
+                  </FloatLabelInput>
+
                   {inputError && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>فرمت صحیح نمی باشد!</bdi>
@@ -212,15 +282,7 @@ export default function EditePet({ id }) {
                   placeholder={"تاریخ تولد"}
                   name="birth_date"
                   onChange={birthDate}
-                  value={
-                    values.birth_date
-                      ? new Date(
-                          parseInt(values.birth_date.split("-")[0]),
-                          parseInt(values.birth_date.split("-")[1]) - 1,
-                          parseInt(values.birth_date.split("-")[2])
-                        )
-                      : null
-                  }
+                  value={values.birth_date}
                   h={"h-12"}
                   py={"3"}
                   dir={"ltr"}
@@ -263,15 +325,11 @@ export default function EditePet({ id }) {
                     name="underlying_disease"
                     onChange={handleChange}
                     value={values.underlying_disease}
-                    list={"underlying_disease"}
+                    // list={"underlying_disease"}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
                   />
-                  <datalist id="underlying_disease">
-                    <option>سرخک حاد</option>
-                    <option>آنلفونزا</option>
-                  </datalist>
                   {inputError ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>فرمت صحیح نمی باشد!</bdi>
@@ -289,16 +347,7 @@ export default function EditePet({ id }) {
                     placeholder={"تاریخ آخرین واکسن"}
                     // name="last_vaccine_date"
                     onChange={lastVaccineDate}
-                    value={
-                      values.last_vaccine_date
-                        ? new Date(
-                            parseInt(values.last_vaccine_date.split("-")[0]),
-                            parseInt(values.last_vaccine_date.split("-")[1]) -
-                              1,
-                            parseInt(values.last_vaccine_date.split("-")[2])
-                          )
-                        : null
-                    }
+                    value={values.last_vaccine_date}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
@@ -318,27 +367,7 @@ export default function EditePet({ id }) {
                     placeholder={"تاریخ آخرین واکسن ضد انگل"}
                     // name="last_anti_parasitic_vaccine_date"
                     onChange={lastAntiParasiticVaccineDate}
-                    value={
-                      values.last_anti_parasitic_vaccine_date
-                        ? new Date(
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[0]
-                            ),
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[1]
-                            ) - 1,
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[2]
-                            )
-                          )
-                        : null
-                    }
+                    value={values.last_anti_parasitic_vaccine_date}
                     list="sexes"
                     h={"h-12"}
                     py={"3"}

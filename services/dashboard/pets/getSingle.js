@@ -3,7 +3,7 @@ import { httpRequest } from "../../http";
 
 export const getSinglePet = async (id) => {
   try {
-    const response = await httpRequest.get(`/dashboard/pet/${id}`);
+    const response = await httpRequest.get(`/dashboard/single-pet/${id}`);
     const data = response.data.data;
     return successResponse(data);
   } catch (error) {

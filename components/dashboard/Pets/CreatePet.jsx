@@ -22,7 +22,7 @@ export default function CreatePet() {
   const [inputError, setInputError] = useState(false);
   const [petType, setPetTyps] = useState([]);
   const [selectType, setSelectType] = useState("");
-  const [petCategory, setOPetCategory] = useState([]);
+  const [petCategory, setPetCategory] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
   useEffect(() => {
     const getData = async () => {
@@ -88,6 +88,7 @@ export default function CreatePet() {
     }
   };
   const handleChangeType = (e) => {
+    console.log(e.target.value);
     petType.map((item) => {
       if (item.pet_type === e.target.value) {
         setFieldValue("pet_type", item.specific_type);
@@ -95,7 +96,7 @@ export default function CreatePet() {
         const getCategory = async () => {
           const response = await getPetCategory(item.specific_type);
           if (response) {
-            setOPetCategory(response.data);
+            setPetCategory(response.data);
           }
         };
         getCategory();
@@ -104,7 +105,9 @@ export default function CreatePet() {
   };
   const handleChangeCategory = (e) => {
     setSelectCategory(e.target.value);
+    console.log(e.target.value);
     petCategory.map((item) => {
+      console.log(item.pet_category);
       if (item.pet_category === e.target.value) {
         setFieldValue("pet_category", item.id);
       }
@@ -115,7 +118,7 @@ export default function CreatePet() {
       {/* for show heading in this page */}
       <div className="w-full flex lg:hidden flex-row justify-between items-center mb-10">
         <p className="text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-          ثبت پت من
+          ویرایش پت من
         </p>
         <Link
           href="/dashboard/my-pets"
@@ -157,21 +160,25 @@ export default function CreatePet() {
                     نوع
                   </label>
                   <FloatLabelInput
-                    type={"text"}
+                    type={"select"}
                     placeholder={"نوع"}
                     name="pet_type"
                     onChange={handleChangeType}
                     value={selectType}
-                    list={"kinds"}
+                    // list={"kinds"}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-
-                  <datalist id="kinds">
+                  >
+                    <option
+                      selected="true"
+                      style={{ display: "none" }}
+                    ></option>
                     {petType &&
-                      petType.map((item) => <option>{item.pet_type}</option>)}
-                  </datalist>
+                      petType.map((item) => (
+                        <option key={item.id}>{item.pet_type}</option>
+                      ))}
+                  </FloatLabelInput>
                   {inputError ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>فرمت صحیح نمی باشد!</bdi>
@@ -190,24 +197,19 @@ export default function CreatePet() {
                     name="pet_category"
                     onChange={handleChangeCategory}
                     value={selectCategory}
-                    list="races"
+                    // list="races"
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-                  {selectType && (
-                    <datalist
-                      className="max-h-12 overflow-scroll w-10"
-                      id="races"
-                    >
-                      {petCategory &&
-                        petCategory.map((item) => (
-                          <option key={item.id} id={item.id}>
-                            {item.pet_category}
-                          </option>
-                        ))}
-                    </datalist>
-                  )}
+                  >
+                    <option
+                      selected="true"
+                      style={{ display: "none" }}
+                    ></option>
+                    {petCategory.map((item) => (
+                      <option key={item.id}>{item.pet_category}</option>
+                    ))}
+                  </FloatLabelInput>
 
                   {inputError && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">

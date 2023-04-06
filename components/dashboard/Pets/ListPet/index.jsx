@@ -19,7 +19,7 @@ export default function Index() {
       console.log(response.data);
     };
     getData();
-  }, []);
+  }, [deleteHandler]);
   return (
     <div className="flex flex-col justify-between items-stretch">
       {data &&

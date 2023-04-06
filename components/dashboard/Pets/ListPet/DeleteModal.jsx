@@ -22,7 +22,7 @@ export default function DeleteModal({
     if (response.success) {
       setDeleteHandler((prev) => !prev);
       setShowModal(false);
-      toast.success("آدرس با موفقیت حذف شد", {
+      toast.success(" پت با موفقیت حذف شد", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
