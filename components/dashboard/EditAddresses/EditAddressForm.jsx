@@ -7,8 +7,8 @@ import MapPreserve_Pic from "../../../assets/dashboard/mapPicPreserve.svg";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
-//http
-import { httpRequest } from "@/services/http";
+//data
+import data from "../../../staticJsonData/provinces.json";
 //component
 import FloatLabelInput from "@/components/partials/input";
 import { getSingleAddress } from "@/services/dashboard/address/getSingle";
@@ -17,6 +17,7 @@ import { editAddress } from "@/services/dashboard/address/edit";
 export default function EditAddressForm({ id }) {
   console.log(id);
   const [initialData, setInitialData] = useState({});
+  const [cities, setCities] = useState([]);
   useEffect(() => {
     const getData = async () => {
       const response = await getSingleAddress(id);
@@ -24,6 +25,7 @@ export default function EditAddressForm({ id }) {
     };
     getData();
   }, [id]);
+
   const router = useRouter();
   const AddressSchema = Yup.object().shape({
     province: Yup.string().required("فیلد الزامی است"),
@@ -52,12 +54,21 @@ export default function EditAddressForm({ id }) {
     },
     validationSchema: AddressSchema,
   });
+  useEffect(() => {
+    data.find((item) => {
+      if (item.name === formik.values.province) {
+        setCities(item.cities);
+        console.log(item.cities);
+      }
+    });
+  }, [formik.values.province]);
   const handleEditSubmit = async (values) => {
     const response = await editAddress(values, id);
     if (response.success) {
       router.push("/dashboard/addresses");
     }
   };
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -70,7 +81,7 @@ export default function EditAddressForm({ id }) {
               استان
             </label>
             <FloatLabelInput
-              type={"text"}
+              type={"select"}
               placeholder={"استان"}
               name="province"
               onChange={formik.handleChange}
@@ -79,19 +90,13 @@ export default function EditAddressForm({ id }) {
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
-            />
-            <datalist
-              id="provinces"
-              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
             >
-              <option>تهران</option>
-              <option>فارس</option>
-              <option>سیستان و بلوچستان</option>
-              <option>کهکلویه و بویراحمد</option>
-              <option>قم</option>
-              <option>مازندران</option>
-              <option>گلستان</option>
-            </datalist>
+              {data.map((item) => (
+                <option id={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </FloatLabelInput>
             {formik.errors.province && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                 <bdi>{formik.errors.province}</bdi>
@@ -103,7 +108,7 @@ export default function EditAddressForm({ id }) {
               شهر
             </label>
             <FloatLabelInput
-              type={"text"}
+              type={"select"}
               placeholder={"شهر"}
               name="city"
               onChange={formik.handleChange}
@@ -112,17 +117,13 @@ export default function EditAddressForm({ id }) {
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
-            />
-            <datalist
-              id="cities"
-              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
             >
-              <option>تهران</option>
-              <option>شیراز</option>
-              <option>اهواز</option>
-              <option>سمنان</option>
-              <option>قم</option>
-            </datalist>
+              {cities.map((item) => (
+                <option id={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </FloatLabelInput>
             {formik.errors.city && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                 <bdi>{formik.errors.city}</bdi>

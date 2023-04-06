@@ -80,10 +80,6 @@ export default function AddressForm() {
               py={"3"}
               dir={"rtl"}
             >
-              {/* <select
-              id="provinces"
-              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
-            > */}
               {data.map((item) => (
                 <option id={item.id} key={item.id}>
                   {item.name}
