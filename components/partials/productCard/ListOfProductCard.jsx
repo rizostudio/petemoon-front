@@ -134,11 +134,10 @@ export default function ProductCart({ item, index }) {
               <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
               </h2>
-              {item.discount && (
-                <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
-                  {item.discount}%
-                </p>
-              )}
+
+              <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
+                {item.discount ? item.discount : 12}%
+              </p>
             </div>
             <div className="flex lg:hidden justify-between items-center">
               <h2 className="text-base text-black font-medium leading-8">
@@ -184,15 +183,13 @@ export default function ProductCart({ item, index }) {
                   {item.inventory ? (
                     <div className="flex flex-col lg:flex-row justify-between lg:items-center mt-2">
                       <div className="flex flex-col lg:flex-col-reverse">
-                        {item.discount && (
+                        {item.max_price && (
                           <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
                             {item.max_price}
                           </p>
                         )}
                         <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
-                          <bdi>
-                            {item.min_price * (1 - item.max_price / 100)} تومان
-                          </bdi>
+                          <bdi>{item.max_price} تومان</bdi>
                         </p>
                       </div>
                       <div

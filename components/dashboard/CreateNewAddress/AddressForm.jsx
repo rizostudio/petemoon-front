@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -15,6 +15,7 @@ import { createAddress } from "@/services/dashboard/address/create";
 import data from "../../../staticJsonData/provinces.json";
 export default function AddressForm() {
   const router = useRouter();
+  const [cities, setCities] = useState([]);
   const AddressSchema = Yup.object().shape({
     province: Yup.string().required("فیلد الزامی است"),
     city: Yup.string().required("فیلد الزامی است"),
@@ -48,6 +49,15 @@ export default function AddressForm() {
       router.push("/dashboard/addresses");
     }
   };
+  useEffect(() => {
+    data.find((item) => {
+      if (item.name === formik.values.province) {
+        setCities(item.cities);
+        console.log(item.cities);
+      }
+    });
+  }, [formik.values.province]);
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -74,13 +84,11 @@ export default function AddressForm() {
               id="provinces"
               className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
             > */}
-              <option>تهران</option>
-              <option>فارس</option>
-              <option>سیستان و بلوچستان</option>
-              <option>کهکلویه و بویراحمد</option>
-              <option>قم</option>
-              <option>مازندران</option>
-              <option>گلستان</option>
+              {data.map((item) => (
+                <option id={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              ))}
             </FloatLabelInput>
             {/* </select> */}
             {formik.errors.province && (
@@ -104,18 +112,12 @@ export default function AddressForm() {
               py={"3"}
               dir={"rtl"}
             >
-              <option>تهران</option>
-              <option>شیراز</option>
-              <option>اهواز</option>
-              <option>سمنان</option>
-              <option>قم</option>
+              {cities.map((item) => (
+                <option id={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              ))}
             </FloatLabelInput>
-            {/* <datalist
-              id="cities"
-              className="border-[1px] solid border-gray-500 rounded-[12px] lg:rounded-[5px]"
-            >
-             
-            </datalist> */}
             {formik.errors.city && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                 <bdi>{formik.errors.city}</bdi>
