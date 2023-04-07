@@ -15,6 +15,7 @@ export const reducer = (state, action) => {
         basket: [
           ...state.basket,
           {
+            name: action.payload.name,
             id: action.payload.id,
             category: action.payload.category,
             stars: action.payload.stars ? action.payload.stars : 5,

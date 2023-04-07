@@ -16,7 +16,14 @@ export default function ProductCart({ item, index }) {
       dispatch({
         type: "ADD_TOBASKET",
         payload: {
-          item: { ...item },
+          name: item.name,
+          id: item.id,
+          category: item.category?.name,
+          stars: item.rating,
+          seller: item.best_seller?.name,
+          price: item.max_price,
+          discount: item.min_price,
+          image: item.picture,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
@@ -38,7 +45,14 @@ export default function ProductCart({ item, index }) {
         dispatch({
           type: "ADD_TOBASKET",
           payload: {
-            item: { ...item },
+            name: item.name,
+            id: item.id,
+            category: item.category?.name,
+            stars: item.rating,
+            seller: item.best_seller?.name,
+            price: item.max_price,
+            discount: item.min_price,
+            image: item.picture,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {
@@ -125,11 +139,12 @@ export default function ProductCart({ item, index }) {
             </div>
           </Link>
         </div>
-        <Link href={`/products/${item.slug}`}>
-          <div className="w-full lg:mt-4 mr-3 lg:mr-0">
-            <p className="hidden lg:block text-base text-gray-400 font-medium leading-5">
-              <bdi>{item.category?.name}</bdi>
-            </p>
+
+        <div className="w-full lg:mt-4 mr-3 lg:mr-0">
+          <p className="hidden lg:block text-base text-gray-400 font-medium leading-5">
+            <bdi>{item.category?.name}</bdi>
+          </p>
+          <Link href={`/products/${item.slug}`}>
             <div className="hidden lg:flex justify-between items-center content-start">
               <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
@@ -139,87 +154,87 @@ export default function ProductCart({ item, index }) {
                 {item.discount ? item.discount : 12}%
               </p>
             </div>
-            <div className="flex lg:hidden justify-between items-center">
-              <h2 className="text-base text-black font-medium leading-8">
-                {item.title}
-              </h2>
-              <div className="flex flex-row items-center mr-1">
-                <Image
-                  width={100}
-                  height={100}
-                  src={"/assets/common/startGold.svg"}
-                  alt="GoldenStarIcon"
-                  className="w-2"
-                />
-                <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${
-                  item.rating ? item.rating : 5
-                })`}</p>
-              </div>
+          </Link>
+          <div className="flex lg:hidden justify-between items-center">
+            <h2 className="text-base text-black font-medium leading-8">
+              {item.title}
+            </h2>
+            <div className="flex flex-row items-center mr-1">
+              <Image
+                width={100}
+                height={100}
+                src={"/assets/common/startGold.svg"}
+                alt="GoldenStarIcon"
+                className="w-2"
+              />
+              <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+                item.rating ? item.rating : 5
+              })`}</p>
             </div>
-            <div className="flex flex-row lg:flex-col justify-between">
-              <div className="hidden lg:flex flex-row items-center">
-                <div className="flex flex-row items-center">
-                  {starsBoxHandler(item.rating ? item.rating : 5)}
-                </div>
-                <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${
-                  item.rating ? item.rating : 5
-                })`}</p>
+          </div>
+          <div className="flex flex-row lg:flex-col justify-between">
+            <div className="hidden lg:flex flex-row items-center">
+              <div className="flex flex-row items-center">
+                {starsBoxHandler(item.rating ? item.rating : 5)}
               </div>
-              <div className="w-full flex lg:flex-col justify-between items-stretch">
-                <div className="flex flex-col justify-between">
-                  <div className="flex flex-col">
-                    <p className="lg:hidden text-xs text-gray-400 font-medium lg:leading-5">
-                      <bdi>{item.group}</bdi>
-                    </p>
-                    <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
-                      {item.best_seller?.name}
-                    </p>
-                  </div>
-                  <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
-                    <bdi>{item.discount}</bdi>
+              <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${
+                item.rating ? item.rating : 5
+              })`}</p>
+            </div>
+            <div className="w-full flex lg:flex-col justify-between items-stretch">
+              <div className="flex flex-col justify-between">
+                <div className="flex flex-col">
+                  <p className="lg:hidden text-xs text-gray-400 font-medium lg:leading-5">
+                    <bdi>{item.group}</bdi>
+                  </p>
+                  <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
+                    {item.best_seller?.name}
                   </p>
                 </div>
-                <div className="self-end lg:self-stretch">
-                  {item.inventory ? (
-                    <div className="flex flex-col lg:flex-row justify-between lg:items-center mt-2">
-                      <div className="flex flex-col lg:flex-col-reverse">
-                        {item.max_price && (
-                          <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
-                            {item.max_price}
-                          </p>
-                        )}
-                        <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
-                          <bdi>{item.max_price} تومان</bdi>
+                <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
+                  <bdi>{item.discount}</bdi>
+                </p>
+              </div>
+              <div className="self-end lg:self-stretch">
+                {item.inventory ? (
+                  <div className="flex flex-col lg:flex-row justify-between lg:items-center mt-2">
+                    <div className="flex flex-col lg:flex-col-reverse">
+                      {item.max_price && (
+                        <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
+                          {item.max_price}
                         </p>
-                      </div>
-                      <div
-                        // href={`/products/${index}`}
-                        className="flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]"
+                      )}
+                      <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
+                        <bdi>{item.max_price} تومان</bdi>
+                      </p>
+                    </div>
+                    <div
+                      // href={`/products/${index}`}
+                      className="flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]"
+                    >
+                      <Image
+                        width={20}
+                        height={20}
+                        src={"/assets/common/shopping-cartRedIcon.svg"}
+                        alt="ShoppingCartRedIcon"
+                      />
+                      <p
+                        onClick={handleAddToCart}
+                        className="text-base text-primary font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
                       >
-                        <Image
-                          width={20}
-                          height={20}
-                          src={"/assets/common/shopping-cartRedIcon.svg"}
-                          alt="ShoppingCartRedIcon"
-                        />
-                        <p
-                          onClick={handleAddToCart}
-                          className="text-base text-primary font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
-                        >
-                          خرید
-                        </p>
-                      </div>
+                        خرید
+                      </p>
                     </div>
-                  ) : (
-                    <div className="text-base text-gray-400 text-center font-medium p-2 mt-3 w-full bg-secondary rounded-[10px]">
-                      ناموجود
-                    </div>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div className="text-base text-gray-400 text-center font-medium p-2 mt-3 w-full bg-secondary rounded-[10px]">
+                    ناموجود
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   );
