@@ -12,6 +12,8 @@ import BestVets from "@/components/homePage/BestVets";
 import BestSellers from "@/components/homePage/BestSellers";
 import BeneFits from "@/components/singleProduct/BeneFits";
 import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
+import { getTopProduct } from "@/services/home/getTopProduct";
+import { getTopSeller } from "@/services/home/getTopSeller";
 
 export default function Home() {
   return (
@@ -31,3 +33,15 @@ export default function Home() {
     </MainLayout>
   );
 }
+// export async function getStaticProps() {
+//   // const { slug } = context.params;
+//   const response = await getTopSeller();
+//   console.log(response);
+//   console.log(response.data);
+//   return {
+//     props: {
+//       products: response.data,
+//       // slug,
+//     },
+//   };
+// }
