@@ -130,7 +130,7 @@ export default function ProductCart({ item, index }) {
                 // height={223}
                 src={
                   item.picture
-                    ? `petemoon.com${item.picture}`
+                    ? `https://api.petemoon.com${item.picture}`
                     : "/assets/product/ProductPic4.svg"
                 }
                 alt="ProductPic"
