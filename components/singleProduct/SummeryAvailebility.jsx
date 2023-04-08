@@ -14,6 +14,7 @@ export default function SummeryAvailebility({ data }) {
       dispatch({
         type: "ADD_TOBASKET",
         payload: {
+          name: data.name,
           id: data.productpricing[0].id,
           category: data.category,
           stars: data.ratind,

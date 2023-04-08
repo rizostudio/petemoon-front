@@ -18,7 +18,7 @@ export default function SummeryFeature({ data }) {
           <bdi>مخصوص:</bdi>
         </p>
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.property}</bdi>
+          <bdi>{data.specific}</bdi>
         </p>
       </div>
       <div className="flex flex-row items-center align-middle my-1 mr-5">
@@ -26,7 +26,7 @@ export default function SummeryFeature({ data }) {
           <bdi>نوع:</bdi>
         </p>
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.property}</bdi>
+          <bdi>{data.category.name}</bdi>
         </p>
       </div>
       <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
@@ -34,7 +34,7 @@ export default function SummeryFeature({ data }) {
           <bdi>کشور سازنده:</bdi>
         </p>
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.property}</bdi>
+          <bdi>{data.made_in}</bdi>
         </p>
       </div>
       <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
@@ -42,7 +42,7 @@ export default function SummeryFeature({ data }) {
           <bdi>ابعاد:</bdi>
         </p>
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.property} cm</bdi>
+          <bdi>{data.size} cm</bdi>
         </p>
       </div>
       <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
@@ -50,7 +50,7 @@ export default function SummeryFeature({ data }) {
           <bdi>وزن:</bdi>
         </p>
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.property} گرم</bdi>
+          <bdi>{data.weight} گرم</bdi>
         </p>
       </div>
     </div>

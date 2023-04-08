@@ -1,25 +1,13 @@
 import React from "react";
 
-export default function Description() {
+export default function Description({ data }) {
   return (
     <div className="text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary">
       <h5 className="text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]">
         توضیح جامع
       </h5>
       <p>
-        <bdi>
-          فرمولی که سلبن برای سگ های بالغ نژاد کوچک ارائه کرده برای حیوانی فعال
-          و بالغ مناسب است . در این فرمول علاوه بر ویتامین ها و مواد معدنی لازم
-          از گلوکزامین و ال کارنتین استفاده شده که بهترین انتخاب برای سگ بالغ
-          شما می باشد و وضعیت بدنی و وزنی حیوان را در جایگاهی سالم با تغذیه
-          مناسب نگه می دارد. در این فرمول از حبوبات نیز استفاده شده که باعث هضم
-          آرام غذا میشود. سگ های بالغ ، طعم و سایز کوچک غذای خشک را دوست خواهند
-          داشت و شما هم ازاین غذا رضایتمند خواهید بود. شرکت پروتیین ایمن تاب در
-          سال 1393 با ایده تولید غذای حیوانات خانگی با توجه به استاندارد های روز
-          جهانی تاسیس و شروع به فعالیت نموده است. این شرکت از مجهزترین و بروز
-          ترین ماشین آلات درکارخانه خود استفاده کرده و بعلاوه از بهترین مواد
-          اولیه شرکتهای اروپایی و آمریکایی و کمک علمی آن ها بهره مند می باشد.
-        </bdi>
+        <bdi>{data.details}</bdi>
       </p>
     </div>
   );

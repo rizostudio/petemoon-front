@@ -17,32 +17,10 @@ export default function CommentfForm({
   formSubmit,
   change,
 }) {
-  const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button
-        onClick={() => {
-          setCommentPageOpen(true);
-          setMainPageOpen(false);
-          setShowModal(true);
-        }}
-        className="lg:hidden text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]"
-      >
-        ثبت دیدگاه
-      </button>
-      <label
-        htmlFor="comment-send-modal"
-        onClick={() => {
-          setCommentPageOpen(true);
-          setMainPageOpen(false);
-          setShowModal(true);
-        }}
-        className="hidden lg:block text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]"
-      >
-        ثبت دیدگاه
-      </label>
       {/* modal */}
-      <Modal show={showModal}>
+      <Modal show={commentPageOpen}>
         <div className="hidden lg:block">
           <input
             type="checkbox"
@@ -59,7 +37,6 @@ export default function CommentfForm({
                   onClick={() => {
                     setCommentPageOpen(false);
                     setMainPageOpen(true);
-                    setShowModal(false);
                   }}
                 >
                   <Image src={CloseButton_Icon} alt="CloseIcon" />
@@ -92,6 +69,9 @@ export default function CommentfForm({
                 </label>
                 <input
                   id="comment-subject"
+                  name="title"
+                  onChange={change}
+                  value={title}
                   type="text"
                   className="px-4 py-2 lg:w-3/4 mt-2 border-[1px] border-solid border-gray-400 focus-visible:border-primary rounded-[5px]"
                 />
@@ -104,6 +84,9 @@ export default function CommentfForm({
                 <textarea
                   form="comment-form"
                   id="comment-text"
+                  name="description"
+                  onChange={change}
+                  value={description}
                   className="px-4 py-2 mt-2 border-[1px] border-solid border-gray-400 rounded-[5px]"
                 ></textarea>
                 <div className="self-end flex flex-row items-center justify-between w-full lg:w-2/5 mt-6">
@@ -111,7 +94,6 @@ export default function CommentfForm({
                     onClick={() => {
                       setCommentPageOpen(false);
                       setMainPageOpen(true);
-                      setShowModal(false);
                     }}
                     // htmlFor="comment-send-modal"
                     className="w-full text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
