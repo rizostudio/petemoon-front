@@ -15,7 +15,6 @@ import { getSingleAddress } from "@/services/dashboard/address/getSingle";
 import { editAddress } from "@/services/dashboard/address/edit";
 
 export default function EditAddressForm({ id }) {
-  console.log(id);
   const [initialData, setInitialData] = useState({});
   const [cities, setCities] = useState([]);
   useEffect(() => {

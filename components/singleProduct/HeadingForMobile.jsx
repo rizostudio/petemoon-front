@@ -15,8 +15,8 @@ export default function HeadingForMobile({ data }) {
             className={clsx(
               "text-base text-black font-black leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
               {
-                "before:bg-primary": data.best_pricing.inventory,
-                "before:bg-gray-400": !data.best_pricing.inventory,
+                "before:bg-primary": data.best_pricing?.inventory,
+                "before:bg-gray-400": !data.best_pricing?.inventory,
               }
             )}
           >
@@ -29,7 +29,7 @@ export default function HeadingForMobile({ data }) {
             })`}</p>
           </div>
         </div>
-        {!data.best_pricing.inventory && (
+        {!data.best_pricing?.inventory && (
           <p className="text-base text-gray-400 font-medium leading-6 underline mr-4">
             ناموجود
           </p>

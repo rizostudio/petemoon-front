@@ -76,11 +76,11 @@ export default function SummeryAvailebility({ data }) {
   return (
     <div
       className={clsx("order-1 w-full mb-3 lg:mb-0", {
-        "lg:mt-9": !data.best_pricing.inventory,
-        "lg:mt-2": data.best_pricing.inventory,
+        "lg:mt-9": !data.best_pricing?.inventory,
+        "lg:mt-2": data.best_pricing?.inventory,
       })}
     >
-      {data.best_pricing.inventory ? (
+      {data.best_pricing?.inventory ? (
         <div className="flex flex-row justify-between items-center w-full">
           <div className="text-right">
             <div className="flex flex-row items-center">

@@ -15,7 +15,7 @@ export const editPet = async (petInfo, id) => {
     "last_anti_parasitic_vaccine_date",
     petInfo.last_anti_parasitic_vaccine_date
   );
-  form.append("photo", petInfo.photo);
+  petInfo.photo && form.append("photo", petInfo.photo);
   try {
     const response = await httpRequest.patch(`/dashboard/pet/${id}`, form);
     const data = response.data.data;

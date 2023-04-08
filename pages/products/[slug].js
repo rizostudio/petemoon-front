@@ -20,9 +20,11 @@ const Product = ({ product }) => {
 };
 export async function getStaticProps(context) {
   const { slug } = context.params;
+  console.log(slug);
   const response = await getSingleProduct(slug);
-  console.log(response.data.pet_type);
   console.log(response.data);
+  // console.log(response.data.pet_type);
+  // console.log(response.data);
   return {
     props: {
       product: response.data,
@@ -33,7 +35,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const response = await getListProducts();
   const routes = response.data.products;
-  console.log(routes);
+
   const paths = routes.map((product) => ({
     params: { slug: product.slug },
   }));

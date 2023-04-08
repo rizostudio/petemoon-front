@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 //formik
 import { useFormik } from "formik";
 //moment
@@ -16,6 +17,7 @@ import { getPetType } from "@/services/dashboard/pets/getPetType";
 import { getPetCategory } from "@/services/dashboard/pets/getPetCategory";
 
 export default function CreatePet() {
+  const router = useRouter();
   const petImageRef = useRef(null);
   const dataFetchedRef = useRef(false);
   const [petImage, setpetImage] = useState(PetPicPreserve);
@@ -54,7 +56,7 @@ export default function CreatePet() {
   const handleCreateSubmit = async () => {
     const response = await createPet(values);
     if (response.success) {
-      console.log(response);
+      router.push("/dashboard/my-pets");
     }
   };
   const birthDate = (e) => {
@@ -252,15 +254,7 @@ export default function CreatePet() {
                   placeholder={"تاریخ تولد"}
                   name="birth_date"
                   onChange={birthDate}
-                  value={
-                    values.birth_date
-                      ? new Date(
-                          parseInt(values.birth_date.split("-")[0]),
-                          parseInt(values.birth_date.split("-")[1]),
-                          parseInt(values.birth_date.split("-")[2])
-                        )
-                      : null
-                  }
+                  value={values.birth_date}
                   h={"h-12"}
                   py={"3"}
                   dir={"ltr"}
@@ -329,15 +323,7 @@ export default function CreatePet() {
                     placeholder={"تاریخ آخرین واکسن"}
                     // name="last_vaccine_date"
                     onChange={lastVaccineDate}
-                    value={
-                      values.last_vaccine_date
-                        ? new Date(
-                            parseInt(values.last_vaccine_date.split("-")[0]),
-                            parseInt(values.last_vaccine_date.split("-")[1]),
-                            parseInt(values.last_vaccine_date.split("-")[2])
-                          )
-                        : null
-                    }
+                    value={values.last_vaccine_date}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
@@ -357,27 +343,7 @@ export default function CreatePet() {
                     placeholder={"تاریخ آخرین واکسن ضد انگل"}
                     // name="last_anti_parasitic_vaccine_date"
                     onChange={lastAntiParasiticVaccineDate}
-                    value={
-                      values.last_anti_parasitic_vaccine_date
-                        ? new Date(
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[0]
-                            ),
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[1]
-                            ),
-                            parseInt(
-                              values.last_anti_parasitic_vaccine_date.split(
-                                "-"
-                              )[2]
-                            )
-                          )
-                        : null
-                    }
+                    value={values.last_anti_parasitic_vaccine_date}
                     list="sexes"
                     h={"h-12"}
                     py={"3"}

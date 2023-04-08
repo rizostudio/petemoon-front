@@ -14,11 +14,11 @@ export default function DefaultSeller({ data }) {
           </p>
         </div>
         <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 mr-5 mt-1 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>{data.best_pricing.petshop.name}</bdi>
+          <bdi>{data.best_pricing?.petshop.name}</bdi>
         </p>
       </div>
       <p className="text-sm lg:text-base text-info font-normal leading-6">
-        <bdi>{`${data.productpricing.length - 1} فروشنده دیگر`}</bdi>
+        <bdi>{`${data.productpricing?.length - 1} فروشنده دیگر`}</bdi>
       </p>
     </div>
   );

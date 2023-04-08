@@ -10,7 +10,7 @@ const nextConfig = {
       {
         protocol: "https",
         // domains: ["api.petemoon.com"],
-        hostname: "petemoon.com",
+        hostname: "api.petemoon.com",
         port: "",
         pathname: "/**",
       },

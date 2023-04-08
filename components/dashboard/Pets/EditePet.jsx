@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 //formik
 import { useFormik } from "formik";
 //moment
@@ -16,6 +17,7 @@ import { getPetType } from "@/services/dashboard/pets/getPetType";
 import { getPetCategory } from "@/services/dashboard/pets/getPetCategory";
 import { editPet } from "@/services/dashboard/pets/edit";
 export default function EditePet({ id }) {
+  const router = useRouter();
   const petImageRef = useRef(null);
   const dataFetchedRef = useRef(false);
   const [petImage, setpetImage] = useState(PetPicPreserve);
@@ -30,9 +32,10 @@ export default function EditePet({ id }) {
       const response = await getSinglePet(id);
       if (response.success) {
         setInitialData(response.data);
-        setSelectCategory(response.data.pet_category);
-        setSelectType(response.data.pet_type);
-        response.data.photo && setpetImage(response.data.photo);
+        setSelectType(response.data.pet_type?.pet_type);
+        setSelectCategory(response.data.pet_category?.pet_category);
+        response.data.photo &&
+          setpetImage(`https://api.petemoon.com${response.data.photo}`);
       }
     };
     getData();
@@ -42,16 +45,8 @@ export default function EditePet({ id }) {
       const response = await getPetType();
       if (response.success) {
         setPetTyps(response.data);
-        petType.map((item) => {
-          if (item.pet_type === initialData.pet_type) {
-            setFieldValue("pet_type", item.id);
-          }
-        });
       }
     };
-
-    // if (dataFetchedRef.current) return;
-    // dataFetchedRef.current = true;
     getData();
   }, []);
 
@@ -59,8 +54,8 @@ export default function EditePet({ id }) {
     enableReinitialize: true,
     initialValues: {
       name: initialData.name,
-      pet_type: selectType,
-      pet_category: selectCategory,
+      pet_type: initialData.pet_type?.id,
+      pet_category: initialData.pet_category?.id,
       sex: initialData.sex,
       birth_date: initialData.birth_date,
       weight: initialData.weight,
@@ -77,7 +72,7 @@ export default function EditePet({ id }) {
   const handleEditSubmit = async () => {
     const response = await editPet(values, id);
     if (response.success) {
-      console.log(response);
+      router.push("/dashboard/my-pets");
     }
   };
   const birthDate = (e) => {
@@ -134,17 +129,15 @@ export default function EditePet({ id }) {
     });
   };
   useEffect(() => {
-    petType.map((item) => {
-      if (item.pet_type === values.pet_type) {
-        const getCategory = async () => {
-          const response = await getPetCategory(item.specific_type);
-          if (response) {
-            setOPetCategory(response.data);
-          }
-        };
-        getCategory();
-      }
-    });
+    if (values.pet_type) {
+      const getCategory = async () => {
+        const response = await getPetCategory(values.pet_type);
+        if (response) {
+          setOPetCategory(response.data);
+        }
+      };
+      getCategory();
+    }
   }, [values.pet_type]);
   return (
     <div className="flex flex-col w-full">

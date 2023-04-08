@@ -18,7 +18,7 @@ export default function GeneralInfo({ tabHandlear, item }) {
         <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2">
           <p className="text-base text-black">نوع</p>
           <p className="text-sm text-gray-400 mr-3 font-medium">
-            <bdi>{item.pet_type}</bdi>
+            <bdi>{item.pet_type.pet_type}</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4">
@@ -32,7 +32,7 @@ export default function GeneralInfo({ tabHandlear, item }) {
         <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-2">
           <p className="text-sm lg:text-base text-black">نژاد</p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-            <bdi>{item.pet_category}</bdi>
+            <bdi>{item.pet_category.pet_category}</bdi>
           </p>
         </div>
         <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-0 lg:my-4">

@@ -79,7 +79,7 @@ export default function AddToCartForMobile({ data }) {
   };
   return (
     <div className="lg:hidden px-10 py-5">
-      {data.best_pricing.inventory ? (
+      {data.best_pricing?.inventory ? (
         <div className="flex justify-between items-center">
           <button
             onClick={handleAddToBasket}
@@ -88,10 +88,10 @@ export default function AddToCartForMobile({ data }) {
             افزودن به سبد
           </button>
           <div className="text-left">
-            {data.best_pricing.price && (
+            {data.best_pricing?.price && (
               <div>
                 <p className="text-base text-gray-400 line-through font-light leading-8 opacity-95">
-                  {data.best_pricing.price}
+                  {data.best_pricing?.price}
                 </p>
                 <p className="text-sm text-primary p-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px]">
                   {data.discount}%
@@ -99,7 +99,7 @@ export default function AddToCartForMobile({ data }) {
               </div>
             )}
             <p className="text-lg text-primary font-extrabold leading-8">
-              <bdi>{data.best_pricing.price * (1 - 0 / 100)} تومان</bdi>
+              <bdi>{data.best_pricing?.price * (1 - 0 / 100)} تومان</bdi>
             </p>
           </div>
         </div>
