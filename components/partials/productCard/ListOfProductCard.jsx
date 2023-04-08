@@ -18,7 +18,7 @@ export default function ProductCart({ item, index }) {
         payload: {
           name: item.name,
           id: item.id,
-          category: item.category?.name,
+          category: item.category,
           stars: item.rating,
           seller: item.best_seller?.name,
           price: item.max_price,
@@ -47,7 +47,7 @@ export default function ProductCart({ item, index }) {
           payload: {
             name: item.name,
             id: item.id,
-            category: item.category?.name,
+            category: item.category,
             stars: item.rating,
             seller: item.best_seller?.name,
             price: item.max_price,

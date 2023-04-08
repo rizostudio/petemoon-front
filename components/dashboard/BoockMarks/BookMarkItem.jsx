@@ -16,8 +16,9 @@ export default function BookMarkItem({ item, setDeletHandler }) {
       dispatch({
         type: "ADD_TOBASKET",
         payload: {
+          name: item.product.name,
           id: item.product?.best_pricing?.id,
-          category: item.product?.category?.name,
+          category: item.product?.category,
           stars: item.product?.rating,
           pet_type: item.product?.pet_type?.pet_type?.pet_type,
           seller: item.product?.best_pricing?.petshop?.name,
@@ -45,8 +46,9 @@ export default function BookMarkItem({ item, setDeletHandler }) {
         dispatch({
           type: "ADD_TOBASKET",
           payload: {
+            name: item.product.name,
             id: item.product?.best_pricing?.id,
-            category: item.product?.category?.name,
+            category: item.product?.category,
             stars: item.product?.rating,
             pet_type: item.product?.pet_type?.pet_type?.pet_type,
             seller: item.product?.best_pricing?.petshop?.name,
