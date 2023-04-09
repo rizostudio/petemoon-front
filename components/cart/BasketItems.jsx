@@ -13,7 +13,11 @@ export default function BasketItems() {
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
   const handleSaveBasket = () => {
-    router.push("/payment/set-address");
+    if (authCtx.isLoggedIn) {
+      router.push("/payment/set-address");
+    } else {
+      router.push("/auth/login");
+    }
   };
   const totalBasket = state.basket.reduce((total, item) => {
     return total + parseInt(item.count) * parseInt(item.price);
