@@ -114,7 +114,14 @@ export default function BookMarkItem({ item, setDeletHandler }) {
   };
   return (
     <div className="flex flex-col lg:grid-cols-3 my-2 lg:mx-2 lg:my-3 p-5 lg:p-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-gray-400 lg:shadow-shadowB">
-      <div className="h-[100px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid border-primary"></div>
+      <div className="h-[100px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid border-primary">
+        <Image
+          style={{ width: "100%", height: "100%" }}
+          width={100}
+          height={100}
+          src={`https://api.petemoon.com${item.product.picture}`}
+        />
+      </div>
       <div className="w-full flex flex-col justify-between items-stretch">
         <div className="w-full flex flex-row justify-between items-center mt-2">
           <div className="w-full flex flex-row items-center lg:justify-between">

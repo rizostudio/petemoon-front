@@ -26,18 +26,19 @@ export default function DashboardOverView() {
     <div className="flex flex-col items-stretch">
       <div className="flex flex-col lg:flex-row justify-between lg:justify-center items-stretch lg:items-center w-full h-full lg:h-[250px]">
         {/* pet information */}
-        <Mypet pet={data.my_pet} />
+        {data.my_pet && <Mypet pet={data.my_pet} />}
         {/* orders number*/}
-        <OrderCount count={data.orders_count} />
+        {data.orders_count && <OrderCount count={data.orders_count} />}
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-stretch lg:items-center w-full h-full lg:h-[250px] my-3 lg:my-5">
         {/* wallet */}
-        <Wallet wallet={data.wallet} />
+        {data.wallet && <Wallet wallet={data.wallet} />}
+
         {/* orders sum */}
-        <TotalSale total={data.total_price} />
+        {data.total_price && <TotalSale total={data.total_price} />}
       </div>
       {/* orders summary */}
-      <OrderSummary orders={data.orders} />
+      {data.orders && <OrderSummary orders={data.orders} />}
     </div>
   );
 }
