@@ -44,7 +44,9 @@ export default function BasketItem({ item, index }) {
           {/* Picture of Product */}
           <div className="w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] p-0 overflow-hidden bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
             <Image
-              src={ProductPic}
+              width={100}
+              height={100}
+              src={`https://api.petemoon.com${item.image}`}
               alt="ProductPic"
               className="object-cover w-full h-full"
             />

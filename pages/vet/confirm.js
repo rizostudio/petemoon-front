@@ -4,58 +4,77 @@ import Link from "next/link";
 import clsx from "clsx";
 import { useFormik } from "formik";
 
-
 //component
-import MainLayout from "@/components/common/MainLayout";
-import FloatLabelInput from "@/components/common/input";
+import MainLayout from "@/layout/main";
+// import FloatLabelInput from "@/components/common/input";
 
-//media 
-import leftArrow_Icon from '../../assets/common/leftArrowWhite.svg';
-import PetPic from '../../assets/dashboard/PetPic.svg';
-import PetPicPreserve from '../../assets/dashboard/PetPicPreserve.svg';
-import Upload_Icon from '../../assets/common/uploadIcon.svg';
+//media
+// import leftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
+import PetPic from "../../assets/dashboard/PetPic.svg";
+// import PetPicPreserve from "../../assets/dashboard/PetPicPreserve.svg";
+// import Upload_Icon from "../../assets/common/uploadIcon.svg";
 
 const Confirm = () => {
-    //fake data
-    const data = [
-            {title:"عمومی", name:"پیترمن", kind:"سگ خانگی", sex:"ماده", race:"بولداگ", birth:"۱۵ آگوست ۱۹۹۹", pic:PetPic},
-            {title:"عمومی", name:"تی تی", kind:"سگ خانگی", sex:"ماده", race:"بولداگ", birth:"۱۵ آگوست ۱۹۹۹", pic:PetPic},
-    ]
+  //fake data
+  const data = [
+    {
+      title: "عمومی",
+      name: "پیترمن",
+      kind: "سگ خانگی",
+      sex: "ماده",
+      race: "بولداگ",
+      birth: "۱۵ آگوست ۱۹۹۹",
+      pic: PetPic,
+    },
+    {
+      title: "عمومی",
+      name: "تی تی",
+      kind: "سگ خانگی",
+      sex: "ماده",
+      race: "بولداگ",
+      birth: "۱۵ آگوست ۱۹۹۹",
+      pic: PetPic,
+    },
+  ];
 
-    // for dynamic Page
-    const [selectPage, setSelectPage] = useState(true);
-    const [medicalPage, setMedicalPage] = useState(false);
+  // for dynamic Page
+  const [selectPage, setSelectPage] = useState(true);
+  const [medicalPage, setMedicalPage] = useState(false);
 
-    // functions for confirm 
-    const confirmHandler = () => {
-        setSelectPage(false);
-        setMedicalPage(true)
-    } 
-    const finishHandler = () => {
-        // هدایت به صفحه پرداخت .
-        alert("Done!")
-    }
-    const [inputError, setInputError] = useState(false)
-    const formik = useFormik({
-        initialValues: {
-          phoneNumber: "",
-        },
-        onSubmit: (value) => {
-          console.log(value);
-        },
-      });
-    return(
-        <MainLayout>
-            {/* pet select Page */}
-            <div className={clsx("flex-col justify-between lg:justify-center items-stretch w-full h-screen lg:h-full lg:px-[120px] lg:py-5 bg-[#f8f8f8]",{
-                'flex' : selectPage,
-                'hidden' : selectPage == false 
-            })}
-            >
-                {/* Main Box */}
-                <div>
-                    {/*Heading*/}
-                    <div className='flex flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
+  // functions for confirm
+  const confirmHandler = () => {
+    setSelectPage(false);
+    setMedicalPage(true);
+  };
+  const finishHandler = () => {
+    // هدایت به صفحه پرداخت .
+    alert("Done!");
+  };
+  const [inputError, setInputError] = useState(false);
+  const formik = useFormik({
+    initialValues: {
+      phoneNumber: "",
+    },
+    onSubmit: (value) => {
+      console.log(value);
+    },
+  });
+  return (
+    <MainLayout>
+      {/* pet select Page */}
+      <div
+        className={clsx(
+          "flex-col justify-between lg:justify-center items-stretch w-full h-screen lg:h-full lg:px-[120px] lg:py-5 bg-[#f8f8f8]",
+          {
+            flex: selectPage,
+            hidden: selectPage == false,
+          }
+        )}
+      >
+        {/* Main Box */}
+        <div>
+          {/*Heading*/}
+          {/* <div className='flex flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
                         <h5 className='text-base lg:text-2xl text-black font-black leading-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>
                             <bdi>انتخاب پت من</bdi>
                         </h5>                        
@@ -68,9 +87,9 @@ const Confirm = () => {
                             alt="LeftArrowIcon"
                         />
                         </Link>
-                    </div>
-                    {/* pets details */}
-                    <div className="flex flex-col items-stretch px-10 py-5 lg:px-0 lg:py-10">
+                    </div> */}
+          {/* pets details */}
+          {/* <div className="flex flex-col items-stretch px-10 py-5 lg:px-0 lg:py-10">
                     {data && data.map((item,index) => 
                     <div 
                         key={index} 
@@ -78,8 +97,8 @@ const Confirm = () => {
                         <div className='bg-white px-4 py-5 lg:p-10 mx-3 my-4 lg:mx-10 lg:my-8 rounded-[15px] lg:rounded-[25px] shadow-shadowB'>
                             <div
                                 className='flex flex-col justify-between items-stretch'
-                            >    
-                                <div className="flex items-center">
+                            >     */}
+          {/* <div className="flex items-center">
                                     <input 
                                         id={`pet#${index}`}
                                         type='checkbox'
@@ -89,10 +108,10 @@ const Confirm = () => {
                                         htmlFor={`pet#${index}`}
                                         className='text-lg lg:text-xl text-black font-bold leading-8 opacity-90 mr-4'
                                     ><bdi>{item.name}</bdi></label>
-                                </div>
-                                {/* general detail */}
-                                <div className='flex flex-row justify-between items-stretch mt-2 lg:mt-8'>
-                                    <div className=' flex flex-col lg:flex-row justify-between items-stretch'
+                                </div> */}
+          {/* general detail */}
+          <div className="flex flex-row justify-between items-stretch mt-2 lg:mt-8">
+            {/* <div className=' flex flex-col lg:flex-row justify-between items-stretch'
                                     >
                                         <div className='flex flex-col'>
                                             <div className='flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:m-2'>
@@ -114,9 +133,9 @@ const Confirm = () => {
                                                 <p className='text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium'><bdi>{item.birth}</bdi></p>
                                             </div>
                                         </div>
-                                    </div>
-                                    {/* pet's picture */}
-                                    <div className='self-end'>
+                                    </div> */}
+            {/* pet's picture */}
+            {/* <div className='self-end'>
                                         <div className='w-[100px] h-[100px] relative overflow-hidden rounded-[10px]'>
                                             <Image 
                                                 src={item.pic ? item.pic : PetPicPreserve} 
@@ -124,16 +143,16 @@ const Confirm = () => {
                                                 className='w-full h-full object-cover'
                                             />
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> */}
+            {/* </div>
                             </div>    
                         </div>
                     </div>
-                )}
-                    </div>
-                </div>
-                {/* Confirm Box */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:self-end w-full lg:w-1/2 px-10 py-5 lg:px-7 lg:py-9 lg:bg-[#ea63521a] lg:rounded-[15px] border-t-[2px] border-secondary">
+                )} */}
+          </div>
+        </div>
+        {/* Confirm Box */}
+        {/* <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:self-end w-full lg:w-1/2 px-10 py-5 lg:px-7 lg:py-9 lg:bg-[#ea63521a] lg:rounded-[15px] border-t-[2px] border-secondary">
                     <div className="hidden lg:flex flex-col ml-8">
                         <p className="text-base text-gray-400 font-medium leading-7 opacity-90"><bdi>مرحله بعد:</bdi></p>
                         <p className="text-xl text-primary font-semibold leading-8"><bdi>پرونده پزشکی</bdi></p>
@@ -144,18 +163,22 @@ const Confirm = () => {
                     >
                         <bdi>ادامه</bdi>
                     </button>
-                </div>
-            </div>
-            {/* pet medical details Page */}
-            <div className={clsx("flex-col justify-between lg:justify-center items-stretch w-full h-screen lg:h-full lg:px-[120px] lg:py-5 bg-[#f8f8f8]",{
-                'flex' : medicalPage,
-                'hidden' : medicalPage == false 
-            })}
-            >   
-                {/* Main Box */}
-                <div>
-                    {/*Heading*/}
-                    <div className='flex flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
+                </div> */}
+      </div>
+      {/* pet medical details Page */}
+      <div
+        className={clsx(
+          "flex-col justify-between lg:justify-center items-stretch w-full h-screen lg:h-full lg:px-[120px] lg:py-5 bg-[#f8f8f8]",
+          {
+            flex: medicalPage,
+            hidden: medicalPage == false,
+          }
+        )}
+      >
+        {/* Main Box */}
+        <div>
+          {/*Heading*/}
+          {/* <div className='flex flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
                         <h5 className='text-base lg:text-2xl text-black font-black leading-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>
                             <bdi>پرونده پزشکی</bdi>
                         </h5>                        
@@ -172,9 +195,9 @@ const Confirm = () => {
                             alt="LeftArrowIcon"
                         />
                         </button>
-                    </div>
-                    {/* medical details*/}
-                    <div className="flex flex-col items-stretch px-10 py-5 lg:px-0 lg:py-10">
+                    </div> */}
+          {/* medical details*/}
+          {/* <div className="flex flex-col items-stretch px-10 py-5 lg:px-0 lg:py-10">
                         <form onSubmit={event => event.preventDefault()}
                                 className='flex flex-col lg:flex-row justify-start lg:px-[54px] lg:py-9 lg:bg-white lg:rounded-[25px]'
                             >
@@ -247,10 +270,10 @@ const Confirm = () => {
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-                {/* Confirm Box  */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:self-end w-full lg:w-1/2 px-10 py-5 lg:px-7 lg:py-9 lg:bg-[#ea63521a] lg:rounded-[15px] border-t-[2px] border-secondary">
+                    </div> */}
+        </div>
+        {/* Confirm Box  */}
+        {/* <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:self-end w-full lg:w-1/2 px-10 py-5 lg:px-7 lg:py-9 lg:bg-[#ea63521a] lg:rounded-[15px] border-t-[2px] border-secondary">
                     <div className="hidden lg:flex flex-col ml-8">
                         <p className="text-base text-primary font-medium leading-7 opacity-90"><bdi>پایان</bdi></p>
                         <p className="text-xl text-primary font-semibold leading-8"><bdi>تایید رزرو</bdi></p>
@@ -261,10 +284,10 @@ const Confirm = () => {
                     >
                         <bdi>تایید</bdi>
                     </button>
-                </div>
-            </div>
-        </MainLayout>
-    )
-}
+                </div> */}
+      </div>
+    </MainLayout>
+  );
+};
 
 export default Confirm;

@@ -1,11 +1,14 @@
 import { errorResponse, successResponse } from "../error";
 import { httpRequest } from "../http";
 
-export const postBasketToServer = async (payload) => {
-  console.log(payload);
+export const postBasketToServer = async (payload, addressId) => {
+  console.log(addressId);
   const cart = { ...payload };
   try {
-    const response = await httpRequest.post("/cart/", { cart: payload });
+    const response = await httpRequest.post("/cart/", {
+      cart: payload,
+      address: addressId,
+    });
     const data = response.data.data;
     return successResponse(data);
   } catch (error) {

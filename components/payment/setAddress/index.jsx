@@ -9,7 +9,7 @@ import CreateNewAddressBox from "@/components/payment/setAddress/CreateNewAddres
 import AddressItem from "@/components/payment/setAddress/AddressItem";
 //http
 import { getListAddress } from "@/services/dashboard/address/getList";
-import { postAddress } from "@/services/basket/postAddress";
+import { postBasketToServer } from "@/services/basket/postBasketToServer";
 //context
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 
@@ -18,7 +18,7 @@ export default function SetAddress() {
   const { state, dispatch } = BasketContext();
   const dataFetchedRef = useRef(false);
   const [AddressesArr, setAddressesArr] = useState([]);
-  const [selectAddress, setSelectedAddress] = useState(null);
+  const [selectAddress, setSelectedAddress] = useState(state.address);
   useEffect(() => {
     const getData = async () => {
       const response = await getListAddress();
@@ -34,11 +34,29 @@ export default function SetAddress() {
   const totalBasket = state.basket.reduce((total, item) => {
     return total + parseInt(item.count) * parseInt(item.price);
   }, 0);
-  const handlePostAddress = async () => {
-    const response = await postAddress(selectAddress);
-    if (response.success) {
+  const handleAddress = async () => {
+    if (state.address) {
+      dispatch({
+        type: "ADD_ADDRESS",
+        payload: {
+          address: selectAddress,
+        },
+      });
+      const payload = {};
+      state.basket.map((item) => {
+        if (!payload[item.id]) payload[item.id] = parseInt(item.count);
+      });
+      const response = await postBasketToServer(payload, state.address.id);
+      if (response.success) {
+        router.push("/payment/checkout");
+      }
       router.push("/payment/checkout");
     }
+
+    // const response = await postAddress(selectAddress);
+    // if (response.success) {
+    //   router.push("/payment/checkout");
+    // }
   };
   return (
     <div className="flex flex-col justify-between items-stretch bg-[#f8f8f8]">
@@ -49,7 +67,7 @@ export default function SetAddress() {
             پرداخت
           </p>
           <Link
-            href="/card"
+            href="/cart"
             className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
           >
             <Image
@@ -68,7 +86,7 @@ export default function SetAddress() {
               <AddressItem
                 selectAddress={selectAddress}
                 setSelectedAddress={setSelectedAddress}
-                key={item.key}
+                key={item.id}
                 item={item}
                 index={index}
               />
@@ -78,7 +96,7 @@ export default function SetAddress() {
           {/* deliever method */}
           {/* <DeliveryMethod /> */}
           {/* other description & confirm box */}
-          <DescriptionForPayment handlePostAddress={handlePostAddress} />
+          <DescriptionForPayment handleAddress={handleAddress} />
         </div>
       </div>
       {/* Continue Box */}
@@ -93,7 +111,7 @@ export default function SetAddress() {
         </div> */}
         <div className="flex lg:hidden justify-between items-center w-full px-10 py-5 border-t-[2px] border-secondary">
           <button
-            onClick={handlePostAddress}
+            onClick={handleAddress}
             className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-1/2 rounded-[12px]"
           >
             پرداخت

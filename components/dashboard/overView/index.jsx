@@ -37,6 +37,7 @@ export default function DashboardOverView() {
         <TotalSale total={data.total_price} />
       </div>
       {/* orders summary */}
+
       <OrderSummary orders={data.orders} />
     </div>
   );

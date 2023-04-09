@@ -8,19 +8,15 @@ import BasketItem from "./BasketItem";
 import AuthContext from "@/store/AuthCtx/AuthContext";
 //services
 import { postBasketToServer } from "@/services/basket/postBasketToServer";
-export default function BasketItems({ data }) {
+export default function BasketItems() {
   const router = useRouter();
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
-  const handleSaveBasket = async () => {
-    const payload = {};
-    state.basket.map((item) => {
-      if (!payload[item.id]) payload[item.id] = parseInt(item.count);
-    });
-    const response = await postBasketToServer(payload);
-    if (response.success) {
-      console.log(response);
+  const handleSaveBasket = () => {
+    if (authCtx.isLoggedIn) {
       router.push("/payment/set-address");
+    } else {
+      router.push("/auth/login");
     }
   };
   const totalBasket = state.basket.reduce((total, item) => {
