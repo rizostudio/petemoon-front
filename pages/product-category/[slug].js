@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { Fragment } from "react";
 //service
 import { getListProducts } from "@/services/product/getListOfProducts";
 //component
@@ -7,7 +8,19 @@ import ProductList from "@/components/listOfProduct";
 import MainLayout from "@/layout/main";
 import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
 import ToatContainer from "@/components/partials/toast/ToatContainer";
-const Products = ({ query, productsList }) => {
+export async function getServerSideProps({ query }) {
+  const queryParams = new URLSearchParams(query);
+  queryParams.set("limit", 1);
+  queryParams.set("offset", 1);
+  const response = await getListProducts(queryParams.toString());
+  console.log(response.data.products);
+  return {
+    props: {
+      productsList: response.data.products,
+    },
+  };
+}
+const Products = ({ productsList }) => {
   return (
     <>
       <ToatContainer />
@@ -20,16 +33,3 @@ const Products = ({ query, productsList }) => {
 };
 
 export default Products;
-export async function getServerSideProps({ query }) {
-  const queryParams = new URLSearchParams(query);
-  queryParams.set("limit", 1);
-  queryParams.set("offset", 1);
-  const response = await getListProducts(queryParams.toString());
-  console.log(response.data.products);
-  return {
-    props: {
-      productsList: response.data.products,
-      query,
-    },
-  };
-}

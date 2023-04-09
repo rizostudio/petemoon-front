@@ -8,15 +8,21 @@ import { getListProducts } from "@/services/product/getListOfProducts";
 import { getSingleProduct } from "@/services/product/getSingleProduct";
 //toast Container
 import ToatContainer from "@/components/partials/toast/ToatContainer";
+import Loading from "@/components/partials/loading";
 const Product = ({ product }) => {
-  return (
-    <>
-      <ToatContainer />
-      <MainLayout>
-        <SingleProduct data={product} />
-      </MainLayout>
-    </>
-  );
+  const router = useRouter();
+  if (router?.isFallback) {
+    return <Loading />;
+  } else {
+    return (
+      <>
+        <ToatContainer />
+        <MainLayout>
+          <SingleProduct data={product} />
+        </MainLayout>
+      </>
+    );
+  }
 };
 export async function getStaticProps(context) {
   const { slug } = context.params;
