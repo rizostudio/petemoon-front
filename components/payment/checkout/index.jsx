@@ -39,7 +39,7 @@ export default function OrderSummery() {
           </Link>
         </div>
         {/* Order Summary */}
-        <SummeryOfOrder data={data} />
+        <SummeryOfOrder />
         {/* Discount & confirm box */}
         <DiscountCode />
       </div>

@@ -1,23 +1,25 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+//context
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
 export default function AddressItem({
   item,
   index,
   selectAddress,
   setSelectedAddress,
 }) {
+  const { state, dispatch } = BasketContext();
   return (
     <div className="flex flex-col justify-between items-stretch my-2 lg:my-3 px-5 lg:px-12 py-4 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none">
       <div className="flex flex-row items-center justify-between">
         <div className="flex items-center">
           <input
             id={`address${index}`}
-            checked={item.id === selectAddress ? true : false}
+            checked={item.id === selectAddress.id ? true : false}
             onChange={(e) => {
               if (e.target.checked) {
-                setSelectedAddress(item.id);
+                setSelectedAddress(item);
               }
             }}
             type="checkbox"

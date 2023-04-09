@@ -1,9 +1,23 @@
 import React, { useState } from "react";
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
+import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
+import { Basket } from "@/localSttorage/basket";
 export default function DiscountCode() {
   const [codeStatus, setCodeStatus] = useState({
     status: "notYet",
     value: null,
   });
+  const { state, dispatch } = BasketContext();
+  const handleOrderSubmite = async () => {
+    const response = await changeBasketToOrder(state.address.id);
+    if (response.success) {
+      dispatch({
+        type: "EMPTY_BASKET",
+      });
+      Basket.remove();
+      window.location.href = response.data.data.url;
+    }
+  };
   return (
     <div className="flex justify-between mt-5 lg:mt-8 px-10 lg:px-[120px]">
       <form
@@ -71,7 +85,7 @@ export default function DiscountCode() {
           </p>
         </div>
         <button
-          onClick={() => router.push("/card/payment-confirmation")}
+          onClick={handleOrderSubmite}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
           پرداخت

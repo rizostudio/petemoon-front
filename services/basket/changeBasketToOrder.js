@@ -1,7 +1,7 @@
 import { errorResponse, successResponse } from "../error";
 import { httpRequest } from "../http";
 
-export const postAddress = async (addressId) => {
+export const changeBasketToOrder = async (addressId) => {
   try {
     const response = await httpRequest.post("/cart/order", {
       address: addressId,

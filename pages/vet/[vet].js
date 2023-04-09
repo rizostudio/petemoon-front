@@ -1,74 +1,111 @@
-import React, {useState } from 'react';
-import Image from 'next/image';
-import clsx from 'clsx';
-import {v4} from 'uuid';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Image from "next/image";
+import clsx from "clsx";
+import { v4 } from "uuid";
+import Link from "next/link";
 
 //components
-import FloatLabelInput from '@/components/common/input';
-import MainLayout from '@/components/common/MainLayout';
+// import FloatLabelInput from "@/components/common/input";
+import MainLayout from "@/layout/main";
 
-// media 
-import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
-import StarGold_Icon from '../../assets/common/startGold.svg';
-import leftArrow_Icon from '../../assets/common/leftArrowWhite.svg';
-import Bookmark_Icon from '../../assets/common/BookmarkBlackIcon.svg';
-import Notification_Icon from '../../assets/common/notificationIcon.svg';
-import Share_Icon from '../../assets/common/shareIcon.svg';
-import Info_Icon from '../../assets/common/info-circle.svg';
-import Properties_Icon from '../../assets/product/PropertiesIcon.svg';
-import ProfileAlt_Pic from '../../assets/common/profileIcon4.svg'
-import CloseButton_Icon from '../../assets/common/close-button.svg';
+// media
+// import StarEmpty_Icon from "../../assets/common/starEmpty.svg";
+// import StarGold_Icon from "../../assets/common/startGold.svg";
+// import leftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
+// import Bookmark_Icon from "../../assets/common/BookmarkBlackIcon.svg";
+// import Notification_Icon from "../../assets/common/notificationIcon.svg";
+// import Share_Icon from "../../assets/common/shareIcon.svg";
+// import Info_Icon from "../../assets/common/info-circle.svg";
+// import Properties_Icon from "../../assets/product/PropertiesIcon.svg";
+import ProfileAlt_Pic from "../../assets/common/profileIcon4.svg";
+// import CloseButton_Icon from "../../assets/common/close-button.svg";
 
 const SingleProduct = () => {
-    //fake data
-    const data = {name:"دکتر افشین سخاوتمندی پیشه", adviceAmount:"250", score:"4",commentsAmount:"250", 
-    specialty:["فوق تخصص حیوانات خانگی","دکترای دامپزشکی"], 
-    description:"فرمولی که سلبن برای سگ های بالغ نژاد کوچک ارائه کرده برای حیوانی فعال و بالغ مناسب است . در این فرمول علاوه بر ویتامین ها و مواد معدنی لازم از گلوکزامین و ال کارنتین استفاده شده که بهترین انتخاب برای سگ بالغ شما می باشد و وضعیت بدنی و وزنی حیوان را در جایگاهی سالم با تغذیه مناسب نگه می دارد. در این فرمول از حبوبات نیز استفاده شده که باعث هضم آرام غذا میشود. سگ های بالغ ، طعم و سایز کوچک غذای خشک را دوست خواهند داشت و شما هم ازاین غذا رضایتمند خواهید بود. شرکت پروتیین ایمن تاب در سال 1393 با ایده تولید غذای حیوانات خانگی با توجه به استاندارد های روز جهانی تاسیس و شروع به فعالیت نموده است. این شرکت از مجهزترین و بروز ترین ماشین آلات درکارخانه خود استفاده کرده و بعلاوه از بهترین مواد اولیه شرکتهای اروپایی و آمریکایی و کمک علمی آن ها بهره مند می باشد.",
-    comments:[  {title:"عالی و بی نظیر", stars:5, profilePic:ProfileAlt_Pic, author:"حسین محمدی", date:"۱۲ أذر ۱۴۰۱",text:"بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت"},
-    {title:"عالی و بی نظیر", stars:5, profilePic:ProfileAlt_Pic, author:"حسین محمدی", date:"۱۲ أذر ۱۴۰۱",text:"بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت"},
-    {title:"عالی و بی نظیر", stars:5, profilePic:ProfileAlt_Pic, author:"حسین محمدی", date:"۱۲ أذر ۱۴۰۱",text:"بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت"},
-    {title:"عالی و بی نظیر", stars:5, profilePic:ProfileAlt_Pic, author:"حسین محمدی", date:"۱۲ أذر ۱۴۰۱",text:"بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت"}
-    ],}
-    // reserve Date Data
-    const reserveDateData = [
-        {day:"شنبه", date:5, time:""},
-        {day:"یکشنبه", date:6, time:""}, 
-        {day:"دوشنبه", date:7, time:""}, 
-        {day:"سه شنبه", date:8, time:""}, 
-        {day:"چهارشنبه", date:9, time:""}, 
-        {day:"پنجشنبه", date:10, time:""},
-        {day:"جمعه", date:11, time:""},
-    ]
-    const [dateSelected, setDateSelected] = useState({})
-    const [dateSelectedValue,setDateSelectedValue] = useState(false)
-    console.log(dateSelectedValue)
+  //fake data
+  const data = {
+    name: "دکتر افشین سخاوتمندی پیشه",
+    adviceAmount: "250",
+    score: "4",
+    commentsAmount: "250",
+    specialty: ["فوق تخصص حیوانات خانگی", "دکترای دامپزشکی"],
+    description:
+      "فرمولی که سلبن برای سگ های بالغ نژاد کوچک ارائه کرده برای حیوانی فعال و بالغ مناسب است . در این فرمول علاوه بر ویتامین ها و مواد معدنی لازم از گلوکزامین و ال کارنتین استفاده شده که بهترین انتخاب برای سگ بالغ شما می باشد و وضعیت بدنی و وزنی حیوان را در جایگاهی سالم با تغذیه مناسب نگه می دارد. در این فرمول از حبوبات نیز استفاده شده که باعث هضم آرام غذا میشود. سگ های بالغ ، طعم و سایز کوچک غذای خشک را دوست خواهند داشت و شما هم ازاین غذا رضایتمند خواهید بود. شرکت پروتیین ایمن تاب در سال 1393 با ایده تولید غذای حیوانات خانگی با توجه به استاندارد های روز جهانی تاسیس و شروع به فعالیت نموده است. این شرکت از مجهزترین و بروز ترین ماشین آلات درکارخانه خود استفاده کرده و بعلاوه از بهترین مواد اولیه شرکتهای اروپایی و آمریکایی و کمک علمی آن ها بهره مند می باشد.",
+    comments: [
+      {
+        title: "عالی و بی نظیر",
+        stars: 5,
+        profilePic: ProfileAlt_Pic,
+        author: "حسین محمدی",
+        date: "۱۲ أذر ۱۴۰۱",
+        text: "بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت",
+      },
+      {
+        title: "عالی و بی نظیر",
+        stars: 5,
+        profilePic: ProfileAlt_Pic,
+        author: "حسین محمدی",
+        date: "۱۲ أذر ۱۴۰۱",
+        text: "بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت",
+      },
+      {
+        title: "عالی و بی نظیر",
+        stars: 5,
+        profilePic: ProfileAlt_Pic,
+        author: "حسین محمدی",
+        date: "۱۲ أذر ۱۴۰۱",
+        text: "بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت",
+      },
+      {
+        title: "عالی و بی نظیر",
+        stars: 5,
+        profilePic: ProfileAlt_Pic,
+        author: "حسین محمدی",
+        date: "۱۲ أذر ۱۴۰۱",
+        text: "بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت. بسیار عالی و باکیفیت بود مناسب سگ و بسیار دوست داشت",
+      },
+    ],
+  };
+  // reserve Date Data
+  const reserveDateData = [
+    { day: "شنبه", date: 5, time: "" },
+    { day: "یکشنبه", date: 6, time: "" },
+    { day: "دوشنبه", date: 7, time: "" },
+    { day: "سه شنبه", date: 8, time: "" },
+    { day: "چهارشنبه", date: 9, time: "" },
+    { day: "پنجشنبه", date: 10, time: "" },
+    { day: "جمعه", date: 11, time: "" },
+  ];
+  const [dateSelected, setDateSelected] = useState({});
+  const [dateSelectedValue, setDateSelectedValue] = useState(false);
+  console.log(dateSelectedValue);
 
-    console.log(dateSelected)
-    // for showing data
-    const starsBoxHandler = (stars) => {
-        const starsBox = [] ; 
-        for(let i=0; i < stars; i++) {
-            starsBox.push(<Image src={StarGold_Icon} alt="GoldenStarIcon"/>)
-        }
-        for(let i=0; i < (5 - stars) ; i++) {
-            starsBox.push(<Image src={StarEmpty_Icon} alt="EmptyStarIcon"/>)
-        }
-        return starsBox;
+  console.log(dateSelected);
+  // for showing data
+  const starsBoxHandler = (stars) => {
+    const starsBox = [];
+    for (let i = 0; i < stars; i++) {
+      starsBox.push(<Image src={StarGold_Icon} alt="GoldenStarIcon" />);
     }
-    // for dynamic 
-    const [mainPageOpen, setMainPageOpen] = useState(true);
-    const [commentPageOpen,setCommentPageOpen] = useState(false);
-    return (
-        <MainLayout>
-            <div className='w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-[120px] lg:py-5'>
-                {/* Main Page  */}
-                <div className={clsx('lg:flex flex-col justify-between items-stretch',{
-                    'flex' : mainPageOpen == true , 
-                    'hidden' : mainPageOpen == false
-                })}>
-                    {/*Heading for mobile */}
-                    <div className='flex lg:hidden flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
+    for (let i = 0; i < 5 - stars; i++) {
+      starsBox.push(<Image src={StarEmpty_Icon} alt="EmptyStarIcon" />);
+    }
+    return starsBox;
+  };
+  // for dynamic
+  const [mainPageOpen, setMainPageOpen] = useState(true);
+  const [commentPageOpen, setCommentPageOpen] = useState(false);
+  return (
+    <MainLayout>
+      <div className="w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-[120px] lg:py-5">
+        {/* Main Page  */}
+        <div
+          className={clsx("lg:flex flex-col justify-between items-stretch", {
+            flex: mainPageOpen == true,
+            hidden: mainPageOpen == false,
+          })}
+        >
+          {/*Heading for mobile */}
+          {/* <div className='flex lg:hidden flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10'>
                         <div className='flex flex-col justify-end'>
                             <div className='flex flex-row items-center'>
                                 <h2 className='text-base text-black font-black leading-7 opacity-90 before:inline-block before:bg-primary before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]'>{data.name}</h2>
@@ -92,21 +129,21 @@ const SingleProduct = () => {
                                 />
                             </Link>
                         </div>
-                    </div>
-                    {/* Summary box */}
-                    <div className='w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  border-solid border-b-[2px] border-secondary'>
-                        <div className='hidden lg:block p-10'>
+                    </div> */}
+          {/* Summary box */}
+          <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  border-solid border-b-[2px] border-secondary">
+            {/* <div className='hidden lg:block p-10'>
                             <Image src={Bookmark_Icon} alt="BookmarkIcon"/>
                             <Image src={Notification_Icon} alt="NotificationIcon" className="my-8"/>
                             <Image src={Share_Icon} alt="ShareIcon"/>
                             <Image src={Info_Icon} alt="InfoIcon" className="my-8"/>
-                        </div>
-                        {/* Gallery */}
-                        <div className='self-center w-full lg:w-[450px] h-[200px] lg:h-[400px] rounded-[15px] border-[2px] border-primary solid'>
-                        </div>
-                        <div className='xl:w-full flex flex-col lg:mr-10'>
-                            {/* Heading for desktop */}
-                            <div className='flex flex-row lg:flex-col justify-between items-center lg:items-start py-4  lg:px-4 border-b-[2px] border-none lg:border-solid border-secondary'>
+                        </div> */}
+            {/* Gallery */}
+            {/* <div className='self-center w-full lg:w-[450px] h-[200px] lg:h-[400px] rounded-[15px] border-[2px] border-primary solid'>
+                        </div> */}
+            <div className="xl:w-full flex flex-col lg:mr-10">
+              {/* Heading for desktop */}
+              {/* <div className='flex flex-row lg:flex-col justify-between items-center lg:items-start py-4  lg:px-4 border-b-[2px] border-none lg:border-solid border-secondary'>
                                 <div className='flex flex-col'>
                                     <p className='text-base lg:text-lg text-gray-400 font-normal leading-6'><bdi>{`${data.adviceAmount} مشاوره`}</bdi></p>                                    
                                     <h2 className='text-3xl text-black font-bold leading-10 w-full hidden lg:block mt-2 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-2  before:rounded-[2px]'>{data.name}</h2>
@@ -121,9 +158,9 @@ const SingleProduct = () => {
                                         className='text-base lg:text-lg text-info font-normal leading-6 lg:mt-2'
                                     ><bdi>{`${data.commentsAmount} دیدگاه`}</bdi></Link>
                                 </div>
-                            </div>
-                            {/* Specialty */}
-                            <div className='pb-3 my-2 mt-5 order-2 lg:order-1 '>
+                            </div> */}
+              {/* Specialty */}
+              {/* <div className='pb-3 my-2 mt-5 order-2 lg:order-1 '>
                                 <div className='flex flex-row items-center mb-1'>
                                     <Image src={Properties_Icon} alt="PropertiesIcon"/>
                                     <p className='text-lg lg:text-xl text-black font-bold leading-8 opacity-90 mr-1'><bdi>تخصص</bdi></p>
@@ -133,16 +170,16 @@ const SingleProduct = () => {
                                         <p key={index} className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 my-1 before:content-["."] before:text-4xl before:ml-2'><bdi>{item}</bdi></p>
                                     )}
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Description */}
-                    <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
+                            </div> */}
+            </div>
+          </div>
+          {/* Description */}
+          {/* <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
                         <h5 className='text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>درباره پزشک</h5>
                         <p className='text-base lg:text-xl text-black font-medium leading-6 lg:leading-10 opacity-90'><bdi>{data.description}</bdi></p>
-                    </div>
-                    {/* Reserve Box  */}
-                    <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
+                    </div> */}
+          {/* Reserve Box  */}
+          {/* <div className='text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary'>
                         <h5 className='text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'><bdi>تایم شیت رزرو مشاوره</bdi></h5>
                         <div className='flex flex-col'>
                             <div className='flex justify-between items-center w-full px-4 py-8 lg:px-[70px] lg:py:[60px] bg-[#ea63521a] rounded-[15px] lg:rounded-[20px]'>
@@ -196,9 +233,9 @@ const SingleProduct = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* Coustomers comment   */}
-                    <div id="cutomersComent" className='px-10 py-5 lg:px-0 lg:py-10 flex flex-col items-stretch lg:border-none border-b-[2px] border-secondary'>
+                    </div> */}
+          {/* Coustomers comment   */}
+          {/* <div id="cutomersComent" className='px-10 py-5 lg:px-0 lg:py-10 flex flex-col items-stretch lg:border-none border-b-[2px] border-secondary'>
                         <h5 className='text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]'>نظرات</h5>
                         {data.comments.map(item => 
                             <div 
@@ -229,9 +266,9 @@ const SingleProduct = () => {
                         <label 
                             htmlFor='comment-send-modal' 
                             className='hidden lg:block text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]'
-                        >ثبت دیدگاه</label>
-                        {/* modal */}
-                        <div>
+                        >ثبت دیدگاه</label> */}
+          {/* modal */}
+          {/* <div>
                             <input 
                                 type="checkbox" 
                                 id="comment-send-modal" 
@@ -297,10 +334,10 @@ const SingleProduct = () => {
                                     </form>
                                 </label>
                             </label>
-                        </div>
-                    </div>
-                    {/* Reserve Box for mobile  */}
-                    <div className={clsx('flex justify-between items-center lg:hidden px-10 py-5',{
+                        </div> */}
+          {/* </div> */}
+          {/* Reserve Box for mobile  */}
+          {/* <div className={clsx('flex justify-between items-center lg:hidden px-10 py-5',{
                         'grayscale' : dateSelectedValue == false
                     })}>
                         <label
@@ -311,10 +348,10 @@ const SingleProduct = () => {
                             <p className='text-base text-gray-400 font-light leading-8 opacity-95'><bdi>قیمت:</bdi></p>       
                             <p className='text-lg text-primary font-extrabold leading-8'><bdi>{(125000).toLocaleString()} تومان</bdi></p>
                         </div>
-                    </div> 
-                </div>
-                {/* Comment Page */}
-                <div className={clsx('lg:hidden flex-col items-stretch p-10 w-full h-screen',{
+                    </div>  */}
+        </div>
+        {/* Comment Page */}
+        {/* <div className={clsx('lg:hidden flex-col items-stretch p-10 w-full h-screen',{
                     'flex' : commentPageOpen == true,
                     'hidden' : commentPageOpen == false
                 })}>
@@ -378,9 +415,9 @@ const SingleProduct = () => {
                             >ثبت دیدگاه</button>
                         </div>
                     </form>
-                </div>
-                {/* modal  for reserve operation*/}
-                <div>
+                </div> */}
+        {/* modal  for reserve operation*/}
+        {/* <div>
                     <input
                         type="checkbox" 
                         id="reserve-modal" 
@@ -425,11 +462,10 @@ const SingleProduct = () => {
                                 </div>
                         </label>
                     </label>
-                </div>
-            </div>
-        </MainLayout>
-
-    );
+                </div> */}
+      </div>
+    </MainLayout>
+  );
 };
 
 export default SingleProduct;

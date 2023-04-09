@@ -5,22 +5,22 @@ import { useRouter } from "next/router";
 import clsx from "clsx";
 
 //component
-import AlertBox from "@/components/payment/PaymentStatus/AlertBox";
+// import AlertBox from "@/components/payment/PaymentStatus/AlertBox";
 import MainLayout from "@/layout/main";
 
 //media
-import ArrowLeftWhite_Icon from "../../assets/common/leftArrowWhite.svg";
-import PetCheck_Icon from "../../assets/card/petCheck.svg";
-import PetError_Icon from "../../assets/card/petError.svg";
+// import ArrowLeftWhite_Icon from "../../assets/common/leftArrowWhite.svg";
+// import PetCheck_Icon from "../../assets/card/petCheck.svg";
+// import PetError_Icon from "../../assets/card/petError.svg";
 
 export default function Success() {
   const router = useRouter();
   const paymentStatus = true;
   return (
     <MainLayout>
-      <div className="w-full h-screen lg:h-full overflow-y-scroll lg:overflow-y-visible flex flex-col justify-between items-stretch lg:px-20 lg:py-12 bg-[#f8f8f8]">
+      {/* <div className="w-full h-screen lg:h-full overflow-y-scroll lg:overflow-y-visible flex flex-col justify-between items-stretch lg:px-20 lg:py-12 bg-[#f8f8f8]">
         <div className="flex flex-col justify-start">
-          {/*Heading for mobile */}
+    
           <div className="w-full flex lg:hidden flex-row justify-between items-center p-10">
             <p className="text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-1 before:rounded-[2px]">
               {paymentStatus ? "تایید پرداخت" : "خطا در پرداخت"}
@@ -36,7 +36,7 @@ export default function Success() {
               />
             </Link>
           </div>
-          {/* main container */}
+          
           <div className="flex flex-col w-full">
             <div className="self-center mt-[50px] lg:mt-[100px] lg:mb-[40px] px-10 lg:p-0">
               <Image
@@ -78,7 +78,7 @@ export default function Success() {
             </div>
           </div>
         </div>
-        {/* for return to homePage */}
+
         <div className="lg:hidden w-full px-10 py-5 border-t-[2px] border-secondary border-solid">
           <button
             onClick={() => router.replace("/products")}
@@ -93,7 +93,7 @@ export default function Success() {
             صفحه اصلی
           </button>
         </div>
-      </div>
+      </div> */}
     </MainLayout>
   );
 }

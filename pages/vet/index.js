@@ -1,157 +1,255 @@
-import React, {useState, useEffect} from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import clsx from 'clsx';
-import {v4} from 'uuid';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import clsx from "clsx";
+import { v4 } from "uuid";
 
 //component
-import MainLayout from '../../components/common/MainLayout'
+import MainLayout from "@/layout/main";
 
-// media 
-import StarEmpty_Icon from '../../assets/common/starEmpty.svg';
-import StarGold_Icon from '../../assets/common/startGold.svg';
-import leftArrow_Icon from '../../assets/common/leftArrowWhite.svg';
-import BookmarkRed_Icon from '../../assets/common/BookmarkRedIcon.svg';
-import Filter_Icon from '../../assets/common/filterIcon.svg';
-import DownArrow_Icon from '../../assets/common/downArrow.svg';
-import Sort_Icon from '../../assets/common/sortIcon.svg';
-import SearchRed_Icon from '../../assets/common/SearchRedIcon.svg';
-import DoctorPic from '../../assets/vet/DoctorPic.svg';
-import call_Icon from '../../assets/vet/call-calling.svg';
-
+// media
+import StarEmpty_Icon from "../../assets/common/starEmpty.svg";
+import StarGold_Icon from "../../assets/common/startGold.svg";
+// import leftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
+// import BookmarkRed_Icon from "../../assets/common/BookmarkRedIcon.svg";
+import Filter_Icon from "../../assets/common/filterIcon.svg";
+import DownArrow_Icon from "../../assets/common/downArrow.svg";
+// import Sort_Icon from "../../assets/common/sortIcon.svg";
+// import SearchRed_Icon from "../../assets/common/SearchRedIcon.svg";
+import DoctorPic from "../../assets/vet/DoctorPic.svg";
+// import call_Icon from "../../assets/vet/call-calling.svg";
 
 //for open & close filterBox in desktop
 //it's defined out of main component, for prevent re-render other components
-const FilterBoxDialog = ({specialty, scoreKind, setFilterPageOpen, setMainPageOpen}) => {
-    const [FilterBoxOpen, setFilterBoxOpen] = useState(false)  
-    return (
-        <div 
-            className={clsx('lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative',{
-            'rounded-b-[25px]' : FilterBoxOpen == false ,
-            })}
+const FilterBoxDialog = ({
+  specialty,
+  scoreKind,
+  setFilterPageOpen,
+  setMainPageOpen,
+}) => {
+  const [FilterBoxOpen, setFilterBoxOpen] = useState(false);
+  return (
+    <div
+      className={clsx(
+        "lg:w-[300px] ml-5 lg:ml-4 lg:bg-white rounded-t-[25px] relative",
+        {
+          "rounded-b-[25px]": FilterBoxOpen == false,
+        }
+      )}
+    >
+      <div className="flex justify-between items-center lg:px-6 py-2">
+        <div
+          className="flex items-center cursor-pointer lg:cursor-auto"
+          onClick={() => {
+            setFilterPageOpen(true);
+            setMainPageOpen(false);
+          }}
         >
-            <div className='flex justify-between items-center lg:px-6 py-2'>
-                <div className="flex items-center cursor-pointer lg:cursor-auto" onClick={() => {setFilterPageOpen(true);setMainPageOpen(false)}}>
-                    <Image src={Filter_Icon} alt="FilterIcon"/>
-                    <p className='text-xl lg:text-base text-black font-medium leading-7 mr-2'>فیلترها</p>
-                </div>
-                <Image 
-                    src={DownArrow_Icon} 
-                    alt="DownArrowIcon"
-                    onClick={()=>setFilterBoxOpen(!FilterBoxOpen)}
-                    className={clsx(`hidden lg:block cursor-pointer`,{
-                        'rotate-0' : FilterBoxOpen == false,
-                        'rotate-180' : FilterBoxOpen == true
-                    })}
-                />
-            </div>
-            <div 
-                className={clsx('hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]',{
-                    'lg:block' : FilterBoxOpen == true
-                })}
-            >
-                <div className='flex flex-col items-stretch'>
-                    <p className="text-base text-black font-medium leading-7 ">تخصص</p>
-                    <div>
-                        {specialty.map((item,index) => 
-                            <div
-                                key={v4()} 
-                                className='flex items-center'>
-                                <input 
-                                    id={`specialty${index}`}
-                                    type="checkbox"
-                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                    />
-                                <label
-                                    htmlFor={`specialty${index}`}
-                                    className='mr-2 '
-                                    ><bdi>{item.name}</bdi></label>
-                            </div>
-                        )}
-                    </div>
-                    <p className="text-base text-black font-medium leading-7 mt-6">امتیاز</p>
-                    <div>
-                        {scoreKind.map((item, index) => 
-                            <div
-                                key={v4()} 
-                                className='flex items-center'
-                            >
-                                <input 
-                                    id={`kind${index}`}
-                                    type="checkbox"
-                                    className='h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]'
-                                    />
-                                <label
-                                    htmlFor={`kind${index}`}
-                                    className='mr-2'
-                                    >{item}</label>
-                            </div>
-                        )}
-                    </div>
-                    <p  
-                        onClick={() => setFilterBoxOpen(false)}
-                        className='self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer'
-                    >حذف فیلترها</p>
-                </div>
-            </div>
-        
+          <Image src={Filter_Icon} alt="FilterIcon" />
+          <p className="text-xl lg:text-base text-black font-medium leading-7 mr-2">
+            فیلترها
+          </p>
         </div>
-    )
-}
-
+        <Image
+          src={DownArrow_Icon}
+          alt="DownArrowIcon"
+          onClick={() => setFilterBoxOpen(!FilterBoxOpen)}
+          className={clsx(`hidden lg:block cursor-pointer`, {
+            "rotate-0": FilterBoxOpen == false,
+            "rotate-180": FilterBoxOpen == true,
+          })}
+        />
+      </div>
+      <div
+        className={clsx(
+          "hidden w-full px-6 py-2 bg-white absolute z-20 rounded-b-[25px]",
+          {
+            "lg:block": FilterBoxOpen == true,
+          }
+        )}
+      >
+        <div className="flex flex-col items-stretch">
+          <p className="text-base text-black font-medium leading-7 ">تخصص</p>
+          <div>
+            {specialty.map((item, index) => (
+              <div key={v4()} className="flex items-center">
+                <input
+                  id={`specialty${index}`}
+                  type="checkbox"
+                  className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
+                />
+                <label htmlFor={`specialty${index}`} className="mr-2 ">
+                  <bdi>{item.name}</bdi>
+                </label>
+              </div>
+            ))}
+          </div>
+          <p className="text-base text-black font-medium leading-7 mt-6">
+            امتیاز
+          </p>
+          <div>
+            {scoreKind.map((item, index) => (
+              <div key={v4()} className="flex items-center">
+                <input
+                  id={`kind${index}`}
+                  type="checkbox"
+                  className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
+                />
+                <label htmlFor={`kind${index}`} className="mr-2">
+                  {item}
+                </label>
+              </div>
+            ))}
+          </div>
+          <p
+            onClick={() => setFilterBoxOpen(false)}
+            className="self-end text-base text-gray-400 font-medium leading-7 mt-5 cursor-pointer"
+          >
+            حذف فیلترها
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Vet = () => {
-    const router = useRouter()
+  const router = useRouter();
 
-    //fake data
-    const data = [
-        {name:"دکتر افشین نوری", pic:DoctorPic ,adviceAmount:"50", score:"5",commentsAmount:"200", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر صادق صالحی", pic:DoctorPic ,adviceAmount:"75", score:"4",commentsAmount:"100", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر ساناز شیری", pic:DoctorPic ,adviceAmount:"100", score:"3",commentsAmount:"300", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر افشین نوری", pic:DoctorPic ,adviceAmount:"50", score:"5",commentsAmount:"200", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر صادق صالحی", pic:DoctorPic ,adviceAmount:"75", score:"4",commentsAmount:"100", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر ساناز شیری", pic:DoctorPic ,adviceAmount:"100", score:"3",commentsAmount:"300", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر افشین نوری", pic:DoctorPic ,adviceAmount:"50", score:"5",commentsAmount:"200", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر صادق صالحی", pic:DoctorPic ,adviceAmount:"75", score:"4",commentsAmount:"100", shortSpecialty:"متخصص حیوانات"},
-        {name:"دکتر ساناز شیری", pic:DoctorPic ,adviceAmount:"100", score:"3",commentsAmount:"300", shortSpecialty:"متخصص حیوانات"},
-    ]
-    const specialty = [{name:'خزندگان',id:'reptiles'},{name:'پرندگان',id:'birds'},{name:'گربه ها',id:'cats'},{name:'سگ ها',id:'dogs'},]
-    const scoreKind = ['۳ از ۵','۴ از ۵','۵ از ۵']
-    
-    // the array of sort options
-    const [sortArr, setSortArr2] = useState([{title:"بالاترین امتیاز"},{title:"تعداد مشاوره"}])
-    
-    // for change the color of choosen option in sorting
-    const [sortValue, setSortValue] = useState("بالاترین امتیاز")
+  //fake data
+  const data = [
+    {
+      name: "دکتر افشین نوری",
+      pic: DoctorPic,
+      adviceAmount: "50",
+      score: "5",
+      commentsAmount: "200",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر صادق صالحی",
+      pic: DoctorPic,
+      adviceAmount: "75",
+      score: "4",
+      commentsAmount: "100",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر ساناز شیری",
+      pic: DoctorPic,
+      adviceAmount: "100",
+      score: "3",
+      commentsAmount: "300",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر افشین نوری",
+      pic: DoctorPic,
+      adviceAmount: "50",
+      score: "5",
+      commentsAmount: "200",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر صادق صالحی",
+      pic: DoctorPic,
+      adviceAmount: "75",
+      score: "4",
+      commentsAmount: "100",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر ساناز شیری",
+      pic: DoctorPic,
+      adviceAmount: "100",
+      score: "3",
+      commentsAmount: "300",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر افشین نوری",
+      pic: DoctorPic,
+      adviceAmount: "50",
+      score: "5",
+      commentsAmount: "200",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر صادق صالحی",
+      pic: DoctorPic,
+      adviceAmount: "75",
+      score: "4",
+      commentsAmount: "100",
+      shortSpecialty: "متخصص حیوانات",
+    },
+    {
+      name: "دکتر ساناز شیری",
+      pic: DoctorPic,
+      adviceAmount: "100",
+      score: "3",
+      commentsAmount: "300",
+      shortSpecialty: "متخصص حیوانات",
+    },
+  ];
+  const specialty = [
+    { name: "خزندگان", id: "reptiles" },
+    { name: "پرندگان", id: "birds" },
+    { name: "گربه ها", id: "cats" },
+    { name: "سگ ها", id: "dogs" },
+  ];
+  const scoreKind = ["۳ از ۵", "۴ از ۵", "۵ از ۵"];
 
-    // for showing stars
-    const starsBoxHandler = (stars) => {
-        const starsBox = [] ; 
-        for(let i=0; i < stars; i++) {
-            starsBox.push(<Image src={StarGold_Icon} alt="GoldenStarIcon" className='w-3 h-3 mx-0.5'/>)
-        }
-        for(let i=0; i < (5 - stars) ; i++) {
-            starsBox.push(<Image src={StarEmpty_Icon} alt="EmptyStarIcon" className='w-3 h-3 mx-0.5'/>)
-        }
-        return starsBox;
+  // the array of sort options
+  const [sortArr, setSortArr2] = useState([
+    { title: "بالاترین امتیاز" },
+    { title: "تعداد مشاوره" },
+  ]);
+
+  // for change the color of choosen option in sorting
+  const [sortValue, setSortValue] = useState("بالاترین امتیاز");
+
+  // for showing stars
+  const starsBoxHandler = (stars) => {
+    const starsBox = [];
+    for (let i = 0; i < stars; i++) {
+      starsBox.push(
+        <Image
+          src={StarGold_Icon}
+          alt="GoldenStarIcon"
+          className="w-3 h-3 mx-0.5"
+        />
+      );
     }
+    for (let i = 0; i < 5 - stars; i++) {
+      starsBox.push(
+        <Image
+          src={StarEmpty_Icon}
+          alt="EmptyStarIcon"
+          className="w-3 h-3 mx-0.5"
+        />
+      );
+    }
+    return starsBox;
+  };
 
-    //Dynamic
-    const [MainPageOpen, setMainPageOpen] = useState(true) //for open & close Main Page in mobile
-    const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
-    const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
-   
-    return (
-        <MainLayout>
-        <div className='flex flex-col bg-[#f8f8f8] lg:px-[120px] lg:py-10 w-full h-full'>
-            {/* Main Page */}
-            <div className={clsx('lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ',{
-               'block' : MainPageOpen == true,
-               'hidden' : MainPageOpen == false
-            })}>
-                {/* Heading for mobile */}
-                <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
+  //Dynamic
+  const [MainPageOpen, setMainPageOpen] = useState(true); //for open & close Main Page in mobile
+  const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
+  const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
+
+  return (
+    <MainLayout>
+      <div className="flex flex-col bg-[#f8f8f8] lg:px-[120px] lg:py-10 w-full h-full">
+        {/* Main Page */}
+        <div
+          className={clsx("lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ", {
+            block: MainPageOpen == true,
+            hidden: MainPageOpen == false,
+          })}
+        >
+          {/* Heading for mobile */}
+          {/* <div className='h-[40px] w-full flex lg:hidden justify-between items-center'>
                     <div className='w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]'>
                         <input type="text" placeholder="جستجوی پزشک" className='w-full text-white border-none bg-transparent placeholder:text-primary focus:border-none focus:outline-none focus:ring-0 peer'/>
                         <Image src={SearchRed_Icon} alt="SearchIcon"/>
@@ -165,18 +263,18 @@ const Vet = () => {
                             alt="LeftArrowIcon"
                         />
                     </Link>
-                </div>
-                {/*Arrangment Box*/}
-                <div className='flex mt-5'>
-                    {/* FilterBox */}
-                    <FilterBoxDialog 
+                </div> */}
+          {/*Arrangment Box*/}
+          <div className="flex mt-5">
+            {/* FilterBox */}
+            {/* <FilterBoxDialog 
                         specialty={specialty} 
                         scoreKind={scoreKind} 
                         setFilterPageOpen={setFilterPageOpen}
                         setMainPageOpen={setMainPageOpen}
-                    />
-                    {/* Sort Box */}
-                    <div className='flex items-center'>
+                    /> */}
+            {/* Sort Box */}
+            {/* <div className='flex items-center'>
                         <div
                             onClick={() => {setSortPageOpen(true); setMainPageOpen(false)}} 
                             className='flex items-center'
@@ -206,10 +304,10 @@ const Vet = () => {
                             )}
                             
                         </ul>
-                    </div>
-                </div>
-                {/* DoctorsBox */}
-                <div className='flex flex-col lg:flex-row lg:flex-wrap justify-between items-center mt-5'>
+                    </div> */}
+          </div>
+          {/* DoctorsBox */}
+          {/* <div className='flex flex-col lg:flex-row lg:flex-wrap justify-between items-center mt-5'>
                     {data && data.map((item, index) => 
                         <div 
                             key={v4()}
@@ -270,10 +368,10 @@ const Vet = () => {
                             </div>
                         </div>          
                     )}
-                </div>
-            </div>
-            {/* Filter Page */}
-            <div className={clsx('lg:hidden w-full h-screen',{
+                </div> */}
+        </div>
+        {/* Filter Page */}
+        {/* <div className={clsx('lg:hidden w-full h-screen',{
                'block' : FilterPageOpen == true,
                'hidden' : FilterPageOpen == false
             })}>
@@ -345,9 +443,9 @@ const Vet = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* Sort Page */}
-            <div 
+            </div> */}
+        {/* Sort Page */}
+        {/* <div 
                 className={clsx('lg:hidden w-full h-screen',{
                     'block' : SortPageOpen == true,
                     'hidden' : SortPageOpen == false
@@ -383,10 +481,10 @@ const Vet = () => {
                         >{item.title}</p> 
                     )}
                 </div>
-            </div>
-        </div>
-        </MainLayout>
-    )
-}
+            </div> */}
+      </div>
+    </MainLayout>
+  );
+};
 
 export default Vet;

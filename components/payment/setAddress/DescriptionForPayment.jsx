@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
-export default function DescriptionForPayment({ handlePostAddress }) {
+export default function DescriptionForPayment({ handleAddress }) {
   const { state, dispatch } = BasketContext();
   const router = useRouter();
   const totalBasket = state.basket.reduce((total, item) => {
@@ -31,7 +31,7 @@ export default function DescriptionForPayment({ handlePostAddress }) {
           </p>
         </div>
         <button
-          onClick={handlePostAddress}
+          onClick={handleAddress}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
           پرداخت

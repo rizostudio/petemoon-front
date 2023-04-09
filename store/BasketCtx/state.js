@@ -2,6 +2,7 @@ import { Basket } from "@/localSttorage/basket";
 
 export const initState = {
   basket: [],
+  address: {},
 };
 export const reducer = (state, action) => {
   let newState;
@@ -60,7 +61,13 @@ export const reducer = (state, action) => {
       };
       break;
     case "EMPTY_BASKET":
-      newState = { basket: [] };
+      newState = { basket: [], address: {} };
+      break;
+    case "ADD_ADDRESS":
+      newState = {
+        ...state,
+        address: { ...action.payload.address },
+      };
       break;
   }
   Basket.set(JSON.stringify(newState));
