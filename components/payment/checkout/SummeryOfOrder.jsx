@@ -18,7 +18,14 @@ export default function SummeryOfOrder({ data }) {
             <div
               key={index}
               className="w-[50px] h-[50px] lg:w-[150px] lg:h-[150px] mx-2 lg:mx-1 bg-gray-400 rounded-[10px] lg:rounded-[15px]"
-            ></div>
+            >
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                width={100}
+                height={100}
+                src={`https://api.petemoon.com${item.image}`}
+              />
+            </div>
           ))}
       </div>
       <div className="flex items-center mt-4 lg:mt-5 mx-2 lg:mx-1">
@@ -28,7 +35,7 @@ export default function SummeryOfOrder({ data }) {
         <p className="text-xs lg:text-base text-gray-400 font-medium leading-4 lg:leading-7 mx-2 lg:mx-4">
           <bdi>{state.address.postal_address}</bdi>
         </p>
-        <Link href="/card/payment">
+        <Link href="/payment/set-address">
           <Image src={edit_Icon} alt="Edit_Icon" />
         </Link>
       </div>

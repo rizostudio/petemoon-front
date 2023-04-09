@@ -67,7 +67,7 @@ export default function SetAddress() {
             پرداخت
           </p>
           <Link
-            href="/card"
+            href="/cart"
             className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
           >
             <Image
@@ -86,7 +86,7 @@ export default function SetAddress() {
               <AddressItem
                 selectAddress={selectAddress}
                 setSelectedAddress={setSelectedAddress}
-                key={item.key}
+                key={item.id}
                 item={item}
                 index={index}
               />

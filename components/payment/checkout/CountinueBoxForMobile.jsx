@@ -1,4 +1,19 @@
-export default function CountinueBoxForMobile() {
+import React, { useState } from "react";
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
+import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
+import { Basket } from "@/localSttorage/basket";
+export default function CountinueBoxForMobile({ totalBasket }) {
+  const { state, dispatch } = BasketContext();
+  const handleOrderSubmite = async () => {
+    const response = await changeBasketToOrder(state.address.id);
+    if (response.success) {
+      dispatch({
+        type: "EMPTY_BASKET",
+      });
+      Basket.remove();
+      window.location.href = response.data.data.url;
+    }
+  };
   return (
     <div className="flex lg:hidden flex-col justify-between items-stretch w-full">
       <div className="flex justify-between w-full px-10 py-5">
@@ -11,7 +26,7 @@ export default function CountinueBoxForMobile() {
       </div>
       <div className="flex lg:hidden justify-between items-center w-full px-10 py-5 border-t-[2px] border-secondary">
         <button
-          onClick={() => router.push("/card/payment-confirmation")}
+          onClick={handleOrderSubmite}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-1/2 rounded-[12px]"
         >
           پرداخت
@@ -21,7 +36,7 @@ export default function CountinueBoxForMobile() {
             مجموع سبد خرید
           </p>
           <p className='text-lg text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{(125000).toLocaleString()}</bdi>
+            <bdi>{totalBasket.toLocaleString()}</bdi>
           </p>
         </div>
       </div>

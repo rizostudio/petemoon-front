@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
 import { Basket } from "@/localSttorage/basket";
-export default function DiscountCode() {
+export default function DiscountCode({ totalBasket }) {
   const [codeStatus, setCodeStatus] = useState({
     status: "notYet",
     value: null,
@@ -81,14 +81,14 @@ export default function DiscountCode() {
             مجموع سبد:
           </p>
           <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{(125000).toLocaleString()}</bdi>
+            <bdi>{totalBasket.toLocaleString()}</bdi>
           </p>
         </div>
         <button
           onClick={handleOrderSubmite}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
-          پرداخت
+          ادامه
         </button>
       </div>
     </div>

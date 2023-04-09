@@ -10,7 +10,10 @@ import edit_Icon from "../../../assets/common/EditIcon2.svg";
 import SummeryOfOrder from "./SummeryOfOrder";
 import DiscountCode from "./DiscountCode";
 import CountinueBoxForMobile from "./CountinueBoxForMobile";
+//context
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
 export default function OrderSummery() {
+  const { state, dispatch } = BasketContext();
   const router = useRouter();
   const data = [1, 2, 3, 4, 5];
   const discountData = [
@@ -18,7 +21,9 @@ export default function OrderSummery() {
     { code: "4567", value: 80000 },
     { code: "123", value: 20000 },
   ];
-
+  const totalBasket = state.basket.reduce((total, item) => {
+    return total + parseInt(item.count) * parseInt(item.price);
+  }, 0);
   return (
     <div className="flex flex-col justify-between w-full h-screen lg:h-full bg-[#F8F8F8] lg:py-[50px]">
       <div className="">
@@ -28,7 +33,7 @@ export default function OrderSummery() {
             خلاصه سفارش
           </p>
           <Link
-            href="/card/payment"
+            href="/payment/set-address"
             className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
           >
             <Image
@@ -41,10 +46,10 @@ export default function OrderSummery() {
         {/* Order Summary */}
         <SummeryOfOrder />
         {/* Discount & confirm box */}
-        <DiscountCode />
+        <DiscountCode totalBasket={totalBasket} />
       </div>
       {/* Continue Box for Mobile*/}
-      <CountinueBoxForMobile />
+      <CountinueBoxForMobile totalBasket={totalBasket} />
     </div>
   );
 }
