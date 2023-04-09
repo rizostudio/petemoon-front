@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Image from "next/image";
 const status = {
   SENDING: "در حال ارسال",
   CANCELED: "مرجوع شده",
@@ -75,7 +75,18 @@ export default function OrderItem({ item }) {
       {/* show the picture of orders */}
       <div className="flex flex-row justify-end items-center flex-wrap self-start">
         {item.products.map((item) => (
-          <div className="w-[50px] lg:w-[100px] h-[50px] lg:h-[100px] m-1 lg:m-2 bg-gray-600 rounded-[10px] lg:rounded-[10px]"></div>
+          <div
+            key={item.id}
+            className="w-[50px] lg:w-[100px] h-[50px] lg:h-[100px] m-1 lg:m-2 bg-gray-600 rounded-[10px] lg:rounded-[10px]"
+          >
+            <Image
+              alt="product image"
+              style={{ width: "100%", height: "100%" }}
+              width={100}
+              height={100}
+              src={`https://api.petemoon.com${item.picture}`}
+            />
+          </div>
         ))}
       </div>
     </div>
