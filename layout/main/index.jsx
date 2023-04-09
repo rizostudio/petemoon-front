@@ -57,7 +57,7 @@ export default function MainLayout({ children }) {
               صفحه اصلی
             </Link>
             <Link
-              href="/products"
+              href="/product-category/all"
               className="text-base text-black font-medium leading-8 mx-2 xl:mx-4"
             >
               محصولات

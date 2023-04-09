@@ -1,6 +1,7 @@
 import React, { use, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 // media
 import Bookmark_Icon from "../../assets/common/BookmarkBlackIcon.svg";
 import Notification_Icon from "../../assets/common/notificationIcon.svg";
@@ -24,6 +25,7 @@ import CommentfForm from "./CommentfForm";
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
 export default function SingleProduct({ data }) {
+  const router = useRouter();
   const [mainPageOpen, setMainPageOpen] = useState(true);
   const [commentPageOpen, setCommentPageOpen] = useState(false);
   const CommentSchima = Yup.object().shape({
@@ -62,7 +64,14 @@ export default function SingleProduct({ data }) {
             />
           </div>
           {/* Gallery */}
-          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[600px] rounded-[15px] border-[2px] border-primary solid"></div>
+          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[600px] rounded-[15px] border-[2px] border-primary solid">
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              width={100}
+              height={100}
+              src={`https://api.petemoon.com${data.picture}`}
+            />
+          </div>
           <div className="xl:w-full flex flex-col lg:mr-10">
             {/* Heading for desktop */}
             <HeadingForDesktop data={data} />
