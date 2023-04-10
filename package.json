@@ -19,6 +19,7 @@
     "clsx": "^1.2.1",
     "daisyui": "^2.46.0",
     "formik": "^2.2.9",
+    "jalaali-react-date-picker": "^1.0.13",
     "jalali-react-datepicker": "^1.2.1",
     "mantine-datepicker-jalali": "^1.2.3",
     "next": "13.0.7",
