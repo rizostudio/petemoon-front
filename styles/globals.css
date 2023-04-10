@@ -310,3 +310,6 @@ select option:hover {
   direction: rtl;
   border-radius: 5px !important;
 }
+.panel-header-item-text {
+  color: #000 !important;
+}
