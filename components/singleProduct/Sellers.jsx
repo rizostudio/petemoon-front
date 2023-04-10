@@ -7,7 +7,7 @@ import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { toast } from "react-toastify";
 export default function Sellers({ data }) {
   const { state, dispatch } = BasketContext();
-  const handleAddToBasket = (id) => {
+  const handleAddToBasket = (id, price) => {
     if (state?.basket?.length === 0) {
       dispatch({
         type: "ADD_TOBASKET",
@@ -18,7 +18,7 @@ export default function Sellers({ data }) {
           stars: data.ratind,
           pet_type: data.pet_type.pet_type,
           seller: data.best_pricing.petshop.name,
-          price: data.price,
+          price: price,
           discount: data.price_after_sale,
           image: data.picture,
         },
@@ -46,7 +46,7 @@ export default function Sellers({ data }) {
             stars: data.ratind,
             pet_type: data.pet_type.pet_type,
             seller: data.best_pricing.petshop.name,
-            price: data.price,
+            price: price,
             discount: data.price_after_sale,
             image: data.picture,
           },
@@ -105,7 +105,7 @@ export default function Sellers({ data }) {
                   <bdi>{`${item.price} تومان`}</bdi>
                 </p>
                 <button
-                  onClick={() => handleAddToBasket(item.id)}
+                  onClick={() => handleAddToBasket(item.id, item.price)}
                   className="text-base text-center text-white font-bold bg-primary w-full py-3 px-5 rounded-[12px] lg:rounded-[15px] mr-2 lg:mr-5"
                 >
                   افزودن به سبد
