@@ -27,20 +27,20 @@ const menuArr = [
   },
   { id: "addresses", name: "آدرس ها", icon: "/assets/dashboard/location.svg" },
   { id: "my-pets", name: "پت من", icon: "/assets/dashboard/pet.svg" },
-  { id: "vet", name: "دامپزشک من", icon: "/assets/dashboard/vet.svg" },
+  // { id: "vet", name: "دامپزشک من", icon: "/assets/dashboard/vet.svg" },
   { id: "wallet", name: "کیف پول", icon: "/assets/dashboard/empty-wallet.svg" },
   {
     id: "orders",
     name: "سفارش ها",
     icon: "/assets/dashboard/shopping-bag.svg",
-    notification: 5,
+    // notification: 5,
   },
   { id: "bookmarks", name: "علاقه مندی ها", icon: "/assets/common/like.svg" },
   {
     id: "my-messages",
     name: "پیام های من",
     icon: "/assets/common/alarm.svg",
-    notification: 10,
+    // notification: 10,
   },
   { id: "support", name: "پشتیبانی", icon: "/assets/common/alarm.svg" },
 ];

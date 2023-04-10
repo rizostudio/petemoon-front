@@ -147,7 +147,7 @@ export default function MainLayout({ children }) {
                 علاقه مندی ها
               </Link>
               <Link
-                href="/card"
+                href="/cart"
                 className="text-base text-black font-medium leading-6 my-1"
               >
                 سبد خرید

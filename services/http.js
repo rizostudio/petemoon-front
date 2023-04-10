@@ -72,8 +72,7 @@ httpRequest.interceptors.response.use(
             refreshTokenLS.remove();
             userDataStorage.remove();
             isLogin.remove();
-            window.location.href = "http://localhost:3000/auth/login";
-            console.log("first");
+            window.location.href = "https://app.petemoon.com/auth/login";
           }
         });
     }
