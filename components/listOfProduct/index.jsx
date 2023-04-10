@@ -90,7 +90,7 @@ export default function ProductList({ products }) {
             <Image src={SearchRed_Icon} alt="SearchIcon" />
           </div>
           <div
-            onClick={() => router.push("/products/1")}
+            onClick={() => router.push("/")}
             className="h-full px-4 py-3 mr-2 bg-[#ECA299] rounded-[15px] cursor-pointer"
           >
             <Image src={leftArrow_Icon} alt="LeftArrowIcon" />

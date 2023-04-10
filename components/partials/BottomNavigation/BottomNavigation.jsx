@@ -17,7 +17,7 @@ const BottomNavigation = () => {
           <bdi>صفحه اصلی</bdi>
         </h3>
       </Link>
-      <Link href="/products" className="flex flex-col items-center">
+      <Link href="/product-category/all" className="flex flex-col items-center">
         <Image src={category_Icon} alt="Category Icon" />
         <h3 className="text-sm text-center text-gray-400 font-medium leading-5 mt-1">
           <bdi>دسته بندی</bdi>
@@ -29,7 +29,7 @@ const BottomNavigation = () => {
           <bdi>جستجو</bdi>
         </h3>
       </Link>
-      <Link href="/dashboard/home" className="flex flex-col items-center">
+      <Link href="/dashboard" className="flex flex-col items-center">
         <Image src={profile_Icon} alt="Profile Icon" />
         <h3 className="text-sm text-center text-gray-400 font-medium leading-5 mt-1">
           <bdi>پروفایل</bdi>

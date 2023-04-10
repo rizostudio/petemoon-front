@@ -87,7 +87,7 @@ const BestVets = () => {
           dir="rtl"
           slidesPerView={2}
           spaceBetween={180}
-          loop={false}
+          loop={true}
           loopFillGroupWithBlank={true}
           slidesPerGroup={1}
           className="mySwiper"

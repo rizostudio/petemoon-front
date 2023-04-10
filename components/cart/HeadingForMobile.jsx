@@ -10,7 +10,7 @@ export default function HeadingForMobile() {
         سبد خرید
       </p>
       <Link
-        href="/products"
+        href="/product-category/all"
         className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
       >
         <Image src={ArrowLeftWhite_Icon} alt="ArrowIcon" className="w-full" />

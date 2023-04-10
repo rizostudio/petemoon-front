@@ -9,6 +9,7 @@ import { getSingleProduct } from "@/services/product/getSingleProduct";
 //toast Container
 import ToatContainer from "@/components/partials/toast/ToatContainer";
 import Loading from "@/components/partials/loading";
+import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
 const Product = ({ product }) => {
   const router = useRouter();
   if (router?.isFallback) {
@@ -19,6 +20,7 @@ const Product = ({ product }) => {
         <ToatContainer />
         <MainLayout>
           <SingleProduct data={product} />
+          <BottomNavigation />
         </MainLayout>
       </>
     );
