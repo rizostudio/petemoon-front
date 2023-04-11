@@ -25,7 +25,7 @@ export default function Home() {
         {/* <OfferProdcuts /> */}
         <Category />
         <OffPriceProdcuts />
-        <BestVets />
+        {/* <BestVets /> */}
         <BestSellers />
         <BeneFits />
       </div>

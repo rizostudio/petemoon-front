@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 //formik
 import { useFormik } from "formik";
+import * as Yup from "yup";
 //moment
 import moment from "jalali-moment";
 //media
@@ -26,6 +27,17 @@ export default function CreatePet() {
   const [selectType, setSelectType] = useState("");
   const [petCategory, setPetCategory] = useState([]);
   const [selectCategory, setSelectCategory] = useState("");
+  const PetSchema = Yup.object().shape({
+    name: Yup.string().required("فیلد الزامی است"),
+    pet_type: Yup.string().required("فیلد الزامی است"),
+    pet_category: Yup.string().required("فیلد الزامی است"),
+    sex: Yup.string().required("فیلد الزامی است"),
+    birth_date: Yup.string().required("فیلد الزامی است"),
+    weight: Yup.string().required("فیلد الزامی است"),
+    last_vaccine_date: Yup.string().required("فیلد الزامی است"),
+    underlying_disease: Yup.string().required("فیلد الزامی است"),
+    last_anti_parasitic_vaccine_date: Yup.string().required("فیلد الزامی است"),
+  });
   useEffect(() => {
     const getData = async () => {
       const response = await getPetType();
@@ -35,24 +47,26 @@ export default function CreatePet() {
     dataFetchedRef.current = true;
     getData();
   }, []);
-  const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      pet_type: "",
-      pet_category: "",
-      sex: "",
-      birth_date: "",
-      weight: 0,
-      last_vaccine_date: "",
-      underlying_disease: "",
-      last_anti_parasitic_vaccine_date: "",
-      photo: "",
-    },
-    onSubmit: (value) => {
-      console.log(value);
-      handleCreateSubmit(value);
-    },
-  });
+  const { handleChange, values, setFieldValue, handleSubmit, errors } =
+    useFormik({
+      initialValues: {
+        name: "",
+        pet_type: "",
+        pet_category: "",
+        sex: "",
+        birth_date: "",
+        weight: 0,
+        last_vaccine_date: "",
+        underlying_disease: "",
+        last_anti_parasitic_vaccine_date: "",
+        photo: "",
+      },
+      onSubmit: (value) => {
+        console.log(value);
+        handleCreateSubmit(value);
+      },
+      validationSchema: PetSchema,
+    });
   const handleCreateSubmit = async () => {
     const response = await createPet(values);
     if (response.success) {
@@ -151,9 +165,9 @@ export default function CreatePet() {
                     py={"3"}
                     dir={"rtl"}
                   />
-                  {inputError && (
+                  {errors.name && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.name}</bdi>
                     </p>
                   )}
                 </div>
@@ -181,9 +195,9 @@ export default function CreatePet() {
                         <option key={item.id}>{item.pet_type}</option>
                       ))}
                   </FloatLabelInput>
-                  {inputError ? (
+                  {errors.pet_type ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.pet_type}</bdi>
                     </p>
                   ) : null}
                 </div>
@@ -213,9 +227,9 @@ export default function CreatePet() {
                     ))}
                   </FloatLabelInput>
 
-                  {inputError && (
+                  {errors.pet_category && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.pet_category}</bdi>
                     </p>
                   )}
                 </div>
@@ -238,9 +252,9 @@ export default function CreatePet() {
                     <option>نر</option>
                     <option>ماده</option>
                   </datalist>
-                  {inputError && (
+                  {errors.sex && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.sex}</bdi>
                     </p>
                   )}
                 </div>
@@ -259,9 +273,9 @@ export default function CreatePet() {
                   py={"3"}
                   dir={"ltr"}
                 />
-                {inputError && (
+                {errors.birth_date && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                    <bdi>فرمت صحیح نمی باشد!</bdi>
+                    <bdi>{errors.birth_date}</bdi>
                   </p>
                 )}
               </div>
@@ -281,9 +295,9 @@ export default function CreatePet() {
                     py={"3"}
                     dir={"rtl"}
                   />
-                  {inputError && (
+                  {errors.weight && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.weight}</bdi>
                     </p>
                   )}
                 </div>
@@ -306,9 +320,9 @@ export default function CreatePet() {
                     <option>سرخک حاد</option>
                     <option>آنلفونزا</option>
                   </datalist>
-                  {inputError ? (
+                  {errors.underlying_disease ? (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.underlying_disease}</bdi>
                     </p>
                   ) : null}
                 </div>
@@ -321,16 +335,16 @@ export default function CreatePet() {
                   <FloatLabelInput
                     type={"date"}
                     placeholder={"تاریخ آخرین واکسن"}
-                    // name="last_vaccine_date"
+                    name="last_vaccine_date"
                     onChange={lastVaccineDate}
                     value={values.last_vaccine_date}
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
                   />
-                  {inputError && (
+                  {errors.last_vaccine_date && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.last_vaccine_date}</bdi>
                     </p>
                   )}
                 </div>
@@ -341,7 +355,7 @@ export default function CreatePet() {
                   <FloatLabelInput
                     type={"date"}
                     placeholder={"تاریخ آخرین واکسن ضد انگل"}
-                    // name="last_anti_parasitic_vaccine_date"
+                    name="last_anti_parasitic_vaccine_date"
                     onChange={lastAntiParasiticVaccineDate}
                     value={values.last_anti_parasitic_vaccine_date}
                     list="sexes"
@@ -353,9 +367,9 @@ export default function CreatePet() {
                     <option>نر</option>
                     <option>ماده</option>
                   </datalist>
-                  {inputError && (
+                  {errors.last_anti_parasitic_vaccine_date && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>فرمت صحیح نمی باشد!</bdi>
+                      <bdi>{errors.last_anti_parasitic_vaccine_date}</bdi>
                     </p>
                   )}
                 </div>

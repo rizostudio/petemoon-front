@@ -269,3 +269,47 @@ select option:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+/* datepicker */
+.picker-input-wrapper {
+  border-color: #00000054 !important;
+  margin: 0;
+  height: 100% !important;
+  line-height: 1;
+  width: 100%;
+  min-width: 200px;
+  max-width: 100%;
+  border: 1px solid;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: var(--background);
+  border-radius: 12px !important;
+}
+.highlight {
+  background-color: #ec7364 !important;
+  border-radius: 4px !important;
+}
+.today {
+  border: 1px solid #ec7364 !important;
+  border-radius: 4px !important;
+}
+.day-label-bar-inner-rtl {
+  margin-inline: 8px;
+  width: 100%;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ec7364 !important;
+  border-radius: 2px;
+  padding-inline: 6px;
+  direction: rtl;
+  border-radius: 5px !important;
+}
+.panel-header-item-text {
+  color: #000 !important;
+}
