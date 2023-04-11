@@ -1,35 +1,3 @@
-// import axois from "axios";
-// export default class http {
-//   baseURL;
-//   instance;
-
-//   constructor() {
-//     this.baseURL = "https://api.petemoon.com";
-//     this.instance = axois.create({
-//       withCredentials: "true",
-//     });
-//   }
-
-//   get(endpoint, config = {}) {
-//     return this.instance.get(`${this.baseURL}${endpoint}`, config);
-//   }
-
-//   post(endpoint, data, config) {
-//     return this.instance.post(`${this.baseURL}${endpoint}`, data, config);
-//   }
-
-//   put(endpoint, data, config) {
-//     return this.instance.put(`${this.baseURL}${endpoint}`, data, config);
-//   }
-
-//   patch(endpoint, data, config = {}) {
-//     return this.instance.patch(`${this.baseURL}${endpoint}`, data, config);
-//   }
-
-//   delete(endpoint, config = {}) {
-//     return this.instance.delete(`${this.baseURL}${endpoint}`, config);
-//   }
-// }
 import { isLogin, refreshTokenLS, userDataStorage } from "@/localSttorage/auth";
 import axios from "axios";
 
