@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { isLogin, refreshTokenLS, userDataStorage } from "@/localSttorage/auth";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -90,6 +91,9 @@ export default function DashboardLayout({ children }) {
   const handleLogout = async () => {
     const response = await logout();
     if (response.success) {
+      refreshTokenLS.remove();
+      userDataStorage.remove();
+      isLogin.remove();
       router.push("/");
     }
   };
