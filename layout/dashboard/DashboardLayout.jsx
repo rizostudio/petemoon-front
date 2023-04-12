@@ -67,9 +67,6 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!user) {
-      router.push("/auth/login");
-    }
     const handleStart = (url) => {
       setLoading(true);
     };

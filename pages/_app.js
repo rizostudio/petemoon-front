@@ -11,11 +11,6 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   const authCtx = useContext(AuthContext);
   useEffect(() => {
-    const { isLoggedIn } = authCtx;
-    console.log(isLoggedIn);
-    // if (!isLoggedIn) {
-    //   router.push("/auth/login");
-    // }
     const handleStart = (url) => {
       console.log(url);
       if (
@@ -48,6 +43,14 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
+  }, [router]);
+  useEffect(() => {
+    const { isLoggedIn } = authCtx;
+    console.log(isLoggedIn);
+    if (router.pathname.startsWith("/dashboard") && !authCtx.isLoggedIn) {
+      console.log("first");
+      router.push("/auth/login");
+    }
   }, [router]);
   return (
     <>

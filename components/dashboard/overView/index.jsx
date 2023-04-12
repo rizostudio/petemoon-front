@@ -15,8 +15,10 @@ export default function DashboardOverView() {
   useEffect(() => {
     const getData = async () => {
       const response = await getOverView();
-      setData(response.data);
-      console.log(response.data.my_pet);
+
+      if (response.success) {
+        setData(response.data);
+      }
     };
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
