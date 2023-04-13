@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { isLogin, refreshTokenLS, userDataStorage } from "@/localSttorage/auth";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -17,6 +18,7 @@ import AuthContext from "@/store/AuthCtx/AuthContext";
 import Loading from "@/components/partials/loading";
 //toastContainer
 import ToastContainer from "@/components/partials/toast/ToatContainer";
+import { logout } from "@/services/dashboard/userInfo/logout";
 const menuArr = [
   { id: "", name: "داشبورد", icon: "/assets/dashboard/home.svg" },
   {
@@ -54,7 +56,7 @@ export default function DashboardLayout({ children }) {
   const openHandler = () => {
     setOpenly(true);
   };
-  console.log(router);
+
   //dashboard menu
 
   const pageName = menuArr.find(
@@ -65,9 +67,6 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!user) {
-      router.push("/auth/login");
-    }
     const handleStart = (url) => {
       setLoading(true);
     };
@@ -86,6 +85,15 @@ export default function DashboardLayout({ children }) {
   useEffect(() => {
     setuser(authCtx.userData);
   }, [authCtx]);
+  const handleLogout = async () => {
+    const response = await logout();
+    if (response.success) {
+      refreshTokenLS.remove();
+      userDataStorage.remove();
+      isLogin.remove();
+      router.push("/");
+    }
+  };
   return (
     <>
       <ToastContainer />
@@ -219,6 +227,7 @@ export default function DashboardLayout({ children }) {
             </div>
             {/* logout */}
             <div
+              onClick={handleLogout}
               className={clsx(
                 "flex justify-center lg:justify-between items-center self-center bg-primary w-3/4 h-full lg:mx-auto mt-20 lg:mt-2 mb-10 rounded-[12px]",
                 {

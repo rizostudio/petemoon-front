@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { useRouter } from "next/router";
 //components
 import Mypet from "./Mypet";
 import OrderCount from "./OrderCount";
@@ -9,19 +10,23 @@ import OrderSummary from "./OrderSummary";
 import { getOverView } from "@/services/dashboard/overView/getOverView";
 //moment
 import moment from "jalali-moment";
+import AuthContext from "@/store/AuthCtx/AuthContext";
 export default function DashboardOverView() {
   const dataFetchedRef = useRef(false);
   const [data, setData] = useState({});
+
   useEffect(() => {
     const getData = async () => {
       const response = await getOverView();
-      setData(response.data);
-      console.log(response.data.my_pet);
+      if (response.success) {
+        setData(response.data);
+      }
     };
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     getData();
   }, []);
+
   return (
     <div className="flex flex-col items-stretch">
       <div className="flex flex-col lg:flex-row justify-between lg:justify-center items-stretch lg:items-center w-full h-full lg:h-[250px]">
