@@ -1,12 +1,13 @@
 //read only context for user auth
 import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import AuthContext from "./AuthContext";
 //localStorage
 import { isLogin, userDataStorage } from "@/localSttorage/auth";
 
 const AuthProvider = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState();
-  const [user, setUser] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage("petemoon-isLogin");
+  const [user, setUser] = useLocalStorage("petemoon-user");
   useEffect(() => {
     console.log(userDataStorage.get());
     const userLogin = isLogin.get();

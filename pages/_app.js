@@ -3,13 +3,11 @@ import "../styles/globals.css";
 import AuthProvider from "@/store/AuthCtx/AuthProvider";
 import { useRouter } from "next/router";
 import Loading from "@/components/partials/loading";
-import AuthContext from "@/store/AuthCtx/AuthContext";
 import { BasketContextProvider } from "@/store/BasketCtx/BasketContext";
-import { HistoryProvider } from "@/store/HistoryCtx/History";
+import ProtectedRoute from "@/hook/ProtectedRoute";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const authCtx = useContext(AuthContext);
   useEffect(() => {
     const handleStart = (url) => {
       console.log(url);
@@ -44,14 +42,6 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeError", handleComplete);
     };
   }, [router]);
-  useEffect(() => {
-    const { isLoggedIn } = authCtx;
-    console.log(isLoggedIn);
-    if (router.pathname.startsWith("/dashboard") && !authCtx.isLoggedIn) {
-      console.log("first");
-      router.push("/auth/login");
-    }
-  }, [router]);
   return (
     <>
       {loading ? (
@@ -59,9 +49,13 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <AuthProvider>
           <BasketContextProvider>
-            <HistoryProvider>
+            {router.pathname.startsWith("/dashboard") ? (
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
+            ) : (
               <Component {...pageProps} />
-            </HistoryProvider>
+            )}
           </BasketContextProvider>
         </AuthProvider>
       )}

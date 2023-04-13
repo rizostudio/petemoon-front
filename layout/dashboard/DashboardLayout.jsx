@@ -56,7 +56,7 @@ export default function DashboardLayout({ children }) {
   const openHandler = () => {
     setOpenly(true);
   };
-  console.log(router);
+
   //dashboard menu
 
   const pageName = menuArr.find(
