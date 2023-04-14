@@ -119,7 +119,7 @@ export default function MainLayout({ children }) {
                     searchResult.length ? (
                       searchResult.map((item) => {
                         return (
-                          <div>
+                          <div key={item.id}>
                             <Link href={`/products/${item.slug}`}>
                               {item.name}
                             </Link>
