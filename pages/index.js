@@ -33,15 +33,15 @@ export default function Home() {
     </MainLayout>
   );
 }
-// export async function getStaticProps() {
-//   // const { slug } = context.params;
-//   const response = await getTopSeller();
-//   console.log(response);
-//   console.log(response.data);
-//   return {
-//     props: {
-//       products: response.data,
-//       // slug,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  // const { slug } = context.params;
+  const response = await getTopProduct();
+  console.log(response);
+  console.log(response.data);
+  return {
+    props: {
+      products: response.data,
+      // slug,
+    },
+  };
+}

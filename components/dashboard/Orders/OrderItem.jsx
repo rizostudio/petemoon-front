@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 const status = {
   SENDING: "در حال ارسال",
-  CANCELED: "مرجوع شده",
+  CANCELLED: "لغو شده",
+  DELIVERED: "  تکمیل شده",
+  PAY_PENDING: "در انتظار ",
+  PROCESSING: "در حال ",
 };
 export default function OrderItem({ item }) {
   const [orderPrice, setOrderPrice] = useState(0);
