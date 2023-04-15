@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 //media
 import BagDelivered_Icon from "../../../assets/dashboard/bag-tick.svg";
 import BagCurrent_Icon from "../../../assets/dashboard/bag-happy.svg";
@@ -12,9 +13,11 @@ export default function OrderSummary({ orders }) {
         <p className='text-base text-black font-bold leading-8  before:w-2 before:h-4 before:bg-primary before:text-primary before:content-[">"] before:ml-2 before:rounded-[2px]'>
           سفارش های من
         </p>
-        <p className=' text-xs text-primary font-medium leading-6 after:content-[">"] after:mr-4 after:text-base'>
-          مشاهده همه
-        </p>
+        <Link href={"/dashboard/orders"}>
+          <p className=' text-xs text-primary font-medium leading-6 after:content-[">"] after:mr-4 after:text-base'>
+            مشاهده همه
+          </p>
+        </Link>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-between w-full px-20 py-12">
         <div className="px-1 py-0 flex items-center">
