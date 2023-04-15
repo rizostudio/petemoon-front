@@ -9,11 +9,16 @@ import MainLayout from "@/layout/main";
 import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
 import ToatContainer from "@/components/partials/toast/ToatContainer";
 export async function getServerSideProps({ query }) {
+  // if (query.slug === "all") {
+  //   delete query.slug;
+  // }
+
+  console.log(query);
   const queryParams = new URLSearchParams(query);
-  queryParams.set("limit", 10);
+  queryParams.set("limit", 5);
   queryParams.set("offset", 1);
   const response = await getListProducts(queryParams.toString());
-  console.log(response.data.products);
+  console.log(response.data);
   return {
     props: {
       productsList: response.data.products,

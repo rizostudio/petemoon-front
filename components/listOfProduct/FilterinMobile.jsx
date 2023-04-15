@@ -119,14 +119,14 @@ export default function FilterinMobile({
                   <input
                     id={`kind${index}`}
                     type="checkbox"
-                    checked={router?.query?.category_slug?.includes(item.id)}
+                    checked={router?.query?.pet_types?.includes(item.slug)}
                     onChange={(e) => {
-                      filterProducts(e, "category_slug", item.id);
+                      filterProducts(e, "pet_types", item.slug);
                     }}
                     className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                   />
                   <label htmlFor={`kind${index}`} className="mr-2">
-                    {item.name}
+                    {item.pet_category}
                   </label>
                 </div>
               ))}

@@ -63,7 +63,7 @@ export default function ProductList({ products }) {
       const response = await getProductFilter();
       console.log(response);
       setBrand(response.data.brands);
-      setPetCategory(response.data.pet_categories);
+      setPetCategory(response.data.pet_types);
       setMaxPrice(response.data.max_price);
       setMinPrice(response.data.min_price);
     };
