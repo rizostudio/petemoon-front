@@ -17,17 +17,17 @@ export default function ProductCart({ item, index }) {
         type: "ADD_TOBASKET",
         payload: {
           name: item.name,
-          id: item.id,
+          id: item.best_pricing.id,
           category: item.category,
           stars: item.rating,
-          seller: item.best_seller?.name,
-          price: item.max_price,
-          discount: item.min_price,
+          seller: item.best_pricing.petshop?.name,
+          price: item.price,
+          discount: item.best_pricing.price_after_sale,
           image: item.picture,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
-        toastId: item.id,
+        toastId: item.best_pricing.id,
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -39,24 +39,24 @@ export default function ProductCart({ item, index }) {
       });
     } else {
       const check = state?.basket?.find(
-        (basketItem) => basketItem.id === item.id
+        (basketItem) => basketItem.id === item.best_pricing.id
       );
       if (!check) {
         dispatch({
           type: "ADD_TOBASKET",
           payload: {
             name: item.name,
-            id: item.id,
+            id: item.best_pricing.id,
             category: item.category,
             stars: item.rating,
-            seller: item.best_seller?.name,
-            price: item.max_price,
-            discount: item.min_price,
+            seller: item.best_pricing.petshop?.name,
+            price: item.price,
+            discount: item.best_pricing.price_after_sale,
             image: item.picture,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {
-          toastId: item.id,
+          toastId: item.best_pricing.id,
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -68,7 +68,7 @@ export default function ProductCart({ item, index }) {
         });
       } else {
         toast.info("این محصول از قبل در سبد خرید موجود است", {
-          toastId: item.id,
+          toastId: item.best_pricing.id,
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -149,10 +149,15 @@ export default function ProductCart({ item, index }) {
               <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
               </h2>
-
-              <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
-                {item.discount ? item.discount : 12}%
-              </p>
+              {item.best_pricing.price_after_sale && (
+                <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
+                  {item.best_pricing.price_after_sale &&
+                    (item.best_pricing.price /
+                      item.best_pricing.price_after_sale) *
+                      100}
+                  %
+                </p>
+              )}
             </div>
           </Link>
           <div className="flex lg:hidden justify-between items-center">
@@ -188,7 +193,7 @@ export default function ProductCart({ item, index }) {
                     <bdi>{item.group}</bdi>
                   </p>
                   <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
-                    {item.best_seller?.name}
+                    {item.best_pricing.petshop?.name}
                   </p>
                 </div>
                 <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
@@ -196,17 +201,19 @@ export default function ProductCart({ item, index }) {
                 </p>
               </div>
               <div className="self-end lg:self-stretch">
-                {item.inventory ? (
+                {item.best_pricing.inventory ? (
                   <div className="flex flex-col lg:flex-row justify-between lg:items-center mt-2">
                     <div className="flex flex-col lg:flex-col-reverse">
-                      {item.max_price && (
+                      {item.best_pricing.price_after_sale && (
                         <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
-                          {item.max_price}
+                          {item.best_pricing.price_after_sale}
                         </p>
                       )}
-                      <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
-                        <bdi>{item.max_price} تومان</bdi>
-                      </p>
+                      {item.best_pricing.price && (
+                        <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
+                          <bdi>{item.best_pricing.price} تومان</bdi>
+                        </p>
+                      )}
                     </div>
                     <div
                       // href={`/products/${index}`}

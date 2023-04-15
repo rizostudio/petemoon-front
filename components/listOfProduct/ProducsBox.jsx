@@ -28,6 +28,7 @@ function ProducsBox({ data }) {
       queryParams.set("offset", page);
       const response = await getListProducts(queryParams.toString());
       if (response.success) {
+        console.log(response.data);
         if (parseInt(response.data.count) < 5) {
           // setProducts((prev) => [...prev, ...response.data.products]);
           setLastEllement(null);
