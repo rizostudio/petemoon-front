@@ -313,3 +313,38 @@ select option:hover {
 .panel-header-item-text {
   color: #000 !important;
 }
+.search {
+  /* width: 100%; */
+  position: absolute;
+  top: 93px;
+  /* left: -89px; */
+  background-color: #f2f2f3;
+
+  max-height: 300px;
+  z-index: 100000;
+  overflow: scroll;
+}
+.search div {
+  padding: 0 20px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #555555;
+}
+.loadingg {
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid #5e5e5e; /* Blue */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

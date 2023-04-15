@@ -6,8 +6,7 @@ import bigPetsImage from "@/assets/signup/signupImage.png";
 import smallPetsImage from "@/assets/login/loginImage.png";
 //component
 import PetemoonLogo from "@/components/partials/logo";
-//formik
-import { useFormik } from "formik";
+
 export default function AuthLayout({ children }) {
   return (
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white lg:bg-[#F1F1F1]">

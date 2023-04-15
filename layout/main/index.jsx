@@ -1,7 +1,8 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { debounce } from "lodash";
 //media
 import card_Icon from "../../assets/common/shopping-cartRedIcon2.svg";
 import user_Icon from "../../assets/common/user-square.svg";
@@ -20,11 +21,15 @@ import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import AuthContext from "@/store/AuthCtx/AuthContext";
 //storage
 import { Basket } from "@/localSttorage/basket";
+import { search } from "@/services/home/search";
 
 export default function MainLayout({ children }) {
   const router = useRouter;
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchloading, setSearchLoading] = useState(false);
+  const [inputBlur, setInputBlur] = useState(false);
   useEffect(() => {
     const getInitBasket = () => {
       const currentState = JSON.parse(Basket.get());
@@ -38,6 +43,24 @@ export default function MainLayout({ children }) {
     };
     getInitBasket();
   }, []);
+  const performSearch = debounce(async (keyword) => {
+    setSearchLoading(true);
+    const response = await search(keyword);
+
+    if (response.success) {
+      console.log(response.data);
+      setSearchResult(response.data);
+      setSearchLoading(false);
+    }
+  }, 1000);
+  const handleSearch = (e) => {
+    setInputBlur(true);
+    if (!e.target.value) {
+      setSearchResult([]);
+    }
+    performSearch(e.target.value);
+    setSearchResult([]);
+  };
   return (
     <>
       <div className="">
@@ -76,13 +99,41 @@ export default function MainLayout({ children }) {
             </Link>
           </div>
           <div className="flex items-center h-full">
-            <div className="flex flex-row h-12 w-[200px] xl:w-[300px] px-5 bg-[#eee] rounded-[10px]">
-              <Image src={search_Icon} alt="SearchIcon" className="invert" />
+            <div className="flex flex-row h-12 w-[200px] xl:w-[300px] bg-[#eee] rounded-[10px]">
+              <Image
+                src={search_Icon}
+                alt="SearchIcon"
+                className="invert mr-5"
+              />
               <input
+                // onBlur={() => setInputBlur(false)}
+
+                onChange={handleSearch}
                 type="text"
                 placeholder="جستجو"
                 className="text-base text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
               />
+              {inputBlur && (
+                <div className="w-[200px] xl:w-[300px] px-0 bg-[#eee] search">
+                  {!searchloading ? (
+                    searchResult.length ? (
+                      searchResult.map((item) => {
+                        return (
+                          <div>
+                            <Link href={`/products/${item.slug}`}>
+                              {item.name}
+                            </Link>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div>نتیجه ای یافت نشد</div>
+                    )
+                  ) : (
+                    <div className="loadingg"></div>
+                  )}
+                </div>
+              )}
             </div>
             <div className="flex items-center h-full lg:mr-[15px] xl:mr-[60px]">
               <div className="h-full p-3 border-[1px] border-primary rounded-[15px]">

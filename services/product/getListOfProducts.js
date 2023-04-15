@@ -7,6 +7,6 @@ export const getListProducts = async (slug) => {
     const data = response.data.data;
     return successResponse(data);
   } catch (error) {
-    return errorResponse(error.response.data.errors);
+    return errorResponse(error?.response?.data?.errors);
   }
 };
