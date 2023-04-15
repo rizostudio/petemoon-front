@@ -133,7 +133,10 @@ export default function FilterinMobile({
             </div>
           </div>
           <div className="w-full flex justify-between items-center px-10 py-5">
-            <p className="w-1/3 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer">
+            <p
+              onClick={() => router.push("/product-category/all")}
+              className="w-1/3 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer"
+            >
               حذف فیلترها
             </p>
           </div>

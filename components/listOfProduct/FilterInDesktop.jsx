@@ -145,7 +145,10 @@ export default function FilterInDesktop({
             {/* <button className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 bg-[#CFEBD8] border-[1px] border-solid border-verify rounded-[12px]">
               اعمال
             </button> */}
-            <p className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer">
+            <p
+              onClick={() => router.push("/product-category/all")}
+              className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer"
+            >
               حذف فیلترها
             </p>
           </div>
