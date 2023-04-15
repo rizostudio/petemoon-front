@@ -6,7 +6,7 @@ export const createPet = async (petInfo) => {
   form.append("name", petInfo.name);
   form.append("pet_type", petInfo.pet_type);
   form.append("pet_category", petInfo.pet_category);
-  form.append("sex", "M");
+  form.append("sex", petInfo.sex);
   form.append("birth_date", petInfo.birth_date);
   form.append("weight", petInfo.weight);
   form.append("last_vaccine_date", petInfo.last_vaccine_date);
