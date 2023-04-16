@@ -6,7 +6,7 @@ export const postBasketToServer = async (payload, addressId) => {
   const cart = { ...payload };
   try {
     const response = await httpRequest.post("/cart/", {
-      cart: payload,
+      products: payload,
       address: addressId,
     });
     const data = response.data.data;
