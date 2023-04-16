@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import clsx from "clsx";
 import Image from "next/image";
 const status = {
   SENDING: "در حال ارسال",
@@ -18,7 +19,21 @@ export default function OrderItem({ item }) {
   return (
     <div className="flex flex-col w-full my-1 lg:my-4 px-4 py-2 lg:px-10 lg:py-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-none lg:shadow-shadowB">
       <div className="flex flex-row justify-between lg:justify-between items-center">
-        <p className="text-sm lg:text-lg text-black font-black lg:font-bold leading-7 lg:leading-8 before:align-middle before:inline-block before:w-2 before:h-2 lg:before:h-4 before:bg-primary before:ml-1 lg:before:ml-2 before:rounded-full lg:before:rounded-[2px]">
+        <p
+          className={`text-sm lg:text-lg text-black font-black lg:font-bold leading-7 lg:leading-8 before:align-middle before:inline-block before:w-2 before:h-2 lg:before:h-4 before:ml-1 lg:before:ml-2 before:rounded-full lg:before:rounded-[2px] ${
+            item.status === "SENDING"
+              ? "before:bg-cyan-600"
+              : item.status === "CANCELLED"
+              ? "before:bg-rose-700"
+              : item.status === "DELIVERED"
+              ? "before:bg-green-600"
+              : item.status === "PAY_PENDING"
+              ? "before:bg-yellow-400"
+              : item.status === "PROCESSING"
+              ? "before:bg-neutral-600"
+              : "before:bg-neutral-600"
+          }`}
+        >
           <bdi>{status[item.status]}</bdi>
         </p>
         <p className="text-sm lg:text-lg text-gray-400 font-medium leading-4">
