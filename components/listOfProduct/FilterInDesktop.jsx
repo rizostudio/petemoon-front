@@ -128,15 +128,15 @@ export default function FilterInDesktop({
               <div key={v4()} className="flex items-center">
                 <input
                   id={`kind${index}`}
-                  checked={router?.query?.category_slug?.includes(item.id)}
+                  checked={router?.query?.pet_types?.includes(item.slug)}
                   onChange={(e) => {
-                    filterProducts(e, "category_slug", item.id);
+                    filterProducts(e, "pet_types", item.slug);
                   }}
                   type="checkbox"
                   className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                 />
                 <label htmlFor={`kind${index}`} className="mr-2">
-                  {item.name}
+                  {item.pet_category}
                 </label>
               </div>
             ))}
@@ -145,7 +145,10 @@ export default function FilterInDesktop({
             {/* <button className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 bg-[#CFEBD8] border-[1px] border-solid border-verify rounded-[12px]">
               اعمال
             </button> */}
-            <p className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer">
+            <p
+              onClick={() => router.push("/product-category/all")}
+              className="w-2/4 text-base text-center text-black font-medium leading-7 p-3 cursor-pointer"
+            >
               حذف فیلترها
             </p>
           </div>

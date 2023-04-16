@@ -238,7 +238,7 @@ export default function CreatePet() {
                     جنسیت
                   </label>
                   <FloatLabelInput
-                    type={"text"}
+                    type={"select"}
                     placeholder={"جنسیت"}
                     name="sex"
                     onChange={handleChange}
@@ -247,11 +247,15 @@ export default function CreatePet() {
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-                  <datalist id="sexes">
-                    <option>نر</option>
-                    <option>ماده</option>
-                  </datalist>
+                  >
+                    <option value={"M"}>
+                      <label>نر</label>
+                    </option>
+                    <option value={"F"}>
+                      <label>ماده</label>
+                    </option>
+                  </FloatLabelInput>
+
                   {errors.sex && (
                     <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                       <bdi>{errors.sex}</bdi>

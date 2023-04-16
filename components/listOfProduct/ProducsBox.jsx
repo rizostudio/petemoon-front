@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import uuid from "uuid";
 //component
 import ListOfProductCard from "../partials/productCard/ListOfProductCard";
 //services
@@ -9,7 +10,7 @@ import Loading from "../partials/loading";
 function ProducsBox({ data }) {
   const [lastEllement, setLastEllement] = useState(null);
   const router = useRouter();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [limit, setLimit] = useState(5);
   const [products, setProducts] = useState(data);
   const [loading, setloading] = useState(false);
@@ -17,13 +18,23 @@ function ProducsBox({ data }) {
   useEffect(() => {
     setloading(true);
     const query = router.query;
+    // if (query.slug === "all") {
+    //   delete query.slug;
+    // }
+
     const getData = async () => {
       const queryParams = new URLSearchParams(query);
       queryParams.set("limit", limit);
       queryParams.set("offset", page);
       const response = await getListProducts(queryParams.toString());
       if (response.success) {
-        setProducts((prev) => [...prev, ...response.data.products]);
+        console.log(response.data);
+        if (parseInt(response.data.count) < 5) {
+          // setProducts((prev) => [...prev, ...response.data.products]);
+          setLastEllement(null);
+        } else {
+          setProducts((prev) => [...prev, ...response.data.products]);
+        }
         setloading(false);
       }
     };
@@ -36,7 +47,7 @@ function ProducsBox({ data }) {
           setPage((prev) => prev + 1);
         }
       },
-      { threshold: 0.6 }
+      { threshold: 0.9 }
     );
     if (lastEllement) {
       observerRef.observe(lastEllement);
@@ -51,11 +62,7 @@ function ProducsBox({ data }) {
     <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5">
       {products &&
         products.map((item, index) => (
-          <div
-            className="w-full lg:w-auto"
-            key={item.slug}
-            ref={setLastEllement}
-          >
+          <div className="w-full lg:w-auto" key={index} ref={setLastEllement}>
             <ListOfProductCard item={item} index={index} />
           </div>
         ))}

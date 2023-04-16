@@ -323,13 +323,34 @@ select option:hover {
   max-height: 300px;
   z-index: 100000;
   overflow: scroll;
+  border-radius: 0 0 15px 15px !important;
+}
+@media screen and (max-width: 768px) {
+  .search {
+    transform: translate(50%, 0);
+    /* top: 50%; */
+    margin: auto;
+    right: 50%;
+    width: 92%;
+    position: absolute;
+    top: 144px;
+    /* left: -89px; */
+    background-color: #f2f2f3;
+    max-height: 300px;
+    z-index: 100000;
+    overflow: scroll;
+    border-radius: 0 0 15px 15px !important;
+  }
 }
 .search div {
   padding: 0 20px;
-  height: 48px;
+  height: 58px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #555555;
+  border-bottom: 1px solid #d4d4d4;
+}
+.search div:hover {
+  background-color: #e2e2e2;
 }
 .loadingg {
   border: 3px solid #f3f3f3; /* Light grey */

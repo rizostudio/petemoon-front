@@ -257,7 +257,7 @@ export default function EditePet({ id }) {
                     جنسیت
                   </label>
                   <FloatLabelInput
-                    type={"text"}
+                    type={"select"}
                     placeholder={"جنسیت"}
                     name="sex"
                     onChange={handleChange}
@@ -266,16 +266,14 @@ export default function EditePet({ id }) {
                     h={"h-12"}
                     py={"3"}
                     dir={"rtl"}
-                  />
-                  <datalist id="sexes">
-                    <option>نر</option>
-                    <option>ماده</option>
-                  </datalist>
-                  {errors.sex && (
-                    <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                      <bdi>{errors.sex}</bdi>
-                    </p>
-                  )}
+                  >
+                    <option value={"M"}>
+                      <label>نر</label>
+                    </option>
+                    <option value={"F"}>
+                      <label>ماده</label>
+                    </option>
+                  </FloatLabelInput>
                 </div>
               </div>
               <div className="text-right mb-4 lg:m-1">

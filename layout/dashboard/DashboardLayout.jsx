@@ -143,7 +143,7 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
           {/* menu */}
-          <ul className="w-full h-full lg:mt-[75px]">
+          <ul className="w-full h-full lg:mt-[25px]">
             {menuArr.map((item) => (
               <li
                 key={v4()}
@@ -205,6 +205,53 @@ export default function DashboardLayout({ children }) {
                 </Link>
               </li>
             ))}
+            <li
+              key={v4()}
+              className={clsx(
+                "border-b-[1px]  border-silver solid lg:border-[#eeeeee26] lg:my-0 lg:mx-9 py-4 px-8 lg:px-0",
+                {
+                  "": Minify == false,
+                  "lg:border-none": Minify == true,
+                }
+              )}
+            >
+              <Link
+                href={`/`}
+                onClick={openHandler}
+                className={clsx("flex justify-between items-center w-full", {
+                  "flex-row": Minify == false,
+                  "flex-row lg:flex-col": Minify == true,
+                })}
+              >
+                <div className="flex flex-row items-stretch relative">
+                  <Image
+                    src={"/assets/dashboard/home.svg"}
+                    alt={"برگشت به صفحه اصلی"}
+                    width="20"
+                    height="20"
+                    className={clsx("lg:invert", {})}
+                  />
+                  <h3
+                    className={clsx(
+                      "text-base text-black lg:text-secondary font-bold w-full mr-3",
+                      {
+                        block: Minify == false,
+                        "lg:hidden": Minify == true,
+                      }
+                    )}
+                  >
+                    {"برگشت به صفحه اصلی"}
+                  </h3>
+                </div>
+                {/* showing notification numbers for each section */}
+
+                <Image
+                  src={ArrowLeft_Icon}
+                  alt="ArrowLeftIcon"
+                  className="lg:hidden"
+                />
+              </Link>
+            </li>
           </ul>
           <div className="w-full h-full flex flex-col justify-center items-stretch lg:mt-[50px]">
             {/* user information */}

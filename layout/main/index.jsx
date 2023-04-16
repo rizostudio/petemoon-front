@@ -24,7 +24,6 @@ import { Basket } from "@/localSttorage/basket";
 import { search } from "@/services/home/search";
 
 export default function MainLayout({ children }) {
-  const router = useRouter;
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
   const [searchResult, setSearchResult] = useState([]);
@@ -57,9 +56,9 @@ export default function MainLayout({ children }) {
     setInputBlur(true);
     if (!e.target.value) {
       setSearchResult([]);
+    } else {
+      performSearch(e.target.value);
     }
-    performSearch(e.target.value);
-    setSearchResult([]);
   };
   return (
     <>
@@ -119,7 +118,7 @@ export default function MainLayout({ children }) {
                     searchResult.length ? (
                       searchResult.map((item) => {
                         return (
-                          <div>
+                          <div key={item.id}>
                             <Link href={`/products/${item.slug}`}>
                               {item.name}
                             </Link>
