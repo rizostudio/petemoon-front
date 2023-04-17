@@ -71,7 +71,7 @@ const BestVets = () => {
   };
   return (
     <div className="flex flex-col bg-[#F8F8F8] py-6 lg:py-[80px] lg:px-[80px]">
-      <div className="flex justify-between items-center align-middle px-10">
+      {/* <div className="flex justify-between items-center align-middle px-10">
         <h5 className="text-2xl text-black font-black lg:font-bold leading-7 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]">
           دامپزشکان برتر
         </h5>
@@ -81,8 +81,8 @@ const BestVets = () => {
         >
           <bdi>مشاهده همه</bdi>
         </Link>
-      </div>
-      <div className="flex flex-row-reverse lg:justify-center items-center mr-10 lg:m-0 pt-15 lg:py-[150px]">
+      </div> */}
+      {/* <div className="flex flex-row-reverse lg:justify-center items-center mr-10 lg:m-0 pt-15 lg:py-[150px]">
         <Swiper
           dir="rtl"
           slidesPerView={2}
@@ -150,7 +150,7 @@ const BestVets = () => {
               </SwiperSlide>
             ))}
         </Swiper>
-      </div>
+      </div> */}
       <div className="hidden lg:flex px-10">
         <div className="w-1/2 relative">
           <Image src={petImage1} alt="Pet Image" className="w-full h-full" />

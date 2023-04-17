@@ -34,7 +34,7 @@ export default function DiscountCode({ totalBasket }) {
             // onChange={(event) => setOffCode(event.target.value)}
             className="text-base text-black font-medium leading-6 px-5 py-4 lg:px-4 lg:py-3 bg-white border-[1px] border-third rounded-[12px] lg:rounded-[5px] appearance-none focus:border-primary focus:outline-none focus:ring-0 peer"
           />
-          {codeStatus.status ? (
+          {/* {codeStatus.status ? (
             <div className="flex justify-between items-center mt-2">
               <p className="text-base text-verify lg:text-lg font-normal leading-5">
                 <bdi>{`مبلغ ${codeStatus.value} تومان از سبد شما کسر گردید`}</bdi>
@@ -58,7 +58,7 @@ export default function DiscountCode({ totalBasket }) {
                 <bdi>حذف کد</bdi>
               </p>
             </div>
-          )}
+          )} */}
         </div>
         <div className="flex justify-between items-center w-full lg:w-1/3 mt-5 lg:mt-0 lg:mr-4">
           <button

@@ -50,6 +50,11 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+  --order-delivered: conic-gradient(rgb(94, 94, 94));
+  --order-canceled: conic-gradient(rgb(129, 40, 28));
+  --order-sending: conic-gradient(rgb(12, 37, 105));
+  --order-pending: conic-gradient(rgb(199, 180, 11));
+  --order-processing: conic-gradient(rgb(11, 199, 42));
 }
 
 @media (prefers-color-scheme: dark) {

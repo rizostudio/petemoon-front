@@ -9,168 +9,13 @@ import StoreAlt_Logo from "../../assets/product/StoreLogoAlt.svg";
 import ProfileAlt_Pic from "../../assets/product/profilePicAlt.svg";
 import timer_Icon from "../../assets/homePage/timerIcon.svg";
 
-const OffPriceProdcuts = () => {
+const OffPriceProdcuts = ({ data }) => {
   //fake data
-  const data = {
-    similarProduct: [
-      {
-        id: "1",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 4,
-        store: "فروشگاه پتیار",
-        amount: 0,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "2",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 5,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "3",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 3,
-        store: "فروشگاه پتیار",
-        amount: 0,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "4",
-
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 2,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "5",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 1,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "15",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 0,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "6",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 2,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "7",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 1,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "8",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 0,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "9",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 2,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "10",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 1,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "11",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 0,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "12",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 2,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "13",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 1,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-      {
-        id: "14",
-        title: "غذای خشک سگ",
-        group: "دسته خوراکی",
-        stars: 0,
-        store: "فروشگاه پتیار",
-        amount: 2,
-        discount: 20,
-        price: 125000,
-      },
-    ],
-  };
 
   // counter time
   const countDownDate = new Date("Feb 5, 2023 22:34:43").getTime();
   const [time, setTime] = useState("");
-  console.log(countDownDate);
+
   const timer = setInterval(() => {
     let now = new Date().getTime();
     let distance = countDownDate - now;
@@ -213,7 +58,7 @@ const OffPriceProdcuts = () => {
         </Link>
       </div>
       <div className="px-0 overflow-hidden lg:px-[120px] py-2 lg:py-6">
-        <CarouselProduct data={data.similarProduct} />
+        <CarouselProduct data={data} />
       </div>
     </div>
   );

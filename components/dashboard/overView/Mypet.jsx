@@ -47,7 +47,7 @@ export default function Mypet({ pet }) {
                 <bdi>
                   {pet?.length &&
                     moment(pet[0].birth_date)
-                      .locale("en")
+                      .locale("fa")
                       .format("YYYY  MMM  DD")}
                 </bdi>
               </p>
