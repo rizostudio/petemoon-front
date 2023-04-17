@@ -60,7 +60,9 @@ export default function ProductMobileCard({ item, index }) {
           <div>
             <div className="flex flex-row items-center mr-1">
               <Image src={StarGold_Icon} alt="GoldenStarIcon" />
-              <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${item.stars})`}</p>
+              <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+                item.rating ? item.rating : 5
+              })`}</p>
             </div>
           </div>
           {item.inventory ? (

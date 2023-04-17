@@ -22,10 +22,10 @@ export default function Home({ products }) {
         <MobileHeader />
         <Slider />
         <Brands />
-        {/* <OfferProdcuts /> */}
+        <OfferProdcuts data={products} />
         <Category />
         <OffPriceProdcuts data={products} />
-        {/* <BestVets /> */}
+        <BestVets />
         <BestSellers />
         <BeneFits />
       </div>
