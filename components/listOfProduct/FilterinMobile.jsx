@@ -70,9 +70,9 @@ export default function FilterinMobile({
                   <input
                     id={`brand${index}`}
                     type="checkbox"
-                    checked={router.query?.brand_slug?.includes(item.slug)}
+                    checked={router.query?.brand?.includes(item.slug)}
                     onChange={(e) => {
-                      filterProducts(e, "brand_slug", item.slug);
+                      filterProducts(e, "brand", item.slug);
                     }}
                     className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                   />
