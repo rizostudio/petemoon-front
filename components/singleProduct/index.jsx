@@ -64,12 +64,16 @@ export default function SingleProduct({ data }) {
             />
           </div>
           {/* Gallery */}
-          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[600px] rounded-[15px] border-[2px] border-primary solid">
+          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[500px] rounded-[15px] border-[2px] border-primary solid">
             <Image
               style={{ width: "100%", height: "100%" }}
               width={100}
               height={100}
-              src={`https://api.petemoon.com${data.picture}`}
+              src={
+                data.picture
+                  ? `https://api.petemoon.com${data.picture}`
+                  : "/assets/product/ProductPic4.svg"
+              }
             />
           </div>
           <div className="xl:w-full flex flex-col lg:mr-10">
