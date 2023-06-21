@@ -128,9 +128,9 @@ export default function FilterInDesktop({
               <div key={v4()} className="flex items-center">
                 <input
                   id={`kind${index}`}
-                  checked={router?.query?.pet_types?.includes(item.slug)}
+                  checked={router?.query?.pet_category?.includes(item.slug)}
                   onChange={(e) => {
-                    filterProducts(e, "pet_types", item.slug);
+                    filterProducts(e, "pet_category", item.slug);
                   }}
                   type="checkbox"
                   className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
