@@ -12,9 +12,9 @@ export default function HeadingForDesktop({ data }) {
           <h2 className="text-3xl text-black font-bold leading-10 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-2  before:rounded-[2px]">
             {data.name}
           </h2>
-          {data.price > 0 && (
+          {data.price > 0 && data.price_after_sale > 0 && (
             <p className='text-base text-white font-medium leading-8 px-2 py-1 mr-3 rounded-[10px] bg-primary before:content-["%"] before:text-[14px]'>
-              <bdi>{data.price}</bdi>
+              <bdi>{data.price / data.price_after_sale}</bdi>
             </p>
           )}
         </div>

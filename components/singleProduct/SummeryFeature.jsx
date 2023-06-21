@@ -13,15 +13,18 @@ export default function SummeryFeature({ data }) {
           <bdi>ویژگی ها</bdi>
         </p>
       </div>
-      <div className="flex flex-row items-center align-middle my-1 mr-5">
-        <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>مخصوص:</bdi>
-        </p>
-        <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.specific}</bdi>
-        </p>
-      </div>
-      <div className="flex flex-row items-center align-middle my-1 mr-5">
+      {data.specs.map((item) => (
+        <div className="flex flex-row items-center align-middle my-1 mr-5">
+          <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
+            <bdi>{item.name}</bdi>
+          </p>
+          <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
+            <bdi>{item.value}</bdi>
+          </p>
+        </div>
+      ))}
+
+      {/* <div className="flex flex-row items-center align-middle my-1 mr-5">
         <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
           <bdi>نوع:</bdi>
         </p>
@@ -52,7 +55,7 @@ export default function SummeryFeature({ data }) {
         <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
           <bdi>{data.weight} گرم</bdi>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
