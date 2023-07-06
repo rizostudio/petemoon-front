@@ -181,9 +181,11 @@ const BestVets = () => {
               کتابهای زیادی در دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
             </bdi>
           </p>
-          <button className='text-base text-center text-white font-medium leading-8 w-[170px] py-2 px-6 bg-primary rounded-[15px] after:content-[">"] after:text-3xl after:mr-3 after:align-middle'>
-            مشاهده بیشتر
-          </button>
+          <Link href={"https://petemoon.com/blog"}>
+            <button className='text-base text-center text-white font-medium leading-8 w-[170px] py-2 px-6 bg-primary rounded-[15px] after:content-[">"] after:text-3xl after:mr-3 after:align-middle'>
+              مشاهده بیشتر
+            </button>
+          </Link>
         </div>
       </div>
     </div>
