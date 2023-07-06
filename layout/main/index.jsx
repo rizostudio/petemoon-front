@@ -24,6 +24,7 @@ import { Basket } from "@/localSttorage/basket";
 import { search } from "@/services/home/search";
 
 export default function MainLayout({ children }) {
+  const router = useRouter();
   const { state, dispatch } = BasketContext();
   const authCtx = useContext(AuthContext);
   const [searchResult, setSearchResult] = useState([]);
@@ -74,13 +75,21 @@ export default function MainLayout({ children }) {
             </Link>
             <Link
               href="/"
-              className="text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
+              className={
+                router.asPath === "/"
+                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              }
             >
               صفحه اصلی
             </Link>
             <Link
               href="/product-category/all"
-              className="text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              className={
+                router.asPath.startsWith("/product-category/")
+                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              }
             >
               محصولات
             </Link>
@@ -91,8 +100,12 @@ export default function MainLayout({ children }) {
               کلینک ها
             </Link>
             <Link
-              href="/"
-              className="text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              href="https://petemoon.com/blog"
+              className={
+                router.asPath.startsWith("/blog")
+                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              }
             >
               بلاگ
             </Link>
@@ -140,11 +153,14 @@ export default function MainLayout({ children }) {
                   <Image src={card_Icon} alt="Card Icon" className="w-7" />
                 </Link>
               </div>
-              <div className="h-full px-[6px] py-2 mx-4 border-[1px] border-primary rounded-[15px]">
-                <p className="text-base text-gray-400 font-normal leading-8">
-                  فروشندگان
-                </p>
-              </div>
+              <Link href={"https://seller.petemoon.com"}>
+                <div className="h-full px-[6px] py-2 mx-4 border-[1px] border-primary rounded-[15px]">
+                  <p className="text-base text-gray-400 font-normal leading-8">
+                    فروشندگان
+                  </p>
+                </div>
+              </Link>
+
               <Link href={authCtx.isLoggedIn ? "/dashboard" : "/auth/login"}>
                 <Image src={user_Icon} alt="User Icon" />
               </Link>
