@@ -7,6 +7,7 @@ export const getTopProduct = async () => {
     const data = response.data.data;
     return successResponse(data);
   } catch (error) {
-    return errorResponse(error.response.data.errors);
+    console.log(error);
+    return errorResponse(error?.response?.data?.errors);
   }
 };

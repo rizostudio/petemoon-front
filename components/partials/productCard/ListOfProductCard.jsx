@@ -146,7 +146,7 @@ export default function ProductCart({ item, index }) {
           </p>
           <Link href={`/products/${item.slug}`}>
             <div className="hidden lg:flex justify-between items-center content-start">
-              <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
+              <h2 className="text-base producatrTitle lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
               </h2>
               {item.best_pricing.price_after_sale && (

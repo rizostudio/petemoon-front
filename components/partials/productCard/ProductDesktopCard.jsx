@@ -21,7 +21,7 @@ export default function ProductDesktopCard({ item, index }) {
   };
   return (
     <div className="m-3">
-      <div className="flex flex-col items-stretch w-[275px] h-[420px] p-5  bg-white rounded-[25px] shadow-shadowB">
+      <div className="flex flex-col items-stretch w-[275px] h-[450px] p-5  bg-white rounded-[25px] shadow-shadowB">
         <div className="relative block h-[200px] bg-gray-400 border-[1px] border-solid border-primary rounded-[20px]">
           <Image
             style={{ width: "100%", height: "100%" }}
@@ -47,8 +47,8 @@ export default function ProductDesktopCard({ item, index }) {
           <p className="text-base text-gray-400 font-medium leading-5">
             <bdi>{item.category}</bdi>
           </p>
-          <div className="flex justify-between items-center content-start">
-            <h2 className="text-xl text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
+          <div className="flex  justify-between items-center content-start">
+            <h2 className="text-xl  producatrTitle text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
               {item.name}
             </h2>
             {/* {item.discount && (

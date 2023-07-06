@@ -48,7 +48,7 @@ export default function ProductMobileCard({ item, index }) {
             <bdi>{item.category}</bdi>
           </p>
           <div className="flex justify-between items-center content-start">
-            <h2 className="text-base text-black font-medium leading-8">
+            <h2 className="text-base producatrTitle producatrTitle text-black font-medium leading-8">
               {item.name}
             </h2>
             {/* {item.discount && (
