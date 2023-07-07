@@ -36,11 +36,13 @@ export default function Home({ products }) {
 export async function getStaticProps() {
   // const { slug } = context.params;
   const response = await getTopProduct();
-
+  // const seller = await getTopSeller();
   console.log(response.data);
+  // console.log(seller);
   return {
     props: {
       products: response.data,
+      // seller: seller.data,
       // slug,
     },
   };

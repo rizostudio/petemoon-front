@@ -30,7 +30,7 @@ httpRequest.interceptors.response.use(
           return httpRequest(originalReq);
         })
         .catch((error) => {
-          if (error.response.status == 401) {
+          if (error.response.status == 400) {
             refreshTokenLS.remove();
             userDataStorage.remove();
             isLogin.remove();

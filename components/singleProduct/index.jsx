@@ -24,6 +24,10 @@ import CommentfForm from "./CommentfForm";
 //formik
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
+//services
+import { createBookmark } from "@/services/product/addTobookmark";
+//toast
+import { toast } from "react-toastify";
 export default function SingleProduct({ data }) {
   const router = useRouter();
   const [mainPageOpen, setMainPageOpen] = useState(true);
@@ -42,6 +46,34 @@ export default function SingleProduct({ data }) {
     },
     validationSchema: CommentSchima,
   });
+  const handleAddToBookmark = async () => {
+    const response = await createBookmark(data.id);
+    if (response.success) {
+      toast.success("محصول به علاقه مندی ها اضافه شد", {
+        toastId: data.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.info("این محصول از قبل در علاقه مندی ها موجود است", {
+        toastId: data.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
   return (
     <div className="w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-12 lg:py-5">
       {/* Main Page  */}
@@ -56,7 +88,12 @@ export default function SingleProduct({ data }) {
         {/* Summary box */}
         <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  border-solid border-b-[2px] border-secondary">
           <div className="hidden lg:block p-10">
-            <Image src={Bookmark_Icon} alt="BookmarkIcon" />
+            <Image
+              className="cursor-pointer"
+              onClick={handleAddToBookmark}
+              src={Bookmark_Icon}
+              alt="BookmarkIcon"
+            />
             <Image
               src={Notification_Icon}
               alt="NotificationIcon"
@@ -64,7 +101,7 @@ export default function SingleProduct({ data }) {
             />
           </div>
           {/* Gallery */}
-          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[500px] rounded-[15px] border-[2px] border-primary solid">
+          <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[400px] rounded-[15px] border-[2px] border-primary solid">
             <Image
               style={{ width: "100%", height: "100%" }}
               width={100}
