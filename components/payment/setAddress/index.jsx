@@ -23,6 +23,7 @@ export default function SetAddress() {
     const getData = async () => {
       const response = await getListAddress();
       setAddressesArr(response.data);
+      setSelectedAddress(response.data[0]);
       if (!response.success) {
         router.push("/auth/login");
       }
@@ -64,7 +65,7 @@ export default function SetAddress() {
         {/*Heading for mobile */}
         <div className="w-full flex lg:hidden flex-row justify-between items-center p-10 mb-5">
           <p className="text-lg text-black font-black leading-7 align-middle before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-1 before:rounded-[2px]">
-            پرداخت
+            ادامه
           </p>
           <Link
             href="/cart"
@@ -114,7 +115,7 @@ export default function SetAddress() {
             onClick={handleAddress}
             className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-1/2 rounded-[12px]"
           >
-            پرداخت
+            ادامه
           </button>
           <div className="flex flex-col">
             <p className="text-base text-gray-400 font-normal leading-8">

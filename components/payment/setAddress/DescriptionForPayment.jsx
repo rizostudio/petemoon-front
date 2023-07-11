@@ -34,7 +34,7 @@ export default function DescriptionForPayment({ handleAddress }) {
           onClick={handleAddress}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
-          پرداخت
+          ادامه
         </button>
       </div>
     </div>

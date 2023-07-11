@@ -13,7 +13,15 @@ import FloatLabelInput from "@/components/partials/input";
 import { createAddress } from "@/services/dashboard/address/create";
 //data
 import data from "../../../staticJsonData/provinces.json";
+
+import AddressMap from "./AddressMap";
 export default function AddressForm() {
+  // const Map = dynamic(
+  //   () => import("@react-neshan-map-leaflet/dist/NeshanMap"),
+  //   {
+  //     ssr: false,
+  //   }
+  // );
   const router = useRouter();
   const [cities, setCities] = useState([]);
   const AddressSchema = Yup.object().shape({
@@ -185,7 +193,8 @@ export default function AddressForm() {
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
+        <AddressMap />
+        {/* <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
           <Image
             src={MapPreserve_Pic}
             alt="MapPic"
@@ -194,7 +203,8 @@ export default function AddressForm() {
           <p className="text-sm text-error text-center font-medium leading-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
             ثبت روی نقشه
           </p>
-        </div>
+        </div> */}
+
         <div className="w-full flex flex-row mt-10 lg:mt-6">
           <Link
             href={"/dashboard/addresses"}
