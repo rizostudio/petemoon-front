@@ -107,8 +107,8 @@ export default function SingleProduct({ data }) {
               width={100}
               height={100}
               src={
-                data.picture
-                  ? `https://api.petemoon.com${data.picture}`
+                data.picture_url
+                  ? `https://api.petemoon.com${data.picture_url}`
                   : "/assets/product/ProductPic4.svg"
               }
             />

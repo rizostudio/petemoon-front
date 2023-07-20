@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Loading from "@/components/partials/loading";
 import { BasketContextProvider } from "@/store/BasketCtx/BasketContext";
 import ProtectedRoute from "@/hook/ProtectedRoute";
+import ToastContainer from "@/components/partials/toast/ToatContainer";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -44,6 +45,7 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
   return (
     <>
+      <ToastContainer />
       {loading ? (
         <Loading />
       ) : (

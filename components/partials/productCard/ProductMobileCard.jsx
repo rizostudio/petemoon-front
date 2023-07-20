@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import { toast } from "react-toastify";
 //media
 import StarGold_Icon from "../../../assets/common/startGold.svg";
 import BookmarkRed_Icon from "../../../assets/common/BookmarkRedIcon.svg";
@@ -18,12 +18,12 @@ export default function ProductMobileCard({ item, index }) {
         payload: {
           name: item.name,
           id: item.best_pricing.id,
-          category: item.category,
+          category: item.category.pet_category,
           stars: item.rating,
           seller: item.best_pricing.petshop?.name,
-          price: item.price,
+          price: item.best_pricing.price,
           discount: item.best_pricing.price_after_sale,
-          image: item.picture,
+          image: item.picture_url,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
@@ -47,12 +47,12 @@ export default function ProductMobileCard({ item, index }) {
           payload: {
             name: item.name,
             id: item.best_pricing.id,
-            category: item.category,
+            category: item.category.pet_category,
             stars: item.rating,
             seller: item.best_pricing.petshop?.name,
-            price: item.price,
+            price: item.best_pricing.price,
             discount: item.best_pricing.price_after_sale,
-            image: item.picture,
+            image: item.picture_url,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {
@@ -117,8 +117,8 @@ export default function ProductMobileCard({ item, index }) {
             <Image
               style={{ width: "100%", height: "100%" }}
               src={
-                item.picture
-                  ? `https://api.petemoon.com${item.picture}`
+                item.picture_url
+                  ? `https://api.petemoon.com${item.picture_url}`
                   : "/assets/product/ProductPic4.svg"
               }
               width={100}
@@ -136,56 +136,63 @@ export default function ProductMobileCard({ item, index }) {
             />
           </div>
         </div>
-        <Link href={`/products/${item.slug}`}>
-          <div className="mt-2">
+
+        <div className="mt-2">
+          <Link href={`/products/${item.slug}`}>
             <p className="text-sm text-gray-400 font-medium leading-5">
-              <bdi>{item.category}</bdi>
+              <bdi>{item.category.pet_category}</bdi>
             </p>
             <div className="flex justify-between items-center content-start">
               <h2 className="text-base producatrTitle producatrTitle text-black font-medium leading-8">
                 {item.name}
               </h2>
-              {/* {item.discount && (
-              <p className="text-sm text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px]">
-                {item.discount}%
-              </p>
-            )} */}
-            </div>
-            <div>
-              <div className="flex flex-row items-center mr-1">
-                <Image src={StarGold_Icon} alt="GoldenStarIcon" />
-                <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${
-                  item.rating ? item.rating : 5
-                })`}</p>
-              </div>
-            </div>
-            {item.inventory ? (
-              <div className="flex justify-between items-center mt-2">
-                <div className="flex flex-col">
-                  <p className="text-base text-primary font-medium leading-8 mb-0">
-                    <bdi>{item.min_price} تومان</bdi>
-                  </p>
-                  {item.max_price && (
-                    <p className="text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0">
-                      {item.max_price}
-                    </p>
+              {item.best_pricing && (
+                <p className="text-sm text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px]">
+                  {parseInt(
+                    (item.best_pricing.price_after_sale /
+                      item.best_pricing.price) *
+                      100
                   )}
-                </div>
-                <div
-                  onClick={handleAddToCart}
-                  // href={`/products/${index}`}
-                  className="flex items-center p-2 bg-[#EA635233] rounded-[10px]"
-                >
-                  <Image src={ShoppingCartRed_Icon} alt="ShoppingCartRedIcon" />
-                </div>
-              </div>
-            ) : (
-              <div className="text-base text-gray-400 text-center font-medium p-2 mt-4 w-full bg-secondary rounded-[10px] mb-2">
-                ناموجود
-              </div>
-            )}
+                  %
+                </p>
+              )}
+            </div>
+          </Link>
+
+          <div>
+            <div className="flex flex-row items-center mr-1">
+              <Image src={StarGold_Icon} alt="GoldenStarIcon" />
+              <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+                item.rating ? item.rating : 5
+              })`}</p>
+            </div>
           </div>
-        </Link>
+          {item.best_pricing?.inventory ? (
+            <div className="flex justify-between items-center mt-2">
+              <div className="flex flex-col">
+                <p className="text-base text-primary font-medium leading-8 mb-0">
+                  <bdi>{item.best_pricing.price} تومان</bdi>
+                </p>
+                {item.best_pricing.price_after_sale && (
+                  <p className="text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0">
+                    {item.best_pricing.price_after_sale}
+                  </p>
+                )}
+              </div>
+              <div
+                onClick={handleAddToCart}
+                // href={`/products/${index}`}
+                className="flex items-center p-2 bg-[#EA635233] rounded-[10px]"
+              >
+                <Image src={ShoppingCartRed_Icon} alt="ShoppingCartRedIcon" />
+              </div>
+            </div>
+          ) : (
+            <div className="text-base text-gray-400 text-center font-medium p-2 mt-4 w-full bg-secondary rounded-[10px] mb-2">
+              ناموجود
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

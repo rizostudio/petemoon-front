@@ -3,7 +3,7 @@ import { httpRequest } from "../http";
 
 export const getTopSeller = async () => {
   try {
-    const response = await httpRequest.get(`/product/top_sellers`);
+    const response = await httpRequest.get(`/product/top-sellers/`);
     const data = response.data.data;
     return successResponse(data);
   } catch (error) {

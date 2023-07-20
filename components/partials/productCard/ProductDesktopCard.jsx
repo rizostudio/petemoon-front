@@ -21,17 +21,17 @@ export default function ProductDesktopCard({ item, index }) {
         type: "ADD_TOBASKET",
         payload: {
           name: item.name,
-          id: item.id,
-          category: item.category,
+          id: item.best_pricing.id,
+          category: item.category.pet_category,
           stars: item.rating,
-          seller: item.best_seller.name,
-          price: item.price,
-          discount: "",
-          image: item.picture,
+          seller: item.best_pricing.petshop?.name,
+          price: item.best_pricing.price,
+          discount: item.best_pricing.price_after_sale,
+          image: item.picture_url,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
-        toastId: item.id,
+        toastId: item.best_pricing.id,
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -43,24 +43,24 @@ export default function ProductDesktopCard({ item, index }) {
       });
     } else {
       const check = state?.basket?.find(
-        (basketItem) => basketItem.id === item.id
+        (basketItem) => basketItem.id === item.best_pricing.id
       );
       if (!check) {
         dispatch({
           type: "ADD_TOBASKET",
           payload: {
             name: item.name,
-            id: item.id,
-            category: item.category,
+            id: item.best_pricing.id,
+            category: item.category.pet_category,
             stars: item.rating,
-            seller: item.best_seller.name,
-            price: item.price,
-            discount: "",
-            image: item.picture,
+            seller: item.best_pricing.petshop?.name,
+            price: item.best_pricing.price,
+            discount: item.best_pricing.price_after_sale,
+            image: item.picture_url,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {
-          toastId: item.id,
+          toastId: item.best_pricing.id,
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -72,7 +72,7 @@ export default function ProductDesktopCard({ item, index }) {
         });
       } else {
         toast.info("این محصول از قبل در سبد خرید موجود است", {
-          toastId: item.id,
+          toastId: item.best_pricing.id,
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -113,6 +113,7 @@ export default function ProductDesktopCard({ item, index }) {
       });
     }
   };
+
   return (
     <div className="m-3">
       <div className="flex flex-col items-stretch w-[275px] h-[450px] p-5  bg-white rounded-[25px] shadow-shadowB">
@@ -121,8 +122,8 @@ export default function ProductDesktopCard({ item, index }) {
             <Image
               style={{ width: "100%", height: "100%" }}
               src={
-                item.picture
-                  ? `https://api.petemoon.com${item.picture}`
+                item.picture_url
+                  ? `https://api.petemoon.com${item.picture_url}`
                   : "/assets/product/ProductPic4.svg"
               }
               width={100}
@@ -143,18 +144,23 @@ export default function ProductDesktopCard({ item, index }) {
 
         <div className="mt-4">
           <p className="text-base text-gray-400 font-medium leading-5">
-            <bdi>{item.category}</bdi>
+            <bdi>{item.category.pet_category}</bdi>
           </p>
           <Link href={`/products/${item.slug}`}>
             <div className="flex  justify-between items-center content-start">
               <h2 className="text-xl  producatrTitle text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
               </h2>
-              {/* {item.discount && (
-              <p className="text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
-                {item.discount}%
-              </p>
-            )} */}
+              {item.best_pricing?.price_after_sale && (
+                <p className="text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
+                  {parseInt(
+                    (item.best_pricing.price_after_sale /
+                      item.best_pricing.price) *
+                      100
+                  )}
+                  %
+                </p>
+              )}
             </div>
           </Link>
 
@@ -169,15 +175,15 @@ export default function ProductDesktopCard({ item, index }) {
           <p className="block text-sm text-primary font-normal leading-5 opacity-90 mt-2">
             {item.best_seller?.name}
           </p>
-          {item.inventory ? (
+          {item.best_pricing?.inventory ? (
             <div className="flex justify-between items-center mt-2">
               <div className="flex flex-col">
                 <p className="text-lg text-primary font-medium leading-8 mb-0">
-                  <bdi>{item.min_price} تومان</bdi>
+                  <bdi>{item.best_pricing.price} تومان</bdi>
                 </p>
-                {item.max_price && (
+                {item.best_pricing.price_after_sale && (
                   <p className="text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0">
-                    {item.max_price}
+                    {item.best_pricing.price_after_sale}
                   </p>
                 )}
               </div>
