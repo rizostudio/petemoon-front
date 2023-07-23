@@ -14,6 +14,7 @@ export default function CommentfForm({
   data,
   title,
   description,
+  rate,
   formSubmit,
   change,
 }) {
@@ -60,7 +61,15 @@ export default function CommentfForm({
                 >
                   امتیاز دهید
                 </label>
-                <input id="range-score" type="range" className="mt-2" />
+                <input
+                  onChange={change}
+                  value={rate}
+                  name="rate"
+                  max={5}
+                  id="range-score"
+                  type="range"
+                  className="mt-2"
+                />
                 <label
                   htmlFor="comment-subject"
                   className="text-lg text-black font-medium leading-8 mt-10"
@@ -102,9 +111,10 @@ export default function CommentfForm({
                   </label>
                   <label
                     onClick={() => {
+                      formSubmit();
                       setCommentPageOpen(false);
                       setMainPageOpen(true);
-                      setShowModal(false);
+                      // setShowModal(false);
                     }}
                     // htmlFor="comment-send-modal"
                     className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
@@ -162,7 +172,14 @@ export default function CommentfForm({
             >
               امتیاز دهید
             </label>
-            <input id="range-score" type="range" className="mt-2 mb-10" />
+            <input
+              onChange={change}
+              value={rate}
+              max={5}
+              id="range-score"
+              type="range"
+              className="mt-2 mb-10"
+            />
             <FloatLabelInput
               type={"text"}
               placeholder={"عنوان نظر"}
@@ -196,7 +213,13 @@ export default function CommentfForm({
             >
               انصراف
             </button>
-            <button className="w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2">
+            <button
+              onClick={() => {
+                formSubmit();
+              }}
+              type="submit"
+              className="w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
+            >
               ثبت دیدگاه
             </button>
           </div>

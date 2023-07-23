@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,9 +25,11 @@ import StarEmpty_Icon from "../../assets/common/starEmpty.svg";
 import { starsBoxHandler } from "@/services/product/starsOfProduct";
 const BestSellers = ({ data }) => {
   //fake data
-  console.log(data);
-  const [petShops, setPetShops] = useState([...data]);
 
+  const [petShops, setPetShops] = useState([]);
+  useEffect(() => {
+    setPetShops(data.data);
+  }, []);
   return (
     <div className="flex flex-col items-stretch lg:bg-[#DEDFE1] py-6 lg:pt-8 lg:pb-[60px]">
       <div className="flex justify-between items-center align-middle px-10 lg:px-[120px]">
