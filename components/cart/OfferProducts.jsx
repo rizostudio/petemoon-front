@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
 //components
 import CarouselProduct from "../partials/CarouselProduct/CarouselProduct";
-export default function OfferProducts({ data }) {
+import { getsimillar } from "@/services/basket/getsimillar";
+export default function OfferProducts() {
+  const [simillar, setSimillar] = useState([]);
+  // const [idOfBasketItems,setIdOfBasketItems]=useState([])
+  const { state, dispatch } = BasketContext();
+  useEffect(() => {
+    const idOfBasketItems = [];
+    state.basket.map((item) => {
+      console.log(item.id);
+      idOfBasketItems.push(item.id);
+    });
+    const getData = async () => {
+      const response = await getsimillar({
+        product_pricing_ids: idOfBasketItems,
+      });
+      console.log(response);
+    };
+    getData();
+  }, []);
   return (
     <div className="flex flex-col items-stretch px-0 py-5 lg:py-10 border-y-[2px] lg:border-none border-secondary">
       <div className="flex justify-between items-center align-middle px-10 lg:px-0">
@@ -17,7 +36,7 @@ export default function OfferProducts({ data }) {
         </Link>
       </div>
       <div className="mr-10 lg:m-0 px-0 lg:px-[120px] py-2 lg:py-6">
-        <CarouselProduct data={data} />
+        <CarouselProduct data={simillar} />
       </div>
     </div>
   );
