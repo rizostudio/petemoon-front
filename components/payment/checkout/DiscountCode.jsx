@@ -88,7 +88,7 @@ export default function DiscountCode({ totalBasket }) {
           onClick={handleOrderSubmite}
           className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
-          ادامه
+          پرداخت
         </button>
       </div>
     </div>

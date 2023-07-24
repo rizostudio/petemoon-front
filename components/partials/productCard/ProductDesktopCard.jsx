@@ -1,8 +1,12 @@
 // import React, { useState } from "react";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 //services
 import { starsBoxHandler } from "@/services/product/starsOfProduct";
+import { createBookmark } from "@/services/product/addTobookmark";
+//toast
+import { toast } from "react-toastify";
 // media
 import BookmarkRed_Icon from "../../../assets/common/BookmarkRedIcon.svg";
 import ShoppingCartRed_Icon from "../../../assets/common/shopping-cartRedIcon.svg";
@@ -12,29 +16,123 @@ import { BasketContext } from "@/store/BasketCtx/BasketContext";
 export default function ProductDesktopCard({ item, index }) {
   const { state, dispatch } = BasketContext();
   const handleAddToCart = () => {
-    // dispatch({
-    //   type: "ADD_TOBASKET",
-    //   payload: {
-    //     item: { ...item },
-    //   },
-    // });
+    if (state?.basket?.length === 0) {
+      dispatch({
+        type: "ADD_TOBASKET",
+        payload: {
+          name: item.name,
+          id: item.best_pricing.id,
+          category: item.category.pet_category,
+          stars: item.rating,
+          seller: item.best_pricing.petshop?.name,
+          price: item.best_pricing.price,
+          discount: item.best_pricing.price_after_sale,
+          image: item.picture_url,
+        },
+      });
+      toast.success("محصول به سبد خرید اضافه شد", {
+        toastId: item.best_pricing.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      const check = state?.basket?.find(
+        (basketItem) => basketItem.id === item.best_pricing.id
+      );
+      if (!check) {
+        dispatch({
+          type: "ADD_TOBASKET",
+          payload: {
+            name: item.name,
+            id: item.best_pricing.id,
+            category: item.category.pet_category,
+            stars: item.rating,
+            seller: item.best_pricing.petshop?.name,
+            price: item.best_pricing.price,
+            discount: item.best_pricing.price_after_sale,
+            image: item.picture_url,
+          },
+        });
+        toast.success("محصول به سبد خرید اضافه شد", {
+          toastId: item.best_pricing.id,
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.info("این محصول از قبل در سبد خرید موجود است", {
+          toastId: item.best_pricing.id,
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
   };
+  const handleAddToBookmark = async () => {
+    const response = await createBookmark(item.id);
+    if (response.success) {
+      toast.success("محصول به علاقه مندی ها اضافه شد", {
+        toastId: item.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.info("این محصول از قبل در علاقه مندی ها موجود است", {
+        toastId: item.id,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     <div className="m-3">
-      <div className="flex flex-col items-stretch w-[275px] h-[420px] p-5  bg-white rounded-[25px] shadow-shadowB">
+      <div className="flex flex-col items-stretch w-[275px] h-[450px] p-5  bg-white rounded-[25px] shadow-shadowB">
         <div className="relative block h-[200px] bg-gray-400 border-[1px] border-solid border-primary rounded-[20px]">
-          <Image
-            style={{ width: "100%", height: "100%" }}
-            src={
-              item.picture
-                ? `https://api.petemoon.com${item.picture}`
-                : "/assets/product/ProductPic4.svg"
-            }
-            width={100}
-            height={100}
-            alt="ProductPic"
-            className="object-cover"
-          />
+          <Link href={`/products/${item.slug}`}>
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              src={
+                item.picture_url
+                  ? `https://api.petemoon.com${item.picture_url}`
+                  : "/assets/product/ProductPic4.svg"
+              }
+              width={100}
+              height={100}
+              alt="ProductPic"
+              className="object-cover"
+            />
+          </Link>
+
           <div className="absolute z-index-2 top-[-7px] left-[-7px] p-3 bg-white border-[1px] border-solid border-primary rounded-full">
             <Image
               src={BookmarkRed_Icon}
@@ -43,20 +141,29 @@ export default function ProductDesktopCard({ item, index }) {
             />
           </div>
         </div>
+
         <div className="mt-4">
           <p className="text-base text-gray-400 font-medium leading-5">
-            <bdi>{item.category}</bdi>
+            <bdi>{item.category.pet_category}</bdi>
           </p>
-          <div className="flex justify-between items-center content-start">
-            <h2 className="text-xl text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-              {item.name}
-            </h2>
-            {/* {item.discount && (
-              <p className="text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
-                {item.discount}%
-              </p>
-            )} */}
-          </div>
+          <Link href={`/products/${item.slug}`}>
+            <div className="flex  justify-between items-center content-start">
+              <h2 className="text-xl  producatrTitle text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
+                {item.name}
+              </h2>
+              {item.best_pricing?.price_after_sale && (
+                <p className="text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
+                  {parseInt(
+                    (item.best_pricing.price_after_sale /
+                      item.best_pricing.price) *
+                      100
+                  )}
+                  %
+                </p>
+              )}
+            </div>
+          </Link>
+
           <div className="flex flex-row items-center">
             <div className="flex flex-row items-center">
               {starsBoxHandler(item.rating ? item.rating : 5)}
@@ -68,15 +175,15 @@ export default function ProductDesktopCard({ item, index }) {
           <p className="block text-sm text-primary font-normal leading-5 opacity-90 mt-2">
             {item.best_seller?.name}
           </p>
-          {item.inventory ? (
+          {item.best_pricing?.inventory ? (
             <div className="flex justify-between items-center mt-2">
               <div className="flex flex-col">
                 <p className="text-lg text-primary font-medium leading-8 mb-0">
-                  <bdi>{item.min_price} تومان</bdi>
+                  <bdi>{item.best_pricing.price} تومان</bdi>
                 </p>
-                {item.max_price && (
+                {item.best_pricing.price_after_sale && (
                   <p className="text-sm text-gray-400 line-through font-light leading-8 opacity-95 mt-0">
-                    {item.max_price}
+                    {item.best_pricing.price_after_sale}
                   </p>
                 )}
               </div>

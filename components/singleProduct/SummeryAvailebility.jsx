@@ -44,7 +44,15 @@ export default function SummeryAvailebility({ data }) {
         dispatch({
           type: "ADD_TOBASKET",
           payload: {
-            item: { ...item },
+            name: data.name,
+            id: data.productpricing[0].id,
+            category: data.category,
+            stars: data.ratind,
+            pet_type: data.pet_type.pet_type,
+            seller: data.best_pricing.petshop.name,
+            price: data.price,
+            discount: data.price_after_sale,
+            image: data.picture,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {

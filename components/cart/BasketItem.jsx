@@ -75,7 +75,7 @@ export default function BasketItem({ item, index }) {
       </div>
       <div className="w-full lg:mt-4 mr-3 lg:mr-10">
         <p className="hidden lg:block text-sm text-gray-400 font-normal leading-5">
-          <bdi>{item.category.name}</bdi>
+          <bdi>{item.category}</bdi>
         </p>
         <div className="hidden lg:flex items-center content-start my-2">
           <h2 className="text-2xl text-black font-bold leading-8">
@@ -107,7 +107,7 @@ export default function BasketItem({ item, index }) {
             <div className="flex flex-col justify-between">
               <div className="flex flex-col">
                 <p className="lg:hidden text-xs text-gray-400 font-medium lg:leading-5">
-                  <bdi>{item.category.name}</bdi>
+                  <bdi>{item.category}</bdi>
                 </p>
                 <p className="text-sm text-primary font-normal leading-5 opacity-90 mt-1">
                   {item.seller?.name}

@@ -61,11 +61,19 @@ function ProducsBox({ data }) {
   return (
     <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center items-center mt-5">
       {products &&
-        products.map((item, index) => (
-          <div className="w-full lg:w-auto" key={index} ref={setLastEllement}>
-            <ListOfProductCard item={item} index={index} />
-          </div>
-        ))}
+        products.map((item, index) => {
+          if (item.productpricing) {
+            return (
+              <div
+                className="w-full lg:w-auto"
+                key={index}
+                ref={setLastEllement}
+              >
+                <ListOfProductCard item={item} index={index} />
+              </div>
+            );
+          }
+        })}
       {loading && <Loading />}
     </div>
   );

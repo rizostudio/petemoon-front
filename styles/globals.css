@@ -168,6 +168,12 @@ p {
 .swiper-pagination-bullet {
   background-color: red !important;
 }
+.swiper-pagination-bullets {
+  transform: translate(-50%, -50%) !important;
+  bottom: 0 !important;
+  width: auto !important;
+  left: 50% !important;
+}
 
 .swiper-pagination-bullet-active {
   background-color: rgb(234 99 82 / var(--tw-bg-opacity)) !important;
@@ -373,4 +379,11 @@ select option:hover {
   100% {
     transform: rotate(360deg);
   }
+}
+.producatrTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

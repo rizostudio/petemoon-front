@@ -15,7 +15,7 @@ import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavig
 import { getTopProduct } from "@/services/home/getTopProduct";
 import { getTopSeller } from "@/services/home/getTopSeller";
 
-export default function Home({ products }) {
+export default function Home({ products, seller }) {
   return (
     <MainLayout>
       <div className="bg-[#F8F8F8] relative pb-[100px]">
@@ -26,7 +26,7 @@ export default function Home({ products }) {
         <Category />
         <OffPriceProdcuts data={products} />
         <BestVets />
-        <BestSellers />
+        <BestSellers data={seller} />
         <BeneFits />
       </div>
       <BottomNavigation />
@@ -36,11 +36,14 @@ export default function Home({ products }) {
 export async function getStaticProps() {
   // const { slug } = context.params;
   const response = await getTopProduct();
-
-  console.log(response.data);
+  const seller = await getTopSeller();
+  console.log(seller);
+  // console.log(response);
+  // console.log(seller);
   return {
     props: {
       products: response.data,
+      seller: seller,
       // slug,
     },
   };
