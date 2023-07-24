@@ -83,7 +83,7 @@ export default function BasketItem({ item, index }) {
           </h2>
           {item.discount && (
             <p className="text-base text-white font-medium py-[1px] px-2 mr-2 bg-primary border-solid border-[0.5px] border-primary rounded-[10px]">
-              {item.discount}%
+              {item.discount && (item.price / item.discount) * 100}%
             </p>
           )}
         </div>
