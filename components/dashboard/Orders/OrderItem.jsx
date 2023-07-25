@@ -6,7 +6,7 @@ const status = {
   CANCELLED: "لغو شده",
   DELIVERED: "  تکمیل شده",
   PAY_PENDING: "در انتظار ",
-  PROCESSING: "در حال ",
+  PROCESSING: "در حال آماده سازی",
 };
 export default function OrderItem({ item }) {
   const [orderPrice, setOrderPrice] = useState(0);
