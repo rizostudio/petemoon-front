@@ -34,23 +34,24 @@ export default function AddressForm() {
     postal_address: Yup.string().required("فیلد الزامی است"),
     receiver: Yup.string().required("فیلد الزامی است"),
   });
-  const formik = useFormik({
-    // enableReinitialize: true,
-    initialValues: {
-      province: "",
-      city: "",
-      postal_code: "",
-      postal_address: "",
-      receiver: "",
-      lat: "",
-      lon: "",
-    },
-    onSubmit: async (values) => {
-      console.log(values);
-      handleCreateSubmit(values);
-    },
-    validationSchema: AddressSchema,
-  });
+  const { handleChange, values, setFieldValue, handleSubmit, errors } =
+    useFormik({
+      // enableReinitialize: true,
+      initialValues: {
+        province: "",
+        city: "",
+        postal_code: "",
+        postal_address: "",
+        receiver: "",
+        lat: "",
+        lon: "",
+      },
+      onSubmit: async (values) => {
+        console.log(values);
+        handleCreateSubmit(values);
+      },
+      validationSchema: AddressSchema,
+    });
   const handleCreateSubmit = async (values) => {
     const response = await createAddress(values);
     if (response.success) {
@@ -59,16 +60,16 @@ export default function AddressForm() {
   };
   useEffect(() => {
     data.find((item) => {
-      if (item.name === formik.values.province) {
+      if (item.name === values.province) {
         setCities(item.cities);
         console.log(item.cities);
       }
     });
-  }, [formik.values.province]);
+  }, [values.province]);
 
   return (
     <form
-      onSubmit={formik.handleSubmit}
+      onSubmit={handleSubmit}
       className="flex flex-col lg:flex-row justify-start lg:justify-between"
     >
       <div className="flex flex-col items-stretch w-full lg:w-2/3">
@@ -81,8 +82,8 @@ export default function AddressForm() {
               type={"select"}
               placeholder={"استان"}
               name="province"
-              onChange={formik.handleChange}
-              value={formik.values.province}
+              onChange={handleChange}
+              value={values.province}
               list="provinces"
               h={"h-12"}
               py={"3"}
@@ -95,9 +96,9 @@ export default function AddressForm() {
               ))}
             </FloatLabelInput>
             {/* </select> */}
-            {formik.errors.province && (
+            {errors.province && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                <bdi>{formik.errors.province}</bdi>
+                <bdi>{errors.province}</bdi>
               </p>
             )}
           </div>
@@ -109,8 +110,8 @@ export default function AddressForm() {
               type={"select"}
               placeholder={"شهر"}
               name="city"
-              onChange={formik.handleChange}
-              value={formik.values.city}
+              onChange={handleChange}
+              value={values.city}
               list="cities"
               h={"h-12"}
               py={"3"}
@@ -122,9 +123,9 @@ export default function AddressForm() {
                 </option>
               ))}
             </FloatLabelInput>
-            {formik.errors.city && (
+            {errors.city && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                <bdi>{formik.errors.city}</bdi>
+                <bdi>{errors.city}</bdi>
               </p>
             )}
           </div>
@@ -138,15 +139,15 @@ export default function AddressForm() {
               type={"text"}
               placeholder={"کد پستی"}
               name="postal_code"
-              onChange={formik.handleChange}
-              value={formik.values.postal_code}
+              onChange={handleChange}
+              value={values.postal_code}
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
             />
-            {formik.errors.postal_code && (
+            {errors.postal_code && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                <bdi>{formik.errors.postal_code}</bdi>
+                <bdi>{errors.postal_code}</bdi>
               </p>
             )}
           </div>
@@ -158,15 +159,15 @@ export default function AddressForm() {
               type={"text"}
               placeholder={"نام تحویل گیرنده"}
               name="receiver"
-              onChange={formik.handleChange}
-              value={formik.values.receiver}
+              onChange={handleChange}
+              value={values.receiver}
               h={"h-12"}
               py={"3"}
               dir={"rtl"}
             />
-            {formik.errors.receiver && (
+            {errors.receiver && (
               <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                <bdi>{formik.errors.receiver}</bdi>
+                <bdi>{errors.receiver}</bdi>
               </p>
             )}
           </div>
@@ -179,21 +180,21 @@ export default function AddressForm() {
             type={"text"}
             placeholder={"آدرس پستی"}
             name="postal_address"
-            onChange={formik.handleChange}
-            value={formik.values.postal_address}
+            onChange={handleChange}
+            value={values.postal_address}
             h={"h-12"}
             py={"3"}
             dir={"rtl"}
           />
-          {formik.errors.postal_address && (
+          {errors.postal_address && (
             <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-              <bdi>{formik.errors.postal_address}</bdi>
+              <bdi>{errors.postal_address}</bdi>
             </p>
           )}
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        <AddressMap />
+        <AddressMap setFieldValue={setFieldValue} />
         {/* <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
           <Image
             src={MapPreserve_Pic}

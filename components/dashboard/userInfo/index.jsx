@@ -204,8 +204,11 @@ export default function UserInfo() {
                   // hidden: !editable,
                 })}
               >
-                <button type="submit">
-                  <Image src={PenEdit_Icon} alt="PenEditIcon" />
+                <button
+                  type="submit"
+                  className=" w-[200px] mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[12px]"
+                >
+                  ذخیره
                 </button>
               </div>
               {/* <div

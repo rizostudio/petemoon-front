@@ -6,26 +6,27 @@ import { v4 } from "uuid";
 //media
 import LeftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
 import export_Icon from "../../assets/homePage/exportIcon.svg";
-import Slider_Pic from "../../assets/homePage/slider2.svg";
-
+import Slider_Pic2 from "../../assets/homePage/slider2.svg";
+// import Slider_Pic3 from "../../assets/homePage/slider3.jpeg";
+// import Slider_Pic1 from "../../assets/homePage/slider1.jpeg";
 const Slider = () => {
   const data = [
     {
-      image: Slider_Pic,
+      image: Slider_Pic2,
       title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "سگ",
       link: "/product-category/all?pet_types=dog",
     },
     {
-      image: "",
+      image: "../../assets/homePage/slider3.jpeg",
       title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "گربه",
       link: "/product-category/all?pet_types=cat",
     },
     {
-      image: Slider_Pic,
+      image: "../../assets/homePage/slider1.jpeg",
       title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "پرندگان",
@@ -65,9 +66,11 @@ const Slider = () => {
             .map((item, index) => (
               <div
                 key={index}
-                className="w-full h-full lg:h-[470px] bg-red-600 overflow-hidden lg:rounded-[25px]"
+                className="w-full h-full lg:h-[570px] bg-red-600 overflow-hidden lg:rounded-[25px]"
               >
                 <Image
+                  width={90}
+                  height={120}
                   src={item.image}
                   alt="Slider.Pic"
                   className="w-full h-full object-cover"

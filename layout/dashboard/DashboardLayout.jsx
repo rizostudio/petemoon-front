@@ -276,7 +276,7 @@ export default function DashboardLayout({ children }) {
             <div
               onClick={handleLogout}
               className={clsx(
-                "flex justify-center lg:justify-between items-center self-center bg-primary w-3/4 h-full lg:mx-auto mt-20 lg:mt-2 mb-10 rounded-[12px]",
+                "flex cursor-pointer justify-center lg:justify-between items-center self-center bg-primary w-3/4 h-full lg:mx-auto mt-20 lg:mt-2 mb-10 rounded-[12px]",
                 {
                   " lg:bg-[#3A4750] p-4 lg:py-2 mx-10": Minify == false,
                   "lg:bg-transparent lg:flex-col p-4 lg:p-0 mx-10 lg:mx-0":
