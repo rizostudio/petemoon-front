@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
 import { Basket } from "@/localSttorage/basket";
-export default function CountinueBoxForMobile({ totalBasket }) {
+export default function CountinueBoxForMobile({ totalBasket, shipping }) {
   const { state, dispatch } = BasketContext();
   const handleOrderSubmite = async () => {
     const response = await changeBasketToOrder(state.address.id);
@@ -21,7 +21,7 @@ export default function CountinueBoxForMobile({ totalBasket }) {
           <bdi>هزینه ارسال:</bdi>
         </p>
         <p className='text-base text-gray-400 font-extrabold leading-5 after:content-["تومان"] after:text-xs after:mr-1'>
-          <bdi>{(15000).toLocaleString()}</bdi>
+          <bdi>{parseInt(shipping.price).toLocaleString()}</bdi>
         </p>
       </div>
       <div className="flex lg:hidden justify-between items-center w-full px-10 py-5 border-t-[2px] border-secondary">
@@ -36,7 +36,7 @@ export default function CountinueBoxForMobile({ totalBasket }) {
             مجموع سبد خرید
           </p>
           <p className='text-lg text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{totalBasket.toLocaleString()}</bdi>
+            <bdi>{parseInt(totalBasket) + parseInt(shipping.price)}</bdi>
           </p>
         </div>
       </div>

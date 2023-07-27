@@ -5,7 +5,7 @@ import NeshanMap, {
   NeshanMapRef,
 } from "@neshan-maps-platform/react-openlayers";
 
-export default function AddressMap() {
+export default function AddressMap({ setFieldValue }) {
   const mapRef = useRef(null);
 
   const [ol, setOl] = useState();
@@ -14,7 +14,7 @@ export default function AddressMap() {
   const onInit = (ol, map) => {
     setOl(ol);
     setOlMap(map);
-
+    console.log(map);
     setTimeout(() => {
       const view = map.getView();
       view.animate({
@@ -23,6 +23,13 @@ export default function AddressMap() {
         duration: 1000,
       });
     }, 2000);
+
+    map.on("click", function (e) {
+      console.log(e.coordinate);
+      setFieldValue("lat", e.coordinate[0]);
+      setFieldValue("lon", e.coordinate[1]);
+      // marker.setLatLng(e);
+    });
   };
 
   useEffect(() => {
@@ -44,6 +51,7 @@ export default function AddressMap() {
         onInit={onInit}
         zoom={13}
         marker={"red"}
+        sele
       ></NeshanMap>
     </>
   );

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
 import { Basket } from "@/localSttorage/basket";
-export default function DiscountCode({ totalBasket }) {
+
+export default function DiscountCode({ totalBasket, shipping }) {
   const [codeStatus, setCodeStatus] = useState({
     status: "notYet",
     value: null,
@@ -75,13 +76,22 @@ export default function DiscountCode({ totalBasket }) {
           </button>
         </div>
       </form>
+
       <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 mr-5 bg-[#ea63521a] rounded-[15px]">
+        <div className="flex justify-between w-full">
+          <p className="text-xl text-gray-400 font-normal leading-8">
+            هزینه ارسال:
+          </p>
+          <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
+            <bdi>{parseInt(shipping.price).toLocaleString()}</bdi>
+          </p>
+        </div>
         <div className="flex justify-between w-full">
           <p className="text-xl text-gray-400 font-normal leading-8">
             مجموع سبد:
           </p>
           <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{totalBasket.toLocaleString()}</bdi>
+            <bdi>{parseInt(totalBasket) + parseInt(shipping.price)}</bdi>
           </p>
         </div>
         <button

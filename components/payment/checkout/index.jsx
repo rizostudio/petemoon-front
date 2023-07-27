@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 //media
 import ArrowLeftWhite_Icon from "../../../assets/common/leftArrowWhite.svg";
 import edit_Icon from "../../../assets/common/EditIcon2.svg";
+import { getShipping } from "@/services/basket/getShipping";
 //components
 import SummeryOfOrder from "./SummeryOfOrder";
 import DiscountCode from "./DiscountCode";
@@ -13,6 +14,15 @@ import CountinueBoxForMobile from "./CountinueBoxForMobile";
 //context
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 export default function OrderSummery() {
+  const [shipping, setShipping] = useState({});
+  useEffect(() => {
+    const shipping = async () => {
+      const response = await getShipping();
+      // console.log(response);
+      setShipping(response.data[0]);
+    };
+    shipping();
+  }, []);
   const { state, dispatch } = BasketContext();
   const router = useRouter();
   const data = [1, 2, 3, 4, 5];
@@ -46,10 +56,10 @@ export default function OrderSummery() {
         {/* Order Summary */}
         <SummeryOfOrder />
         {/* Discount & confirm box */}
-        <DiscountCode totalBasket={totalBasket} />
+        <DiscountCode shipping={shipping} totalBasket={totalBasket} />
       </div>
       {/* Continue Box for Mobile*/}
-      <CountinueBoxForMobile totalBasket={totalBasket} />
+      <CountinueBoxForMobile shipping={shipping} totalBasket={totalBasket} />
     </div>
   );
 }

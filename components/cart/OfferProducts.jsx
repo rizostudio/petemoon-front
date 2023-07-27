@@ -18,7 +18,7 @@ export default function OfferProducts() {
       const response = await getsimillar({
         product_pricing_ids: idOfBasketItems,
       });
-      console.log(response);
+      setSimillar(response.data);
     };
     getData();
   }, []);
