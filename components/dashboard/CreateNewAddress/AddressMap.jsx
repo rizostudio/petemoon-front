@@ -14,8 +14,9 @@ export default function AddressMap({ setFieldValue }) {
   const onInit = (ol, map) => {
     setOl(ol);
     setOlMap(map);
-    console.log(map);
+
     setTimeout(() => {
+      map.addLayer(layer);
       const view = map.getView();
       view.animate({
         center: ol.proj.fromLonLat([51.36281969540723, 35.69672648316882]),
@@ -24,7 +25,7 @@ export default function AddressMap({ setFieldValue }) {
       });
     }, 2000);
 
-    map.on("click", function (e) {
+    map.on("change:view", function (e) {
       console.log(e.coordinate);
       setFieldValue("lat", e.coordinate[0]);
       setFieldValue("lon", e.coordinate[1]);
@@ -51,7 +52,7 @@ export default function AddressMap({ setFieldValue }) {
         onInit={onInit}
         zoom={13}
         marker={"red"}
-        sele
+        // sele
       ></NeshanMap>
     </>
   );

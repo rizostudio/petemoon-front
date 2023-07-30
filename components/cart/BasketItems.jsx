@@ -30,8 +30,8 @@ export default function BasketItems() {
   return (
     <div className="flex flex-col justify-center items-center px-10 lg:px-0 lg:relative mb-5 lg:mb-0">
       <div className="lg:m-5 w-full my-2 lg:my-1">
-        {state.basket.length ? (
-          state.basket.map((item, index) => (
+        {state?.basket?.length ? (
+          state?.basket?.map((item, index) => (
             <BasketItem key={item.id} item={item} index={index} />
           ))
         ) : (
@@ -59,7 +59,7 @@ export default function BasketItems() {
         )}
       </div>
       {/* Continue Box */}
-      {state.basket.length && (
+      {state?.basket?.length && (
         <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px] absolute bottom-10 left-0">
           <div className="flex justify-between w-full">
             <p className="text-xl text-gray-400 font-normal leading-8">
