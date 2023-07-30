@@ -27,6 +27,7 @@
     "mantine-datepicker-jalali": "^1.2.3",
     "next": "13.0.7",
     "npm": "^9.2.0",
+    "ol": "^7.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-neshan-map-leaflet": "^1.2.1",

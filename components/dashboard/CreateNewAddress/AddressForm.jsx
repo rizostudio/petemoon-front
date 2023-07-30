@@ -194,7 +194,7 @@ export default function AddressForm() {
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        <AddressMap setFieldValue={setFieldValue} />
+        <AddressMap values={values} setFieldValue={setFieldValue} />
         {/* <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
           <Image
             src={MapPreserve_Pic}

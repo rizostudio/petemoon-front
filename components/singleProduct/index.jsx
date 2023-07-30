@@ -5,14 +5,11 @@ import { useRouter } from "next/router";
 // media
 import Bookmark_Icon from "../../assets/common/BookmarkBlackIcon.svg";
 import Notification_Icon from "../../assets/common/notificationIcon.svg";
-import StoreAlt_Logo from "../../assets/product/StoreLogoAlt.svg";
-import ProfileAlt_Pic from "../../assets/product/profilePicAlt.svg";
 //components
 import AddToCartForMobile from "@/components/singleProduct/AddToCartForMobile";
 import Comments from "@/components/singleProduct/Comments";
 import ProductFeatureForDesktop from "@/components/singleProduct/ProductFeatureForDesktop";
 import Description from "@/components/singleProduct/Description";
-import SimilarProducts from "@/components/singleProduct/SimilarProducts";
 import Sellers from "@/components/singleProduct/Sellers";
 import BeneFits from "@/components/singleProduct/BeneFits";
 import HeadingForMobile from "@/components/singleProduct/HeadingForMobile";

@@ -9,7 +9,7 @@ export default function Cart() {
     <div className=" w-full h-full lg:px-20 lg:py-12 bg-[#f8f8f8]">
       <HeadingForMobile />
       <BasketItems />
-      {/* <OfferProducts /> */}
+      <OfferProducts />
       <TotalBasketForMobile />
     </div>
   );
