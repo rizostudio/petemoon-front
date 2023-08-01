@@ -28,7 +28,7 @@ export default function PetemoonLogo({ size = "responsive" }) {
             : ""
         }`}
       >
-        petemoon
+        Petemoon
       </p>
     </div>
   );

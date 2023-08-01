@@ -10,3 +10,4 @@ export const OtpId = initLocalStorageApi(withPrefix("otp-id"));
 export const refreshTokenLS = initLocalStorageApi(withPrefix("refresh-token"));
 export const userDataStorage = initLocalStorageApi(withPrefix("user"));
 export const isLogin = initLocalStorageApi(withPrefix("isLogin"));
+export const Phone = initLocalStorageApi(withPrefix("Phone"));
