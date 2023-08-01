@@ -4,7 +4,7 @@ import React from "react";
 
 export default function signUp() {
   return (
-    <AuthLayout>
+    <AuthLayout text={"لطفا اطلاعات زیر را تکمیل نمایید"}>
       <SignUpForm />
     </AuthLayout>
   );

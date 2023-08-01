@@ -7,7 +7,7 @@ import smallPetsImage from "@/assets/login/loginImage.png";
 //component
 import PetemoonLogo from "@/components/partials/logo";
 
-export default function AuthLayout({ children }) {
+export default function AuthLayout({ children, text }) {
   return (
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white lg:bg-[#F1F1F1]">
       <div className="flex relative justify-center items-center lg:hidden w-full p-10 h-[55%] z-10 bg-gradient-to-br from-primary via-primary to-[#acd4f7]">
@@ -35,7 +35,7 @@ export default function AuthLayout({ children }) {
               id="header"
               className="font-black text-[#333333] text-xl md:text-[40px]"
             >
-              کاربر عزیز خوش آمدید
+              {!text ? "   کاربر عزیز ، خوش آمدید" : text}
             </div>
           </div>
           {children}

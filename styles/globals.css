@@ -363,7 +363,7 @@ select option:hover {
 .search div:hover {
   background-color: #e2e2e2;
 }
-.loadingg {
+.loading {
   border: 3px solid #f3f3f3; /* Light grey */
   border-top: 3px solid #5e5e5e; /* Blue */
   border-radius: 50%;
