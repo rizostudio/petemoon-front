@@ -194,7 +194,7 @@ export default function AddressForm() {
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        <AddressMap values={values} setFieldValue={setFieldValue} />
+        {/* <AddressMap values={values} setFieldValue={setFieldValue} /> */}
         {/* <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
           <Image
             src={MapPreserve_Pic}
@@ -206,16 +206,16 @@ export default function AddressForm() {
           </p>
         </div> */}
 
-        <div className="w-full flex flex-row mt-10 lg:mt-6">
+        <div className="w-full flex flex-row mt-10 lg:mt-6 justify-between">
           <Link
             href={"/dashboard/addresses"}
-            className="hidden lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
+            className="hidden w-[40%] hover:bg-[#d85241] hover:text-[#fff] transition ease-in-out lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
           >
             انصراف
           </Link>
           <button
             type="submit"
-            className="w-full text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
+            className="hover:bg-green-600 hover:text-white transition ease-in-out w-full lg:w-[60%]  text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
           >
             ذخیره
           </button>

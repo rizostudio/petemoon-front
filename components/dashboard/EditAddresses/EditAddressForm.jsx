@@ -204,18 +204,18 @@ export default function EditAddressForm({ id }) {
             ثبت روی نقشه
           </p>
         </div>
-        <div className="w-full flex flex-row mt-10 lg:mt-6">
+        <div className="w-full flex flex-row mt-10 lg:mt-6 justify-between">
           <Link
             href={"/dashboard/addresses"}
-            className="hidden lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
+            className="hidden w-[40%] lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
           >
             انصراف
           </Link>
           <button
             type="submit"
-            className="w-full text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
+            className=" hover:bg-green-600 hover:text-white transition ease-in-out w-full lg:w-[60%]  text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
           >
-            ثبت
+            ذخیره
           </button>
         </div>
       </div>

@@ -12,7 +12,7 @@
 }
 :root {
   --max-width: 1100px;
-  --border-radius: 12px;
+  --border-radius: 5px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
@@ -214,6 +214,9 @@ li[data-testid="day-37"] {
   background-color: transparent;
   height: 100% !important;
 }
+.icon-highlight_off {
+  display: none !important;
+}
 /* toast */
 .Toastify,
 .Toastify__toast-body {
@@ -245,7 +248,16 @@ select {
   background-image: none;
   height: 200px;
   overflow: scroll;
+  position: relative;
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+    no-repeat;
+  background-position: calc(7% - 0.75rem) center !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-right: 2rem !important;
 }
+
 option {
   background-color: #f2f2f3;
   padding: 10px;
@@ -297,7 +309,7 @@ select option:hover {
   flex-direction: row;
   justify-content: center;
   background-color: var(--background);
-  border-radius: 12px !important;
+  border-radius: 0.5rem !important;
 }
 .highlight {
   background-color: #ec7364 !important;
