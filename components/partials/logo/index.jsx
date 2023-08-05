@@ -18,7 +18,7 @@ export default function PetemoonLogo({ size = "responsive" }) {
         </div>
       </div>
       <p
-        className={`font-bold ${
+        className={`font-bold eng ${
           size === "sm"
             ? "text-[20px]"
             : size === "md"

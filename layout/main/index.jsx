@@ -162,11 +162,11 @@ export default function MainLayout({ children }) {
               </Link> */}
               {!authCtx.isLoggedIn ? (
                 <Link
-                  href={"/auth/loigin"}
-                  className="self-end flex lg:flex-col items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
+                  href={"/auth/login"}
+                  className="self-end flex lg:flex-col hover:bg-[#d85241]  items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
                 >
                   {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}
-                  <p className="text-xs lg:text-base LinkHover lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
+                  <p className="text-xs lg:text-base  lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
                     ورود | ثبت نام
                   </p>
                 </Link>
@@ -289,7 +289,7 @@ export default function MainLayout({ children }) {
               </Link>
               <Link
                 href="/"
-                className="text-base LinkHover text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1 eng"
               >
                 Q&A
               </Link>
@@ -328,8 +328,10 @@ export default function MainLayout({ children }) {
                 <Image src={twitter_Logo} alt="Twitter Logo" className="mx-2" />
               </a>
             </div>
-            <p className="text-base LinkHover text-black font-medium leading-5">
-              <bdi>© Petemoon.AllRight reserved.Developed by Rizostudio</bdi>
+            <p className="text-base LinkHover text-black font-medium leading-5 ">
+              <bdi className="eng">
+                © Petemoon.All Right reserved.Developed by Rizostudio
+              </bdi>
             </p>
           </div>
         </footer>

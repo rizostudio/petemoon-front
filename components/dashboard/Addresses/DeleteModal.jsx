@@ -54,7 +54,7 @@ export default function DeleteModal({
                 width={15}
                 height={15}
               />
-              <p className="text-base text-black font-medium leading-8 mr-2">
+              <p className="text-base text-black cursor-pointer font-medium leading-8 mr-2">
                 حذف آدرس
               </p>
             </label>
@@ -86,11 +86,15 @@ export default function DeleteModal({
           <label className="modal-box w-full absolute lg:relative inset-x-0 bottom-0 px-10 py-4 lg:p-8 mx-auto bg-white rounded-none rounded-t-[15px] lg:rounded-[20px]">
             <div className="w-full flex flex-col justify-between items-stretch">
               <div className="w-full flex flex-row justify-between items-center">
-                <p className='text-lg text-black font-medium lg:font-bold leading-7 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:text-primary before:content-[""] before:ml-2 before:align-middle before:rounded-[2px]'>
+                <p className='text-lg text-black font-medium lg:font-bold leading-7  before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:text-primary before:content-[""] before:ml-2 before:align-middle before:rounded-[2px]'>
                   حذف آدرس
                 </p>
                 <label onClick={() => setShowModal(false)}>
-                  <Image src={CloseButton_Icon} alt="CloseIcon" />
+                  <Image
+                    className="cursor-pointer"
+                    src={CloseButton_Icon}
+                    alt="CloseIcon"
+                  />
                 </label>
               </div>
               <p className="text-base lg:text-xl text-gray-400 text-right font-medium leading-8 my-2 lg:my-5">
@@ -99,13 +103,13 @@ export default function DeleteModal({
               <div className="flex flex-row items-center justify-between w-full lg:w-1/2">
                 <label
                   onClick={handleDeleteItem}
-                  className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 lg:px-8 rounded-[5px] bg-error ml-2 border-[2px] solid border-error"
+                  className="w-full cursor-pointer text-sm text-white text-center font-semibold py-3 lg:py-2 lg:px-8 rounded-[5px] bg-error ml-2 border-[2px] solid border-error"
                 >
                   حذف آدرس
                 </label>
                 <label
                   onClick={() => setShowModal(false)}
-                  className="w-full text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
+                  className="w-full cursor-pointer text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
                 >
                   انصراف
                 </label>

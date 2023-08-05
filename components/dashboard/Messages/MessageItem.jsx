@@ -4,10 +4,7 @@ import Image from "next/image";
 import Trash_Icon from "../../../assets/common/trash.svg";
 export default function MessageItem({ item }) {
   return (
-    <div
-      key={item.key}
-      className="w-full h-auto flex flex-col justify-between items-stretch my-2 lg:my-4 px-4 lg:px-10 py-2 lg:py-8 bg-white rounded-[15px] lg:rounded-3xl border-[1px] solid lg:border-none border-secondary lg:shadow-shadowB"
-    >
+    <div className="w-full h-auto flex flex-col justify-between items-stretch my-2 lg:my-4 px-4 lg:px-10 py-2 lg:py-8 bg-white rounded-[15px] lg:rounded-3xl border-[1px] solid lg:border-none border-secondary lg:shadow-shadowB">
       <div className="flex flex-row justify-end lg:justify-between items-center">
         <p className="hidden lg:block lg:text-base text-black font-medium lg:font-black leading-7 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
           <bdi>{item.from}</bdi>
