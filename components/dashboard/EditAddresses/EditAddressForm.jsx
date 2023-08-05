@@ -13,6 +13,7 @@ import data from "../../../staticJsonData/provinces.json";
 import FloatLabelInput from "@/components/partials/input";
 import { getSingleAddress } from "@/services/dashboard/address/getSingle";
 import { editAddress } from "@/services/dashboard/address/edit";
+import AddressMap from "./AddressMap";
 
 export default function EditAddressForm({ id }) {
   const [initialData, setInitialData] = useState({});
@@ -52,6 +53,9 @@ export default function EditAddressForm({ id }) {
       handleEditSubmit(values);
     },
     validationSchema: AddressSchema,
+    validateOnMount: false,
+    validateOnChange: false,
+    validateOnBlur: false,
   });
   useEffect(() => {
     data.find((item) => {
@@ -194,16 +198,11 @@ export default function EditAddressForm({ id }) {
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
-          <Image
-            src={MapPreserve_Pic}
-            alt="MapPic"
-            className="w-full h-full object-cover"
-          />
-          <p className="text-sm text-error text-center font-medium leading-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-            ثبت روی نقشه
-          </p>
-        </div>
+        <AddressMap
+          values={formik.values}
+          setFieldValue={formik.setFieldValue}
+        />
+
         <div className="w-full flex flex-row mt-10 lg:mt-6 justify-between">
           <Link
             href={"/dashboard/addresses"}

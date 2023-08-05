@@ -77,8 +77,8 @@ export default function MainLayout({ children }) {
               href="/"
               className={
                 router.asPath === "/"
-                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
-                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+                  ? "text-base LinkHover text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
               }
             >
               صفحه اصلی
@@ -87,15 +87,15 @@ export default function MainLayout({ children }) {
               href="/product-category/all"
               className={
                 router.asPath.startsWith("/product-category/")
-                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
-                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+                  ? "text-base LinkHover text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
               }
             >
               محصولات
             </Link>
             <Link
               href="/"
-              className="text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+              className="text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
             >
               کلینک ها
             </Link>
@@ -103,8 +103,8 @@ export default function MainLayout({ children }) {
               href="https://petemoon.com/blog"
               className={
                 router.asPath.startsWith("/blog")
-                  ? "text-base text-primary font-medium leading-8 mx-2 xl:mx-4"
-                  : "text-base text-black font-medium leading-8 mx-2 xl:mx-4"
+                  ? "text-base LinkHover text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
               }
             >
               بلاگ
@@ -123,7 +123,7 @@ export default function MainLayout({ children }) {
                 onChange={handleSearch}
                 type="text"
                 placeholder="جستجو"
-                className="text-base text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
+                className="text-base LinkHover text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
               />
               {inputBlur && (
                 <div className="w-[200px] xl:w-[300px] px-0 bg-[#eee] search">
@@ -148,22 +148,33 @@ export default function MainLayout({ children }) {
               )}
             </div>
             <div className="flex items-center h-full lg:mr-[15px] xl:mr-[60px]">
-              <div className="h-full p-3 border-[1px] border-primary rounded-[15px]">
+              <div className="h-full p-[.6rem] ml-5 border-[1px] border-primary rounded-[10px]">
                 <Link href={"/cart"}>
                   <Image src={card_Icon} alt="Card Icon" className="w-7" />
                 </Link>
               </div>
-              <Link href={"https://seller.petemoon.com"}>
+              {/* <Link href={"https://seller.petemoon.com"}>
                 <div className="h-full px-[6px] py-2 mx-4 border-[1px] border-primary rounded-[15px]">
-                  <p className="text-base text-gray-400 font-normal leading-8">
+                  <p className="text-base LinkHover text-gray-400 font-normal leading-8">
                     فروشندگان
                   </p>
                 </div>
-              </Link>
-
-              <Link href={authCtx.isLoggedIn ? "/dashboard" : "/auth/login"}>
-                <Image src={user_Icon} alt="User Icon" />
-              </Link>
+              </Link> */}
+              {!authCtx.isLoggedIn ? (
+                <Link
+                  href={"/auth/loigin"}
+                  className="self-end flex lg:flex-col items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
+                >
+                  {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}
+                  <p className="text-xs lg:text-base LinkHover lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
+                    ورود | ثبت نام
+                  </p>
+                </Link>
+              ) : (
+                <Link href={authCtx.isLoggedIn ? "/dashboard" : "/auth/login"}>
+                  <Image src={user_Icon} alt="User Icon" />
+                </Link>
+              )}
             </div>
           </div>
         </header>
@@ -176,7 +187,7 @@ export default function MainLayout({ children }) {
               </Link>
               <div className="flex items-center my-2">
                 <Image src={location_Icon} alt="Location Icon" />
-                <p className="text-base text-black font-medium leading-7 mr-1">
+                <p className="text-base LinkHover text-black font-medium leading-7 mr-1">
                   <bdi>آدرس:</bdi>
                 </p>
                 <p className="text-sm text-black font-normal leading-6 mr-2">
@@ -185,7 +196,7 @@ export default function MainLayout({ children }) {
               </div>
               <div className="flex items-center my-2">
                 <Image src={phone_Icon} alt="Phone Icon" />
-                <p className="text-base text-black font-medium leading-7 mr-1">
+                <p className="text-base LinkHover text-black font-medium leading-7 mr-1">
                   <bdi>شماره تماس:</bdi>
                 </p>
                 <p className="text-sm text-black font-normal leading-6 mr-2">
@@ -194,7 +205,7 @@ export default function MainLayout({ children }) {
               </div>
               <div className="flex items-center my-2">
                 <Image src={clock_Icon} alt="Clock Icon" />
-                <p className="text-base text-black font-medium leading-7 mr-1">
+                <p className="text-base LinkHover text-black font-medium leading-7 mr-1">
                   <bdi>ساعت کاری:</bdi>
                 </p>
                 <p className="text-sm text-black font-normal leading-6 mr-2">
@@ -208,25 +219,25 @@ export default function MainLayout({ children }) {
               </h6>
               <Link
                 href="/dashboard/bookmarks"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 علاقه مندی ها
               </Link>
               <Link
                 href="/cart"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 سبد خرید
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 پیگیری سفارش
               </Link>
               <Link
                 href="/dashboard/wallet"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 کیف پول
               </Link>
@@ -237,27 +248,27 @@ export default function MainLayout({ children }) {
               </h6>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 درباره ما
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 شگفت انگیز ها
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 دامپزشکان
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
-                محصولات جدید
+                پنل فروشندگان
               </Link>
             </div>
             <div className="flex flex-col">
@@ -266,25 +277,25 @@ export default function MainLayout({ children }) {
               </h6>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 سوالات متداول
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 تماس با ما
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 Q&A
               </Link>
               <Link
                 href="/"
-                className="text-base text-black font-medium leading-6 my-1"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 حریم خصوصی
               </Link>
@@ -317,8 +328,8 @@ export default function MainLayout({ children }) {
                 <Image src={twitter_Logo} alt="Twitter Logo" className="mx-2" />
               </a>
             </div>
-            <p className="text-base text-black font-medium leading-5">
-              <bdi>© 2022, All rights reserved</bdi>
+            <p className="text-base LinkHover text-black font-medium leading-5">
+              <bdi>© Petemoon.AllRight reserved.Developed by Rizostudio</bdi>
             </p>
           </div>
         </footer>

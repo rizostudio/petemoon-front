@@ -74,6 +74,8 @@ export default function ValidationForm() {
       const response = await login(Phone.get());
       if (response.success) {
         OtpId.set(response.data.otp_id);
+        setMinutes(1);
+        setSeconds(59);
       } else {
         if (response.errors[0] === "user registered with different user type") {
           toast.error("این شماره از قبل در سیستم موجود است", {

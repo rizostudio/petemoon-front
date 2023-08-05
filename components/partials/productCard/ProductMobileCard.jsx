@@ -111,8 +111,8 @@ export default function ProductMobileCard({ item, index }) {
   };
   return (
     <div className="m-2">
-      <div className="flex flex-col items-stretch w-[200px] p-4 lg:p-5  bg-white rounded-[15px]">
-        <div className="relative block h-[100px] bg-gray-400 border-[1px] border-solid border-primary rounded-[15px]">
+      <div className="flex flex-col items-stretch w-[200px] p-4 lg:p-5  bg-white rounded-[10px]">
+        <div className="relative block h-[100px] bg-white  rounded-[10px]">
           <Link href={`/products/${item.slug}`}>
             <Image
               style={{ width: "100%", height: "100%" }}
@@ -128,13 +128,13 @@ export default function ProductMobileCard({ item, index }) {
             />
           </Link>
 
-          <div className="absolute z-index-2 top-[-7px] left-[-7px] p-2 bg-white border-[1px] border-solid border-primary rounded-full">
+          {/* <div className="absolute z-index-2 top-[-7px] left-[-7px] p-2 bg-white border-[1px] border-solid border-primary rounded-full">
             <Image
               src={BookmarkRed_Icon}
               alt="BookmarkIcon"
               className="w-3 h-3"
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-2">

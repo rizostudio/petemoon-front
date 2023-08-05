@@ -101,12 +101,12 @@ export default function Sellers({ data }) {
                 </h6>
               </div>
               <div className="flex flex-row">
-                <p className="text-2xl lg:text-xl text-primary font-medium leading-7">
+                <p className="text-2xl lg:text-xl w-[300px] text-primary font-medium mt-2">
                   <bdi>{`${item.price} تومان`}</bdi>
                 </p>
                 <button
                   onClick={() => handleAddToBasket(item.id, item.price)}
-                  className="text-base text-center text-white font-bold bg-primary w-full py-3 px-5 rounded-[12px] lg:rounded-[15px] mr-2 lg:mr-5"
+                  className="text-base text-center text-white  font-bold bg-primary w-full py-3 px-5 rounded-[12px] lg:rounded-[15px] mr-2 lg:mr-5"
                 >
                   افزودن به سبد
                 </button>

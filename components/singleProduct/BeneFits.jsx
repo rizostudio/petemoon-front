@@ -9,7 +9,7 @@ import FreeSend_Icon from "../../assets/product/FreeSendIcon.svg";
 
 export default function BeneFits() {
   return (
-    <div className="hidden lg:flex flex-row justify-evenly px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary">
+    <div className="hidden lg:flex flex-row justify-evenly px-10 py-5 lg:px-0 lg:py-10 ">
       <div className="flex flex-row items-center p-5">
         <Image src={Originality_Icon} alt="OriginalityIcon" />
         <div className="text-right mr-4">

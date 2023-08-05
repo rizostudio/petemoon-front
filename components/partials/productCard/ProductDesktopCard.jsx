@@ -117,42 +117,44 @@ export default function ProductDesktopCard({ item, index }) {
   return (
     <div className="m-3">
       <div className="flex flex-col items-stretch w-[275px] h-[450px] p-5  bg-white rounded-[25px] shadow-shadowB">
-        <div className="relative block h-[200px] bg-gray-400 border-[1px] border-solid border-primary rounded-[20px]">
+        <div className="relative block h-[200px] bg-[white]  border-solid border-primary rounded-[20px]">
           <Link href={`/products/${item.slug}`}>
             <Image
-              style={{ width: "100%", height: "100%" }}
+              // style={{ width: "100%", height: "100%" }}
               src={
                 item.picture_url
                   ? `https://api.petemoon.com${item.picture_url}`
                   : "/assets/product/ProductPic4.svg"
               }
-              width={100}
-              height={100}
+              width={220}
+              height={220}
               alt="ProductPic"
               className="object-cover"
             />
           </Link>
 
-          <div className="absolute z-index-2 top-[-7px] left-[-7px] p-3 bg-white border-[1px] border-solid border-primary rounded-full">
+          {/* <div className="absolute z-index-2 top-[-7px] left-[-7px] p-3 bg-white border-[1px] border-solid border-primary rounded-full">
             <Image
               src={BookmarkRed_Icon}
               alt="BookmarkIcon"
               className="w-5 h-5"
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-4">
           <p className="text-base text-gray-400 font-medium leading-5">
-            <bdi>{item.category.pet_category}</bdi>
+            <bdi>
+              {item.pet_type?.pet_type} / {item.category?.pet_category}
+            </bdi>
           </p>
           <Link href={`/products/${item.slug}`}>
             <div className="flex  justify-between items-center content-start">
-              <h2 className="text-xl  producatrTitle text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
+              <h2 className="text-lg  producatrTitle text-black font-bold leading-8 before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
                 {item.name}
               </h2>
               {item.best_pricing?.price_after_sale && (
-                <p className="text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
+                <p className="text-base text-white bg-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[15px]">
                   {parseInt(
                     (item.best_pricing.price_after_sale /
                       item.best_pricing.price) *
@@ -190,9 +192,9 @@ export default function ProductDesktopCard({ item, index }) {
               <div
                 onClick={handleAddToCart}
                 // href={`/products/${index}`}
-                className="flex items-center p-2 bg-[#EA635233] rounded-[10px]"
+                className="flex items-center cursor-pointer p-2 bg-[#EA635233] rounded-[10px] "
               >
-                <p className="block text-base text-primary font-medium leading-7 ml-2">
+                <p className="block text-base  font-medium text-[#000] leading-7 ml-2">
                   خرید
                 </p>
                 <Image src={ShoppingCartRed_Icon} alt="ShoppingCartRedIcon" />

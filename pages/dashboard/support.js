@@ -27,19 +27,16 @@ export default function support() {
                 <bdi>با ما در ارتباط باشید...</bdi>
               </p>
             </div>
-            <p className='self-end text-sm lg:text-base text-primary font-medium lg:font-bold leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'>
-              <bdi>تماس با ما</bdi>
-            </p>
           </div>
           <div className="h-full w-1/4 px-5 py-10 mr-5 hidden lg:flex flex-col justify-center items-center bg-white rounded-[25px] shadow-shadowA">
-            <Image src={Phone_Icon} alt="PhoneIcon" className="w-[100px]" />
+            <Image src={WhatsApp_Icon} alt="PhoneIcon" className="w-[100px]" />
             <div className="flex flex-col justify-between items-center text-center">
               <p className="text-lg text-black font-bold leading-6 mb-1">
-                تماس تلفنی
+                واتساپ
               </p>
-              <p className="text-base text-gray-400 font-medium tracking-widest leading-6">
-                <bdi>02186655877-99</bdi>
-              </p>
+              <span className="text-xs lg:text-sm text-primary font-medium leading-6">
+                پیام در واتس اپ
+              </span>
             </div>
           </div>
         </div>
@@ -50,16 +47,16 @@ export default function support() {
           <div className="w-full h-full flex flex-row items-center justify-between lg:mt-5">
             <div className="h-full w-1/3 flex flex-col lg:flex-row justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
               <Image
-                src={WhatsApp_Icon}
+                src={Phone_Icon}
                 alt="WhatsAppIcon"
-                className="w-[75px] lg:w-[100px]"
+                className="w-[80px] lg:w-[80px]"
               />
               <div className="flex flex-col items-center lg:items-start mt-6 lg:mt-0 lg:mr-4 ">
                 <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90">
-                  واتساپ
+                  تماس تلفنی
                 </p>
                 <span className="text-xs lg:text-sm text-primary font-medium leading-6">
-                  پیام در واتس اپ
+                  02186655877-99
                 </span>
               </div>
             </div>

@@ -51,6 +51,9 @@ export default function AddressForm() {
         handleCreateSubmit(values);
       },
       validationSchema: AddressSchema,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
     });
   const handleCreateSubmit = async (values) => {
     const response = await createAddress(values);
@@ -153,7 +156,7 @@ export default function AddressForm() {
           </div>
           <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
             <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-              تحویل گیرنده
+              عنوان ادرس
             </label>
             <FloatLabelInput
               type={"text"}
@@ -194,7 +197,7 @@ export default function AddressForm() {
         </div>
       </div>
       <div className="w-full lg:w-1/3 flex flex-col justify-between lg:justify-end items-stretch lg:mr-6">
-        {/* <AddressMap values={values} setFieldValue={setFieldValue} /> */}
+        <AddressMap values={values} setFieldValue={setFieldValue} />
         {/* <div className="w-full h-[150px] relative my-4 lg:my-1 border-[1px] solid border-secondary lg:border-none rounded-[10px] lg:rounded-none overflow-hidden">
           <Image
             src={MapPreserve_Pic}

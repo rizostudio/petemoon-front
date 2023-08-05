@@ -6,6 +6,7 @@
 @font-face {
   font-family: "YekanBakh";
   src: url("../assets/fonts/YekanBakh/YekanBakh.ttf") format("truetype");
+
   /* src: url('../assets/fonts/YekanBakh/Yekan.eot'); IE9 Compat Modes */
   /* src: url('../assets/fonts/YekanBakh/Yekan.woff') format('woff'), Pretty Modern Browsers */
   /* url('../assets/fonts/YekanBakh/Yekan.ttf')  format('truetype'), Safari, Android, iOS */
@@ -101,9 +102,13 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-html {
-  /* font-family: sans-serif; */
+* {
   font-family: "YekanBakh";
+}
+h2,
+h1,
+h3 {
+  font-family: sans-serif, "YekanBakh";
 }
 @layer base {
   html {
@@ -149,6 +154,11 @@ p {
   left: 43% !important;
   height: 35px !important;
   border-radius: 7px;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgb(233, 67, 55);
+  transition: all ease, 0.2s;
 }
 .swiper-button-next::after {
   font-size: 15px !important;
@@ -398,4 +408,29 @@ select option:hover {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.LinkHover:hover {
+  color: #ec7364;
+  transition: ease-in-out 0.2s;
+}
+input[type="range"] {
+  background-color: #cf0a0a !important;
+
+  outline: none;
+  accent-color: #ec7364;
+}
+._map_1yxt5_2 {
+  position: relative;
+}
+._map_1yxt5_2::after {
+  content: "";
+  cursor: pointer;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

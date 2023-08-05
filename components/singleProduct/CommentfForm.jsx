@@ -17,6 +17,7 @@ export default function CommentfForm({
   rate,
   formSubmit,
   change,
+  errors,
 }) {
   return (
     <>
@@ -51,16 +52,24 @@ export default function CommentfForm({
                 <p className="text-lg text-black font-medium leading-8 mt-2">
                   <bdi>
                     نظر خود را درباره
-                    <span className="text-primary">{data.name}</span> برای ما
+                    <span className="text-primary"> {data.name} </span> برای ما
                     بفرستید:
                   </bdi>
                 </p>
-                <label
-                  htmlFor="range-score"
-                  className="text-lg text-black font-medium leading-8 mt-6"
-                >
-                  امتیاز دهید
-                </label>
+                <div className="flex justify-between">
+                  <label
+                    htmlFor="range-score"
+                    className="text-lg text-black font-medium leading-8 mt-6"
+                  >
+                    امتیاز دهید
+                  </label>
+                  <label
+                    htmlFor="range-score"
+                    className="text-lg text-black font-medium leading-8 mt-6"
+                  >
+                    {rate} از ۵
+                  </label>
+                </div>
                 <input
                   onChange={change}
                   value={rate}
@@ -84,6 +93,9 @@ export default function CommentfForm({
                   type="text"
                   className="px-4 py-2 lg:w-3/4 mt-2 border-[1px] border-solid border-gray-400 focus-visible:border-primary rounded-[5px]"
                 />
+                <bdi>
+                  <span className="text-primary"> {errors.title} </span>
+                </bdi>
                 <label
                   htmlFor="comment-text"
                   className="text-lg text-black font-medium leading-8 mt-5"
@@ -98,6 +110,9 @@ export default function CommentfForm({
                   value={description}
                   className="px-4 py-2 mt-2 border-[1px] border-solid border-gray-400 rounded-[5px]"
                 ></textarea>
+                <bdi>
+                  <span className="text-primary"> {errors.description} </span>
+                </bdi>
                 <div className="self-end flex flex-row items-center justify-between w-full lg:w-2/5 mt-6">
                   <label
                     onClick={() => {
@@ -105,19 +120,22 @@ export default function CommentfForm({
                       setMainPageOpen(true);
                     }}
                     // htmlFor="comment-send-modal"
-                    className="w-full text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
+                    className="w-full text-sm cursor-pointer text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
                   >
                     انصراف
                   </label>
                   <label
                     onClick={() => {
-                      formSubmit();
-                      setCommentPageOpen(false);
-                      setMainPageOpen(true);
+                      if (!errors) {
+                        formSubmit();
+                        setCommentPageOpen(false);
+                        setMainPageOpen(true);
+                      }
+
                       // setShowModal(false);
                     }}
                     // htmlFor="comment-send-modal"
-                    className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
+                    className="w-full text-sm cursor-pointer text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
                   >
                     ثبت دیدگاه
                   </label>

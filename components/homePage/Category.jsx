@@ -15,12 +15,12 @@ const Category = () => {
         <h5 className="text-2xl text-black font-black lg:font-bold leading-7 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]">
           دسته بندی محصولات
         </h5>
-        <Link
+        {/* <Link
           href="/vet"
           className='text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
         >
           <bdi>مشاهده همه</bdi>
-        </Link>
+        </Link> */}
       </div>
       <div className="flex items-center lg:grid grid-cols-4 gap-5 mr-10 lg:px-[120px] py-7 lg:py-10 overflow-x-scroll lg:overflow-hidden scrollbar scrolling-touch scroll-smooth scroll-mx-10 touch-pan-x lg:touch-none scrolling-touch">
         <Link href={"/product-category/all?pet_types=dog"}>

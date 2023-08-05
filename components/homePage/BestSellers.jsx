@@ -36,12 +36,12 @@ const BestSellers = ({ data }) => {
         <h5 className="text-2xl text-black font-black lg:font-bold leading-7 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]">
           فروشندگان برتر
         </h5>
-        <Link
+        {/* <Link
           href="/vet"
           className='hidden lg:block text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
         >
           <bdi>مشاهده همه</bdi>
-        </Link>
+        </Link> */}
       </div>
       {/* mobile */}
       <div className="flex lg:hidden flex-row-reverse items-center justify-center mr-10 my-3 lg:m-0 lg:my-10 lg:px-[120px] overflow-hidden ">

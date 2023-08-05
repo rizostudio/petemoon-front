@@ -114,12 +114,12 @@ export default function BookMarkItem({ item, setDeletHandler }) {
   };
   return (
     <div className="flex flex-col lg:grid-cols-3 my-2 lg:mx-2 lg:my-3 p-5 lg:p-7 bg-white rounded-[15px] lg:rounded-[25px] border-[1px] solid border-secondary lg:border-gray-400 lg:shadow-shadowB">
-      <div className="h-[100px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid border-primary">
+      <div className="h-[180px] w-full bg-gray-400 overflow-hidden rounded-[10px] lg:rounded-[20px] border-[1px] solid ">
         <Image
           style={{ width: "100%", height: "100%" }}
           width={100}
           height={100}
-          src={`https://api.petemoon.com${item.product.picture}`}
+          src={`https://api.petemoon.com${item.product.picture_url}`}
         />
       </div>
       <div className="w-full flex flex-col justify-between items-stretch">
@@ -128,7 +128,7 @@ export default function BookMarkItem({ item, setDeletHandler }) {
             <h2 className='text-base lg:text-base text-black font-semibold lg:font-black leading-7 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:text-primary before:content-[""] before:ml-2 before:align-middle before:rounded-[2px]'>
               {item.product.name}
             </h2>
-            {item.product.price && (
+            {/* {item.product.price && (
               <p className='text-sm text-white font-medium leading-5 py-[2px] px-[5px] lg:py-[2px] lg:px-2 mr-2 h-full rounded-[5px] lg:rounded-[10px]  bg-primary before:content-["%"] before:text-[10px]'>
                 <bdi className="hidden lg:inline-block text-[8px] font-normal opacity-[0.8] mr-1">
                   تخفیف
@@ -143,7 +143,7 @@ export default function BookMarkItem({ item, setDeletHandler }) {
                       parseInt(item?.product.price_after_sale)) *
                     100}
               </p>
-            )}
+            )} */}
           </div>
           <div className="lg:hidden text-right">
             <p className='text-base text-black font-medium leading-6 flex flex-row items-center after:content-["تومان"] after:mr-1 after:text-xs'>

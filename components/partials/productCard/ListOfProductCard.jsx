@@ -112,9 +112,9 @@ export default function ProductCart({ item, index }) {
   };
   return (
     <div className="lg:m-5 w-full lg:w-[285px] my-1">
-      <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[15px] lg:rounded-[25px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
-        <div className="relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0 bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
-          <div className="hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full">
+      <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[420px] p-4 lg:p-5  bg-white rounded-[10px] lg:rounded-[10px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
+        <div className="relative block w-[100px] lg:w-full h-full lg:h-[200px] p-0  rounded-[15px] lg:rounded-[20px]">
+          {/* <div className="hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full">
             <Image
               onClick={handleAddToBookmark}
               width={100}
@@ -123,12 +123,12 @@ export default function ProductCart({ item, index }) {
               alt="BookmarkIcon"
               className="w-3 h-3 lg:w-5 lg:h-5"
             />
-          </div>
+          </div> */}
           <Link href={`/products/${item.slug}`}>
             <div className="w-full h-full overflow-hidden m-0 p-0">
               <img
-                // width={244}
-                // height={223}
+                width={245}
+                height={220}
                 src={
                   item.picture_url
                     ? `https://api.petemoon.com${item.picture_url}`
@@ -218,7 +218,7 @@ export default function ProductCart({ item, index }) {
                     </div>
                     <div
                       // href={`/products/${index}`}
-                      className="flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[10px]"
+                      className="flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[5px]"
                     >
                       <Image
                         width={20}
@@ -228,7 +228,7 @@ export default function ProductCart({ item, index }) {
                       />
                       <p
                         onClick={handleAddToCart}
-                        className="text-base text-primary font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
+                        className="text-base text-primary cursor-pointer font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
                       >
                         خرید
                       </p>

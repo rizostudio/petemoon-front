@@ -52,7 +52,7 @@ export default function SortInDesktop({
               sortQuery("order_by", item.slug);
             }}
             className={clsx(
-              "text-xl font-medium leading-8 mx-2 cursor-pointer",
+              "text-xl hover:text-primary font-medium leading-8 mx-2 cursor-pointer",
               {
                 "text-primary": item.slug == router.query?.order_by,
                 "text-gray-400 opacity-80":
