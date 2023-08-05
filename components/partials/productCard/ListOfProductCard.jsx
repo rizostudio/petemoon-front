@@ -151,7 +151,7 @@ export default function ProductCart({ item, index }) {
                 {item.name}
               </h2>
               {item.best_pricing.price_after_sale && (
-                <p className="text-sm lg:text-base text-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
+                <p className="text-sm lg:text-base text-white bg-primary font-medium py-1 px-2 mr-2 border-solid border-[0.5px] border-primary rounded-[12px] lg:rounded-[15px]">
                   {item.best_pricing.price_after_sale &&
                     (item.best_pricing.price /
                       item.best_pricing.price_after_sale) *
@@ -218,7 +218,7 @@ export default function ProductCart({ item, index }) {
                     </div>
                     <div
                       // href={`/products/${index}`}
-                      className="flex lg:flex-row-reverse items-center p-2 lg:bg-[#EA635233] rounded-[5px]"
+                      className="flex lg:flex-row-reverse cursor-pointer items-center p-2 lg:bg-[#EA635233] rounded-[5px] addtocartBtn"
                     >
                       <Image
                         width={20}
@@ -228,7 +228,7 @@ export default function ProductCart({ item, index }) {
                       />
                       <p
                         onClick={handleAddToCart}
-                        className="text-base text-primary cursor-pointer font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
+                        className="text-base text-primary r font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
                       >
                         خرید
                       </p>

@@ -192,7 +192,7 @@ export default function ProductDesktopCard({ item, index }) {
               <div
                 onClick={handleAddToCart}
                 // href={`/products/${index}`}
-                className="flex items-center cursor-pointer p-2 bg-[#EA635233] rounded-[10px] "
+                className="flex items-center cursor-pointer p-2 bg-[#EA635233] addtocartBtn rounded-[10px] "
               >
                 <p className="block text-base  font-medium text-[#000] leading-7 ml-2">
                   خرید

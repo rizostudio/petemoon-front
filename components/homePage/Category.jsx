@@ -40,7 +40,6 @@ const Category = () => {
             </div>
           </div>
         </Link>
-
         <div className="flex h-[150px] w-[250px] lg:w-full lg:h-[320px] bg-[#EC995D] rounded-[25px] relative">
           <Image
             src={rabbitImage}
