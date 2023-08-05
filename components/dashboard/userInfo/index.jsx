@@ -10,7 +10,7 @@ import moment from "jalali-moment";
 import * as Yup from "yup";
 //component
 import FloatLabelInput from "@/components/partials/input";
-
+import { toast } from "react-toastify";
 //media
 import Profile_Alt_Pic from "../../../assets/dashboard/profile-pic-alt.svg";
 import Cake_Icon from "../../../assets/dashboard/cake.svg";
@@ -38,20 +38,26 @@ export default function UserInfo() {
   const UserInfoSchema = Yup.object().shape({
     first_name: Yup.string().required("فیلد الزامی است"),
     last_name: Yup.string().required("فیلد الزامی است"),
-    email: Yup.string().required("فیلد الزامی است"),
+    email: Yup.string()
+      .required("فیلد الزامی است")
+      .matches(/.+@.+\.[A-Za-z]+$/, "فرمت ایمیل درست نیست"),
     phone_number: Yup.string().required("فیلد الزامی است"),
     birth_date: Yup.string().required("فیلد الزامی است"),
   });
 
-  const { handleChange, values, setFieldValue, handleSubmit } = useFormik({
-    enableReinitialize: true,
-    initialValues: userData,
-    onSubmit: (value) => {
-      handleCreateSubmit(value);
-      console.log(value);
-    },
-    validationSchema: UserInfoSchema,
-  });
+  const { handleChange, values, setFieldValue, handleSubmit, errors } =
+    useFormik({
+      enableReinitialize: true,
+      initialValues: userData,
+      onSubmit: (value) => {
+        handleCreateSubmit(value);
+        console.log(value);
+      },
+      validationSchema: UserInfoSchema,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
+    });
   const birthDate = (e) => {
     console.log(e);
     const datePickerOutput = moment(e.toString()).format("YYYY-MM-DD");
@@ -59,6 +65,18 @@ export default function UserInfo() {
   };
   const handleCreateSubmit = async (values) => {
     const response = await editUserData(values);
+    if (response.success) {
+      toast.success("با موفقیت ذخیره شد", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     console.log(response);
   };
   return (
@@ -72,39 +90,18 @@ export default function UserInfo() {
         />
         <div className="mr-5 flex flex-col">
           <p className="text-black text-right font-black lg:text-white">
-            علی حسینی نسب
+            {values.first_name}
           </p>
-          <p className="text-gray-400 text-right">۰۹۳۰۱۲۳۴۵۶۷</p>
+          <p className="text-gray-400 text-right">{values.phone_number}</p>
         </div>
       </div>
       <div className="w-full h-full flex flex-col lg:flex-row justify-between items-center lg:my-8 lg:p-0">
         <form
           onSubmit={handleSubmit}
-          className="w-full h-full lg:h-[360px] flex flex-col lg:flex-row items:center justify-evenly"
+          className="w-full h-full lg:h-[420px] flex flex-col lg:flex-row items:center justify-evenly"
         >
           <div className="w-full h-full relative lg:w-3/4 flex flex-col items-stretch lg:p-5 lg:ml-6 lg:px-12 lg:py-8 lg:bg-white rounded-[25px] lg:shadow-shadowA">
             <div className="lg:flex flex-row-reverse justify-between items-center w-full">
-              <div className="text-right lg:w-1/2 my-4 lg:m-1">
-                <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-                  نام
-                </label>
-                <FloatLabelInput
-                  type={"text"}
-                  placeholder={"نام"}
-                  name="first_name"
-                  onChange={handleChange}
-                  value={values.first_name}
-                  h={"h-12"}
-                  py={"3"}
-                  dir={"rtl"}
-                  // disabled={!editable}
-                />
-                {/* {errors.first_name ? (
-                  <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                    <bdi>{errors.first_name}</bdi>
-                  </p>
-                ) : null} */}
-              </div>
               <div className="text-right lg:w-1/2 my-2 lg:m-1 lg:mr-4">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
                   نام خانوادگی
@@ -120,11 +117,32 @@ export default function UserInfo() {
                   dir={"rtl"}
                   // disabled={!editable}
                 />
-                {/* {errors.last_name ? (
+                {errors.last_name ? (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.last_name}</bdi>
                   </p>
-                ) : null} */}
+                ) : null}
+              </div>
+              <div className="text-right lg:w-1/2 my-4 lg:m-1">
+                <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
+                  نام
+                </label>
+                <FloatLabelInput
+                  type={"text"}
+                  placeholder={"نام"}
+                  name="first_name"
+                  onChange={handleChange}
+                  value={values.first_name}
+                  h={"h-12"}
+                  py={"3"}
+                  dir={"rtl"}
+                  // disabled={!editable}
+                />
+                {errors.first_name ? (
+                  <p className="text-[12px] text-error font-semibold leading-5 mt-1">
+                    <bdi>{errors.first_name}</bdi>
+                  </p>
+                ) : null}
               </div>
             </div>
             <div className="lg:flex flex-row-reverse justify-between items-center w-full lg:mt-5">
@@ -143,11 +161,11 @@ export default function UserInfo() {
                   dir={"rtl"}
                   disabled={true}
                 />
-                {/* {errors.phone_number && (
+                {errors.phone_number && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.phone_number}</bdi>
                   </p>
-                )} */}
+                )}
               </div>
               <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
@@ -164,11 +182,11 @@ export default function UserInfo() {
                   dir={"rtl"}
                   // disabled={!editable}
                 />
-                {/* {errors.email && (
+                {errors.email && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
                     <bdi>{errors.email}</bdi>
                   </p>
-                )} */}
+                )}
               </div>
             </div>
             <div className="lg:flex flex-row-reverse justify-end items-center  w-full lg:my-5">
@@ -187,31 +205,30 @@ export default function UserInfo() {
                   dir={"rtl"}
                   // disabled={!editable}
                 />
-                {/* {errors.email && (
+                {errors.birth_date && (
                   <p className="text-[12px] text-error font-semibold leading-5 mt-1">
-                    <bdi>{errors.email}</bdi>
+                    <bdi>{errors.birth_date}</bdi>
                   </p>
-                )} */}
+                )}
               </div>
-            </div>
-            <div
-              className={
-                "flex flex-row-reverse absolute bottom-7 left-9 hidden lg:block"
-              }
-            >
               <div
-                className={clsx("cursor-pointer w-fit", {
-                  // hidden: !editable,
-                })}
+                className={
+                  "flex flex-row-reverse absolute bottom-7 left-9 hidden lg:block ml-5"
+                }
               >
-                <button
-                  type="submit"
-                  className=" w-[200px] mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[12px]"
+                <div
+                  className={clsx("cursor-pointer w-fit", {
+                    // hidden: !editable,
+                  })}
                 >
-                  ذخیره
-                </button>
-              </div>
-              {/* <div
+                  <button
+                    type="submit"
+                    className=" w-[200px] hover:bg-green-600 hover:text-white transition ease-in-out mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[5px] ms-10 "
+                  >
+                    ذخیره
+                  </button>
+                </div>
+                {/* <div
                 className={clsx("cursor-pointer w-fit", {
                   hidden: editable,
                 })}
@@ -220,6 +237,7 @@ export default function UserInfo() {
                   <Image src={PenEdit_Icon} alt="PenEditIcon" />
                 </div>
               </div> */}
+              </div>
             </div>
           </div>
 
@@ -233,9 +251,7 @@ export default function UserInfo() {
               <p className="text-xl lg:text-lg text-gray-400 font-medium tracking-widest leading-6">
                 <bdi>
                   {values.birth_date &&
-                    moment(values.birth_date)
-                      .locale("fa")
-                      .format("YYYY-MMM-DD")}
+                    moment(values.birth_date).locale("fa").format("YYYY-MM-DD")}
                 </bdi>
               </p>
             </div>
@@ -243,7 +259,7 @@ export default function UserInfo() {
 
           <button
             type="submit"
-            className="lg:hidden w-full mt-10 py-3 bg-[#CFEBD8] text-black text-center font-medium border-[1px] solid border-verify rounded-[12px]"
+            className="lg:hidden w-full mt-10 py-3 bg-[#CFEBD8] text-black text-center hover:bg-border-verify font-medium border-[1px] solid border-verify rounded-[12px]"
           >
             ذخیره
           </button>

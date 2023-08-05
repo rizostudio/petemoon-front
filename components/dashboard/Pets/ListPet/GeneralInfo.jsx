@@ -41,7 +41,7 @@ export default function GeneralInfo({ tabHandlear, item }) {
           <p className="text-sm lg:text-base text-black">تاریخ تولد</p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
             <bdi>
-              {moment(item.birth_date).locale("fa").format("YYYY  MMM  DD")}
+              {moment(item.birth_date).locale("fa").format("YYYY/MM/DD")}
             </bdi>
           </p>
         </div>

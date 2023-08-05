@@ -41,7 +41,7 @@ const OffPriceProdcuts = ({ data }) => {
           شگفت انگیز امروز
         </h5>
         {/* timerBox */}
-        <div className="flex flex-col lg:flex-row justify-between items-center w-[70px] lg:w-auto p-2 lg:px-4 lg:py-2 mt-4 mb-3 lg:my-0 bg-[#F35244] rounded-[12px] lg:rounded-[15px]">
+        {/* <div className="flex flex-col lg:flex-row justify-between items-center w-[70px] lg:w-auto p-2 lg:px-4 lg:py-2 mt-4 mb-3 lg:my-0 bg-[#F35244] rounded-[12px] lg:rounded-[15px]">
           <Image src={timer_Icon} alt="Timer Icon" className="lg:hidden" />
           <p className="hidden lg:block text-sm text-white font-medium leading-5">
             <bdi>پایان تخفیف:</bdi>
@@ -49,13 +49,13 @@ const OffPriceProdcuts = ({ data }) => {
           <div className="text-sm text-center text-white font-medium leading-5 lg:mr-8">
             <bdi>{time}</bdi>
           </div>
-        </div>
-        <Link
+        </div> */}
+        {/* <Link
           href="/products"
           className='text-xs lg:text-lg text-center text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
         >
           <bdi>مشاهده همه</bdi>
-        </Link>
+        </Link> */}
       </div>
       <div className="px-0 overflow-hidden lg:px-[120px] py-2 lg:py-6">
         <CarouselProduct data={data} />

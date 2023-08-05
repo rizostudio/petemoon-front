@@ -9,16 +9,20 @@ export default function IncreaseWallet({ showeModal, setShowModal }) {
     <Modal show={showeModal}>
       <input type="checkbox" id="add-wallet-modal" className="modal-toggle" />
       <label htmlFor="add-wallet-modal" className="modal cursor-pointer">
-        <label className="modal-box w-full absolute lg:relative inset-x-0 bottom-0 px-10 py-4 lg:p-8 mx-auto bg-white rounded-none rounded-t-[15px] lg:rounded-[20px]">
+        <label className="modal-box w-full absolute lg:relative inset-x-0  bottom-0 px-10 py-4 lg:p-8 mx-auto bg-white rounded-none rounded-t-[15px] lg:rounded-[15px] borgrad">
           <div className="w-full flex flex-row justify-between items-center">
-            <p className="text-base lg:text-base text-black font-medium lg:font-black leading-7 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
+            <p className="text-base lg:text-base text-black font-medium lg:font-black leading-7 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px] ">
               افزایش موجودی
             </p>
             <label
               onClick={() => setShowModal(false)}
               // htmlFor="add-wallet-modal"
             >
-              <Image src={CloseButton_Icon} alt="CloseIcon" />
+              <Image
+                className="cursor-pointer"
+                src={CloseButton_Icon}
+                alt="CloseIcon"
+              />
             </label>
           </div>
           <form
@@ -41,19 +45,19 @@ export default function IncreaseWallet({ showeModal, setShowModal }) {
                   onClick={() => setIncreaseAmount(500000)}
                   className="w-full p-3 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-thirdly rounded-[12px] lg:rounded-[5px]"
                 >
-                  <bdi>{500000} تومان</bdi>
+                  <bdi>{"500000".toLocaleString()} تومان</bdi>
                 </button>
                 <button
                   onClick={() => setIncreaseAmount(200000)}
                   className="w-full p-3 mx-1 lg:mx-2 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-thirdly rounded-[12px] lg:rounded-[5px]"
                 >
-                  <bdi>{200000} تومان</bdi>
+                  <bdi>{"200000".toLocaleString()} تومان</bdi>
                 </button>
                 <button
                   onClick={() => setIncreaseAmount(100000)}
                   className="w-full p-3 bg-white text-sm text-center text-gray-400 font-medium border-[1px] solid border-thirdly rounded-[12px] lg:rounded-[5px] "
                 >
-                  <bdi>{100000} تومان</bdi>
+                  <bdi>{"100000".toLocaleString()} تومان</bdi>
                 </button>
               </div>
             </div>
@@ -64,7 +68,7 @@ export default function IncreaseWallet({ showeModal, setShowModal }) {
               <label
                 onClick={() => setShowModal(false)}
                 // htmlFor="add-wallet-modal"
-                className="w-full text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
+                className="w-full cursor-pointer text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
               >
                 انصراف
               </label>

@@ -11,19 +11,19 @@ export default function TotalSale({ total }) {
       <div className="text-right flex flex-col">
         <p className="text-lg text-black font-bold mb-3">مجموع خرید از سایت</p>
         <p className="text-lg text-black font-bold">
-          <bdi>{total} تومان</bdi>
+          <bdi>{total ? total.toLocaleString() : 0} تومان</bdi>
         </p>
       </div>
       <div className="flex flex-row justify-between items-center">
         <p className="text-base text-black font-medium opacity-50">
           <bdi>در یک ماه گذشته</bdi>
         </p>
-        <div className="flex flex-row items-center">
+        {/* <div className="flex flex-row items-center">
           <p className="text-base text-verify font-medium leading-6">25 %</p>
           <div className="p-2 rounded-full bg-green-100 mr-1">
             <Image src={Uprise_Icon} alt="UpriseIcon" />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

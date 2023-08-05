@@ -21,6 +21,7 @@ export default function FloatLabelInput({
   defaultValue,
   patern,
   children,
+  noneHolder,
 }) {
   if (type === "date") {
     console.log(value);
@@ -40,7 +41,7 @@ export default function FloatLabelInput({
           selectedBackgroundColor={"#FF0000"}
           disabled={disabled}
           className={clsx(
-            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
+            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
             {
               "bg-white": !disabled,
               "bg-secondary": disabled,
@@ -52,7 +53,7 @@ export default function FloatLabelInput({
           type={type}
           id={name}
           className={clsx(
-            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
+            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
             {
               "bg-white": !disabled,
               "bg-secondary": disabled,
@@ -72,13 +73,13 @@ export default function FloatLabelInput({
           type={type}
           id={name}
           className={clsx(
-            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-xl border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
+            `block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer`,
             {
               "bg-white": !disabled,
               "bg-secondary": disabled,
             }
           )}
-          placeholder=" "
+          placeholder={" "}
           onChange={onChange}
           value={value}
           name={name}
@@ -91,23 +92,24 @@ export default function FloatLabelInput({
       <label
         htmlFor={name}
         className={clsx(
-          "absolute scale-75 peer-focus:scale-[85%] peer-placeholder-shown:scale-100 peer-focus:text-[#9B9BA1] text-sm md:text-lg peer-focus:text-sm peer-focus:md:text-lg peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-lg text-[#9B9BA1] duration-300 transform -translate-y-4 top-2 lg:top-1 z-10 peer-focus:bg-white px-1 peer-placeholder-shown:px-1 peer-focus:pr-2 peer-focus:text-primary peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 lg:peer-focus:top-0.5 peer-focus:-translate-y-4 right-4 peer-focus:right-4 peer-placeholder-shown:right-4 text-right origin-top-right",
+          "absolute scale-75 bg-[#fff] peer-focus:scale-[85%] peer-placeholder-shown:scale-100 peer-focus:text-[#9B9BA1] text-sm md:text-lg peer-focus:text-sm peer-focus:md:text-lg peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-lg text-[#9B9BA1] duration-300 transform -translate-y-2 top-2 lg:top-1 z-10 peer-focus:bg-white px-1 peer-placeholder-shown:px-1 peer-focus:pr-2 peer-focus:text-primary peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 lg:peer-focus:top-0.5 peer-focus:-translate-y-2 right-2 peer-focus:right-2 peer-placeholder-shown:right-2 text-right origin-top-right",
           {
             "bg-white": !disabled,
             "bg-secondary": disabled,
+            "lg:hidden": !noneHolder,
           }
         )}
       >
         {placeholder}
       </label>
-      <label
+      {/* <label
         htmlFor={name}
-        className="absolute text-sm md:text-lg peer-focus:text-sm peer-focus:md:text-lg peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-lg opacity-0 text-[#9B9BA1] -translate-y-4 top-2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 transition-opacity delay-300 peer-focus:opacity-0 peer-placeholder-shown:opacity-100 peer-placeholder-shown:delay-300 peer-focus:delay-[0ms] px-1 z-10 text-right right-4 peer-focus:right-4 peer-placeholder-shown:right-4 origin-top-right"
+        className="absolute bg-[#fff] text-sm md:text-lg peer-focus:text-sm peer-focus:md:text-lg peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-lg opacity-0 text-[#9B9BA1] -translate-y-2 top-2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 transition-opacity delay-300 peer-focus:opacity-0 peer-placeholder-shown:opacity-100 peer-placeholder-shown:delay-300 peer-focus:delay-[0ms] px-1 z-10 text-right right-2 peer-focus:right-2 peer-placeholder-shown:right-2 origin-top-right"
       >
         {dir === "ltr" && required && "*"}
         {placeholder}
         {dir === "rtl" && required && "*"}
-      </label>
+      </label> */}
     </div>
   );
 }

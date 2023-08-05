@@ -394,13 +394,13 @@ export default function CreatePet() {
                     height={100}
                     src={petImage}
                     alt="PetPic"
-                    className="w-full h-full object-contain"
+                    className="w-full cursor-pointer h-full object-contain"
                   />
                   <label htmlFor="petImage">
                     <Image
                       src={Upload_Icon}
                       alt="UploadIcon"
-                      className="absolute bottom-4 right-4"
+                      className="absolute cursor-pointer bottom-4 right-4"
                     />
                   </label>
                 </div>
@@ -408,16 +408,16 @@ export default function CreatePet() {
                   <bdi>حداکثر سایز تصویر ۲ مگابایت</bdi>
                 </p>
               </div>
-              <div className="flex justify-between items-stretch mt-10 lg:mt-6">
+              <div className="flex  justify-between items-stretch mt-10 lg:mt-6">
                 <Link
                   href={"/dashboard/my-pets"}
-                  className="hidden lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
+                  className="hidden w-[40%] hover:bg-[#d85241] hover:text-[#fff] transition ease-in-out lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
                 >
                   انصراف
                 </Link>
                 <button
                   type="submit"
-                  className="w-full text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
+                  className="w-full hover:bg-green-600 hover:text-white transition ease-in-out text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
                 >
                   ذخیره
                 </button>

@@ -29,9 +29,7 @@ export default function MedicalInfo({ tabHandlear, item }) {
           <p className="text-sm lg:text-base text-black">تاریخ آخرین واکسن</p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
             <bdi>
-              {moment(item.last_vaccine_date)
-                .locale("fa")
-                .format("YYYY MMM DD")}
+              {moment(item.last_vaccine_date).locale("fa").format("YYYY/MM/DD")}
             </bdi>
           </p>
         </div>
@@ -43,7 +41,7 @@ export default function MedicalInfo({ tabHandlear, item }) {
             <bdi>
               {moment(item.last_anti_parasitic_vaccine_date)
                 .locale("fa")
-                .format("YYYY MMM DD")}
+                .format("YYYY/MM/DD")}
             </bdi>
           </p>
         </div>

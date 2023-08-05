@@ -22,9 +22,10 @@ export default function PetCard({ item, setDeleteHandler }) {
       <div className="tabs self-center flex flex-row justify-center lg:justify-start w-full lg:self-end my-3 lg:px-8 lg:my-8 border-b-[1px] solid border-white">
         <a
           className={clsx(
-            "tab tab-bordered border-white w-1/2 lg:w-auto text-xl font-black leading-10",
+            "tab  border-white w-1/2 lg:w-auto pb-2 text-xl font-black ",
             {
-              "tab-active": tabHandlear === "general",
+              // "tab-active": tabHandlear === "general",
+              "border-b-4 border-b-[#d85241] ": tabHandlear === "general",
             }
           )}
           onClick={() => setTabHandlear("general")}
@@ -33,9 +34,10 @@ export default function PetCard({ item, setDeleteHandler }) {
         </a>
         <a
           className={clsx(
-            "tab tab-bordered border-white w-1/2 lg:w-auto text-xl font-black leading-10",
+            "tab tab-bordered border-white w-1/2 lg:w-auto text-xl font-black",
             {
-              "tab-active": tabHandlear === "medical",
+              // "tab-active": tabHandlear === "medical",
+              "border-b-4 border-b-[#d85241] ": tabHandlear === "medical",
             }
           )}
           onClick={() => setTabHandlear("medical")}
@@ -82,7 +84,7 @@ export default function PetCard({ item, setDeleteHandler }) {
             <MedicalInfo tabHandlear={tabHandlear} item={item} />
             {/* pet's picture */}
             <div className="self-end">
-              <div className="w-[100px] h-[100px] relative overflow-hidden rounded-[10px]">
+              <div className="w-[130px] h-[130px] relative overflow-hidden rounded-[10px]">
                 <Image
                   src={
                     item.photo

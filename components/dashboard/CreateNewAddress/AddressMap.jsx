@@ -16,8 +16,8 @@ export default function AddressMap({ setFieldValue }) {
     setOlMap(map);
 
     setTimeout(() => {
-      map.addLayer(layer);
       const view = map.getView();
+
       view.animate({
         center: ol.proj.fromLonLat([51.36281969540723, 35.69672648316882]),
         zoom: 12,
@@ -25,10 +25,11 @@ export default function AddressMap({ setFieldValue }) {
       });
     }, 2000);
 
-    map.on("change:view", function (e) {
-      console.log(e.coordinate);
-      setFieldValue("lat", e.coordinate[0]);
-      setFieldValue("lon", e.coordinate[1]);
+    map.on("moveend", function (e) {
+      // console.log(e.coordinate);
+      console.log(e.map.getView().getCenter());
+      setFieldValue("lat", e.map.getView().getCenter()[0]);
+      setFieldValue("lon", e.map.getView().getCenter()[1]);
       // marker.setLatLng(e);
     });
   };

@@ -19,6 +19,7 @@ import SummeryFeature from "@/components/singleProduct/SummeryFeature";
 import HeadingForDesktop from "@/components/singleProduct/HeadingForDesktop";
 import CommentfForm from "./CommentfForm";
 import ToastContainer from "@/components/partials/toast/ToatContainer";
+import SimilarProducts from "./SimilarProducts";
 //formik
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
@@ -34,6 +35,7 @@ export default function SingleProduct({ data }) {
   const CommentSchima = Yup.object().shape({
     title: Yup.string().required("فیلد الزامی است"),
     description: Yup.string().required("فیلد الزامی است"),
+    rate: Yup.string().required("فیلد الزامی است"),
   });
   const { handleChange, values, setFieldValue, handleSubmit, errors } =
     useFormik({
@@ -72,6 +74,9 @@ export default function SingleProduct({ data }) {
         console.log(reesponse);
       },
       validationSchema: CommentSchima,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
     });
   const handleAddToBookmark = async () => {
     const response = await createBookmark(data.id);
@@ -123,14 +128,9 @@ export default function SingleProduct({ data }) {
                 src={Bookmark_Icon}
                 alt="BookmarkIcon"
               />
-              <Image
-                src={Notification_Icon}
-                alt="NotificationIcon"
-                className="my-8"
-              />
             </div>
             {/* Gallery */}
-            <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[400px] rounded-[15px] border-[2px] border-primary solid">
+            <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[360px] rounded-[15px] border-[2px] border-primary solid">
               <Image
                 style={{ width: "100%", height: "100%" }}
                 width={100}
@@ -160,7 +160,7 @@ export default function SingleProduct({ data }) {
           {/* Sellers for desk and mobile */}
           <Sellers data={data} />
           {/* Similar Products for desk and mobile */}
-          {/* <SimilarProducts data={data} /> */}
+          <SimilarProducts data={data} />
           {/* Description for desk and mobile */}
           <Description data={data} />
           {/* Propertiese  for desktop*/}
@@ -175,6 +175,7 @@ export default function SingleProduct({ data }) {
             description={values.description}
             formSubmit={handleSubmit}
             change={handleChange}
+            errors={errors}
           />
           {/* Add to Cart mobile  */}
           <AddToCartForMobile data={data} />
@@ -190,6 +191,7 @@ export default function SingleProduct({ data }) {
           rate={values.rate}
           formSubmit={handleSubmit}
           change={handleChange}
+          errors={errors}
         />
       </div>
     </>

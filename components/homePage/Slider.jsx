@@ -9,25 +9,35 @@ import export_Icon from "../../assets/homePage/exportIcon.svg";
 import Slider_Pic2 from "../../assets/homePage/slider2.svg";
 // import Slider_Pic3 from "../../assets/homePage/slider3.jpeg";
 // import Slider_Pic1 from "../../assets/homePage/slider1.jpeg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/navigation";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Navigation, Pagination, Autoplay } from "swiper";
+
 const Slider = () => {
   const data = [
     {
       image: Slider_Pic2,
-      title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
+      title: "  محصولات  سگ",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "سگ",
       link: "/product-category/all?pet_types=dog",
     },
     {
       image: "../../assets/homePage/slider3.jpeg",
-      title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
+      title: "  محصولات  گربه",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "گربه",
       link: "/product-category/all?pet_types=cat",
     },
     {
       image: "../../assets/homePage/slider1.jpeg",
-      title: "محصولات متنوع غذایی، بهداشتی و پوشاک",
+      title: "  محصولات  پرندگان",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "پرندگان",
       link: "/product-category/all?pet_types=bird",
@@ -57,50 +67,57 @@ const Slider = () => {
   return (
     <div className="flex flex-col items-stretch relative h-[150px] lg:h-auto p-0 mx-10 lg:m-0 lg:px-[120px] lg:pt-[40px] lg:pb-[70px] lg:bg-[#EA63521A] overflow-hidden rounded-[15px] lg:rounded-none">
       <div className="w-full h-full relative">
-        {data &&
-          data
-            .slice(
-              (currentPage - 1) * CardsPerPage,
-              (currentPage - 1) * CardsPerPage + CardsPerPage
-            )
-            .map((item, index) => (
-              <div
-                key={index}
-                className="w-full h-full lg:h-[570px] bg-red-600 overflow-hidden lg:rounded-[25px]"
-              >
-                <Image
-                  width={90}
-                  height={120}
-                  src={item.image}
-                  alt="Slider.Pic"
-                  className="w-full h-full object-cover"
-                />
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          pagination={{ clickable: true }}
+          navigation={{ clickable: true }}
+          loop={true}
+          effect={"fade"}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          className="mySwiper"
+        >
+          {data &&
+            data.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="w-full h-full lg:h-[570px] bg-red-600 overflow-hidden lg:rounded-[25px]">
+                  <Image
+                    width={90}
+                    height={120}
+                    src={item.image}
+                    alt="Slider.Pic"
+                    className="w-full h-full object-cover"
+                  />
 
-                <div className="flex flex-col w-[130px] lg:w-[290px] absolute right-6 top-2 lg:right-[80px] lg:top-[30%]">
-                  <h2 className="text-base lg:text-3xl text-white font-bold leading-6 lg:leading-10">
-                    <bdi>{item.title}</bdi>
-                  </h2>
-                  <p className="text-xs lg:text-base text-white font-extralight leading-4 lg:leading-7 mt-1 mb-2 lg:mt-2 lg:mb-[60px]">
-                    <bdi>{item.text}</bdi>
-                  </p>
-                  <Link
-                    href={item.link}
-                    className="flex justify-between items-center cursor-pointer w-[100px] lg:w-[200px] px-[10px] py-[3px] lg:px-[16px] lg:py-[10px] bg-[#ea635280] border-[1px] border-primary rounded-[10px] lg:rounded-[15px]"
-                  >
-                    <bdi className="text-base lg:text-xl text-white font-bold">
-                      {item.CTA}
-                    </bdi>
-                    <Image
-                      src={export_Icon}
-                      alt="Export Icon"
-                      className="w-[10px] lg:w-[30px]"
-                    />
-                  </Link>
+                  <div className="flex flex-col w-[130px] lg:w-[290px] absolute right-6 top-2 lg:right-[80px] lg:top-[30%]">
+                    <h2 className="text-base lg:text-3xl text-white font-bold leading-6 lg:leading-10">
+                      <bdi>{item.title}</bdi>
+                    </h2>
+                    <p className="text-xs lg:text-base text-white font-extralight leading-4 lg:leading-7 mt-1 mb-2 lg:mt-2 lg:mb-[60px]">
+                      <bdi>{item.text}</bdi>
+                    </p>
+                    <Link
+                      href={item.link}
+                      className="flex justify-between items-center cursor-pointer w-[100px] lg:w-[200px] px-[10px] py-[3px] lg:px-[16px] lg:py-[10px] bg-[#ea635280] border-[1px] border-primary rounded-[10px] lg:rounded-[15px]"
+                    >
+                      <bdi className="text-base lg:text-xl text-white font-bold">
+                        {item.CTA}
+                      </bdi>
+                      <Image
+                        src={export_Icon}
+                        alt="Export Icon"
+                        className="w-[10px] lg:w-[30px]"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
+        </Swiper>
       </div>
-      <div className="self-center mt-8 absolute left-6 lg:relative">
+      {/* <div className="self-center mt-8 absolute left-6 lg:relative">
         <div className="flex flex-col lg:flex-row justify-between items-center">
           <div
             onClick={() => {
@@ -140,7 +157,7 @@ const Slider = () => {
             <Image src={LeftArrow_Icon} alt="leftArrowIcon" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

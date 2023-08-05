@@ -42,11 +42,11 @@ export default function AuthLayout({ children, text }) {
         </div>
       </div>
       <div className="hidden lg:flex justify-center items-center w-[58%]">
-        <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
+        {/* <div className="avatar absolute left-0 bottom-0 hidden lg:block w-[58%]">
           <div className="w-full opacity-50">
             <img src={backgroundLines.src} />
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-center z-10">
           <div className="w-[90%]">
             <img src={"/assets/signup/signupImage.png"} />

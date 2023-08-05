@@ -24,12 +24,13 @@ export default function Wallet() {
       <div className="h-screen lg:h-2/4 flex flex-col lg:flex-row lg:justify-between items-stretch">
         {/* show user's money */}
         <div className="flex flex-col lg:w-2/3">
-          <div className="h-[200px] lg:h-full w-full flex flex-col justify-between items-center p-5 rounded-[15px] lg:rounded-[25px] text-white bg-gradient-to-r from-[#FA5456] to-[#FFA000]">
+          <div className="h-[200px] lg:h-full w-full flex flex-col justify-between items-center p-5 rounded-[15px] lg:rounded-[15px] text-white bg-gradient-to-r from-[#FA5456] to-[#FFA000]">
             <p className="self-start text-base font-black leading-12">
-              کیف پول<sup className="text-xs font-normal leading-6">پتمون</sup>
+              کیف پول{" "}
+              <sup className="text-xs font-normal leading-6"> پتمون</sup>
             </p>
             <p className="self-center text-3xl font-black leading-16">
-              <bdi>{data.wallet} تومان</bdi>
+              <bdi>{data.wallet?.toLocaleString()} تومان</bdi>
             </p>
             <p className="self-end text-[12px] font-medium leading-5">
               <bdi>*موجودی کیف پول قابل بازگردانی به حساب نیست</bdi>
