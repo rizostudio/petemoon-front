@@ -162,7 +162,7 @@ export default function MainLayout({ children }) {
               </Link> */}
               {!authCtx.isLoggedIn ? (
                 <Link
-                  href={"/auth/loigin"}
+                  href={"/auth/login"}
                   className="self-end flex lg:flex-col hover:bg-[#d85241]  items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
                 >
                   {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}

@@ -213,9 +213,9 @@ export default function DashboardLayout({ children }) {
                         "lg:invert": router.asPath !== `/dashboard/${item.id}`,
                       })}
                     />
-                    <h3
+                    <p
                       className={clsx(
-                        "text-base text-black transition ease-in-out  font-bold w-full mr-3",
+                        "text-base text-black transition ease-in-out hover:text-primary font-bold w-full mr-3",
                         {
                           block: Minify == false,
                           "lg:hidden": Minify == true,
@@ -227,7 +227,7 @@ export default function DashboardLayout({ children }) {
                       )}
                     >
                       {item.name}
-                    </h3>
+                    </p>
                   </div>
                   {/* showing notification numbers for each section */}
                   {item.notification > 0 && (

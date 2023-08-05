@@ -3,9 +3,9 @@ import clsx from "clsx";
 import Image from "next/image";
 const status = {
   SENDING: "در حال ارسال",
-  CANCELLED: "لغو شده",
+  CANCELED: "لغو شده",
   DELIVERED: "  تکمیل شده",
-  PAY_PENDING: "در انتظار ",
+  PAY_PENDING: "  در انتظار پرداخت",
   PROCESSING: "در حال آماده سازی",
 };
 export default function OrderItem({ item }) {
@@ -23,7 +23,7 @@ export default function OrderItem({ item }) {
           className={`text-sm lg:text-lg text-black font-black lg:font-bold leading-7 lg:leading-8 before:align-middle before:inline-block before:w-2 before:h-2 lg:before:h-4 before:ml-1 lg:before:ml-2 before:rounded-full lg:before:rounded-[2px] ${
             item.status === "SENDING"
               ? "before:bg-cyan-600"
-              : item.status === "CANCELLED"
+              : item.status === "CANCELED"
               ? "before:bg-rose-700"
               : item.status === "DELIVERED"
               ? "before:bg-green-600"
