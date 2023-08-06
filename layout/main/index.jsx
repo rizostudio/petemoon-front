@@ -148,9 +148,12 @@ export default function MainLayout({ children }) {
               )}
             </div>
             <div className="flex items-center h-full lg:mr-[15px] xl:mr-[60px]">
-              <div className="h-full p-[.6rem] ml-5 border-[1px] border-primary rounded-[10px]">
+              <div className="h-full p-[.6rem] ml-5 border-[1px] border-primary rounded-[10px] relative">
                 <Link href={"/cart"}>
                   <Image src={card_Icon} alt="Card Icon" className="w-7" />
+                  <p className="bg-primary absolute rounded-[10px] text-white w-[20px] h-[20px] top-[-5px] left-[-5px] flex items-center justify-center p-1">
+                    {state?.basket ? state?.basket.length : 0}
+                  </p>
                 </Link>
               </div>
               {/* <Link href={"https://seller.petemoon.com"}>
@@ -247,16 +250,10 @@ export default function MainLayout({ children }) {
                 <bdi>لینک های مفید</bdi>
               </h6>
               <Link
-                href="/"
+                href="seller.petemoon.com"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
-                درباره ما
-              </Link>
-              <Link
-                href="/"
-                className="text-base LinkHover text-black font-medium leading-6 my-1"
-              >
-                شگفت انگیز ها
+                پنل فروشندگان
               </Link>
               <Link
                 href="/"
@@ -268,7 +265,13 @@ export default function MainLayout({ children }) {
                 href="/"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
-                پنل فروشندگان
+                درباره ما
+              </Link>
+              <Link
+                href="/"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
+              >
+                وبلاگ
               </Link>
             </div>
             <div className="flex flex-col">

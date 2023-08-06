@@ -157,11 +157,11 @@ export default function EditAddressForm({ id }) {
           </div>
           <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
             <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
-              تحویل گیرنده
+              عنوان آدرس
             </label>
             <FloatLabelInput
               type={"text"}
-              placeholder={"نام تحویل گیرنده"}
+              // placeholder={"نام تحویل گیرنده"}
               name="receiver"
               onChange={formik.handleChange}
               value={formik.values.receiver}
@@ -206,13 +206,13 @@ export default function EditAddressForm({ id }) {
         <div className="w-full flex flex-row mt-10 lg:mt-6 justify-between">
           <Link
             href={"/dashboard/addresses"}
-            className="hidden w-[40%] lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
+            className="hidden w-[40%] hover:bg-[#d85241] hover:text-[#fff] transition ease-in-out lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
           >
             انصراف
           </Link>
           <button
             type="submit"
-            className=" hover:bg-green-600 hover:text-white transition ease-in-out w-full lg:w-[60%]  text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
+            className="hover:bg-green-600 hover:text-white transition ease-in-out w-full lg:w-[60%]  text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
           >
             ذخیره
           </button>

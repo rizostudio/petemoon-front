@@ -12,13 +12,13 @@ export default function AddToCartForMobile({ data }) {
         payload: {
           name: data.name,
           id: data.productpricing[0].id,
-          category: data.category,
+          category: data.category.pet_category,
           stars: data.ratind,
-          pet_type: data.pet_type.pet_type,
+          pet_type: data.category.pet_type,
           seller: data.best_pricing.petshop.name,
           price: data.price,
           discount: data.price_after_sale,
-          image: data.picture,
+          image: data.picture_url,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
@@ -42,13 +42,13 @@ export default function AddToCartForMobile({ data }) {
           payload: {
             name: data.name,
             id: data.productpricing[0].id,
-            category: data.category,
+            category: data.category.pet_category,
             stars: data.ratind,
-            pet_type: data.pet_type.pet_type,
+            pet_type: data.category.pet_type,
             seller: data.best_pricing.petshop.name,
             price: data.price,
             discount: data.price_after_sale,
-            image: data.picture,
+            image: data.picture_url,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {

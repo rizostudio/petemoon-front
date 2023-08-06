@@ -57,7 +57,7 @@ export default function Comments({
           setCommentPageOpen(true);
           setMainPageOpen(false);
         }}
-        className="lg:hidden text-base text-center text-primary font-bold leading-6 self-end w-1/3 py-2 border-solid border-[1px] border-primary rounded-[12px] "
+        className="lg:hidden  text-base text-center text-primary font-bold leading-6 self-end w-1/3 py-2 border-solid border-[1px] border-primary rounded-[12px] "
       >
         ثبت دیدگاه
       </button>
@@ -67,7 +67,7 @@ export default function Comments({
           setMainPageOpen(false);
         }}
         htmlFor="comment-send-modal"
-        className="hidden lg:block text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]"
+        className="hidden lg:block text-base cursor-pointer hover:bg-primary hover:text-white text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]"
       >
         ثبت دیدگاه
       </label>

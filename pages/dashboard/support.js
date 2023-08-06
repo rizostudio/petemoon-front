@@ -70,7 +70,7 @@ export default function support() {
                 <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90 break-normal">
                   ایمیل مجموعه
                 </p>
-                <span className="text-xs lg:text-sm text-black font-medium leading-6 break-all">
+                <span className="text-xs lg:text-sm text-black eng font-medium leading-6 eng break-all">
                   petemoon@gmail
                 </span>
               </div>
@@ -85,7 +85,7 @@ export default function support() {
                 <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90">
                   اینستاگرام
                 </p>
-                <span className="text-xs lg:text-sm text-black font-medium leading-6 break-all">
+                <span className="text-xs lg:text-sm text-black font-medium eng leading-6 break-all">
                   petemoo_com
                 </span>
               </div>

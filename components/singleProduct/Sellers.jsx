@@ -14,13 +14,13 @@ export default function Sellers({ data }) {
         payload: {
           name: data.name,
           id: id,
-          category: data.category,
+          category: data.category.pet_category,
           stars: data.ratind,
-          pet_type: data.pet_type.pet_type,
+          pet_type: data.category.pet_type,
           seller: data.best_pricing.petshop.name,
           price: price,
           discount: data.price_after_sale,
-          image: data.picture,
+          image: data.picture_url,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
@@ -42,13 +42,13 @@ export default function Sellers({ data }) {
           payload: {
             name: data.name,
             id: id,
-            category: data.category,
+            category: data.category.pet_category,
             stars: data.ratind,
-            pet_type: data.pet_type.pet_type,
+            pet_type: data.category.pet_type,
             seller: data.best_pricing.petshop.name,
             price: price,
             discount: data.price_after_sale,
-            image: data.picture,
+            image: data.picture_url,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {

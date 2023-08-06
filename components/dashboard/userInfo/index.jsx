@@ -102,7 +102,7 @@ export default function UserInfo() {
         >
           <div className="w-full h-full relative lg:w-3/4 flex flex-col items-stretch lg:p-5 lg:ml-6 lg:px-12 lg:py-8 lg:bg-white rounded-[25px] lg:shadow-shadowA">
             <div className="lg:flex flex-row-reverse justify-between items-center w-full">
-              <div className="text-right lg:w-1/2 my-2 lg:m-1 lg:mr-4">
+              <div className="text-right lg:w-1/2 my-2 lg:m-1 ">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
                   نام خانوادگی
                 </label>

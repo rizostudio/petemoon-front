@@ -14,6 +14,7 @@ import { useFormik } from "formik";
 //count of otp
 const OTP_COUNT = 4;
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function ValidationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,8 +53,7 @@ export default function ValidationForm() {
       if (response.success) {
         OtpId.remove();
         refreshTokenLS.set(response.data.refreshToken);
-        if (response.data.isRegistered) router.push("/dashboard");
-        else router.push("/auth/signUp");
+        router.push("/dashboard");
       } else {
         setIsSubmitting(false);
         toast.error("کد وارد شده نادرست است", {
@@ -114,12 +114,23 @@ export default function ValidationForm() {
                 "text-[#BDBDBD] cursor-pointer text-sm lg:text-xl",
                 {
                   "text-primary": seconds === 0,
+                  "cursor-pointer": seconds === 0,
                 }
               )}
               onClick={handleResend}
             >
               ارسال مجدد کد
             </p>
+            <Link
+              className={clsx(
+                "text-[#000] cursor-pointer text-sm lg:text-xl",
+                {}
+              )}
+              href={"/auth/login"}
+            >
+              {" "}
+              ویرایش شماره
+            </Link>
           </div>
         </div>
 

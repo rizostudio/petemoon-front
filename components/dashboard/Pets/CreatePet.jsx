@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 //moment
 import moment from "jalali-moment";
+import Compressor from "compressorjs";
 //media
 import PetPicPreserve from "../../../assets/dashboard/PetPicPreserve.svg";
 import Upload_Icon from "../../../assets/common/uploadIcon.svg";
@@ -34,9 +35,6 @@ export default function CreatePet() {
     sex: Yup.string().required("فیلد الزامی است"),
     birth_date: Yup.string().required("فیلد الزامی است"),
     weight: Yup.string().required("فیلد الزامی است"),
-    last_vaccine_date: Yup.string().required("فیلد الزامی است"),
-    underlying_disease: Yup.string().required("فیلد الزامی است"),
-    last_anti_parasitic_vaccine_date: Yup.string().required("فیلد الزامی است"),
   });
   useEffect(() => {
     const getData = async () => {
@@ -66,6 +64,9 @@ export default function CreatePet() {
         handleCreateSubmit(value);
       },
       validationSchema: PetSchema,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
     });
   const handleCreateSubmit = async () => {
     const response = await createPet(values);
@@ -85,11 +86,19 @@ export default function CreatePet() {
     const datePickerOutput = moment(e.toString()).format("YYYY-MM-DD");
     setFieldValue("last_anti_parasitic_vaccine_date", datePickerOutput);
   };
-  const handleChangePetImage = (e) => {
+  const handleChangePetImage = async (e) => {
     if (petImageRef.current) {
       const file = petImageRef.current.files;
-      ShowPetImagePreview(file[0]);
-      setFieldValue("photo", file[0]);
+
+      new Compressor(file[0], {
+        quality: 0.6,
+
+        success(result) {
+          ShowPetImagePreview(file[0]);
+          setFieldValue("photo", file[0]);
+        },
+        error(err) {},
+      });
     }
   };
   const ShowPetImagePreview = (file) => {
@@ -404,9 +413,9 @@ export default function CreatePet() {
                     />
                   </label>
                 </div>
-                <p className="text-sm text-info text-right font-medium leading-4">
+                {/* <p className="text-sm text-info text-right font-medium leading-4">
                   <bdi>حداکثر سایز تصویر ۲ مگابایت</bdi>
-                </p>
+                </p> */}
               </div>
               <div className="flex  justify-between items-stretch mt-10 lg:mt-6">
                 <Link

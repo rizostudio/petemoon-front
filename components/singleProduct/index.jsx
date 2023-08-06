@@ -120,7 +120,7 @@ export default function SingleProduct({ data }) {
           {/*Heading for mobile */}
           <HeadingForMobile data={data} />
           {/* Summary box */}
-          <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  border-solid border-b-[2px] border-secondary">
+          <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  ">
             <div className="hidden lg:block p-10">
               <Image
                 className="cursor-pointer"
@@ -130,7 +130,7 @@ export default function SingleProduct({ data }) {
               />
             </div>
             {/* Gallery */}
-            <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[360px] rounded-[15px] border-[2px] border-primary solid">
+            <div className="self-center w-full lg:w-[750px] h-[500px] lg:h-[560px] rounded-[15px]   solid">
               <Image
                 style={{ width: "100%", height: "100%" }}
                 width={100}
@@ -138,7 +138,7 @@ export default function SingleProduct({ data }) {
                 src={
                   data.picture_url
                     ? `https://api.petemoon.com${data.picture_url}`
-                    : "/assets/product/ProductPic4.svg"
+                    : "/assets/product/ProductPic4.jpg"
                 }
               />
             </div>

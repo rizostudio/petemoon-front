@@ -41,7 +41,7 @@ export default function BasketItem({ item, index }) {
     <div className="flex flex-row items-stretch w-full h-full p-4 lg:p-5 bg-white lg:bg-transparent rounded-[15px] lg:rounded-none shadow-shadowB lg:shadow-none border-b-[2px] border-[rgba(0, 0, 0, 0.05)] border-none lg:border-solid">
       <div className="flex flex-col justify-between items-center">
         {/* Picture of Product */}
-        <div className="w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] p-0 overflow-hidden bg-gray-400 border-[1px] border-solid border-primary rounded-[15px] lg:rounded-[20px]">
+        <div className="w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] p-0 overflow-hidden bg-gray-400 border-[1px]  rounded-[5px] lg:rounded-[10px]">
           <Image
             width={100}
             height={100}
@@ -93,7 +93,7 @@ export default function BasketItem({ item, index }) {
           </h2>
           <div className="flex flex-row items-center mr-1">
             <Image src={StarGold_Icon} alt="GoldenStarIcon" className="w-2" />
-            <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${item.stars})`}</p>
+            <p className="text-[8px] text-gray-400 font-medium leading-7 mr-[2px]">{`(${item?.stars})`}</p>
           </div>
         </div>
         <div className="flex flex-row lg:flex-col justify-between">
@@ -101,7 +101,7 @@ export default function BasketItem({ item, index }) {
             <div className="flex flex-row items-center">
               {starsBoxHandler(item.stars)}
             </div>
-            <p className="text-base text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${item.stars})`}</p>
+            <p className="text-base text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${item?.stars})`}</p>
           </div>
           <div className="w-full flex lg:flex-col justify-between items-stretch">
             <div className="flex flex-col justify-between">
@@ -143,7 +143,7 @@ export default function BasketItem({ item, index }) {
                   +
                 </p>
                 <p className="text-base mx-4">{item.count}</p>
-                {parseInt(item.count) === 1 ? (
+                {parseInt(item?.count) === 1 ? (
                   <Image
                     onClick={handleDeleteItem}
                     src={TrashIcon}

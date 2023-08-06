@@ -60,7 +60,7 @@ export default function LoginForm() {
   });
   return (
     <form onSubmit={formik.handleSubmit} className="w-full h-[50%] lg:h-[50%]">
-      <div className="flex flex-col h-full items-center justify-end lg:justify-center ">
+      <div className="flex flex-col h-full items-center justify-end lg:justify-center space-y-3">
         <div className="w-full">
           <FloatLabelInput
             noneHolder={true}
@@ -106,10 +106,10 @@ export default function LoginForm() {
         </button>
         <Link
           href={"/"}
-          className="self-end flex lg:flex-col items-center p-3 lg:py-3 lg:px-5 mt-[110px]  lg:bg-primary lg:rounded-[5px]"
+          className="self-end hidden lg:block hover:bg-[#d85241] flex lg:flex-col items-center p-3 lg:py-3 lg:px-5 mt-[110px]  lg:bg-primary lg:rounded-[5px]"
         >
           {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}
-          <p className="text-xs lg:text-base lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
+          <p className="text-xs  lg:text-base lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
             برگشت به فروشگاه
           </p>
         </Link>
