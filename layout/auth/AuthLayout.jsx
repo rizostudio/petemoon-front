@@ -18,8 +18,9 @@ export default function AuthLayout({ children, text }) {
         </div>
         <div className="flex w-full">
           <div className="w-full">
-            <img src={smallPetsImage.src} />
+            <img src={"/assets/login/loginImage.png"} />"
           </div>
+          "
         </div>
       </div>
       <div className="bg-white w-full lg:w-[42%] pt-4 pb-16 px-10 lg:px-24 h-[45%] lg:h-full flex flex-col justify-between lg:justify-center items-center relative">
