@@ -60,7 +60,7 @@ export default function BasketItems() {
       </div>
       {/* Continue Box */}
       {state?.basket?.length && (
-        <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px] absolute bottom-10 left-0">
+        <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px] mr-auto  bottom-10 left-0">
           <div className="flex justify-between w-full">
             <p className="text-xl text-gray-400 font-normal leading-8">
               مجموع سبد خرید:
