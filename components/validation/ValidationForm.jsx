@@ -110,22 +110,16 @@ export default function ValidationForm() {
               {seconds < 10 ? `0${seconds}` : seconds}
             </p>
             <p
-              className={clsx(
-                "text-[#BDBDBD] cursor-pointer text-sm lg:text-xl",
-                {
-                  "text-primary": seconds === 0,
-                  "cursor-pointer": seconds === 0,
-                }
-              )}
+              className={clsx("text-[#BDBDBD]  text-sm lg:text-xl", {
+                "text-primary": seconds === 0,
+                "cursor-pointer": seconds === 0,
+              })}
               onClick={handleResend}
             >
               ارسال مجدد کد
             </p>
             <Link
-              className={clsx(
-                "text-[#000] cursor-pointer text-sm lg:text-xl",
-                {}
-              )}
+              className={clsx("text-[#000] cursor-pointer text-sm lg:text-xl")}
               href={"/auth/login"}
             >
               {" "}
