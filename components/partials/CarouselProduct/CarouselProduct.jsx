@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
 
 //component
 import ProductMobileCard from "../productCard/ProductMobileCard";
@@ -24,7 +24,13 @@ const CarouselProduct = ({ data }) => {
             dir="rtl"
             slidesPerView={2}
             spaceBetween={180}
-            loop={false}
+            loop={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            effect={"fade"}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
             // loopFillGroupWithBlank={true}
             slidesPerGroup={1}
             className="mySwiper"
@@ -66,12 +72,17 @@ const CarouselProduct = ({ data }) => {
             dir="rtl"
             slidesPerView={4}
             spaceBetween={30}
-            loop={false}
             // loopFillGroupWithBlank={true}
             slidesPerGroup={4}
             navigation={{ clickable: true }}
             pagination={{ clickable: true }}
-            modules={[Pagination, Navigation]}
+            loop={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            effect={"fade"}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
             className="mySwiper"
             breakpoints={{
               340: {

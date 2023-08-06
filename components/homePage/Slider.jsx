@@ -69,14 +69,14 @@ const Slider = () => {
       <div className="w-full h-full relative">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
-          pagination={{ clickable: true }}
-          navigation={{ clickable: true }}
-          loop={true}
           effect={"fade"}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
           }}
+          loop={true}
+          pagination={{ clickable: true }}
+          navigation={{ clickable: true }}
           className="mySwiper"
         >
           {data &&

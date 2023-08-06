@@ -167,7 +167,7 @@ export default function UserInfo() {
                   </p>
                 )}
               </div>
-              <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:mr-4">
+              <div className="text-right lg:w-1/2 my-4 lg:m-1 lg:">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
                   ایمیل
                 </label>
@@ -190,7 +190,7 @@ export default function UserInfo() {
               </div>
             </div>
             <div className="lg:flex flex-row-reverse justify-end items-center  w-full lg:my-5">
-              <div className="text-right lg:pl-4 lg:w-1/2 my-4 lg:m-1 lg:mr-4">
+              <div className="text-right lg:pl-4 lg:w-1/2 my-4 lg:m-1 lg:">
                 <label className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
                   تاریخ تولد
                 </label>
