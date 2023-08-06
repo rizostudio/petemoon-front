@@ -17,6 +17,7 @@ import { getSinglePet } from "@/services/dashboard/pets/getSingle";
 import { getPetType } from "@/services/dashboard/pets/getPetType";
 import { getPetCategory } from "@/services/dashboard/pets/getPetCategory";
 import { editPet } from "@/services/dashboard/pets/edit";
+import Compressor from "compressorjs";
 export default function EditePet({ id }) {
   const router = useRouter();
   const petImageRef = useRef(null);
@@ -33,9 +34,6 @@ export default function EditePet({ id }) {
     sex: Yup.string().required("فیلد الزامی است"),
     birth_date: Yup.string().required("فیلد الزامی است"),
     weight: Yup.string().required("فیلد الزامی است"),
-    last_vaccine_date: Yup.string().required("فیلد الزامی است"),
-    underlying_disease: Yup.string().required("فیلد الزامی است"),
-    last_anti_parasitic_vaccine_date: Yup.string().required("فیلد الزامی است"),
   });
   useEffect(() => {
     const getData = async () => {
@@ -80,6 +78,9 @@ export default function EditePet({ id }) {
         handleEditSubmit(value);
       },
       validationSchema: PetSchema,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
     });
   const handleEditSubmit = async () => {
     const response = await editPet(values, id);
@@ -102,8 +103,15 @@ export default function EditePet({ id }) {
   const handleChangePetImage = (e) => {
     if (petImageRef.current) {
       const file = petImageRef.current.files;
-      ShowPetImagePreview(file[0]);
-      setFieldValue("photo", file[0]);
+      new Compressor(file[0], {
+        quality: 0.6,
+
+        success(result) {
+          ShowPetImagePreview(file[0]);
+          setFieldValue("photo", file[0]);
+        },
+        error(err) {},
+      });
     }
   };
   const ShowPetImagePreview = (file) => {
@@ -413,9 +421,9 @@ export default function EditePet({ id }) {
                     />
                   </label>
                 </div>
-                <p className="text-sm text-info text-right font-medium leading-4">
+                {/* <p className="text-sm text-info text-right font-medium leading-4">
                   <bdi>حداکثر سایز تصویر ۲ مگابایت</bdi>
-                </p>
+                </p> */}
               </div>
               <div className="flex justify-between items-stretch mt-10 lg:mt-6">
                 <Link

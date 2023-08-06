@@ -29,7 +29,7 @@ const Slider = () => {
       link: "/product-category/all?pet_types=dog",
     },
     {
-      image: "../../assets/homePage/slider3.jpeg",
+      image: "../../assets/homePage/slider3.jpg",
       title: "  محصولات  گربه",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "گربه",
@@ -100,7 +100,7 @@ const Slider = () => {
                     </p>
                     <Link
                       href={item.link}
-                      className="flex justify-between items-center cursor-pointer w-[100px] lg:w-[200px] px-[10px] py-[3px] lg:px-[16px] lg:py-[10px] bg-[#ea635280] border-[1px] border-primary rounded-[10px] lg:rounded-[15px]"
+                      className="flex justify-between items-center cursor-pointer w-[100px] lg:w-[200px] px-[10px] py-[3px] lg:px-[16px] lg:py-[10px] bg-[#ea635280] border-[1px] hover:bg-primary border-primary rounded-[10px] lg:rounded-[15px]"
                     >
                       <bdi className="text-base lg:text-xl text-white font-bold">
                         {item.CTA}

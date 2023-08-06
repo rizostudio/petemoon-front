@@ -102,7 +102,11 @@ export default function OrderItem({ item }) {
               style={{ width: "100%", height: "100%" }}
               width={100}
               height={100}
-              src={`https://api.petemoon.com${item.picture}`}
+              src={
+                item.picture
+                  ? `https://api.petemoon.com${item.picture}`
+                  : "/assets/product/ProductPic4.jpg"
+              }
             />
           </div>
         ))}

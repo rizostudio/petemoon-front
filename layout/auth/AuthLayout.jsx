@@ -49,7 +49,7 @@ export default function AuthLayout({ children, text }) {
         </div> */}
         <div className="flex justify-center z-10">
           <div className="w-[90%]">
-            <img src={"/assets/signup/signupImage.png"} />
+            <img src={"/assets/login/loginImage.png"} />
           </div>
         </div>
       </div>

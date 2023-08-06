@@ -20,7 +20,7 @@ export default function MedicalInfo({ tabHandlear, item }) {
         <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:mx-2 lg:my-4">
           <p className="text-sm lg:text-base text-black">بیماری زمینه ای</p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-            <bdi>{item.underlying_disease}</bdi>
+            <bdi>{item?.underlying_disease}</bdi>
           </p>
         </div>
       </div>
@@ -29,7 +29,9 @@ export default function MedicalInfo({ tabHandlear, item }) {
           <p className="text-sm lg:text-base text-black">تاریخ آخرین واکسن</p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
             <bdi>
-              {moment(item.last_vaccine_date).locale("fa").format("YYYY/MM/DD")}
+              {moment(item?.last_vaccine_date)
+                .locale("fa")
+                .format("YYYY/MM/DD")}
             </bdi>
           </p>
         </div>
@@ -39,7 +41,7 @@ export default function MedicalInfo({ tabHandlear, item }) {
           </p>
           <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
             <bdi>
-              {moment(item.last_anti_parasitic_vaccine_date)
+              {moment(item?.last_anti_parasitic_vaccine_date)
                 .locale("fa")
                 .format("YYYY/MM/DD")}
             </bdi>

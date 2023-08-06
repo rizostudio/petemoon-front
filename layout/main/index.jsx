@@ -247,16 +247,10 @@ export default function MainLayout({ children }) {
                 <bdi>لینک های مفید</bdi>
               </h6>
               <Link
-                href="/"
+                href="seller.petemoon.com"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
-                درباره ما
-              </Link>
-              <Link
-                href="/"
-                className="text-base LinkHover text-black font-medium leading-6 my-1"
-              >
-                شگفت انگیز ها
+                پنل فروشندگان
               </Link>
               <Link
                 href="/"
@@ -268,7 +262,13 @@ export default function MainLayout({ children }) {
                 href="/"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
-                پنل فروشندگان
+                درباره ما
+              </Link>
+              <Link
+                href="/"
+                className="text-base LinkHover text-black font-medium leading-6 my-1"
+              >
+                وبلاگ
               </Link>
             </div>
             <div className="flex flex-col">

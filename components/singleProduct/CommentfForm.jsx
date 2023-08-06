@@ -41,7 +41,11 @@ export default function CommentfForm({
                     setMainPageOpen(true);
                   }}
                 >
-                  <Image src={CloseButton_Icon} alt="CloseIcon" />
+                  <Image
+                    className="cursor-pointer"
+                    src={CloseButton_Icon}
+                    alt="CloseIcon"
+                  />
                 </label>
               </div>
               <form
@@ -91,7 +95,7 @@ export default function CommentfForm({
                   onChange={change}
                   value={title}
                   type="text"
-                  className="px-4 py-2 lg:w-3/4 mt-2 border-[1px] border-solid border-gray-400 focus-visible:border-primary rounded-[5px]"
+                  className="block text-sm md:text-xl px-3 h-full ${py} w-[75%] text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
                 />
                 <bdi>
                   <span className="text-primary"> {errors.title} </span>
@@ -108,7 +112,7 @@ export default function CommentfForm({
                   name="description"
                   onChange={change}
                   value={description}
-                  className="px-4 py-2 mt-2 border-[1px] border-solid border-gray-400 rounded-[5px]"
+                  className="block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
                 ></textarea>
                 <bdi>
                   <span className="text-primary"> {errors.description} </span>
@@ -120,7 +124,7 @@ export default function CommentfForm({
                       setMainPageOpen(true);
                     }}
                     // htmlFor="comment-send-modal"
-                    className="w-full text-sm cursor-pointer text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
+                    className="w-full text-sm hover:bg-primary hover:text-white cursor-pointer text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-primary"
                   >
                     انصراف
                   </label>
@@ -135,7 +139,7 @@ export default function CommentfForm({
                       // setShowModal(false);
                     }}
                     // htmlFor="comment-send-modal"
-                    className="w-full text-sm cursor-pointer text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
+                    className="w-full text-sm cursor-pointer text-white text-center hover:bg-[#0a0af5] font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4]  mr-2"
                   >
                     ثبت دیدگاه
                   </label>

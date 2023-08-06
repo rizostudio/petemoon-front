@@ -117,19 +117,19 @@ export default function ProductDesktopCard({ item, index }) {
   return (
     <div className="m-3">
       <div className="flex flex-col items-stretch w-[275px] h-[450px] p-5  bg-white rounded-[25px] shadow-shadowB">
-        <div className="relative block h-[200px] bg-[white]  border-solid border-primary rounded-[20px]">
+        <div className="relative block h-[210px] bg-[white]  border-solid border-primary rounded-[20px]">
           <Link href={`/products/${item.slug}`}>
             <Image
               // style={{ width: "100%", height: "100%" }}
               src={
                 item.picture_url
                   ? `https://api.petemoon.com${item.picture_url}`
-                  : "/assets/product/ProductPic4.svg"
+                  : "/assets/product/ProductPic4.jpg"
               }
-              width={220}
-              height={220}
+              width={230}
+              height={190}
               alt="ProductPic"
-              className="object-cover"
+              className="object-cover m-auto rounded-[10px]"
             />
           </Link>
 
@@ -143,7 +143,7 @@ export default function ProductDesktopCard({ item, index }) {
         </div>
 
         <div className="mt-4">
-          <p className="text-base text-gray-400 font-medium leading-5">
+          <p className="text-base text-gray-400 mt-3 font-medium leading-5">
             <bdi>
               {item.pet_type?.pet_type} / {item.category?.pet_category}
             </bdi>
