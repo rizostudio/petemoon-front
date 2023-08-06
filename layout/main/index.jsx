@@ -250,7 +250,7 @@ export default function MainLayout({ children }) {
                 <bdi>لینک های مفید</bdi>
               </h6>
               <Link
-                href="seller.petemoon.com"
+                href="https://seller.petemoon.com"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 پنل فروشندگان
