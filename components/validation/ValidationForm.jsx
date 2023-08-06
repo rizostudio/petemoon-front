@@ -122,7 +122,6 @@ export default function ValidationForm() {
               className={clsx("text-[#000] cursor-pointer text-sm lg:text-xl")}
               href={"/auth/login"}
             >
-              {" "}
               ویرایش شماره
             </Link>
           </div>

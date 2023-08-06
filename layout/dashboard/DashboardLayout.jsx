@@ -14,6 +14,7 @@ import Userpanel_Logo from "../../assets/dashboard/user-panel.svg";
 import ShopBag_Icon from "../../assets/dashboard/bagHeader.svg";
 //ctx
 import AuthContext from "@/store/AuthCtx/AuthContext";
+import { BasketContext } from "@/store/BasketCtx/BasketContext";
 //components
 import Loading from "@/components/partials/loading";
 //toastContainer
@@ -82,7 +83,7 @@ const menuArr = [
 export default function DashboardLayout({ children }) {
   const [openly, setOpenly] = useState(true); //for open and close dashboard in mobile
   const [user, setuser] = useState({});
-
+  const { state, dispatch } = BasketContext();
   const router = useRouter();
   const [Minify, setMinify] = useState(false); // for minify dashboard
   const authCtx = useContext(AuthContext);
@@ -355,8 +356,11 @@ export default function DashboardLayout({ children }) {
                 </Link>
               </div>
               <Link href={"/cart"}>
-                <div className="p-3 border-[1px] solid border-thirdly rounded-[15px] mr-8">
+                <div className="p-3 border-[1px] solid border-thirdly rounded-[15px] mr-8 relative">
                   <Image src={ShopBag_Icon} alt="ShopBagPic" />
+                  <p className="bg-primary absolute rounded-[10px] text-white w-[20px] h-[20px] top-[-5px] left-[-5px] flex items-center justify-center p-1">
+                    {state?.basket ? state?.basket.length : 0}
+                  </p>
                 </div>
               </Link>
             </div>
