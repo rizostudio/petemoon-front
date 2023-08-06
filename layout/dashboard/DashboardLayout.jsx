@@ -349,7 +349,7 @@ export default function DashboardLayout({ children }) {
                   className="self-end flex lg:flex-col items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
                 >
                   {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}
-                  <p className="text-xs lg:text-base lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
+                  <p className="text-xs lg:text-base hover:bg-[#d85241] lg:text-center text-primary lg:text-white font-medium leading-7 mr-1 lg:mr-0">
                     برگشت به فروشگاه
                   </p>
                 </Link>
