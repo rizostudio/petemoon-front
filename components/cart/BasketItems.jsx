@@ -79,7 +79,7 @@ export default function BasketItems() {
           </div>
           <button
             onClick={handleSaveBasket}
-            className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
+            className="text-base hover:bg-[#d85241] text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
           >
             ادامه
           </button>

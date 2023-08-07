@@ -123,7 +123,7 @@ export default function MainLayout({ children }) {
                 onChange={handleSearch}
                 type="text"
                 placeholder="جستجو"
-                className="text-base LinkHover text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
+                className="text-base  text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
               />
               {inputBlur && (
                 <div className="w-[200px] xl:w-[300px] px-0 bg-[#eee] search">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 //context
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
+import AddressMap from "./AddressMap";
 export default function AddressItem({
   item,
   index,
@@ -95,24 +96,8 @@ export default function AddressItem({
           </div>
         </div>
         <div>
-          {item.mapLocation ? <div></div> : <div></div>}
-          <div className="w-[100px] h-[100px] relative border-[1px] solid border-secondary rounded-[10px]">
-            <Image
-              src={
-                item.mapLocation
-                  ? item.mapLocation
-                  : "/assets/dashboard/mapPicPreserve.svg"
-              }
-              alt="MapPic"
-              className="w-full h-full"
-              width={100}
-              height={100}
-            />
-            {!item.mapLocation && (
-              <p className="text-sm text-error text-center font-medium leading-4 absolute top-[40%] left-[15%]">
-                ثبت روی نقشه
-              </p>
-            )}
+          <div className="w-[160px] h-[160px] relative border-[1px] solid border-secondary rounded-[10px]">
+            <AddressMap />
           </div>
         </div>
       </div>

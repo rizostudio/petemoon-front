@@ -91,12 +91,12 @@ export default function DiscountCode({ totalBasket, shipping }) {
             مجموع سبد:
           </p>
           <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{parseInt(totalBasket) + parseInt(shipping.price)}</bdi>
+            <bdi>{parseInt(totalBasket).toLocaleString()}</bdi>
           </p>
         </div>
         <button
           onClick={handleOrderSubmite}
-          className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
+          className="text-base text-center hover:bg-[#d85241] text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
           پرداخت
         </button>
