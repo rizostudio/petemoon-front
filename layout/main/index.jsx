@@ -97,7 +97,7 @@ export default function MainLayout({ children }) {
               href="/"
               className="text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
             >
-              کلینک ها
+              دامپزشکان
             </Link>
             <Link
               href="https://petemoon.com/blog"
@@ -111,11 +111,11 @@ export default function MainLayout({ children }) {
             </Link>
           </div>
           <div className="flex items-center h-full">
-            <div className="flex flex-row h-12 w-[200px] xl:w-[300px] bg-[#eee] rounded-[10px]">
+            <div className="flex flex-row h-12 w-[200px] xl:w-[300px] relative bg-[#eee] rounded-[10px]">
               <Image
                 src={search_Icon}
                 alt="SearchIcon"
-                className="invert mr-5"
+                className="invert mr-5 absolute top-[10px]"
               />
               <input
                 // onBlur={() => setInputBlur(false)}
@@ -123,7 +123,7 @@ export default function MainLayout({ children }) {
                 onChange={handleSearch}
                 type="text"
                 placeholder="جستجو"
-                className="text-base  text-right text-black opacity-[0.8] font-bold p-2 w-full border-none bg-transparent peer-focus:border-none"
+                className="block text-sm bg-[#dedfe1] md:text-xl pr-12 px-3 h-full ${py} w-full text-black rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
               />
               {inputBlur && (
                 <div className="w-[200px] xl:w-[300px] px-0 bg-[#eee] search">

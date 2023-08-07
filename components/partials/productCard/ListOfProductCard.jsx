@@ -218,6 +218,7 @@ export default function ProductCart({ item, index }) {
                     </div>
                     <div
                       // href={`/products/${index}`}
+                      onClick={handleAddToCart}
                       className="flex lg:flex-row-reverse cursor-pointer items-center p-2 lg:bg-[#EA635233] rounded-[5px] addtocartBtn"
                     >
                       <Image
@@ -226,10 +227,7 @@ export default function ProductCart({ item, index }) {
                         src={"/assets/common/shopping-cartRedIcon.svg"}
                         alt="ShoppingCartRedIcon"
                       />
-                      <p
-                        onClick={handleAddToCart}
-                        className="text-base text-primary r font-medium leading-7 mr-1 lg:mr-0 lg:ml-2"
-                      >
+                      <p className="text-base text-primary r font-medium leading-7 mr-1 lg:mr-0 lg:ml-2">
                         خرید
                       </p>
                     </div>

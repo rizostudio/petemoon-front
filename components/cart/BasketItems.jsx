@@ -58,23 +58,14 @@ export default function BasketItems() {
           </div>
         )}
       </div>
-      {/* Continue Box */}
-      {state?.basket?.length && (
-        <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px] absolute bottom-10 left-0">
+      {state?.basket?.length ? (
+        <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 bg-[#ea63521a] rounded-[15px]  mr-auto bottom-10 left-0">
           <div className="flex justify-between w-full">
             <p className="text-xl text-gray-400 font-normal leading-8">
               مجموع سبد خرید:
             </p>
             <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-              <bdi>
-                {/* {state.basket
-                .map((item) => {
-                  const total = 0;
-                  total += parseInt(item.count) * item.price;
-                })
-                .toLocaleString()} */}
-                {totalBasket.toLocaleString()}
-              </bdi>
+              <bdi>{totalBasket.toLocaleString()}</bdi>
             </p>
           </div>
           <button
@@ -84,6 +75,8 @@ export default function BasketItems() {
             ادامه
           </button>
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

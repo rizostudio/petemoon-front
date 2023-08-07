@@ -175,7 +175,7 @@ export default function CommentfForm({
           </div>
         </div>
         <form
-          onSubmit={formSubmit}
+          onSubmit={formSubmit()}
           id="form"
           // onSubmit={(event) => event.preventDefault()}
           className="flex flex-col justify-between items-stretch"
@@ -239,7 +239,7 @@ export default function CommentfForm({
               onClick={() => {
                 formSubmit();
               }}
-              type="submit"
+              // type="submit"
               className="w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
             >
               ثبت دیدگاه

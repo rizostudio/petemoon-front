@@ -18,13 +18,13 @@ export default function BookMarkItem({ item, setDeletHandler }) {
         payload: {
           name: item.product.name,
           id: item.product?.best_pricing?.id,
-          category: item.product?.category,
+          category: item.product?.category.pet_category,
           stars: item.product?.rating,
-          pet_type: item.product?.pet_type?.pet_type?.pet_type,
+          pet_type: item.product?.pet_type?.category?.pet_type,
           seller: item.product?.best_pricing?.petshop?.name,
           price: item.product?.best_pricing?.price,
           discount: item.product?.best_pricing?.price_after_sale,
-          image: item.product?.picture,
+          image: item.product?.picture_url,
         },
       });
       toast.success("محصول به سبد خرید اضافه شد", {
@@ -48,13 +48,13 @@ export default function BookMarkItem({ item, setDeletHandler }) {
           payload: {
             name: item.product.name,
             id: item.product?.best_pricing?.id,
-            category: item.product?.category,
+            category: item.product?.category.pet_category,
             stars: item.product?.rating,
-            pet_type: item.product?.pet_type?.pet_type?.pet_type,
+            pet_type: item.product?.pet_type?.category?.pet_type,
             seller: item.product?.best_pricing?.petshop?.name,
             price: item.product?.best_pricing?.price,
             discount: item.product?.best_pricing?.price_after_sale,
-            image: item.product?.picture,
+            image: item.product?.picture_url,
           },
         });
         toast.success("محصول به سبد خرید اضافه شد", {

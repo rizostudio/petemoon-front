@@ -12,7 +12,7 @@ export default function support() {
     <DashboardLayout>
       <div className="flex flex-col items-stretch">
         <div className="w-full h-full lg:h-[250px] flex flex-col lg:flex-row justify-between items-center lg:my-8">
-          <div className="w-full h-full lg:w-3/4 flex flex-col items-stretch justify-between  p-4 lg:px-20 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] lg:shadow-shadowA border-[1px] border-secondary solid lg:border-none">
+          <div className="w-full h-full lg:w-3/4 flex flex-col items-stretch justify-between  p-4 lg:px-10 lg:py-8 bg-white rounded-[15px] lg:rounded-[25px] lg:shadow-shadowA border-[1px] border-secondary solid lg:border-none">
             <p className="hidden lg:block text-lg text-right text-black font-bold leading-8 opacity-90 before:hidden lg:before:inline-block before:w-2 before:h-4 before:bg-primary before:ml-2 before:align-middle before:rounded-[2px]">
               <bdi>سلام از پتمون&#128400;&#128400;</bdi>
             </p>
@@ -32,7 +32,7 @@ export default function support() {
             <Image src={WhatsApp_Icon} alt="PhoneIcon" className="w-[100px]" />
             <div className="flex flex-col justify-between items-center text-center">
               <p className="text-lg text-black font-bold leading-6 mb-1">
-                واتساپ
+                واتس اپ
               </p>
               <span className="text-xs lg:text-sm text-primary font-medium leading-6">
                 پیام در واتس اپ
@@ -49,13 +49,13 @@ export default function support() {
               <Image
                 src={Phone_Icon}
                 alt="WhatsAppIcon"
-                className="w-[80px] lg:w-[80px]"
+                className="w-[75px] lg:w-[100px]"
               />
               <div className="flex flex-col items-center lg:items-start mt-6 lg:mt-0 lg:mr-4 ">
-                <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90">
+                <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90 break-normal">
                   تماس تلفنی
                 </p>
-                <span className="text-xs lg:text-sm text-primary font-medium leading-6">
+                <span className="text-xs lg:text-sm text-black eng font-medium leading-6 eng break-all">
                   02186655877-99
                 </span>
               </div>

@@ -55,7 +55,7 @@ export default function BasketItem({ item, index }) {
           />
         </div>
         {/* Counter Box */}
-        <div className="self-end lg:self-stretch hidden lg:flex justify-between items-end text-primary align-bottom font-normal leading-7 px-2 border-[1px] border-solid border-secondary rounded-[5px]">
+        <div className="self-end lg:self-stretch hidden mt-2 lg:flex justify-between items-end text-primary align-bottom font-normal leading-7 px-2 border-[1px] border-solid border-secondary rounded-[5px]">
           <p className="text-xl cursor-pointer" onClick={handleIncrimentCount}>
             +
           </p>
@@ -130,7 +130,7 @@ export default function BasketItem({ item, index }) {
                 )}
                 <p className='text-base lg:text-lg text-black lg:text-primary font-medium mt-0 after:content-["تومان"] after:text-xs after:font-normal after:leading-6 after:mr-1'>
                   <bdi>
-                    {item.price}
+                    {item.price.toLocaleString()}
                     {/* {(
                         item.price *
                         (1 - item.discount / 100)
