@@ -30,7 +30,7 @@ export default function AuthLayout({ children, text }) {
           </div>
         </div>
         <div className="w-full h-full z-10">
-          <div className="flex flex-col lg:justify-center items-center space-y-4 md:space-y-8 h-[40%]">
+          <div className="flex flex-col lg:justify-center items-center space-y-4 md:space-y-8 h-[50%]">
             <PetemoonLogo />
             <div
               id="header"
