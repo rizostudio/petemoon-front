@@ -58,7 +58,7 @@ export default function ValidationForm() {
       if (response.success) {
         OtpId.remove();
         refreshTokenLS.set(response.data.refreshToken);
-        if (response.data.is_registered) {
+        if (response.data.is_registered === true) {
           router.push("/dashboard");
         } else {
           router.push("/auth/signUp");
