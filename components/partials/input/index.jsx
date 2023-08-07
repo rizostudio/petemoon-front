@@ -77,6 +77,7 @@ export default function FloatLabelInput({
             {
               "bg-white": !disabled,
               "bg-secondary": disabled,
+              eng: type === "email",
             }
           )}
           placeholder={" "}

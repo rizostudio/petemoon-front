@@ -27,12 +27,12 @@ export default function DescriptionForPayment({ handleAddress }) {
             مجموع سبد:
           </p>
           <p className='text-2xl text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{totalBasket}</bdi>
+            <bdi>{totalBasket.toLocaleString()}</bdi>
           </p>
         </div>
         <button
           onClick={handleAddress}
-          className="text-base text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
+          className="text-base hover:bg-[#d85241] text-center text-white font-medium leading-7 bg-primary p-3 w-full rounded-[12px] mt-1"
         >
           ادامه
         </button>

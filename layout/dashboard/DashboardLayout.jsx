@@ -331,7 +331,7 @@ export default function DashboardLayout({ children }) {
 
             <div className="flex flex-col">
               <p className="text-2xl text-black font-black leading-10">
-                خوش آمدی {user?.first_name} عزیز
+                خوش آمدی ،{user?.first_name} عزیز
               </p>
               <p className="text-base text-black font-light opacity-[0.9] leading-7">
                 {user?.phone_number}

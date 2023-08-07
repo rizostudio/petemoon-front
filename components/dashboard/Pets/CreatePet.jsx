@@ -257,6 +257,10 @@ export default function CreatePet() {
                     py={"3"}
                     dir={"rtl"}
                   >
+                    <option
+                      selected="true"
+                      style={{ display: "none" }}
+                    ></option>
                     <option value={"M"}>
                       <label>نر</label>
                     </option>

@@ -8,7 +8,12 @@ import OtpInput from "../partials/otpInput";
 import { validationOtp } from "@/services/auth/validation";
 import { login } from "@/services/auth/login";
 //localStorage
-import { OtpId, refreshTokenLS, Phone } from "@/localSttorage/auth";
+import {
+  OtpId,
+  refreshTokenLS,
+  Phone,
+  userDataStorage,
+} from "@/localSttorage/auth";
 //formik
 import { useFormik } from "formik";
 //count of otp
@@ -53,7 +58,11 @@ export default function ValidationForm() {
       if (response.success) {
         OtpId.remove();
         refreshTokenLS.set(response.data.refreshToken);
-        router.push("/dashboard");
+        if (response.data.is_registered) {
+          router.push("/dashboard");
+        } else {
+          router.push("/auth/signUp");
+        }
       } else {
         setIsSubmitting(false);
         toast.error("کد وارد شده نادرست است", {

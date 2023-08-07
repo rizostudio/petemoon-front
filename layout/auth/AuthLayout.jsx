@@ -23,14 +23,14 @@ export default function AuthLayout({ children, text }) {
           "
         </div>
       </div>
-      <div className="bg-white w-full lg:w-[42%] pt-4 pb-16 px-10 lg:px-24 h-[45%] lg:h-full flex flex-col justify-between lg:justify-center items-center relative">
+      <div className="bg-white w-full lg:w-[42%] pt-4 px-10 lg:px-24 h-[45%] lg:h-full flex flex-col justify-between lg:justify-center items-center relative">
         <div className="avatar absolute left-0 bottom-0 w-full lg:hidden">
           <div className="opacity-50">
             <img src={backgroundLines.src} />
           </div>
         </div>
         <div className="w-full h-full z-10">
-          <div className="flex flex-col lg:justify-center items-center space-y-4 md:space-y-8 h-[50%]">
+          <div className="flex flex-col lg:justify-center items-center space-y-4 md:space-y-8 h-[40%]">
             <PetemoonLogo />
             <div
               id="header"

@@ -29,15 +29,17 @@ export default function OfferProducts() {
           محصولات مشابه
         </h5>
         <Link
-          href="/products"
+          href="/product-category/all"
           className='text-lg text-primary font-medium leading-4 after:content-[">"] after:mr-2 lg:after:mr-3 after:text-base lg:after:text-2xl'
         >
           <bdi>مشاهده همه</bdi>
         </Link>
       </div>
-      <div className="mr-10 lg:m-0 px-0 lg:px-[120px] py-2 lg:py-6">
-        <CarouselProduct data={simillar} />
-      </div>
+      {simillar && (
+        <div className="mr-10 lg:m-0 px-0 lg:px-[120px] py-2 lg:py-6">
+          <CarouselProduct data={simillar} />
+        </div>
+      )}
     </div>
   );
 }

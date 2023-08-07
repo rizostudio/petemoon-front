@@ -17,6 +17,7 @@ import Cake_Icon from "../../../assets/dashboard/cake.svg";
 import PenEdit_Icon from "../../../assets/common/PenEditIcon.svg";
 import { getuserInfo } from "@/services/dashboard/userInfo/getUserInfo";
 import { editUserData } from "@/services/dashboard/userInfo/patchUserInfo";
+import { userDataStorage } from "@/localSttorage/auth";
 export default function UserInfo() {
   const [userData, setUserData] = useState({});
   // const [editable, setEditble] = useState(false);
@@ -76,6 +77,7 @@ export default function UserInfo() {
         progress: undefined,
         theme: "light",
       });
+      userDataStorage.set(JSON.stringify(response.data));
     }
     console.log(response);
   };

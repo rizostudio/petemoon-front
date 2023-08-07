@@ -45,10 +45,11 @@ export default function SignUpForm() {
     validateOnBlur: false,
   });
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full h-[60%] lg:h-[50%]">
+    <form onSubmit={formik.handleSubmit} className="w-full h-[60%] lg:h-[40%]">
       <div className="flex flex-col h-full items-center justify-between">
         <FloatLabelInput
           type={"text"}
+          noneHolder={true}
           placeholder={"  نام"}
           name="first_name"
           onChange={formik.handleChange}
@@ -67,6 +68,7 @@ export default function SignUpForm() {
           onChange={formik.handleChange}
           value={formik.values.last_name}
           required={true}
+          noneHolder={true}
           h={"h-12"}
         />
         <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
@@ -80,6 +82,7 @@ export default function SignUpForm() {
           onChange={formik.handleChange}
           value={formik.values.email}
           required={false}
+          noneHolder={true}
           h={"h-12"}
         />
         <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
@@ -93,6 +96,7 @@ export default function SignUpForm() {
           onChange={formik.handleChange}
           value={formik.values.referal_code}
           required={false}
+          noneHolder={true}
           h={"h-12"}
         />
         <button
