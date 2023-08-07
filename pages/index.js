@@ -14,23 +14,31 @@ import BeneFits from "@/components/singleProduct/BeneFits";
 import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
 import { getTopProduct } from "@/services/home/getTopProduct";
 import { getTopSeller } from "@/services/home/getTopSeller";
+import Head from "next/head";
 
 export default function Home({ products }) {
   return (
-    <MainLayout>
-      <div className="bg-[#F8F8F8] relative pb-[100px]">
-        <MobileHeader />
-        <Slider />
-        <Brands />
-        <OfferProdcuts data={products} />
-        <Category />
-        <OffPriceProdcuts data={products} />
-        <BestVets />
-        {/* <BestSellers data={seller} /> */}
-        <BeneFits />
-      </div>
-      <BottomNavigation />
-    </MainLayout>
+    <>
+      <Head>
+        <title> پتمون | ملزومات حیوانات خانگی</title>
+
+        <meta charSet="UTF-8" />
+      </Head>
+      <MainLayout>
+        <div className="bg-[#F8F8F8] relative pb-[100px]">
+          <MobileHeader />
+          <Slider />
+          <Brands />
+          <OfferProdcuts data={products} />
+          <Category />
+          <OffPriceProdcuts data={products} />
+          <BestVets />
+          {/* <BestSellers data={seller} /> */}
+          <BeneFits />
+        </div>
+        <BottomNavigation />
+      </MainLayout>
+    </>
   );
 }
 export async function getStaticProps() {

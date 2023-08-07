@@ -62,7 +62,7 @@ export default function OrderItem({ item }) {
         <div className="flex flex-col mr-6 lg:mr-20">
           <p className="text-base text-black font-semibold leading-8 opacity-90">
             <bdi>
-              تحویل گیرنده
+              عنوان آدرس
               <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
                 {item.address
                   ? item.address?.receiver

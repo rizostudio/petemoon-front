@@ -68,7 +68,7 @@ export default function AddressItem({ data, setDeleteHandler }) {
               </p>
             </div>
             <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 my-2">
-              <p className="text-sm lg:text-base text-black">تحویل گیرنده</p>
+              <p className="text-sm lg:text-base text-black"> عنوان آدرس</p>
               <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
                 <bdi>{data.receiver}</bdi>
               </p>
