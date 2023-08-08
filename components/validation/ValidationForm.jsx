@@ -57,6 +57,7 @@ export default function ValidationForm() {
       const response = await validationOtp(values.confirmationCode);
       if (response.success) {
         OtpId.remove();
+        console.log(response);
         refreshTokenLS.set(response.data.refreshToken);
         if (!response.data.isRegistered) router.push("/auth/signUp");
         if (response.data.isRegistered) router.push("/dashboard");
