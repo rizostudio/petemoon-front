@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/globals.css";
-import AuthProvider from "@/store/AuthCtx/AuthProvider";
+import { AuthContextProvider } from "@/store/AuthCtx/AuthContext";
 import { useRouter } from "next/router";
-import { Roboto } from "@next/font/google";
 import Loading from "@/components/partials/loading";
 import { BasketContextProvider } from "@/store/BasketCtx/BasketContext";
-import ProtectedRoute from "@/hook/ProtectedRoute";
 import ToastContainer from "@/components/partials/toast/ToatContainer";
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["500", "700"],
-//   style: ["italic", "normal"],
-// });
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -55,11 +49,11 @@ function MyApp({ Component, pageProps }) {
       {loading ? (
         <Loading />
       ) : (
-        <AuthProvider>
+        <AuthContextProvider>
           <BasketContextProvider>
             <Component {...pageProps} />
           </BasketContextProvider>
-        </AuthProvider>
+        </AuthContextProvider>
       )}
     </>
   );

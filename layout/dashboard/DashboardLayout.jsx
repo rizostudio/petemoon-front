@@ -13,7 +13,7 @@ import Profile_Alt_Pic from "../../assets/dashboard/profile-pic-alt.svg";
 import Userpanel_Logo from "../../assets/dashboard/user-panel.svg";
 import ShopBag_Icon from "../../assets/dashboard/bagHeader.svg";
 //ctx
-import AuthContext from "@/store/AuthCtx/AuthContext";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 //components
 import Loading from "@/components/partials/loading";
@@ -86,7 +86,7 @@ export default function DashboardLayout({ children }) {
   const { state, dispatch } = BasketContext();
   const router = useRouter();
   const [Minify, setMinify] = useState(false); // for minify dashboard
-  const authCtx = useContext(AuthContext);
+  const { authState, authDispatch } = AuthContext();
   const openHandler = () => {
     setOpenly(true);
   };
@@ -101,6 +101,20 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const UserState = {
+      userData: JSON.parse(userDataStorage.get()),
+      isLoggedIn: isLogin.get(),
+    };
+    if (UserState.isLoggedIn && UserState.isLoggedIn !== null) {
+      authDispatch({
+        type: "INIT_STATE",
+        payload: { ...UserState },
+      });
+      setuser(UserState.userData);
+    } else {
+      router.push("/auth/login");
+    }
+
     const handleStart = (url) => {
       setLoading(true);
     };
@@ -116,9 +130,7 @@ export default function DashboardLayout({ children }) {
       router.events.off("routeChangeError", handleComplete);
     };
   }, [router]);
-  useEffect(() => {
-    setuser(authCtx.userData);
-  }, [authCtx]);
+
   const handleLogout = async () => {
     const response = await logout();
     if (response.success) {

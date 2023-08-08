@@ -7,6 +7,7 @@ import OtpInput from "../partials/otpInput";
 //services
 import { validationOtp } from "@/services/auth/validation";
 import { login } from "@/services/auth/login";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 //localStorage
 import {
   OtpId,
@@ -24,6 +25,7 @@ import Link from "next/link";
 export default function ValidationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [otp, setOtp] = useState("");
+  const { authState, authDispatch } = AuthContext();
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(59);
   const toggleSubmitState = () => setIsSubmitting((currState) => !currState);
@@ -57,6 +59,13 @@ export default function ValidationForm() {
       const response = await validationOtp(values.confirmationCode);
       if (response.success) {
         OtpId.remove();
+        authDispatch({
+          type: "INIT_STATE",
+          payload: {
+            isLoggedIn: true,
+            userData: response.data.userData,
+          },
+        });
         console.log(response);
         refreshTokenLS.set(response.data.refreshToken);
         if (!response.data.isRegistered) router.push("/auth/signUp");

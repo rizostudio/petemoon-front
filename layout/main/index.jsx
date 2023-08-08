@@ -18,22 +18,32 @@ import clock_Icon from "../../assets/common/li_clock-9.svg";
 import phone_Icon from "../../assets/common/li_phone.svg";
 //context
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
-import AuthContext from "@/store/AuthCtx/AuthContext";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 //storage
 import { Basket } from "@/localSttorage/basket";
 import { search } from "@/services/home/search";
+import { isLogin, userDataStorage } from "@/localSttorage/auth";
 
 export default function MainLayout({ children }) {
   const router = useRouter();
   const { state, dispatch } = BasketContext();
-  const authCtx = useContext(AuthContext);
+  const { authState, authDispatch } = AuthContext();
   const [searchResult, setSearchResult] = useState([]);
   const [searchloading, setSearchLoading] = useState(false);
   const [inputBlur, setInputBlur] = useState(false);
   useEffect(() => {
     const getInitBasket = () => {
       const currentState = JSON.parse(Basket.get());
-      console.log(currentState);
+      const UserState = {
+        userData: JSON.parse(userDataStorage.get()),
+        isLoggedIn: isLogin.get(),
+      };
+      if (UserState.isLoggedIn !== null) {
+        authDispatch({
+          type: "INIT_STATE",
+          payload: { ...UserState },
+        });
+      }
       if (currentState) {
         dispatch({
           type: "INIT_STATE",
@@ -163,7 +173,7 @@ export default function MainLayout({ children }) {
                   </p>
                 </div>
               </Link> */}
-              {!authCtx.isLoggedIn ? (
+              {!authState?.isLoggedIn ? (
                 <Link
                   href={"/auth/login"}
                   className="self-end flex lg:flex-col hover:bg-[#d85241]  items-center p-3 lg:py-3 lg:px-5  lg:bg-primary lg:rounded-[5px]"
@@ -174,7 +184,9 @@ export default function MainLayout({ children }) {
                   </p>
                 </Link>
               ) : (
-                <Link href={authCtx.isLoggedIn ? "/dashboard" : "/auth/login"}>
+                <Link
+                  href={authState.isLoggedIn ? "/dashboard" : "/auth/login"}
+                >
                   <Image src={user_Icon} alt="User Icon" />
                 </Link>
               )}

@@ -5,10 +5,10 @@ export const Register = async (signupData) => {
   try {
     const response = await httpRequest.patch("/accounts/register/", signupData);
     const data = response.data.data;
-    if (data.user_data) {
-      userDataStorage.set(JSON.stringify(data.user_data));
-      isLogin.set(true);
-    }
+    // if (data.user_data) {
+    //   userDataStorage.set(JSON.stringify(data.user_data));
+    //   isLogin.set(true);
+    // }
     return successResponse(data);
   } catch (error) {
     console.log(error);

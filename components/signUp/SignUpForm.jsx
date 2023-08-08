@@ -5,12 +5,14 @@ import { useRouter } from "next/router";
 import FloatLabelInput from "../partials/input";
 //services
 import { Register } from "@/services/auth/signUp";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 export default function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { authState, authDispatch } = AuthContext();
   const toggleSubmitState = () => setIsSubmitting((currState) => !currState);
   const router = useRouter();
   const inputValidation = Yup.object().shape({
@@ -35,9 +37,17 @@ export default function SignUpForm() {
       toggleSubmitState();
       const response = await Register(values);
       toggleSubmitState();
-      console.log(response);
-      if (response.success) router.push("/dashboard");
-      else console.log("Errors: ", response.errors);
+
+      if (response.success) {
+        authDispatch({
+          type: "INIT_STATE",
+          payload: {
+            isLoggedIn: true,
+            userData: response.data.user_data,
+          },
+        });
+        router.push("/dashboard");
+      } else console.log("Errors: ", response.errors);
     },
     validationSchema: inputValidation,
     validateOnMount: false,
