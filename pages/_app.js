@@ -57,15 +57,7 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <AuthProvider>
           <BasketContextProvider>
-            {router.pathname.startsWith("/dashboard") ? (
-              <ProtectedRoute>
-                {/* <div className={roboto.className}> */}
-                <Component {...pageProps} />
-                {/* </div> */}
-              </ProtectedRoute>
-            ) : (
-              <Component {...pageProps} />
-            )}
+            <Component {...pageProps} />
           </BasketContextProvider>
         </AuthProvider>
       )}
