@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import BasketItem from "./BasketItem";
 //context
-import AuthContext from "@/store/AuthCtx/AuthContext";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 //services
 import { postBasketToServer } from "@/services/basket/postBasketToServer";
 //media
@@ -16,9 +16,9 @@ import Link from "next/link";
 export default function BasketItems() {
   const router = useRouter();
   const { state, dispatch } = BasketContext();
-  const authCtx = useContext(AuthContext);
+  const { authState, authDispatch } = AuthContext();
   const handleSaveBasket = () => {
-    if (authCtx.isLoggedIn) {
+    if (authState.isLoggedIn) {
       router.push("/payment/set-address");
     } else {
       router.push("/auth/login");

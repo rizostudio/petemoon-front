@@ -8,14 +8,11 @@ export const validationOtp = async (confirmationCode) => {
       otp_code: confirmationCode.join(""),
     });
     const data = response.data.data;
-    console.log(data);
-    if (data.user_data) {
-      userDataStorage.set(JSON.stringify(data.user_data));
-      isLogin.set(true);
-    }
+
     return successResponse({
       isRegistered: data.is_registered,
       refreshToken: data.refresh_token,
+      userData: data.user_data,
     });
   } catch (error) {
     return errorResponse(err?.response?.data?.errors ?? ["Network Error!"]);

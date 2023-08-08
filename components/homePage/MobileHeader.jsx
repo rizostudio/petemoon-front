@@ -11,10 +11,10 @@ import card_Icon from "../../assets/common/shopping-cartRedIcon2.svg";
 import search_Icon from "../../assets/common/SearchRedIcon.svg";
 import userLogOut_Icon from "../../assets/common/user-add.svg";
 import userLogIn_Icon from "../../assets/common/user-square2.svg";
-import AuthContext from "@/store/AuthCtx/AuthContext";
+import { AuthContext } from "@/store/AuthCtx/AuthContext";
 const mobileHeader = () => {
   const [login, setLogin] = useState(true);
-  const authCtx = useContext(AuthContext);
+  const { authState, authDispatch } = AuthContext();
   const [searchResult, setSearchResult] = useState([]);
   const [searchloading, setSearchLoading] = useState(false);
   const [inputBlur, setInputBlur] = useState(false);
@@ -50,7 +50,7 @@ const mobileHeader = () => {
             <Image src={card_Icon} alt="Card Icon" />
           </Link>
           <Link
-            href={authCtx.isLoggedIn ? "/dashboard" : "/auth/login"}
+            href={authState?.isLoggedIn ? "/dashboard" : "/auth/login"}
             className="h-10 w-10 flex items-center justify-center bg-[#ea63524d] border-[1px] border-primary rounded-[15px] mr-2"
           >
             <Image
