@@ -45,50 +45,57 @@ export default function SignUpForm() {
     validateOnBlur: false,
   });
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full h-[60%] lg:h-[40%]">
-      <div className="flex flex-col h-full items-center justify-between">
-        <FloatLabelInput
-          type={"text"}
-          noneHolder={true}
-          placeholder={"  نام"}
-          name="first_name"
-          onChange={formik.handleChange}
-          value={formik.values.first_name}
-          required={true}
-          h={"h-12"}
-        />
-        <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
-          <bdi>{formik.errors.first_name}</bdi>
-        </p>
-
-        <FloatLabelInput
-          type={"text"}
-          placeholder={" نام خانوادگی"}
-          name="last_name"
-          onChange={formik.handleChange}
-          value={formik.values.last_name}
-          required={true}
-          noneHolder={true}
-          h={"h-12"}
-        />
-        <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
-          <bdi>{formik.errors.last_name}</bdi>
-        </p>
-
-        <FloatLabelInput
-          type={"email"}
-          placeholder={"  ایمیل*"}
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          required={false}
-          noneHolder={true}
-          h={"h-12"}
-        />
-        <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
-          <bdi>{formik.errors.email}</bdi>
-        </p>
-
+    <form
+      onSubmit={formik.handleSubmit}
+      className="w-full  min-h-[50%]   mt-10"
+    >
+      <div className="flex flex-col h-full items-center  justify-between">
+        <div className="my-1 w-full">
+          <FloatLabelInput
+            type={"text"}
+            noneHolder={true}
+            placeholder={"  نام"}
+            name="first_name"
+            onChange={formik.handleChange}
+            value={formik.values.first_name}
+            required={true}
+            h={"h-12"}
+          />
+          <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
+            <bdi>{formik.errors.first_name}</bdi>
+          </p>
+        </div>
+        <div className="my-1 w-full">
+          <FloatLabelInput
+            type={"text"}
+            placeholder={" نام خانوادگی"}
+            name="last_name"
+            onChange={formik.handleChange}
+            value={formik.values.last_name}
+            required={true}
+            noneHolder={true}
+            h={"h-12"}
+          />
+          <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
+            <bdi>{formik.errors.last_name}</bdi>
+          </p>
+        </div>
+        <div className="my-1 w-full">
+          <FloatLabelInput
+            type={"email"}
+            placeholder={"  ایمیل*"}
+            name="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            required={false}
+            noneHolder={true}
+            h={"h-12"}
+          />
+          <p className="text-[12px] text-error font-semibold leading-5 ml-auto ">
+            <bdi>{formik.errors.email}</bdi>
+          </p>
+        </div>
+        <div className="my-1 w-full"></div>
         <FloatLabelInput
           type={"text"}
           placeholder={"کد معرف"}
@@ -99,9 +106,10 @@ export default function SignUpForm() {
           noneHolder={true}
           h={"h-12"}
         />
+
         <button
           type="submit"
-          className={`btn h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-[#d85241] text-[#fff] active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal 
+          className={`btn my-7 h-12 disabled:text-primary border-0 disabled:border disabled:border-primary bg-primary disabled:bg-white hover:bg-[#d85241] text-[#fff] active:bg-primary focus:bg-primary w-full rounded-lg text-base md:text-xl font-normal 
 `}
           // disabled={formik.values.phoneNumber.length !== 11}
         >

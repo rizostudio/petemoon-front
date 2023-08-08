@@ -55,10 +55,11 @@ export default function ValidationForm() {
     onSubmit: async (values) => {
       setIsSubmitting(true);
       const response = await validationOtp(values.confirmationCode);
-
       if (response.success) {
         OtpId.remove();
         refreshTokenLS.set(response.data.refreshToken);
+        if (!response.data.isRegistered) router.push("/auth/signUp");
+        if (response.data.isRegistered) router.push("/dashboard");
       } else {
         setIsSubmitting(false);
         toast.error("کد وارد شده نادرست است", {
@@ -71,11 +72,6 @@ export default function ValidationForm() {
           progress: undefined,
           theme: "light",
         });
-      }
-      if (response.data.is_registered === true) {
-        router.push("/dashboard");
-      } else {
-        router.push("/auth/signUp");
       }
     },
   });
