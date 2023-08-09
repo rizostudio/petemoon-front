@@ -44,14 +44,14 @@ export default function support() {
           <p className="hidden lg:block text-base text-right text-black font-semibold leading-8 opacity-90 before:align-middle before:w-2 before:h-5 before:bg-primary before:inline-block before:ml-2 before:rounded-[2px]">
             راه های ارتباطی
           </p>
-          <div className="w-full h-full flex flex-row items-center justify-between lg:mt-5">
-            <div className="h-full w-1/3 flex flex-col lg:flex-row justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
+          <div className="w-full h-full flex lg:flex-row flex-col items-center justify-between lg:mt-5">
+            <div className="h-full w-full lg:w-1/3 flex flex-col lg:flex-row justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
               <Image
                 src={Phone_Icon}
                 alt="WhatsAppIcon"
                 className="w-[75px] lg:w-[100px]"
               />
-              <div className="flex flex-col items-center lg:items-start mt-6 lg:mt-0 lg:mr-4 ">
+              <div className="flex   flex-col items-center lg:items-start mt-6 lg:mt-0 lg:mr-4 ">
                 <p className="text-sm lg:text-base text-black font-medium lg:font-black leading-6 opacity-90 break-normal">
                   تماس تلفنی
                 </p>
@@ -60,7 +60,7 @@ export default function support() {
                 </span>
               </div>
             </div>
-            <div className="h-full w-1/3 flex flex-col lg:flex-row justify-between mx-2 lg:mx-0 lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
+            <div className="h-full w-full lg:w-1/3 flex flex-col lg:flex-row justify-between mx-2 lg:mx-0 lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
               <Image
                 src={Email_Icon}
                 alt="WhatsAppIcon"
@@ -75,7 +75,7 @@ export default function support() {
                 </span>
               </div>
             </div>
-            <div className="h-full w-1/3 flex flex-col lg:flex-row justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
+            <div className="h-full w-full  lg:w-1/3 flex flex-col lg:flex-row justify-between lg:justify-start items-center bg-white p-5 border-[1px] solid lg:border-none border-secondary rounded-[15px]">
               <Image
                 src={Instagram_Icon}
                 alt="WhatsAppIcon"

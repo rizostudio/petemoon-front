@@ -36,7 +36,7 @@ export default function AddressItem({ data, setDeleteHandler }) {
           </label>
         </div>
       </div>
-      <div className="flex flex-row justify-between items-stretch mt-2 lg:mt-8">
+      <div className="flex lg:flex-row justify-between flex-col items-stretch mt-2 lg:mt-8">
         <div className="flex flex-col lg:flex-row lg:justify-between">
           <div className="flex flex-col">
             <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 mb-2 lg:my-2">
@@ -57,6 +57,12 @@ export default function AddressItem({ data, setDeleteHandler }) {
                 <bdi>{data.postal_code}</bdi>
               </p>
             </div>
+            <div className="flex flex-row hidden lg:flex items-center text-right font-semibold lg:font-bold opacity-90 leading-8 ml-auto my-2">
+              <p className="text-sm lg:text-base text-black">آدرس پستی</p>
+              <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
+                <bdi>{data.postal_address}</bdi>
+              </p>
+            </div>
           </div>
           <div className="flex flex-col lg:mr-10">
             <div className="flex flex-row items-center font-semibold lg:font-bold opacity-90 leading-8 lg:my-2">
@@ -73,11 +79,17 @@ export default function AddressItem({ data, setDeleteHandler }) {
                 <bdi>{data.receiver}</bdi>
               </p>
             </div>
+            <div className="flex flex-row  lg:hidden items-center text-right font-semibold lg:font-bold opacity-90 leading-8 ml-auto my-2">
+              <p className="text-md lg:text-base text-black">آدرس پستی</p>
+              <p className="text-sm lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
+                <bdi>{data.postal_address}</bdi>
+              </p>
+            </div>
           </div>
         </div>
         <div>
           {/* {item.lat ? <div></div> : <div></div>} */}
-          <div className="w-[150px] h-[150px] relative border-[1px] solid border-secondary rounded-[10px] mt-3">
+          <div className="w-[150px] h-[150px] relative border-[1px] solid border-secondary m-auto rounded-[10px] mt-3">
             {/* <Image
               src={data.mapLocation ? data.mapLocation : MapPreserve_Pic}
               alt="MapPic"
@@ -92,12 +104,7 @@ export default function AddressItem({ data, setDeleteHandler }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center text-right font-semibold lg:font-bold opacity-90 leading-8 my-2">
-        <p className="text-sm lg:text-base text-black">آدرس پستی</p>
-        <p className="text-xs lg:text-sm text-gray-400 mr-2 lg:mr-3 font-medium">
-          <bdi>{data.postal_address}</bdi>
-        </p>
-      </div>
+
       {/* Modals */}
       <DeleteModal
         setDeleteHandler={setDeleteHandler}

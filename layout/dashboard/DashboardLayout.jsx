@@ -20,6 +20,7 @@ import Loading from "@/components/partials/loading";
 //toastContainer
 import ToastContainer from "@/components/partials/toast/ToatContainer";
 import { logout } from "@/services/dashboard/userInfo/logout";
+import BottomNavigation from "@/components/partials/BottomNavigation/BottomNavigation";
 const menuArr = [
   {
     id: "/",
@@ -143,7 +144,8 @@ export default function DashboardLayout({ children }) {
   return (
     <>
       <ToastContainer />
-      <div className="w-full h-screen flex flex-row justify-between items-stretch">
+      <BottomNavigation />
+      <div className="w-full h-screen flex flex-row justify-between items-stretch mb-20 lg:mb-0">
         {/* Drawer */}
         <div
           id="Drawer"
