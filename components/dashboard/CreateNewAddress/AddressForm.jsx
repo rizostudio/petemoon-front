@@ -160,7 +160,7 @@ export default function AddressForm() {
             </label>
             <FloatLabelInput
               type={"text"}
-              // placeholder={"نام تحویل گیرنده"}
+              placeholder={" عنوان آدرس"}
               name="receiver"
               onChange={handleChange}
               value={values.receiver}

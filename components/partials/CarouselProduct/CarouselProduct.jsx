@@ -58,7 +58,7 @@ const CarouselProduct = ({ data }) => {
           >
             {data &&
               data.map((item, index) => (
-                <SwiperSlide key={parseInt(index) + 16}>
+                <SwiperSlide key={item.id}>
                   <ProductMobileCard item={item} index={index} />
                 </SwiperSlide>
               ))}
@@ -108,7 +108,6 @@ const CarouselProduct = ({ data }) => {
           >
             {data &&
               data.map((item, index) => {
-                console.log(item);
                 return (
                   <SwiperSlide key={item.id}>
                     <ProductDesktopCard item={item} index={index} />

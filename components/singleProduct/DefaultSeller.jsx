@@ -18,7 +18,7 @@ export default function DefaultSeller({ data }) {
         </p>
       </div>
       <p className="text-sm lg:text-base text-info font-normal leading-6">
-        <bdi>{`${data.productpricing?.length - 1} فروشنده دیگر`}</bdi>
+        <bdi>{`${data.productpricing?.length } فروشنده دیگر`}</bdi>
       </p>
     </div>
   );

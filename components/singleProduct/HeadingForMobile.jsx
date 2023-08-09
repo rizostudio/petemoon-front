@@ -15,7 +15,7 @@ export default function HeadingForMobile({ data }) {
         <div className="flex flex-row items-center">
           <h2
             className={clsx(
-              "text-base text-black font-black leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
+              "text-base text-black font-black w-[80%] leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
               {
                 "before:bg-primary": data.best_pricing?.inventory,
                 "before:bg-gray-400": !data.best_pricing?.inventory,
@@ -38,12 +38,12 @@ export default function HeadingForMobile({ data }) {
         )}
       </div>
       <div className="flex flex-row justify-between items-center">
-        <div className="p-2 border-[1px] border-primary solid rounded-[15px]">
+        <div className="p-[10px] border-[1px] border-primary solid rounded-[15px]">
           <Image src={ShopBagRedMobile_Icon} alt="RedShopBagIcon" />
         </div>
         <div
           onClick={() => router.back()}
-          className="p-3 px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
+          className="p-[10px] px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
         >
           <Image src={leftArrow_Icon} alt="LeftArrowIcon" />
         </div>

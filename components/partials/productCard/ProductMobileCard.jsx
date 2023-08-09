@@ -119,7 +119,7 @@ export default function ProductMobileCard({ item, index }) {
               src={
                 item.picture_url
                   ? `https://api.petemoon.com${item.picture_url}`
-                  : "/assets/product/ProductPic4.svg"
+                  : "/assets/product/ProductPic4.jpg"
               }
               width={100}
               height={100}

@@ -40,21 +40,24 @@ const Category = () => {
             </div>
           </div>
         </Link>
-        <div className="flex h-[150px] w-[250px] lg:w-full lg:h-[320px] bg-[#EC995D] rounded-[25px] relative">
-          <Image
-            src={rabbitImage}
-            alt="Rabbit Picture"
-            className="absolute w-[150px] lg:w-[300px] bottom-0 left-0"
-          />
-          <div className="self-end lg:self-start flex flex-col px-8 py-5">
-            <p className="text-sm lg:text-xl text-white font-normal leading-6">
-              دسته بندی ویژه
-            </p>
-            <h4 className="text-base lg:text-2xl text-white font-black leading-7">
-              جوندگان
-            </h4>
+        <Link href={"/product-category/all?pet_types=bird"}>
+          <div className="flex h-[150px] w-[250px] lg:w-full lg:h-[320px] bg-[#EC995D] rounded-[25px] relative">
+            <Image
+              src={rabbitImage}
+              alt="Rabbit Picture"
+              className="absolute w-[150px] lg:w-[300px] bottom-0 left-0"
+            />
+            <div className="self-end lg:self-start flex flex-col px-8 py-5">
+              <p className="text-sm lg:text-xl text-white font-normal leading-6">
+                دسته بندی ویژه
+              </p>
+              <h4 className="text-base lg:text-2xl text-white font-black leading-7">
+                جوندگان
+              </h4>
+            </div>
           </div>
-        </div>
+        </Link>
+
         <Link href={"/product-category/all?pet_types=bird"}>
           <div className="flex h-[150px] w-[250px] lg:w-full lg:h-[320px] bg-[#FF7766] rounded-[25px] relative">
             <Image
