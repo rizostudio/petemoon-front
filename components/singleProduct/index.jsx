@@ -109,7 +109,7 @@ export default function SingleProduct({ data }) {
   return (
     <>
       <ToastContainer />
-      <div className="w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] mb-10  lg:px-12 lg:py-5">
+      <div className="w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-12 lg:py-5">
         {/* Main Page  */}
         <div
           className={clsx("lg:flex flex-col justify-between items-stretch", {

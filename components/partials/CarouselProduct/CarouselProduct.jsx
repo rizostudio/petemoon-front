@@ -1,5 +1,5 @@
 import React from "react";
-
+import { v4 } from "uuid";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
@@ -58,7 +58,7 @@ const CarouselProduct = ({ data }) => {
           >
             {data &&
               data.map((item, index) => (
-                <SwiperSlide key={item.id}>
+                <SwiperSlide key={v4()}>
                   <ProductMobileCard item={item} index={index} />
                 </SwiperSlide>
               ))}
@@ -109,7 +109,7 @@ const CarouselProduct = ({ data }) => {
             {data &&
               data.map((item, index) => {
                 return (
-                  <SwiperSlide key={item.id}>
+                  <SwiperSlide key={v4()}>
                     <ProductDesktopCard item={item} index={index} />
                   </SwiperSlide>
                 );

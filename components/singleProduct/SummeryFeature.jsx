@@ -14,7 +14,10 @@ export default function SummeryFeature({ data }) {
         </p>
       </div>
       {data.specs.map((item) => (
-        <div className="flex flex-row items-center align-middle my-1 ">
+        <div
+          key={item.id}
+          className="flex flex-row items-center align-middle my-1 "
+        >
           <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
             <bdi>{item.name}</bdi>
           </p>

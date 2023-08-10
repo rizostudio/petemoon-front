@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { useRouter } from "next/router";
+import Link from "next/link";
 // media
 import StarGold_Icon from "../../assets/common/startGold.svg";
 import ShopBagRedMobile_Icon from "../../assets/common/shopping-cartRedIcon2.svg";
@@ -38,14 +39,27 @@ export default function HeadingForMobile({ data }) {
         )}
       </div>
       <div className="flex flex-row justify-between items-center">
-        <div className="p-[10px] border-[1px] border-primary solid rounded-[15px]">
-          <Image src={ShopBagRedMobile_Icon} alt="RedShopBagIcon" />
-        </div>
+        <Link
+          href={"/cart"}
+          className="p-[10px] border-[1px] border-primary solid rounded-[15px]"
+        >
+          <Image
+            width={30}
+            height={30}
+            src={ShopBagRedMobile_Icon}
+            alt="RedShopBagIcon"
+          />
+        </Link>
         <div
           onClick={() => router.back()}
           className="p-[10px] px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
         >
-          <Image src={leftArrow_Icon} alt="LeftArrowIcon" />
+          <Image
+            width={15}
+            height={15}
+            src={leftArrow_Icon}
+            alt="LeftArrowIcon"
+          />
         </div>
       </div>
     </div>

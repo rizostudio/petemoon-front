@@ -71,10 +71,11 @@ export default function MainLayout({ children }) {
       performSearch(e.target.value);
     }
   };
+
   return (
     <>
-      <div className="">
-        <header className="hidden lg:flex justify-between items-center px-[100px] py-5 bg-white ">
+      <div className="mb-[100px] lg:mb-0">
+        <header className="hidden lg:flex justify-between items-center px-[100px] py-5 bg-white  ">
           <div className="flex items-center">
             <Link href="/">
               <Image
@@ -128,8 +129,6 @@ export default function MainLayout({ children }) {
                 className="invert mr-5 absolute top-[10px]"
               />
               <input
-                // onBlur={() => setInputBlur(false)}
-
                 onChange={handleSearch}
                 type="text"
                 placeholder="جستجو"
@@ -193,7 +192,7 @@ export default function MainLayout({ children }) {
             </div>
           </div>
         </header>
-        <div className=" lg:bg-[#F8F8F8]">{children}</div>
+        <div className=" lg:bg-[#F8F8F8] ">{children}</div>
         <footer className="hidden lg:block bg-[#F8F8F8] px-[120px]">
           <div className="flex justify-between pt-10 pb-[100px] border-y-[2px] border-[rgba(0, 0, 0, 0.05)]">
             <div>

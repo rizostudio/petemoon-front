@@ -5,7 +5,7 @@ import Image from "next/image";
 //media
 import home_Icon from "../../../assets/common/homeIcon2.svg";
 import category_Icon from "../../../assets/common/categoryIcon.svg";
-import search_Icon from "../../../assets/common/searchIcon3.svg";
+
 import profile_Icon from "../../../assets/common/profileIcon4.svg";
 
 const BottomNavigation = () => {
@@ -20,13 +20,18 @@ const BottomNavigation = () => {
       <Link href="/product-category/all" className="flex flex-col items-center">
         <Image src={category_Icon} alt="Category Icon" />
         <h3 className="text-sm text-center text-gray-400 font-medium leading-5 mt-1">
-          <bdi>دسته بندی</bdi>
+          <bdi> محصولات</bdi>
         </h3>
       </Link>
-      <Link href="/" className="flex flex-col items-center">
-        <Image src={search_Icon} alt="Search Icon" />
+      <Link href="/cart" className="flex flex-col items-center">
+        <Image
+          width={30}
+          height={30}
+          src="/assets/common/shopping-cart.svg"
+          alt="Search Icon"
+        />
         <h3 className="text-sm text-center text-gray-400 font-medium leading-5 mt-1">
-          <bdi>جستجو</bdi>
+          <bdi>سبد خرید</bdi>
         </h3>
       </Link>
       <Link href="/dashboard" className="flex flex-col items-center">

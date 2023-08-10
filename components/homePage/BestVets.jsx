@@ -152,7 +152,7 @@ const BestVets = () => {
         </Swiper>
       </div> */}
       <div className=" lg:flex px-10">
-        <div className="w-lg-1/2 relative">
+        <div className="lg:w-1/2 ">
           <video poster="/assets/homePage/petImage1.svg" controls>
             <source
               src="/assets/homePage/Cats.Dogs.3.Paws.Unite.2020.720p.BluRay.YIFY(1) (2).mp4"
@@ -171,7 +171,7 @@ const BestVets = () => {
             className="w-[120px] absolute top-10 left-20"
           /> */}
         </div>
-        <div className="flex flex-col w-lg-1/2">
+        <div className="flex flex-col lg:w-1/2">
           <Image src={paw_Icon} alt="Paw Icon" className="self-end w-[60px]" />
           <h7 className="text-2xl text-[#000] font-bold leading-[50px] my-4">
             <bdi>پتمون، لبخند قلب خانواده</bdi>
