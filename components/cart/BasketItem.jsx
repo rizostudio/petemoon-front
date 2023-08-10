@@ -38,7 +38,7 @@ export default function BasketItem({ item, index }) {
     });
   };
   return (
-    <div className="flex flex-row items-stretch w-full h-full p-4 lg:p-5 bg-white lg:bg-transparent rounded-[15px] lg:rounded-none shadow-shadowB lg:shadow-none border-b-[2px] border-[rgba(0, 0, 0, 0.05)] border-none lg:border-solid">
+    <div className="flex flex-row items-stretch w-full my-2 lg:my-0 h-full p-4 lg:p-5 bg-white lg:bg-transparent rounded-[15px] lg:rounded-none shadow-shadowB lg:shadow-none border-b-[2px] border-[rgba(0, 0, 0, 0.05)] border-none lg:border-solid">
       <div className="flex flex-col justify-between items-center">
         {/* Picture of Product */}
         <div className="w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] p-0 overflow-hidden bg-gray-400 border-[1px]  rounded-[5px] lg:rounded-[10px]">

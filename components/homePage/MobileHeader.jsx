@@ -36,6 +36,7 @@ const mobileHeader = () => {
     performSearch(e.target.value);
     setSearchResult([]);
   };
+
   return (
     <div className="lg:hidden flex flex-col items-stretch px-10 pt-8 pb-2">
       <div className="flex justify-between items-center">
@@ -70,11 +71,11 @@ const mobileHeader = () => {
         />
         <Image src={search_Icon} alt="SearchIcon" />
         {inputBlur && (
-          <label
-            aria-hidden="true"
-            data-te-modal-init
-            data-te-toggle="modal"
-            className="w-[200px] xl:w-[300px] px-0 bg-[#eee] search modal"
+          <div
+            // aria-hidden="true"
+            // data-te-modal-init
+            // data-te-toggle="modal"
+            className="w-[200px] z-100 xl:w-[300px] px-0 bg-[#eee] search "
           >
             {!searchloading ? (
               searchResult.length ? (
@@ -91,7 +92,7 @@ const mobileHeader = () => {
             ) : (
               <div className="loadingg"></div>
             )}
-          </label>
+          </div>
         )}
       </div>
     </div>

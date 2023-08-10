@@ -10,6 +10,7 @@ import moment from "jalali-moment";
 //media
 import PetPicPreserve from "../../../assets/dashboard/PetPicPreserve.svg";
 import Upload_Icon from "../../../assets/common/uploadIcon.svg";
+
 //components
 import FloatLabelInput from "@/components/partials/input";
 //services
@@ -169,7 +170,15 @@ export default function EditePet({ id }) {
         <Link
           href="/dashboard/my-pets"
           className="bg-primary opacity-[0.8] p-4 rounded-[15px]"
-        ></Link>
+        >
+          <Image
+            width={25}
+            height={25}
+            src="/assets/common/leftArrowWhite.svg"
+            alt="ArrowIcon"
+            className="w-full"
+          />
+        </Link>
       </div>
       <div className="flex flex-col bg-[#E7E7E8] rounded-[20px] lg:rounded-[25px] w-full">
         <div className="w-full h-full px-4 pt-10 pb-5 lg:p-10 lg:rounded-[25px] lg:bg-white">

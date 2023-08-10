@@ -115,7 +115,7 @@ export default function CommentfForm({
                   className="block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
                 ></textarea>
                 <bdi>
-                  <span className="text-primary"> {errors.description} </span>
+                  <span className="text-primary">{errors.description} </span>
                 </bdi>
                 <div className="self-end flex flex-row items-center justify-between w-full lg:w-2/5 mt-6">
                   <label
@@ -130,11 +130,9 @@ export default function CommentfForm({
                   </label>
                   <label
                     onClick={() => {
-                      if (!errors) {
-                        formSubmit();
-                        setCommentPageOpen(false);
-                        setMainPageOpen(true);
-                      }
+                      formSubmit();
+                      setCommentPageOpen(false);
+                      setMainPageOpen(true);
 
                       // setShowModal(false);
                     }}
@@ -175,7 +173,7 @@ export default function CommentfForm({
           </div>
         </div>
         <form
-          onSubmit={formSubmit()}
+          // onSubmit={formSubmit()}
           id="form"
           // onSubmit={(event) => event.preventDefault()}
           className="flex flex-col justify-between items-stretch"
@@ -197,6 +195,7 @@ export default function CommentfForm({
             <input
               onChange={change}
               value={rate}
+              name="rate"
               max={5}
               id="range-score"
               type="range"

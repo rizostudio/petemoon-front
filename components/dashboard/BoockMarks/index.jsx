@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import BookMarkItem from "./BookMarkItem";
 import Image from "next/image";
 //media
-import LocationAdd_Icon from "../../../assets/dashboard/location-add.svg";
-import LocationAdd_White_Icon from "../../../assets/dashboard/location-add-white.svg";
+
 import Link from "next/link";
 export default function Boockmarks() {
   const [bookMarkList, setBookMarkList] = useState([]);
@@ -31,24 +30,31 @@ export default function Boockmarks() {
         </div>
       ) : (
         <>
-          <div className="w-full hidden lg:flex flex flex-row lg:flex-col justify-center items-start lg:items-center mt-10 lg:mt-2 py-5 lg:py-10 bg-primary lg:bg-white rounded-[12px] lg:rounded-[25px] shadow-shadowB">
+          <p className="text-lg  lg:text-3xl text-primary">
+            تا کنون محصولی به لیست علاقه مندی ها اضاف نکردید
+          </p>
+          <div className="w-full  lg:flex flex flex-row lg:flex-col justify-center items-start lg:items-center mt-10 lg:mt-2 py-5 lg:py-10 bg-primary lg:bg-white rounded-[12px] lg:rounded-[25px] shadow-shadowB">
             <Image
-              src={LocationAdd_White_Icon}
+              width={25}
+              height={25}
+              src={"/assets/dashboard/box-add-white.svg"}
               alt="LocationAddIcon"
-              className="mr-2 lg:mr-0 lg:hidden"
+              className="ml-2 lg:mr-0 lg:hidden"
             />
             <div className="w-fit cursor-pointer">
-              <Link href={"/dashboard/addresses/create"}>
+              <Link href={"/"}>
                 <Image
-                  src={LocationAdd_Icon}
+                  width={100}
+                  height={100}
+                  src={"/assets/dashboard/box-add.svg"}
                   alt="LocationAddIcon"
                   className="hidden lg:block"
                 />
               </Link>
             </div>
-            <Link href={"/dashboard/addresses/create"}>
+            <Link href={"/"}>
               <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
-                هنوز محصولی به علاقه مندی ها اضاف نکردید
+                ورود به فروشگاه
               </p>
             </Link>
           </div>

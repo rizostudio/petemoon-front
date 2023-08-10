@@ -36,7 +36,7 @@ export default function OfferProducts() {
         </Link>
       </div>
       {simillar && (
-        <div className="mr-10 lg:m-0 px-0 lg:px-[120px] py-2 lg:py-6">
+        <div className="mr-10 lg:m-0 px-0  py-2 lg:py-6">
           <CarouselProduct data={simillar} />
         </div>
       )}
