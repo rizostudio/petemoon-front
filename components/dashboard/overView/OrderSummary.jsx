@@ -20,7 +20,7 @@ export default function OrderSummary({ orders }) {
         </Link>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-between w-full px-20 py-12">
-        <div className="px-1 py-0 flex items-center">
+        <div className="px-1 py-0 flex flex-col lg:flex-row items-center">
           <Image
             src={BagCurrent_Icon}
             alt="CurrentBag-pic"
@@ -31,12 +31,12 @@ export default function OrderSummary({ orders }) {
             <p className="text-sm text-black font-black leading-8 mb-1">
               سفارش های جاری
             </p>
-            <span className="text-xs text-black font-medium leading-6">
+            <span className="text-xs text-black m-auto font-medium leading-6">
               <bdi>{orders?.ongoing} سفارش</bdi>
             </span>
           </div>
         </div>
-        <div className="px-1 py-0 flex items-center border-r-[2px] border-secondary lg:solid border-none">
+        <div className="px-1 py-0 flex flex-col lg:flex-row items-center border-r-[2px] border-secondary lg:solid border-none">
           <Image
             src={BagDelivered_Icon}
             alt="DeliveredBag-pic"
@@ -47,12 +47,12 @@ export default function OrderSummary({ orders }) {
             <p className="text-sm text-black font-black leading-8 mb-1">
               تحویل شده
             </p>
-            <span className="text-xs text-black font-medium leading-6">
+            <span className="text-xs text-black m-auto font-medium leading-6">
               <bdi>{orders?.delivered} سفارش</bdi>
             </span>
           </div>
         </div>
-        <div className="px-1 py-0 flex items-center border-r-[2px] border-secondary lg:solid border-none">
+        <div className="px-1 py-0 flex items-center flex-col lg:flex-row border-r-[2px] border-secondary lg:solid border-none">
           <Image
             src={BagCrossed_Icon}
             alt="CrossedBag-pic"
@@ -63,7 +63,7 @@ export default function OrderSummary({ orders }) {
             <p className="text-sm text-black font-black leading-8 mb-1">
               مرجوع شده
             </p>
-            <span className="text-xs text-black font-medium leading-6">
+            <span className="text-xs text-black font-medium m-auto leading-6">
               <bdi>{orders?.canceled} سفارش</bdi>
             </span>
           </div>

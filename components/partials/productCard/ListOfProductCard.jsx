@@ -113,7 +113,7 @@ export default function ProductCart({ item, index }) {
   return (
     <div className="lg:m-5 w-full lg:w-[285px] my-1">
       <div className="flex flex-row lg:flex-col items-stretch w-full lg:w-[285px] lg:h-[440px] p-4 lg:p-5  bg-white rounded-[10px] lg:rounded-[10px] shadow-shadowB border-[1px] border-secondary border-solid lg:border-none">
-        <div className="relative block w-[100px] lg:w-full h-full lg:h-[220px] p-0  rounded-[15px] lg:rounded-[20px]">
+        <div className="relative block w-[160px] lg:w-full h-full lg:h-[220px] p-0  rounded-[15px] lg:rounded-[20px]">
           {/* <div className="hidden lg:block absolute z-10 top-[-7px] left-[-7px] p-2 lg:p-3 bg-white border-[1px] border-solid border-primary rounded-full">
             <Image
               onClick={handleAddToBookmark}
@@ -126,7 +126,7 @@ export default function ProductCart({ item, index }) {
           </div> */}
           <Link href={`/products/${item.slug}`}>
             <div className="w-full h-full overflow-hidden m-0 p-0 rounded-[10px]">
-              <img
+              <Image
                 width={245}
                 height={220}
                 src={
@@ -135,7 +135,7 @@ export default function ProductCart({ item, index }) {
                     : "/assets/product/ProductPic4.jpg"
                 }
                 alt="ProductPic"
-                className="object-cover"
+                className="object-cover "
               />
             </div>
           </Link>
@@ -162,8 +162,8 @@ export default function ProductCart({ item, index }) {
             </div>
           </Link>
           <div className="flex lg:hidden justify-between items-center">
-            <h2 className="text-base text-black font-medium leading-8">
-              {item.title}
+            <h2 className="text-base producatrTitleMob text-black font-medium leading-8">
+              {item.name}
             </h2>
             <div className="flex flex-row items-center mr-1">
               <Image
@@ -197,9 +197,16 @@ export default function ProductCart({ item, index }) {
                     {item.best_pricing.petshop?.name}
                   </p>
                 </div>
-                <p className='lg:hidden text-sm text-white text-center font-medium leading-5 bg-primary px-1 py-[1px] mt-3 rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
-                  <bdi>{item.discount}</bdi>
-                </p>
+                {item.best_pricing.price_after_sale && (
+                  <p className='lg:hidden text-sm text-white mb-2 text-center font-medium leading-5 bg-primary px-1 py-[1px]  rounded-[10px] after:content-["تخفیف"] after:text-[10px] after:mr-[2px] before:content-["%"] before:text-[10px]'>
+                    <bdi>
+                      {item.best_pricing.price_after_sale &&
+                        (item.best_pricing.price /
+                          item.best_pricing.price_after_sale) *
+                          100}
+                    </bdi>
+                  </p>
+                )}
               </div>
               <div className="self-end lg:self-stretch">
                 {item.best_pricing.inventory ? (
@@ -207,12 +214,14 @@ export default function ProductCart({ item, index }) {
                     <div className="flex flex-col lg:flex-col-reverse">
                       {item.best_pricing.price_after_sale && (
                         <p className="text-sm text-gray-400 line-through font-light opacity-95 mt-0">
-                          {item.best_pricing.price_after_sale}
+                          {item.best_pricing?.price_after_sale?.toLocaleString()}
                         </p>
                       )}
                       {item.best_pricing.price && (
                         <p className="text-base lg:text-lg text-black lg:text-primary font-medium mt-0">
-                          <bdi>{item.best_pricing.price} تومان</bdi>
+                          <bdi>
+                            {item.best_pricing.price.toLocaleString()} تومان
+                          </bdi>
                         </p>
                       )}
                     </div>

@@ -15,10 +15,10 @@ export async function getServerSideProps({ query }) {
 
   console.log(query);
   const queryParams = new URLSearchParams(query);
-  queryParams.set("limit", 5);
+  queryParams.set("limit", 15);
   queryParams.set("offset", 1);
   const response = await getListProducts(queryParams.toString());
-  console.log(response.data);
+
   return {
     props: {
       productsList: response.data.products,

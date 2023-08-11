@@ -36,7 +36,11 @@ export default function CountinueBoxForMobile({ totalBasket, shipping }) {
             مجموع سبد خرید
           </p>
           <p className='text-lg text-primary font-extrabold leading-8 after:content-["تومان"] after:text-sm after:font-normal after:leading-6 after:mr-2'>
-            <bdi>{parseInt(totalBasket) + parseInt(shipping.price)}</bdi>
+            <bdi>
+              {(
+                parseInt(totalBasket) + parseInt(shipping.price)
+              ).toLocaleString()}
+            </bdi>
           </p>
         </div>
       </div>

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-
+import { debounce } from "lodash";
+import { search } from "@/services/home/search";
+import Link from "next/link";
 // media
 import leftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
 import StoreAlt_Logo from "../../assets/product/StoreLogoAlt.svg";
@@ -40,6 +42,27 @@ export default function ProductList({ products }) {
   ]);
   // for change the color of choosen option in sorting
   const [sortValue, setSortValue] = useState("پرفروش ترین");
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchloading, setSearchLoading] = useState(false);
+  const [inputBlur, setInputBlur] = useState(false);
+  const performSearch = debounce(async (keyword) => {
+    setSearchLoading(true);
+    const response = await search(keyword);
+
+    if (response.success) {
+      console.log(response.data);
+      setSearchResult(response.data);
+      setSearchLoading(false);
+    }
+  }, 1000);
+  const handleSearch = (e) => {
+    setInputBlur(true);
+    if (!e.target.value) {
+      setSearchResult([]);
+    }
+    performSearch(e.target.value);
+    setSearchResult([]);
+  };
   useEffect(() => {
     const handleStart = (url) => {
       setLoading(true);
@@ -71,23 +94,50 @@ export default function ProductList({ products }) {
   }, []);
 
   return (
-    <div className="bg-[#f8f8f8] lg:p-10 w-full h-full">
+    <div className="bg-[#f8f8f8] lg:p-10  w-full h-full">
       {/* Main Page */}
       <div
-        className={clsx("lg:block text-right px-10 py-5 lg:px-0 lg:py-10 ", {
+        className={clsx("lg:block text-right px-4 py-5  lg:px-0 lg:py-10 ", {
           block: MainPageOpen == true,
           hidden: MainPageOpen == false,
         })}
       >
         {/* Heading for mobile */}
-        <div className="h-[40px] w-full flex lg:hidden justify-between items-center">
-          <div className="w-full h-full flex justify-between px-5 py-3 bg-[#ECA299] rounded-[15px]">
+        <div className="h-[40px] w-full flex lg:hidden justify-between  items-center">
+          <div className="w-full h-full flex justify-between px-5 py-3 bg-[#ECA299]  rounded-[15px]">
             <input
+              onChange={handleSearch}
               type="text"
               placeholder="جستجوی محصول"
-              className="w-full border-none focus:border-none bg-transparent placeholder:text-primary"
+              className="h-full w-full text-base text-right text-white placeholder:text-primary placeholder:opacity-50 font-bold border-none bg-transparent appearance-none focus:ring-0 focus:outline-none focus:border-none peer"
             />
             <Image src={SearchRed_Icon} alt="SearchIcon" />
+            {inputBlur && (
+              <div
+                // aria-hidden="true"
+                // data-te-modal-init
+                // data-te-toggle="modal"
+                className="w-[200px] z-100 xl:w-[300px] px-0 bg-[red] search searchh top-[-300px]"
+              >
+                {!searchloading ? (
+                  searchResult.length ? (
+                    searchResult.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <Link href={`/products/${item.slug}`}>
+                            {item.name}
+                          </Link>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div>نتیجه ای یافت نشد</div>
+                  )
+                ) : (
+                  <div className="loadingg"></div>
+                )}
+              </div>
+            )}
           </div>
           <div
             onClick={() => router.push("/")}

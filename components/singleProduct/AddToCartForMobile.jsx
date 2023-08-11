@@ -78,12 +78,12 @@ export default function AddToCartForMobile({ data }) {
     }
   };
   return (
-    <div className="lg:hidden px-10 py-5">
+    <div className="lg:hidden px-3 py-5 border-solid border-t-[2px] border-secondary">
       {data.best_pricing?.inventory ? (
         <div className="flex justify-between items-center">
           <button
             onClick={handleAddToBasket}
-            className="text-base text-center text-white font-medium w-1/2 px-3 py-6 bg-primary rounded-[12px]"
+            className="text-base text-center text-white h-[50px] font-medium w-1/2  bg-primary rounded-[12px]"
           >
             افزودن به سبد
           </button>

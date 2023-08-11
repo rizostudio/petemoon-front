@@ -63,9 +63,9 @@ export default function OrderItem({ item }) {
           <p className="text-base text-black font-semibold leading-8 opacity-90">
             <bdi>
               عنوان آدرس
-              <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4">
+              <span className="text-base text-gray-400 font-medium leading-4 mr-2 lg:mr-4 ">
                 {item.address
-                  ? item.address?.receiver
+                  ? " " + item.address?.receiver
                   : "آدرس انتخابی حذف شده است "}
               </span>
             </bdi>

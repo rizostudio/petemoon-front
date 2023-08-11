@@ -78,7 +78,7 @@ export default function Sellers({ data }) {
     }
   };
   return (
-    <div className="text-right px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary">
+    <div className="text-right px-3 lg:px-10 py-5 lg:px-0 lg:py-10 border-solid border-b-[2px] border-secondary">
       <h5 className="text-2xl text-black font-black leading-8 mb-4 lg:mb-8 before:inline-block before:w-2 lg:before:w-5 before:h-5 lg:before:h-2 before:bg-primary before:ml-1 before:rounded-[2px]">
         فروشندگان دیگر
       </h5>
@@ -96,17 +96,17 @@ export default function Sellers({ data }) {
                   src={"/assets/product/shop.svg"}
                   alt="StoreLogo"
                 />
-                <h6 className="text-lg lg:text-2xl text-black font-bold leading-7 opacity-90 mr-1 lg:mr-5">
+                <h6 className="text-md lg:text-2xl text-black font-bold leading-7 opacity-90 mr-1 lg:mr-5">
                   {item.petshop.name}
                 </h6>
               </div>
               <div className="flex flex-row">
-                <p className="text-lg lg:text-xl  w-[300px] text-primary font-medium mt-2">
-                  <bdi>{`${item.price} تومان`}</bdi>
+                <p className="text-sm lg:text-xl  w-[60%] text-primary font-medium mt-2">
+                  <bdi>{`${item.price.toLocaleString()} تومان`}</bdi>
                 </p>
                 <button
                   onClick={() => handleAddToBasket(item.id, item.price)}
-                  className="text-base text-center text-white w-[40%] lg:w-full  font-bold bg-primary w-full py-3 px-5 rounded-[12px] lg:rounded-[15px] mr-2 lg:mr-5"
+                  className="text-base text-center text-white w-[40%] lg:w-full px-3 font-bold bg-primary w-full h-[50px] rounded-[12px] lg:rounded-[15px] mr-2 lg:mr-5"
                 >
                   افزودن به سبد
                 </button>

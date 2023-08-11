@@ -37,15 +37,17 @@ export default function DeleteModal({
   return (
     <div>
       {/* for more-modal  */}
-      <input type="checkbox" id="More-modal" className="modal-toggle" />
+      <input type="checkbox" id="More-modal" className="modal-toggle " />
       <label htmlFor="More-modal" className="modal cursor-pointer">
         <label className="modal-box w-full absolute lg:relative inset-x-0 bottom-0 mx-auto p-0 bg-white rounded-none">
           <div className="w-full flex flex-col justify-between items-end">
             <label
+              onClick={handleDeleteItem}
               htmlFor="Trash-modal"
-              className="w-full flex flex-row items-center px-10 py-4 border-b-[1px] border-gray-400 solid"
+              className="w-full flex  flex-row items-center px-10 py-4 border-b-[1px] border-gray-400 solid"
             >
               <Image
+                className="cursor-pointer"
                 src={TrashRed_Icon}
                 alt="TrashIcon"
                 width={15}
@@ -59,7 +61,10 @@ export default function DeleteModal({
               htmlFor="More-modal"
               className="w-full flex flex-row items-center px-9 py-3"
             >
-              <Link href="/dashboard/my-pets/edit" className="flex flex-row">
+              <Link
+                href={`/dashboard/my-pets/edit/${id}`}
+                className="flex flex-row"
+              >
                 <Image src={Edit2_Icon} alt="EditIcon" width={15} height={15} />
                 <p className="text-base text-black font-medium leading-8 mr-2">
                   ویرایش پت
@@ -80,7 +85,11 @@ export default function DeleteModal({
                   حذف پت
                 </p>
                 <label onClick={() => setShowModal(false)}>
-                  <Image src={CloseButton_Icon} alt="CloseIcon" />
+                  <Image
+                    className="cursor-pointer"
+                    src={CloseButton_Icon}
+                    alt="CloseIcon"
+                  />
                 </label>
               </div>
               <p className="text-base lg:text-xl text-gray-400 text-right font-medium leading-8 my-2 lg:my-5">
@@ -89,13 +98,13 @@ export default function DeleteModal({
               <div className="flex flex-row items-center justify-between w-full lg:w-1/2">
                 <label
                   onClick={handleDeleteItem}
-                  className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 lg:px-8 rounded-[5px] bg-error ml-2 border-[2px] solid border-error"
+                  className="w-full text-sm cursor-pointer text-white text-center font-semibold py-3 lg:py-2 lg:px-8 rounded-[5px] bg-error ml-2 border-[2px] solid border-error"
                 >
                   حذف پت
                 </label>
                 <label
                   onClick={() => setShowModal(false)}
-                  className="w-full text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
+                  className="w-full cursor-pointer text-sm text-error text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-white border-[2px] solid border-error"
                 >
                   انصراف
                 </label>
