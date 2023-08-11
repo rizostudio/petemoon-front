@@ -82,7 +82,7 @@ export default function BasketItem({ item, index }) {
           <bdi>{item.category}</bdi>
         </p>
         <div className="hidden lg:flex items-center content-start my-2">
-          <h2 className="text-2xl text-black font-bold leading-8">
+          <h2 className="text-2xl  text-black font-bold leading-8">
             {item.name}
           </h2>
           {item.discount && (
@@ -92,7 +92,7 @@ export default function BasketItem({ item, index }) {
           )}
         </div>
         <div className="flex lg:hidden justify-between items-center">
-          <h2 className="text-base text-black font-medium leading-8">
+          <h2 className="text-base producatrTitleMob text-black font-medium leading-8">
             {item.name}
           </h2>
           <div className="flex flex-row items-center mr-1">

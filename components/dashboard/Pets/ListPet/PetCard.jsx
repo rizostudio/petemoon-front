@@ -89,7 +89,7 @@ export default function PetCard({ item, setDeleteHandler }) {
                   src={
                     item.photo
                       ? `https://api.petemoon.com${item.photo}`
-                      : PetPicPreserve
+                      : "/assets/dashboard/defaultpet.jpg"
                   }
                   alt="PetPic"
                   width={100}

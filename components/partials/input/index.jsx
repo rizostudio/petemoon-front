@@ -35,7 +35,7 @@ export default function FloatLabelInput({
           isGregorian={false}
           input={true}
           placeholder="تاریخ را وارد کنید"
-          value={value ? moment(value) : ""}
+          value={value ? moment(value) : moment(new Date())}
           // selectedDay={value}
           onChange={onChange}
           selectedBackgroundColor={"#FF0000"}

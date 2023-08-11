@@ -145,7 +145,7 @@ export default function DashboardLayout({ children }) {
     <>
       <ToastContainer />
       <BottomNavigation />
-      <div className="w-full h-screen flex flex-row justify-between items-stretch mb-20 lg:mb-0">
+      <div className="w-full h-screen flex flex-row justify-between items-stretch ">
         {/* Drawer */}
         <div
           id="Drawer"
@@ -379,7 +379,7 @@ export default function DashboardLayout({ children }) {
               </Link>
             </div>
           </div>
-          <div className=" w-full h-full p-10 pb-10 lg:px-20 lg:py-12 overflow-y-scroll">
+          <div className=" w-full h-full p-5 pb-10 lg:px-20 lg:py-12 overflow-y-scroll mb-[70px] lg:mb-0">
             {/* for showing page title and return to home */}
             {pageName && (
               <div className="w-full flex lg:hidden flex-row justify-between items-center mb-10">

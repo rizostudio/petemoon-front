@@ -1,12 +1,10 @@
 import { errorResponse, successResponse } from "../error";
 import { httpRequest } from "../http";
 
-export const changeBasketToOrder = async (addressId, discount) => {
+export const handleDiscountCode = async (code) => {
   try {
-    const response = await httpRequest.post("/cart/order", {
-      address: addressId,
-      shipping_method: 1,
-      discount: discount ? discount : null,
+    const response = await httpRequest.post("/payment/discount-calculator/", {
+      code: code,
     });
     const data = response.data.data;
     return successResponse(data);

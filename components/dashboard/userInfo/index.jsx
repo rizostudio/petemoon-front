@@ -84,12 +84,12 @@ export default function UserInfo() {
   return (
     <div className="flex flex-col justify-between items-stretch">
       <div className="w-full lg:hidden mb-10 mt-2 lg:order-2 flex flex-row justify-start items-center self-end">
-        <Image
+        {/* <Image
           src={Profile_Alt_Pic}
           alt="Profile-Pic-Alt"
           height={75}
           width={75}
-        />
+        /> */}
         <div className="mr-5 flex flex-col">
           <p className="text-black text-right font-black lg:text-white">
             {values.first_name}

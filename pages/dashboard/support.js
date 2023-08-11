@@ -105,15 +105,12 @@ export default function support() {
             </div>
             <Image src={Phone_Icon} alt="PhoneIcon" />
           </div>
-          <div className="flex flex-row justify-between xs:flex-wrap items-center mt-2">
-            <p className="text-sm text-black font-medium leading-4 after:w-[2px] after:h-4 after:bg-gray-200 after:inline-block after:rounded-sm after:mx-5 after:align-middle">
+          <div className="flex flex-row justify-around xs:flex-wrap items-center mt-2">
+            <p className="text-sm text-black font-medium leading-4 ">
               02186655877-90
             </p>
-            <p className="text-sm text-black font-medium leading-4 after:w-[2px] after:h-4 after:bg-gray-200 after:inline-block after:rounded-sm after:mx-5 after:align-middle">
+            <p className="text-sm text-black font-medium leading-4    ">
               02186655877-91
-            </p>
-            <p className="text-sm text-black font-medium leading-4">
-              02186655877-92
             </p>
           </div>
         </div>

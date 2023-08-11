@@ -382,6 +382,9 @@ select option:hover {
     overflow: scroll;
     border-radius: 0 0 15px 15px !important;
   }
+  .searchh {
+    top: 64px;
+  }
 }
 .search div {
   padding: 0 20px;
@@ -413,6 +416,13 @@ select option:hover {
 .producatrTitle {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.producatrTitleMob {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -7,26 +7,28 @@ import Link from "next/link";
 
 export default function AddNewAddress() {
   return (
-    <div className="w-full flex flex-row lg:flex-col justify-center items-start lg:items-center mt-10 lg:mt-2 py-5 lg:py-10 bg-primary lg:bg-white rounded-[12px] lg:rounded-[25px] shadow-shadowB">
-      <Image
-        src={LocationAdd_White_Icon}
-        alt="LocationAddIcon"
-        className="mr-2 lg:mr-0 lg:hidden"
-      />
-      <div className="w-fit cursor-pointer">
-        <Link href={"/dashboard/addresses/create"}>
+    <Link href={"/dashboard/addresses/create"}>
+      <div className="w-full flex flex-row lg:flex-col justify-center items-start lg:items-center mt-10 lg:mt-2 py-5 lg:py-10 bg-primary lg:bg-white rounded-[12px] lg:rounded-[25px] shadow-shadowB">
+        <Image
+          src={LocationAdd_White_Icon}
+          alt="LocationAddIcon"
+          className="mr-2 lg:mr-0 lg:hidden"
+        />
+
+        <div className="w-fit cursor-pointer">
           <Image
             src={LocationAdd_Icon}
             alt="LocationAddIcon"
             className="hidden lg:block"
           />
+        </div>
+
+        <Link href={"/dashboard/addresses/create"}>
+          <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
+            ثبت آدرس جدید
+          </p>
         </Link>
       </div>
-      <Link href={"/dashboard/addresses/create"}>
-        <p className="text-lg lg:text-3xl text-white lg:text-primary text-center font-medium lg:font-bold leading-7 lg:mt-5">
-          ثبت آدرس جدید
-        </p>
-      </Link>
-    </div>
+    </Link>
   );
 }

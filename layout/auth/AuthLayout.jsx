@@ -4,6 +4,7 @@ import backgroundLines from "@/assets/common/signUpLoginLines.png";
 import leftArrow from "@/assets/common/leftArrow.png";
 import bigPetsImage from "@/assets/signup/signupImage.png";
 import smallPetsImage from "@/assets/login/loginImage.png";
+import Link from "next/link";
 //component
 import PetemoonLogo from "@/components/partials/logo";
 
@@ -12,9 +13,11 @@ export default function AuthLayout({ children, text }) {
     <div className="flex flex-col lg:flex-row w-full bg-white min-h-screen max-h-auto lg:bg-[#F1F1F1]">
       <div className="flex relative justify-center items-center lg:hidden w-full p-10  z-10 bg-gradient-to-br from-primary via-primary to-[#acd4f7]">
         <div className="absolute left-10 top-10 lg:hidden">
-          <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-primary-light active:bg-primary-light focus:bg-primary-light">
-            <img src={leftArrow.src} className="w-[15%]" />
-          </button>
+          <Link href="/">
+            <button className="btn btn-square btn-md md:btn-lg border-0 rounded-2xl bg-primary-light active:bg-primary-light focus:bg-primary-light">
+              <img src={leftArrow.src} className="w-[15%]" />
+            </button>
+          </Link>
         </div>
         <div className="flex w-full">
           <div className="w-full">

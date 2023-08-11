@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { changeBasketToOrder } from "@/services/basket/changeBasketToOrder";
 import { Basket } from "@/localSttorage/basket";
+import { handleDiscountCode } from "@/services/basket/handleDiscountCode";
 
-export default function DiscountCode({ totalBasket, shipping }) {
-  const [codeStatus, setCodeStatus] = useState({
-    status: "notYet",
-    value: null,
-  });
+export default function DiscountCode({
+  totalBasket,
+  shipping,
+  setCountOfDiscount,
+  setDiscount,
+  discount,
+}) {
+  const [code, setCode] = useState("");
   const { state, dispatch } = BasketContext();
   const handleOrderSubmite = async () => {
-    const response = await changeBasketToOrder(state.address.id);
+    const response = await changeBasketToOrder(state.address.id, discount);
     if (response.success) {
       dispatch({
         type: "EMPTY_BASKET",
@@ -19,9 +23,19 @@ export default function DiscountCode({ totalBasket, shipping }) {
       window.location.href = response.data.data.url;
     }
   };
+  const handlediscount = async () => {
+    const response = await handleDiscountCode(code);
+    if (response.success) {
+      setCountOfDiscount(response?.data?.discount_percentage);
+      setDiscount(code);
+    }
+  };
+  const handleChange = (e) => {
+    setCode(e.target.value);
+  };
   return (
     <div className="flex justify-between mt-5 lg:mt-8 px-10 lg:px-[120px]">
-      <form
+      <div
         // onSubmit={submitHandler}
         className="flex flex-col lg:flex-row lg:items-end w-full lg:w-2/3"
       >
@@ -31,8 +45,7 @@ export default function DiscountCode({ totalBasket, shipping }) {
           </label>
           <input
             type="text"
-            // value={offCode}
-            // onChange={(event) => setOffCode(event.target.value)}
+            onChange={handleChange}
             className="text-base text-black font-medium leading-6 px-5 py-4 lg:px-4 lg:py-3 bg-white border-[1px] border-third rounded-[12px] lg:rounded-[5px] appearance-none focus:border-primary focus:outline-none focus:ring-0 peer"
           />
           {/* {codeStatus.status ? (
@@ -69,13 +82,14 @@ export default function DiscountCode({ totalBasket, shipping }) {
             <bdi>انصراف</bdi>
           </button>
           <button
-            type="submit"
+            onClick={handlediscount}
+            // type="submit"
             className="text-base text-black font-medium leading-7 appearance-none w-3/5 py-2 bg-[#2DB95D33] border-[1px] border-verify rounded-[5px] mr-2"
           >
             <bdi>ثبت</bdi>
           </button>
         </div>
-      </form>
+      </div>
 
       <div className="hidden lg:flex flex-col justify-between items-center w-1/3 p-5 mr-5 bg-[#ea63521a] rounded-[15px]">
         <div className="flex justify-between w-full">

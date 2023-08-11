@@ -11,7 +11,7 @@ function ProducsBox({ data }) {
   const [lastEllement, setLastEllement] = useState(null);
   const router = useRouter();
   const [page, setPage] = useState(2);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(15);
   const [products, setProducts] = useState(data);
   const [loading, setloading] = useState(false);
 
@@ -29,8 +29,7 @@ function ProducsBox({ data }) {
       const response = await getListProducts(queryParams.toString());
       if (response.success) {
         console.log(response.data);
-        if (parseInt(response.data.count) < 5) {
-          // setProducts((prev) => [...prev, ...response.data.products]);
+        if (parseInt(response.data.count) < 15) {
           setLastEllement(null);
         } else {
           setProducts((prev) => [...prev, ...response.data.products]);

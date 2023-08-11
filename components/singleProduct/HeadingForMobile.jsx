@@ -12,11 +12,11 @@ export default function HeadingForMobile({ data }) {
   const router = useRouter();
   return (
     <div className="flex lg:hidden flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10">
-      <div className="flex flex-col justify-end">
+      <div className="flex flex-col w-[80%] justify-end">
         <div className="flex flex-row items-center">
           <h2
             className={clsx(
-              "text-base text-black font-black w-[80%] leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
+              "text-base text-black font-black w-[80%]  leading-7 opacity-90 before:inline-block before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]",
               {
                 "before:bg-primary": data.best_pricing?.inventory,
                 "before:bg-gray-400": !data.best_pricing?.inventory,
@@ -38,25 +38,25 @@ export default function HeadingForMobile({ data }) {
           </p>
         )}
       </div>
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row w-[20] justify-between items-center">
         <Link
           href={"/cart"}
-          className="p-[10px] border-[1px] border-primary solid rounded-[15px]"
+          className="p-[15px] border-[1px] border-primary solid rounded-[15px]"
         >
           <Image
-            width={30}
-            height={30}
+            width={15}
+            height={15}
             src={ShopBagRedMobile_Icon}
             alt="RedShopBagIcon"
           />
         </Link>
         <div
           onClick={() => router.back()}
-          className="p-[10px] px-4 mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
+          className="p-[15px]  mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
         >
           <Image
-            width={15}
-            height={15}
+            width={10}
+            height={10}
             src={leftArrow_Icon}
             alt="LeftArrowIcon"
           />

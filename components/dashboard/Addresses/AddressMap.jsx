@@ -38,6 +38,10 @@ export default function AddressMap() {
 
   return (
     <>
+      {/* <img
+        src="https://api.neshan.org/v2/static?key=web.41845da087294bf384c6c3ed2a423fea&type=neshan&zoom=ZOOM_LEVEL&center=51.36281969540723,35.69672648316882&width=150&height=150&marker=red"
+        alt=""
+      /> */}
       <NeshanMap
         mapKey="web.41845da087294bf384c6c3ed2a423fea"
         defaultType="neshan"

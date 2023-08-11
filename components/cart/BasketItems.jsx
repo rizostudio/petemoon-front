@@ -28,7 +28,7 @@ export default function BasketItems() {
     return total + parseInt(item.count) * parseInt(item.price);
   }, 0);
   return (
-    <div className="flex flex-col justify-center items-center px-10 lg:px-0 lg:relative mb-5 lg:mb-0">
+    <div className="flex flex-col justify-center items-center px-3 lg:px-0 lg:relative mb-5 lg:mb-0">
       <div className="lg:m-5 w-full my-2 lg:my-1">
         {state?.basket?.length ? (
           state?.basket?.map((item, index) => (

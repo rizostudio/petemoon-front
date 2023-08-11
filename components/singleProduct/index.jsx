@@ -130,7 +130,7 @@ export default function SingleProduct({ data }) {
               />
             </div>
             {/* Gallery */}
-            <div className="self-center w-full lg:w-[750px] h-[500px] lg:h-[560px] rounded-[15px]   solid">
+            <div className="self-center w-full lg:w-[750px] h-[400px] lg:h-[560px] rounded-[15px]   solid">
               <Image
                 style={{ width: "100%", height: "100%" }}
                 width={100}
