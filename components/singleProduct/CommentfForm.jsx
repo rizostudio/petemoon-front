@@ -48,7 +48,7 @@ export default function CommentfForm({
                   />
                 </label>
               </div>
-              <form
+              <div
                 id="form"
                 onSubmit={(event) => event.preventDefault()}
                 className="flex flex-col items-stretch"
@@ -142,7 +142,7 @@ export default function CommentfForm({
                     ثبت دیدگاه
                   </label>
                 </div>
-              </form>
+              </div>
             </label>
           </label>
         </div>

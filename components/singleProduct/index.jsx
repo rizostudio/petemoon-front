@@ -42,7 +42,7 @@ export default function SingleProduct({ data }) {
       initialValues: {
         title: "",
         description: "",
-        rate: "",
+        rate: 3,
       },
       onSubmit: async (values) => {
         const reesponse = await createComment(data.slug, values);
@@ -118,9 +118,12 @@ export default function SingleProduct({ data }) {
           })}
         >
           {/*Heading for mobile */}
-          <HeadingForMobile data={data} />
+          <HeadingForMobile
+            handleAddToBookmark={handleAddToBookmark}
+            data={data}
+          />
           {/* Summary box */}
-          <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  ">
+          <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-5 py-5 lg:px-0 lg:py-10  ">
             <div className="hidden lg:block p-10">
               <Image
                 className="cursor-pointer"

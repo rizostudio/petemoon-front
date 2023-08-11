@@ -107,7 +107,7 @@ export default function SummeryAvailebility({ data }) {
                 قیمت فروشنده:
               </p>
               <p className="text-lg text-primary font-medium leading-10 mr-20">
-                <bdi>{`${data.price} تومان`}</bdi>
+                <bdi>{`${data.price.toLocaleString()} تومان`}</bdi>
               </p>
             </div>
             <button
