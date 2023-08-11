@@ -43,7 +43,7 @@ export default function Comments({
                 </bdi>
               </p>
               <p className="text-base text-gray-400 font-medium leading-5 mr-2 lg:mr-5">
-                <bdi>{item.user}</bdi>
+                <bdi>{item.user?.name}</bdi>
               </p>
             </div>
           </div>

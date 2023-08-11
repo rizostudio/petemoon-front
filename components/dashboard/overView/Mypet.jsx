@@ -74,7 +74,7 @@ export default function Mypet({ pet }) {
               width={100}
               height={100}
               src={
-                pet?.length
+                pet?.length && pet[0].photo !== null
                   ? `https://api.petemoon.com${pet[0].photo}`
                   : "/assets/dashboard/defaultpet.jpg"
               }

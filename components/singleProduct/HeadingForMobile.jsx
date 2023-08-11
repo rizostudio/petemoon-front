@@ -8,10 +8,10 @@ import StarGold_Icon from "../../assets/common/startGold.svg";
 import ShopBagRedMobile_Icon from "../../assets/common/shopping-cartRedIcon2.svg";
 import leftArrow_Icon from "../../assets/common/leftArrowWhite.svg";
 
-export default function HeadingForMobile({ data }) {
+export default function HeadingForMobile({ data, handleAddToBookmark }) {
   const router = useRouter();
   return (
-    <div className="flex lg:hidden flex-row justify-between items-center px-10 py-5 lg:px-0 lg:py-10">
+    <div className="flex lg:hidden flex-row justify-between items-center px-5 py-5 lg:px-0 lg:py-10">
       <div className="flex flex-col w-[80%] justify-end">
         <div className="flex flex-row items-center">
           <h2
@@ -39,17 +39,17 @@ export default function HeadingForMobile({ data }) {
         )}
       </div>
       <div className="flex flex-row w-[20] justify-between items-center">
-        <Link
-          href={"/cart"}
-          className="p-[15px] border-[1px] border-primary solid rounded-[15px]"
+        <div
+          onClick={handleAddToBookmark}
+          className="p-[13px] border-[1px] border-primary solid rounded-[15px]"
         >
           <Image
-            width={15}
-            height={15}
-            src={ShopBagRedMobile_Icon}
+            width={23}
+            height={23}
+            src="/assets/common/BookmarkBlackIcon.svg"
             alt="RedShopBagIcon"
           />
-        </Link>
+        </div>
         <div
           onClick={() => router.back()}
           className="p-[15px]  mr-2 bg-[#ECA299] border-[1px] border-primary solid rounded-[15px]"
