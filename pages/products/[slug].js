@@ -28,15 +28,14 @@ const Product = ({ product }) => {
 };
 export async function getStaticProps(context) {
   const { slug } = context.params;
-  console.log(slug);
   const response = await getSingleProduct(slug);
 
   return {
     props: {
       product: response.data,
       slug,
-      revalidate: 60,
     },
+    revalidate: 60,
   };
 }
 export async function getStaticPaths() {
