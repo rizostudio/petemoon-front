@@ -26,39 +26,6 @@ export default function SummeryFeature({ data }) {
           </p>
         </div>
       ))}
-
-      {/* <div className="flex flex-row items-center align-middle my-1 mr-5">
-        <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>نوع:</bdi>
-        </p>
-        <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.category.name}</bdi>
-        </p>
-      </div>
-      <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
-        <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>کشور سازنده:</bdi>
-        </p>
-        <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.made_in}</bdi>
-        </p>
-      </div>
-      <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
-        <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>ابعاد:</bdi>
-        </p>
-        <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.size} cm</bdi>
-        </p>
-      </div>
-      <div className="lg:hidden flex flex-row items-center align-middle my-1 mr-5">
-        <p className='text-base lg:text-lg text-gray-400 font-bold leading-7 opacity-90 before:content-["."] before:text-4xl before:ml-2'>
-          <bdi>وزن:</bdi>
-        </p>
-        <p className="text-base lg:text-lg text-black font-bold leading-7 opacity-90 mr-4 lg:mr-2 align-bottom">
-          <bdi>{data.weight} گرم</bdi>
-        </p>
-      </div> */}
     </div>
   );
 }

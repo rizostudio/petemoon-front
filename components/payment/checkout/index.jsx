@@ -27,13 +27,7 @@ export default function OrderSummery() {
     shipping();
   }, []);
   const { state, dispatch } = BasketContext();
-  const router = useRouter();
-  const data = [1, 2, 3, 4, 5];
-  const discountData = [
-    { code: "1234567", value: 70000 },
-    { code: "4567", value: 80000 },
-    { code: "123", value: 20000 },
-  ];
+
   const totalBasket = state.basket.reduce((total, item) => {
     const totalwithdiscount =
       total + parseInt(item.count) * parseInt(item.price);

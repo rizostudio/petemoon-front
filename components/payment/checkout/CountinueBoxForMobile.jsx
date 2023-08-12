@@ -10,8 +10,9 @@ export default function CountinueBoxForMobile({ totalBasket, shipping }) {
       dispatch({
         type: "EMPTY_BASKET",
       });
+      console.log(response);
       Basket.remove();
-      window.location.href = response.data.data.url;
+      // window.location.href = response.data.data.url;
     }
   };
   return (

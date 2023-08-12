@@ -19,7 +19,7 @@ export default function SetAddress() {
   const { state, dispatch } = BasketContext();
   const dataFetchedRef = useRef(false);
   const [AddressesArr, setAddressesArr] = useState([]);
-  const [selectAddress, setSelectedAddress] = useState(state.address);
+  const [selectAddress, setSelectedAddress] = useState(null);
   useEffect(() => {
     const getData = async () => {
       const response = await getListAddress();
@@ -48,7 +48,7 @@ export default function SetAddress() {
       state.basket.map((item) => {
         if (!payload[item.id]) payload[item.id] = parseInt(item.count);
       });
-      const response = await postBasketToServer(payload, state.address.id);
+      const response = await postBasketToServer(payload, selectAddress?.id);
       if (response.success) {
         router.push("/payment/checkout");
       }

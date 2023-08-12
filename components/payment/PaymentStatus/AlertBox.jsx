@@ -3,10 +3,10 @@ import Image from "next/image";
 import clsx from "clsx";
 
 //media
-import infoIcon from "../../assets/alertBox/info.svg";
-import errorIcon from "../../assets/alertBox/error.svg";
-import verifyIcon from "../../assets/alertBox/check.svg";
-import closeIcon from "../../assets/alertBox/x.svg";
+// import infoIcon from "../../assets/alertBox/info.svg";
+// import errorIcon from "../../assets/alertBox/error.svg";
+// import verifyIcon from "../../assets/alertBox/check.svg";
+// import closeIcon from "../../assets/alertBox/x.svg";
 export default function AlertBox({ alertKind, title, text }) {
   return (
     <div
@@ -21,12 +21,14 @@ export default function AlertBox({ alertKind, title, text }) {
     >
       <div className="flex items-start">
         <Image
+          width={30}
+          height={30}
           src={
             alertKind == "info"
-              ? infoIcon
+              ? "/assets/alertBox/info.svg"
               : alertKind == "verify"
-              ? verifyIcon
-              : errorIcon
+              ? "/assets/alertBox/check.svg"
+              : "/assets/alertBox/error.svg"
           }
           alt="alertIcon"
         />
@@ -43,7 +45,12 @@ export default function AlertBox({ alertKind, title, text }) {
           )}
         </div>
       </div>
-      <Image src={closeIcon} alt="closeIcon" />
+      <Image
+        width={30}
+        height={30}
+        src={"/assets/alertBox/x.svg"}
+        alt="closeIcon"
+      />
     </div>
   );
 }
