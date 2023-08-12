@@ -22,7 +22,7 @@ import { Navigation, Pagination, Autoplay } from "swiper";
 const Slider = () => {
   const data = [
     {
-      image: Slider_Pic2,
+      image: "../../assets/homePage/slider2.jpg",
       title: "  محصولات  سگ",
       text: "خرید آسان با تخفیف ویژه و ارسال سریع در تهران",
       CTA: "سگ",

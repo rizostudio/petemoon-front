@@ -46,7 +46,7 @@ export default function HeadingForMobile({ data, handleAddToBookmark }) {
           <Image
             width={23}
             height={23}
-            src="/assets/common/BookmarkBlackIcon.svg"
+            src="/assets/product/heart.svg"
             alt="RedShopBagIcon"
           />
         </div>
