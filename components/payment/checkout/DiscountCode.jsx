@@ -15,12 +15,14 @@ export default function DiscountCode({
   const { state, dispatch } = BasketContext();
   const handleOrderSubmite = async () => {
     const response = await changeBasketToOrder(state.address.id, discount);
+    console.log(response);
     if (response.success) {
       dispatch({
         type: "EMPTY_BASKET",
       });
       Basket.remove();
-      window.location.href = response.data.data.url;
+
+      window.location.href = response.data?.url;
     }
   };
   const handlediscount = async () => {

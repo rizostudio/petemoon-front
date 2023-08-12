@@ -8,7 +8,8 @@ export const changeBasketToOrder = async (addressId, discount) => {
       shipping_method: 1,
       discount: discount ? discount : null,
     });
-    const data = response.data.data;
+    const data = response.data;
+    console.log(data);
     return successResponse(data);
   } catch (error) {
     return errorResponse(error?.response?.data?.errors);
