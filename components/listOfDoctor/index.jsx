@@ -16,90 +16,16 @@ import DoctorPic from "@/assets/vet/DoctorPic.svg";
 //service
 
 //component
-import FilterinMobile from "@/components/listOfProduct/FilterinMobile";
-import SortInMobile from "@/components/listOfProduct/SortInMobile";
-import FilterInDesktop from "@/components/listOfProduct/FilterInDesktop";
-import SortInDesktop from "@/components/listOfProduct/SortInDesktop";
+import FilterinMobile from "@/components/listOfDoctor/FilterinMobile";
+import SortInMobile from "@/components/listOfDoctor/SortInMobile";
+import FilterInDesktop from "@/components/listOfDoctor/FilterInDesktop";
+import SortInDesktop from "@/components/listOfDoctor/SortInDesktop";
 import { getProductFilter } from "@/services/product/getProductFilters";
 // import ProducsBox from "./ProducsBox";
 import Loading from "../partials/loading";
 import DoctorBox from "./DoctorBox";
 
-export default function ProductList() {
-  const data = [
-    {
-      name: "دکتر افشین نوری",
-      pic: DoctorPic,
-      adviceAmount: "50",
-      score: "5",
-      commentsAmount: "200",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر صادق صالحی",
-      pic: DoctorPic,
-      adviceAmount: "75",
-      score: "4",
-      commentsAmount: "100",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر ساناز شیری",
-      pic: DoctorPic,
-      adviceAmount: "100",
-      score: "3",
-      commentsAmount: "300",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر افشین نوری",
-      pic: DoctorPic,
-      adviceAmount: "50",
-      score: "5",
-      commentsAmount: "200",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر صادق صالحی",
-      pic: DoctorPic,
-      adviceAmount: "75",
-      score: "4",
-      commentsAmount: "100",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر ساناز شیری",
-      pic: DoctorPic,
-      adviceAmount: "100",
-      score: "3",
-      commentsAmount: "300",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر افشین نوری",
-      pic: DoctorPic,
-      adviceAmount: "50",
-      score: "5",
-      commentsAmount: "200",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر صادق صالحی",
-      pic: DoctorPic,
-      adviceAmount: "75",
-      score: "4",
-      commentsAmount: "100",
-      shortSpecialty: "متخصص حیوانات",
-    },
-    {
-      name: "دکتر ساناز شیری",
-      pic: DoctorPic,
-      adviceAmount: "100",
-      score: "3",
-      commentsAmount: "300",
-      shortSpecialty: "متخصص حیوانات",
-    },
-  ];
+export default function DoctorList({ list }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   //Dynamic
@@ -107,8 +33,16 @@ export default function ProductList() {
   const [MainPageOpen, setMainPageOpen] = useState(true); //for open & close Main Page in mobile
   const [FilterPageOpen, setFilterPageOpen] = useState(false); //for open & close filter Page in mobile
   const [SortPageOpen, setSortPageOpen] = useState(false); //for open & close Sort Page in mobile
-  const [petCategory, setPetCategory] = useState([]);
-  const [brand, setBrand] = useState([]);
+  const [petCategory, setPetCategory] = useState([
+    { id: "1", slug: "dog", title: "سگ" },
+    { id: "2", slug: "cat", title: "گربه" },
+    { id: "3", slug: "bired", title: "پرنده" },
+  ]);
+  const [brand, setBrand] = useState([
+    { id: "1", slug: "dog", title: "سگ" },
+    { id: "2", slug: "cat", title: "گربه" },
+    { id: "3", slug: "bired", title: "پرنده" },
+  ]);
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [sortArr, setSortArr] = useState([
@@ -138,17 +72,6 @@ export default function ProductList() {
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
-  useEffect(() => {
-    const getData = async () => {
-      const response = await getProductFilter();
-      console.log(response);
-      setBrand(response.data.brands);
-      setPetCategory(response.data.pet_types);
-      setMaxPrice(response.data.max_price);
-      setMinPrice(response.data.min_price);
-    };
-    getData();
-  }, []);
 
   return (
     <div className="bg-[#f8f8f8] lg:p-10 w-full h-full">
@@ -197,7 +120,7 @@ export default function ProductList() {
           />
         </div>
         {/* ProductsBox */}
-        {!loading ? <DoctorBox data={data} /> : <Loading />}
+        {!loading ? <DoctorBox data={list} /> : <Loading />}
       </div>
       {/* Filter Page */}
       <FilterinMobile

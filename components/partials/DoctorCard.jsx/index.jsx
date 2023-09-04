@@ -20,16 +20,23 @@ export default function index({ item }) {
             />
           </div>
           <div className="w-full h-full">
-            <Image src={item.pic} alt="Doctor Pic" className="object-cover" />
+            <Image
+              width={100}
+              height={100}
+              style={{ width: "100%", height: "100%" }}
+              src={item.photo ? item.photo : "/assets/vet/DoctorPic.svg"}
+              alt="Doctor Pic"
+              className="object-cover"
+            />
           </div>
         </div>
         <div className="flex flex-col w-full lg:mt-4 mr-3 lg:mr-0">
           <div className="flex justify-between items-center content-start">
             <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-              {item.name}
+              {item.first_name + item.last_name}
             </h2>
             <p className="hidden lg:block text-sm text-info font-normal leading-5">
-              <bdi>{`${item.commentsAmount} دیدگاه`}</bdi>
+              <bdi>{`${item.comments_count} دیدگاه`}</bdi>
             </p>
           </div>
           <div className="w-full flex lg:flex-col-reverse justify-between items-center lg:items-stretch">
@@ -38,26 +45,28 @@ export default function index({ item }) {
             </h4>
             <div className="lg:w-full flex lg:flex-row-reverse lg:justify-between items-center">
               <p className="text-xs lg:text-sm text-gray-400 font-medium leading-4 opacity-95 ml-2 lg:m-0">
-                <bdi>{`${item.adviceAmount} مشاوره`}</bdi>
+                <bdi>{`${5} مشاوره`}</bdi>
               </p>
               <div className="flex items-center">
                 <div className="hidden lg:flex items-center">
-                  {starsBoxHandler(item.score)}
+                  {starsBoxHandler(item.rate ? item.rate : 5)}
                 </div>
-                <Image
+                {/* <Image
                   src={StarGold_Icon}
                   alt="GoldenStarIcon"
                   className="w-2 h-2 lg:hidden"
-                />
-                <p className="text-[11px] lg:text-xs text-gray-400 font-medium leading-2.5 lg:leading-6 align-bottom  mr-[2.5px] lg:mr-1 align-middle">{`(${item.score})`}</p>
+                /> */}
+                <p className="text-[11px] lg:text-xs text-gray-400 font-medium leading-2.5 lg:leading-6 align-bottom  mr-[2.5px] lg:mr-1 align-middle">{`(${
+                  item.rate ? item.rate : 5
+                })`}</p>
               </div>
             </div>
           </div>
           <p className="lg:hidden text-xs text-info font-normal leading-4 opacity-90 mt-1">
-            <bdi>{`${item.commentsAmount} دیدگاه`}</bdi>
+            <bdi>{`${item.comments_count} دیدگاه`}</bdi>
           </p>
           <Link
-            href={`/vet/${index}`}
+            href={`/vet/${item.id}`}
             className="self-end flex lg:flex-col items-center p-2 lg:py-1.5 lg:px-5 mt-3 lg:bg-primary lg:rounded-[10px]"
           >
             {/* <Image src={call_Icon} alt="Call Icon" className="lg:hidden" /> */}
