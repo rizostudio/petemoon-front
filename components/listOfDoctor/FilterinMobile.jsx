@@ -27,15 +27,7 @@ export default function FilterinMobile({
       query,
     });
   };
-  const filterPriceProduct = (event, title, slug) => {
-    const query = event.target.value
-      ? queryString.addQueryArg(router.query, title, slug)
-      : queryString.removeListQueryArg(router.query, title, slug);
-    router.push({
-      pathname: router.pathname,
-      query,
-    });
-  };
+
   return (
     <div
       className={clsx("lg:hidden h-full w-full", {
@@ -62,28 +54,6 @@ export default function FilterinMobile({
       </div>
       <div>
         <div className="flex flex-col items-stretch mt-5">
-          <div className="px-10 py-4 border-b-[1px] border-solid border-secondary">
-            <p className="text-base text-black font-medium leading-7 ">برند</p>
-            <div>
-              {brand.map((item, index) => (
-                <div key={v4()} className="flex items-center">
-                  <input
-                    id={`brand${index}`}
-                    type="checkbox"
-                    checked={router.query?.brand?.includes(item.slug)}
-                    onChange={(e) => {
-                      filterProducts(e, "brand", item.slug);
-                    }}
-                    className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
-                  />
-                  <label htmlFor={`brand${index}`} className="mr-2">
-                    {item.name}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </div>
-
           <div className="px-10 py-4 flex flex-col border-b-[1px] border-solid border-secondary pb-10">
             <p className="text-base text-black font-medium leading-7 mt-2">
               نوع پت
@@ -94,14 +64,16 @@ export default function FilterinMobile({
                   <input
                     id={`kind${index}`}
                     type="checkbox"
-                    checked={router?.query?.pet_category?.includes(item.slug)}
+                    checked={router?.query?.pet_type_experience?.includes(
+                      item.slug
+                    )}
                     onChange={(e) => {
-                      filterProducts(e, "pet_category", item.slug);
+                      filterProducts(e, "pet_type_experience", item.slug);
                     }}
                     className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                   />
                   <label htmlFor={`kind${index}`} className="mr-2">
-                    {item.pet_category}
+                    {item.title}
                   </label>
                 </div>
               ))}

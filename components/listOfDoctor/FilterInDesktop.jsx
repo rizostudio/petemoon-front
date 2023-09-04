@@ -28,15 +28,6 @@ export default function FilterInDesktop({
       query,
     });
   };
-  const filterPriceProduct = (event, title, slug) => {
-    const query = event.target.value
-      ? queryString.addQueryArg(router.query, title, slug)
-      : queryString.removeListQueryArg(router.query, title, slug);
-    router.push({
-      pathname: router.pathname,
-      query,
-    });
-  };
 
   return (
     <div
@@ -79,26 +70,6 @@ export default function FilterInDesktop({
         )}
       >
         <div className="flex flex-col items-stretch">
-          <p className="text-base text-black font-medium leading-7 ">برند</p>
-          <div>
-            {brand.map((item, index) => (
-              <div key={v4()} className="flex items-center">
-                <input
-                  id={`brand${index}`}
-                  checked={router.query?.brand?.includes(item.slug)}
-                  onChange={(e) => {
-                    filterProducts(e, "brand", item.slug);
-                  }}
-                  type="checkbox"
-                  className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
-                />
-                <label htmlFor={`brand${index}`} className="mr-2 ">
-                  <bdi>{item.name}</bdi>
-                </label>
-              </div>
-            ))}
-          </div>
-
           <p className="text-base text-black font-medium leading-7 mt-6">
             نوع پت
           </p>
@@ -107,15 +78,17 @@ export default function FilterInDesktop({
               <div key={v4()} className="flex items-center">
                 <input
                   id={`kind${index}`}
-                  checked={router?.query?.pet_category?.includes(item.slug)}
+                  checked={router?.query?.pet_type_experience?.includes(
+                    item.slug
+                  )}
                   onChange={(e) => {
-                    filterProducts(e, "pet_category", item.slug);
+                    filterProducts(e, "pet_type_experience", item.slug);
                   }}
                   type="checkbox"
                   className="h-4 w-4 text-primary border-primary focus:ring-transparent rounded-[4px]"
                 />
                 <label htmlFor={`kind${index}`} className="mr-2">
-                  {item.pet_category}
+                  {item.title}
                 </label>
               </div>
             ))}

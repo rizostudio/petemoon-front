@@ -3,6 +3,14 @@ import { Basket } from "@/localSttorage/basket";
 export const initState = {
   basket: [],
   address: {},
+  vet: {
+    pet: null,
+    vet: null,
+    explanation: "",
+    reason: "",
+    time: "",
+    file: "",
+  },
 };
 export const reducer = (state, action) => {
   let newState;
@@ -67,6 +75,45 @@ export const reducer = (state, action) => {
       newState = {
         ...state,
         address: { ...action.payload.address },
+      };
+      break;
+    case "ADD_VET_TIME":
+      newState = {
+        ...state,
+        vet: {
+          ...state.vet,
+          vet: parseInt(action.payload.vetId),
+          time: parseInt(action.payload.time),
+        },
+      };
+      console.log(newState);
+      break;
+    case "ADD_VET_PET":
+      newState = {
+        ...state,
+        vet: {
+          ...state.vet,
+          pet: action.payload.pet,
+        },
+      };
+      break;
+    case "ADD_VET_REASON":
+      newState = {
+        ...state,
+        vet: {
+          ...state.vet,
+          explanation: action.payload.explanation,
+          reason: action.payload.reason,
+        },
+      };
+      break;
+    case "ADD_VET_FILE":
+      newState = {
+        ...state,
+        vet: {
+          ...state.vet,
+          file: action.payload.file,
+        },
       };
       break;
   }
