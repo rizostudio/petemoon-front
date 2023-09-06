@@ -84,7 +84,7 @@ const Confirm = () => {
           },
         });
         const response = await reserv(state.vet);
-        console.log(response);
+       window.location.href=response.data.url
       },
       validationSchema: PetSchema,
     });

@@ -25,6 +25,10 @@ import { getListOfDoctor } from "@/services/Doctor/getListOfDoctor";
 import { getVisitTime } from "@/services/Doctor/getVisitTime";
 import { BasketContext } from "@/store/BasketCtx/BasketContext";
 import { AuthContext } from "@/store/AuthCtx/AuthContext";
+import { useFormik, Formik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import { createCommentForDoctor } from "@/services/Doctor/addComment";
 const SingleDoctor = ({ data }) => {
   const { state, dispatch } = BasketContext();
   const { authState, authDispatch } = AuthContext();
@@ -77,7 +81,13 @@ const SingleDoctor = ({ data }) => {
   // for dynamic
   const [mainPageOpen, setMainPageOpen] = useState(true);
   const [commentPageOpen, setCommentPageOpen] = useState(false);
+  const [timeinMOdal, setTimInModal] = useState("");
   const handleChangeTime = (e) => {
+    selectedTime.map((item) => {
+      if (e.target.value == item.id) {
+        setTimInModal(item.time);
+      }
+    });
     dispatch({
       type: "ADD_VET_TIME",
       payload: {
@@ -86,6 +96,52 @@ const SingleDoctor = ({ data }) => {
       },
     });
   };
+  const CommentSchima = Yup.object().shape({
+    title: Yup.string().required("فیلد الزامی است"),
+    description: Yup.string().required("فیلد الزامی است"),
+    rate: Yup.string().required("فیلد الزامی است"),
+  });
+  const { handleChange, values, setFieldValue, handleSubmit, errors } =
+    useFormik({
+      initialValues: {
+        title: "",
+        description: "",
+        rate: 3,
+      },
+      onSubmit: async (values) => {
+        const reesponse = await createCommentForDoctor(data.id, values);
+        if (reesponse.success) {
+          toast.success(" دیدگاه شما با موفقیت ثبت شد", {
+            toastId: data.id,
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          toast.info(" مشکلی در فرایند ثبت دیدگاه وجود دارد", {
+            toastId: data.id,
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+        console.log(reesponse);
+      },
+      validationSchema: CommentSchima,
+      validateOnMount: false,
+      validateOnChange: false,
+      validateOnBlur: false,
+    });
   return (
     <MainLayout>
       <div className="w-full h-full flex flex-col justify-between items-stretch bg-[#f8f8f8] lg:px-[120px] lg:py-5">
@@ -105,7 +161,10 @@ const SingleDoctor = ({ data }) => {
                 </h2>
                 <div className="flex flex-row items-center mr-1">
                   <Image src={StarGold_Icon} alt="GoldenStarIcon" />
-                  <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${data?.average_rating})`}</p>
+
+                  <p className="text-base text-gray-400 font-medium leading-7 mr-[2px]">{`(${
+                    data?.average_rating ? data?.average_rating : 5
+                  })`}</p>
                 </div>
               </div>
             </div>
@@ -146,9 +205,13 @@ const SingleDoctor = ({ data }) => {
                 <div className="flex flex-row lg:flex-col justify-between items-center lg:items-start lg:mt-10">
                   <div className="hidden lg:flex flex-row items-center">
                     <div className="flex flex-row items-center">
-                      {starsBoxHandler(data?.average_rating)}
+                      {starsBoxHandler(
+                        data?.average_rating ? data?.average_rating : 5
+                      )}
                     </div>
-                    <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${data?.average_rating})`}</p>
+                    <p className="text-xl text-gray-400 font-medium leading-6 mr-2 align-middle">{`(${
+                      data?.average_rating ? data?.average_rating : 5
+                    })`}</p>
                   </div>
                   <Link
                     href="#cutomersComent"
@@ -195,10 +258,18 @@ const SingleDoctor = ({ data }) => {
               <div className="flex justify-between items-center w-full px-4 py-8 lg:px-[70px] lg:py:[60px] bg-[#ea63521a] rounded-[15px] lg:rounded-[20px]">
                 <div className="flex flex-col items-stretch text-center ml-2 lg:ml-7">
                   <p className="text-base lg:text-lg font-black leading-5 opacity-95">
-                    <bdi>{"آذرماه"}</bdi>
+                    <bdi>
+                      {moment(reserveDateData[0], "YYYY-MM-DD")
+                        .locale("fa")
+                        .format("mmmm")}
+                    </bdi>
                   </p>
                   <p className="text-base lg:text-xl font-black leading-6 opacity-95 mt-1 lg:mt-7">
-                    <bdi>{"1401"}</bdi>
+                    <bdi>
+                      {moment(reserveDateData[0], "YYYY-MM-DD")
+                        .locale("fa")
+                        .format("yyyy")}
+                    </bdi>
                   </p>
                 </div>
                 {reserveDateData &&
@@ -270,7 +341,7 @@ const SingleDoctor = ({ data }) => {
                       <bdi>قیمت:</bdi>
                     </p>
                     <p className='text-2xl text-primary font-semibold leading-10 mt-1 after:content-["تومان"] after:text-base after:font-normal after:leading-5 after:mr-1'>
-                      <bdi>{(63000).toLocaleString()}</bdi>
+                      <bdi>{data.price.toLocaleString()}</bdi>
                     </p>
                   </div>
                   <label
@@ -403,6 +474,7 @@ const SingleDoctor = ({ data }) => {
                         انصراف
                       </label>
                       <label
+                        onClick={handleSubmit}
                         htmlFor="comment-send-modal"
                         className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
                       >
@@ -434,7 +506,7 @@ const SingleDoctor = ({ data }) => {
                 <bdi>قیمت:</bdi>
               </p>
               <p className="text-lg text-primary font-extrabold leading-8">
-                <bdi>{(125000).toLocaleString()} تومان</bdi>
+                <bdi>{data.price.toLocaleString()} تومان</bdi>
               </p>
             </div>
           </div>
@@ -470,13 +542,13 @@ const SingleDoctor = ({ data }) => {
           </div>
           <form
             id="form"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handleSubmit}
             className="flex flex-col justify-between items-stretch"
           >
             <div className="flex flex-col items-stretch">
               <p className="text-lg text-black font-medium leading-8 mt-2">
                 <bdi>
-                  نظر خود را درباره{" "}
+                  نظر خود را درباره
                   <span className="text-primary">{data?.name}</span> برای ما
                   بفرستید:
                 </bdi>
@@ -487,24 +559,53 @@ const SingleDoctor = ({ data }) => {
               >
                 امتیاز دهید
               </label>
-              <input id="range-score" type="range" className="mt-2 mb-10" />
-              <FloatLabelInput
-                type={"text"}
-                placeholder={"عنوان نظر"}
-                name="CommentSubject"
-                h={"h-12"}
-                py={"3"}
-                dir={"rtl"}
+              <label
+                htmlFor="range-score"
+                className="text-lg text-black font-medium leading-8 mt-6"
+              >
+                {values.rate} از ۵
+              </label>
+              <input
+                onChange={handleChange}
+                value={values.rate}
+                name="rate"
+                max={5}
+                id="range-score"
+                type="range"
+                className="mt-2"
+              />
+              <label
+                htmlFor="comment-subject"
+                className="text-lg text-black font-medium leading-8 mt-10"
+              >
+                عنوان نظر
+              </label>
+              <input
+                id="comment-subject"
+                name="title"
+                onChange={handleChange}
+                value={values.title}
+                type="text"
+                className="block text-sm md:text-xl px-3 h-full ${py} w-[75%] text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
               />
               <div className="mt-4">
-                <FloatLabelInput
-                  type={"text"}
-                  placeholder={"متن نظر"}
-                  name="CommentText"
-                  h={"h-12"}
-                  py={"3"}
-                  dir={"rtl"}
-                />
+                <label
+                  htmlFor="comment-text"
+                  className="text-lg text-black font-medium leading-8 mt-5"
+                >
+                  متن نظر
+                </label>
+                <textarea
+                  // form="comment-form"
+                  id="comment-text"
+                  name="description"
+                  onChange={handleChange}
+                  value={values.description}
+                  className="block text-sm md:text-xl px-3 h-full ${py} w-full text-[#333333] rounded-lg border border-[#9B9BA1] appearance-none focus:outline-none focus:ring-0 focus:border-primary focus:border-2 peer"
+                ></textarea>
+                <bdi>
+                  <span className="text-primary">{errors.description} </span>
+                </bdi>
               </div>
             </div>
             <div className="flex flex-row items-center justify-between w-full mt-12">
@@ -517,7 +618,11 @@ const SingleDoctor = ({ data }) => {
               >
                 انصراف
               </button>
-              <button className="w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2">
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="w-3/5 text-sm text-white text-center font-semibold py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] mr-2"
+              >
                 ثبت دیدگاه
               </button>
             </div>
@@ -550,17 +655,31 @@ const SingleDoctor = ({ data }) => {
                   <p className='text-gray-400 font-bold before:inline-block  before:content-["."] before:text-4xl before:ml-2'>
                     <bdi>
                       روز و ساعت:{" "}
-                      <span className="text-black mr-1">{`${dateSelected.day} ${
-                        dateSelected.date
-                      } آذر ساعت ${"6:30"}`}</span>
+                      <span className="text-black mr-1">{`${moment(
+                        dateSelected,
+                        "YYYY-MM-DD"
+                      )
+                        .locale("fa")
+                        .format("dddd")} ${moment(dateSelected, "YYYY-MM-DD")
+                        .locale("fa")
+                        .format("DD-MM-yyyy")}  
+                        ساعت ${moment(timeinMOdal, "YYYY-M-D HH:mm:ss")
+                          .locale("fa")
+                          .format("HH:mm")}`}</span>
                     </bdi>
                   </p>
                 </div>
-                <p className="lg:hidden text-base text-gray-400 font-medium leading-6">{`${
-                  data?.name
-                } - روز ${dateSelected.day} ${
-                  dateSelected.date
-                } ساعت ${"4:40"}`}</p>
+                <p className="lg:hidden text-base text-gray-400 font-medium leading-6">{`${moment(
+                  dateSelected,
+                  "YYYY-MM-DD"
+                )
+                  .locale("fa")
+                  .format("dddd")} ${moment(dateSelected, "YYYY-MM-DD")
+                  .locale("fa")
+                  .format("DD-MM-yyyy")}  
+                        ساعت ${moment(timeinMOdal, "YYYY-M-D HH:mm:ss")
+                          .locale("fa")
+                          .format("HH:mm")}`}</p>
               </div>
               <div className="flex items-center text-base text-center font-medium lg:font-bold leading-6 w-full">
                 <Link
