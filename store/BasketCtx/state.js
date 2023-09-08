@@ -116,6 +116,12 @@ export const reducer = (state, action) => {
         },
       };
       break;
+    case "CLEAR_VET":
+      newState = {
+        ...state,
+        vet: {},
+      };
+      break;
   }
   Basket.set(JSON.stringify(newState));
   return newState;

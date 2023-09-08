@@ -180,17 +180,28 @@ const SingleDoctor = ({ data }) => {
           {/* Summary box */}
           <div className="w-full flex flex-col lg:flex-row lg:justify-evenly  items-stretch px-10 py-5 lg:px-0 lg:py-10  border-solid border-b-[2px] border-secondary">
             <div className="hidden lg:block p-10">
-              <Image src={Bookmark_Icon} alt="BookmarkIcon" />
+              {/* <Image src={Bookmark_Icon} alt="BookmarkIcon" />
               <Image
                 src={Notification_Icon}
                 alt="NotificationIcon"
                 className="my-8"
               />
               <Image src={Share_Icon} alt="ShareIcon" />
-              <Image src={Info_Icon} alt="InfoIcon" className="my-8" />
+              <Image src={Info_Icon} alt="InfoIcon" className="my-8" /> */}
             </div>
             {/* Gallery */}
-            <div className="self-center w-full lg:w-[450px] h-[200px] lg:h-[400px] rounded-[15px] border-[2px] border-primary solid"></div>
+            <div className="self-center w-full lg:w-[450px] max-h-[200px] lg:max-h-[400px] rounded-[15px] border-[2px] border-primary solid">
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                width={100}
+                height={100}
+                src={
+                  data.photo
+                    ? `https://api.petemoon.com${data.photo}`
+                    : "/assets/vet/DoctorPic.svg"
+                }
+              />
+            </div>
             <div className="xl:w-full flex flex-col lg:mr-10">
               {/* Heading for desktop */}
               <div className="flex flex-row lg:flex-col justify-between items-center lg:items-start py-4  lg:px-4 border-b-[2px] border-none lg:border-solid border-secondary">
@@ -367,20 +378,20 @@ const SingleDoctor = ({ data }) => {
                 <div key={v4()} className="mb-4 lg:mb-8">
                   <div className="flex justify-between">
                     <div className="flex justify-between items-center">
-                      <Image src={item.profilePic} alt="ProfilePic" />
+                      {/* <Image src={item.profilePic} alt="ProfilePic" /> */}
                       <h6 className="text-base lg:text-xl text-black font-black opacity-95 mr-2 ml-4 lg:mx-5">
                         <bdi>{item.title}</bdi>
                       </h6>
                       <div className="flex flex-row items-center mr-1">
                         <Image src={StarGold_Icon} alt="GoldenStarIcon" />
-                        <p className="text-lg text-gray-400 font-medium leading-5 mr-1 lg:mr-2">{`(${item.stars})`}</p>
+                        <p className="text-lg text-gray-400 font-medium leading-5 mr-1 lg:mr-2">{`(${item.rate})`}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col lg:flex-row">
+                    <div>
                       <p className="text-base text-gray-400 font-medium leading-5">
                         <bdi>{item.date}</bdi>
                       </p>
-                      <p className="text-base text-gray-400 font-medium leading-5 lg:mr-5">
+                      <p className="text-base text-gray-400 font-medium leading-5 mr-2 lg:mr-5">
                         <bdi>{item.author}</bdi>
                       </p>
                     </div>
@@ -400,6 +411,7 @@ const SingleDoctor = ({ data }) => {
               ثبت دیدگاه
             </button>
             <label
+              onClick={handleSubmit}
               htmlFor="comment-send-modal"
               className="hidden lg:block text-base text-center text-primary font-bold leading-6 self-end w-1/3 lg:w-1/4 px-10 lg:px-20 py-2 border-solid border-[1px] border-primary rounded-[12px] lg:rounded-[15px]"
             >
@@ -443,7 +455,15 @@ const SingleDoctor = ({ data }) => {
                     >
                       امتیاز دهید
                     </label>
-                    <input id="range-score" type="range" className="mt-2" />
+                    <input
+                      onChange={handleChange}
+                      value={values.rate}
+                      name="rate"
+                      max={5}
+                      id="range-score"
+                      type="range"
+                      className="mt-2"
+                    />
                     <label
                       htmlFor="comment-subject"
                       className="text-lg text-black font-medium leading-8 mt-10"
@@ -452,6 +472,9 @@ const SingleDoctor = ({ data }) => {
                     </label>
                     <input
                       id="comment-subject"
+                      name="title"
+                      onChange={handleChange}
+                      value={values.title}
                       type="text"
                       className="px-4 py-2 lg:w-3/4 mt-2 border-[1px] border-solid border-gray-400 focus-visible:border-primary rounded-[5px]"
                     />
@@ -462,8 +485,11 @@ const SingleDoctor = ({ data }) => {
                       متن نظر
                     </label>
                     <textarea
-                      form="comment-form"
+                      // form="comment-form"
                       id="comment-text"
+                      name="description"
+                      onChange={handleChange}
+                      value={values.description}
                       className="px-4 py-2 mt-2 border-[1px] border-solid border-gray-400 rounded-[5px]"
                     ></textarea>
                     <div className="self-end flex flex-row items-center justify-between w-full lg:w-2/5 mt-6">
@@ -662,7 +688,7 @@ const SingleDoctor = ({ data }) => {
                         .locale("fa")
                         .format("dddd")} ${moment(dateSelected, "YYYY-MM-DD")
                         .locale("fa")
-                        .format("DD-MM-yyyy")}  
+                        .format("dddd")}  
                         ساعت ${moment(timeinMOdal, "YYYY-M-D HH:mm:ss")
                           .locale("fa")
                           .format("HH:mm")}`}</span>
@@ -676,7 +702,7 @@ const SingleDoctor = ({ data }) => {
                   .locale("fa")
                   .format("dddd")} ${moment(dateSelected, "YYYY-MM-DD")
                   .locale("fa")
-                  .format("DD-MM-yyyy")}  
+                  .format("ddd")}  
                         ساعت ${moment(timeinMOdal, "YYYY-M-D HH:mm:ss")
                           .locale("fa")
                           .format("HH:mm")}`}</p>
@@ -706,7 +732,7 @@ const SingleDoctor = ({ data }) => {
 export async function getStaticProps(context) {
   const { vet } = context.params;
   const response = await getSingleDoctor(vet);
-  console.log(response);
+  console.log(response.data.comments);
   return {
     props: {
       data: response.data,

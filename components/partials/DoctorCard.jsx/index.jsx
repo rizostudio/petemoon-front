@@ -24,7 +24,11 @@ export default function index({ item }) {
               width={100}
               height={100}
               style={{ width: "100%", height: "100%" }}
-              src={item.photo ? item.photo : "/assets/vet/DoctorPic.svg"}
+              src={
+                item.photo
+                  ? `https://api.petemoon.com${item.photo}`
+                  : "/assets/vet/DoctorPic.svg"
+              }
               alt="Doctor Pic"
               className="object-cover"
             />

@@ -84,7 +84,12 @@ const Confirm = () => {
           },
         });
         const response = await reserv(state.vet);
-       window.location.href=response.data.url
+        if (response.data) {
+          window.location.href = response?.data.url;
+          dispatch({
+            type: "CLEAR_VET",
+          });
+        }
       },
       validationSchema: PetSchema,
     });
@@ -365,24 +370,6 @@ const Confirm = () => {
                     <p className="text-sm text-info text-right font-medium leading-4">
                       <bdi>حداکثر سایز تصویر ۲ مگابایت</bdi>
                     </p>
-                  </div>
-                  <div className="w-full flex flex-row lg:mt-6">
-                    {" "}
-                    <button
-                      onClick={() => {
-                        setSelectPage(true);
-                        setMedicalPage(false);
-                      }}
-                      className="hidden lg:block text-lg text-error text-center font-medium leading-8 p-3 lg:ml-2 lg:px-4 border-[1px] solid border-error rounded-[5px]"
-                    >
-                      انصراف
-                    </button>
-                    <button
-                      type="submit"
-                      className="w-full text-lg lg:text-xl text-black text-center font-medium leading-8 p-3 lg:px-15 lg:py-2 bg-[#CFEBD8] border-[1px] border-verify rounded-[12px] lg:rounded-[5px]"
-                    >
-                      ذخیره
-                    </button>
                   </div>
                 </div>
               </div>
