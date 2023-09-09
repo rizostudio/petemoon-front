@@ -166,7 +166,7 @@ const SingleDoctor = ({ data }) => {
                 <div className="flex flex-col justify-end">
                   <div className="flex flex-row items-center">
                     <h2 className="text-base text-black font-black leading-7 opacity-90 before:inline-block before:bg-primary before:w-2 before:h-5 before:ml-1 before:align-middle before:rounded-[2px]">
-                      {data?.first_name + data?.last_name}
+                      {data.first_name + " " + data.last_name}
                     </h2>
                     <div className="flex flex-row items-center mr-1">
                       <Image src={StarGold_Icon} alt="GoldenStarIcon" />

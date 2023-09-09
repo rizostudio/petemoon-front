@@ -37,7 +37,7 @@ export default function index({ item }) {
         <div className="flex flex-col w-full lg:mt-4 mr-3 lg:mr-0">
           <div className="flex justify-between items-center content-start">
             <h2 className="text-base lg:text-xl text-black font-medium lg:font-bold leading-8 before:hidden lg:before:inline-block before:w-2 before:h-5 before:bg-primary before:ml-1 before:rounded-[2px]">
-              {item.first_name + item.last_name}
+              {item.first_name + " " + item.last_name}
             </h2>
             <p className="hidden lg:block text-sm text-info font-normal leading-5">
               <bdi>{`${item.comments_count} دیدگاه`}</bdi>
