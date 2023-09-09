@@ -105,13 +105,17 @@ export default function MainLayout({ children }) {
               محصولات
             </Link>
             <Link
-              href="/"
-              className="text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
+              href="/listOfDoctor"
+              className={
+                router.asPath.startsWith("/listOfDoctor")
+                  ? "text-base LinkHover text-primary font-medium leading-8 mx-2 xl:mx-4"
+                  : "text-base LinkHover text-black font-medium leading-8 mx-2 xl:mx-4"
+              }
             >
               دامپزشکان
             </Link>
             <Link
-              href="https://petemoon.com/blog"
+              href="/listOfDoctor"
               className={
                 router.asPath.startsWith("/blog")
                   ? "text-base LinkHover text-primary font-medium leading-8 mx-2 xl:mx-4"
@@ -267,7 +271,7 @@ export default function MainLayout({ children }) {
                 پنل فروشندگان
               </Link>
               <Link
-                href="/"
+                href="/listOfDoctor"
                 className="text-base LinkHover text-black font-medium leading-6 my-1"
               >
                 دامپزشکان
