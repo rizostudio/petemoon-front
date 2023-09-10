@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             type="text/css"
           /> */}
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
