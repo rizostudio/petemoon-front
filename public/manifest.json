@@ -1,0 +1,19 @@
+{
+  "name": "petemoon",
+  "short_name": "petemoon",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "shortcuts": [],
+  "scope": "/",
+  "theme_color": "#fff",
+  "description": "petemoon app",
+  "icons": [
+    {
+      "src": "/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
