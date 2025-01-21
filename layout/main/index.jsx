@@ -23,6 +23,7 @@ import { AuthContext } from "@/store/AuthCtx/AuthContext";
 import { Basket } from "@/localSttorage/basket";
 import { search } from "@/services/home/search";
 import { isLogin, userDataStorage } from "@/localSttorage/auth";
+import { vetSearch } from "@/services/Doctor/search";
 
 export default function MainLayout({ children }) {
   const router = useRouter();
@@ -54,13 +55,30 @@ export default function MainLayout({ children }) {
     getInitBasket();
   }, []);
   const performSearch = debounce(async (keyword) => {
-    setSearchLoading(true);
-    const response = await search(keyword);
-
-    if (response.success) {
-      console.log(response.data);
-      setSearchResult(response.data);
-      setSearchLoading(false);
+    if (router.asPath === "/listOfDoctor") {
+      setSearchLoading(true);
+      const response = await vetSearch(keyword);
+      if (response.success) {
+        const finalData = [];
+        response.data.map((item) => {
+          finalData.push({
+            id: item.id,
+            name: item.first_name + " " + item.last_name,
+            type: "vet",
+          });
+        });
+        console.log(response.data);
+        setSearchResult(finalData);
+        setSearchLoading(false);
+      }
+    } else {
+      setSearchLoading(true);
+      const response = await search(keyword);
+      if (response.success) {
+        console.log(response.data);
+        setSearchResult(response.data);
+        setSearchLoading(false);
+      }
     }
   }, 1000);
   const handleSearch = (e) => {
@@ -145,9 +163,13 @@ export default function MainLayout({ children }) {
                       searchResult.map((item) => {
                         return (
                           <div key={item.id}>
-                            <Link href={`/products/${item.slug}`}>
-                              {item.name}
-                            </Link>
+                            {item.type ? (
+                              <Link href={`/vet/${item.id}`}>{item.name}</Link>
+                            ) : (
+                              <Link href={`/products/${item.slug}`}>
+                                {item.name}
+                              </Link>
+                            )}
                           </div>
                         );
                       })

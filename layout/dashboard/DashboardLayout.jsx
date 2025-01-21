@@ -47,7 +47,12 @@ const menuArr = [
     icon: "/assets/dashboard/pet.svg",
     Activeicon: "/assets/dashboard/pet-active.svg",
   },
-  // { id: "vet", name: "دامپزشک من", icon: "/assets/dashboard/vet.svg" },
+  {
+    id: "vet",
+    name: "دامپزشک من",
+    icon: "/assets/dashboard/vet.svg",
+    Activeicon: "/assets/dashboard/vet.svg",
+  },
   {
     id: "wallet",
     name: "کیف پول",

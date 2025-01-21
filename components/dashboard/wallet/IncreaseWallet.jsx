@@ -3,8 +3,14 @@ import Image from "next/image";
 //media
 import CloseButton_Icon from "../../../assets/common/close-button.svg";
 import Modal from "@/components/partials/modal/Modal";
+import { chargeWallet } from "@/services/dashboard/walet/chargeWallet";
 export default function IncreaseWallet({ showeModal, setShowModal }) {
   const [increaseAmount, setIncreaseAmount] = useState(0);
+  const handleSave = async () => {
+    const response = await chargeWallet({ charge: increaseAmount });
+
+    window.location.href = response.data.url;
+  };
   return (
     <Modal show={showeModal}>
       <input type="checkbox" id="add-wallet-modal" className="modal-toggle" />
@@ -62,7 +68,10 @@ export default function IncreaseWallet({ showeModal, setShowModal }) {
               </div>
             </div>
             <div className="flex flex-row items-center justify-between w-full lg:w-1/3 lg:self-left">
-              <button className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] ml-2">
+              <button
+                onClick={handleSave}
+                className="w-full text-sm text-white text-center font-semibold py-3 lg:py-2 rounded-[5px] bg-[#4DA4F4] border-[2px] solid border-[#4DA4F4] ml-2"
+              >
                 پرداخت
               </button>
               <label
